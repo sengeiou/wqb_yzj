@@ -35,7 +35,7 @@ public class AppSingUpUtils {
 	 * @param connectionData
 	 */
 	public void saveConnectionData(WebRequest request, ConnectionData connectionData) {
-		redisTemplate.opsForValue().set(getKey(request), connectionData, 10, TimeUnit.MINUTES);
+		redisTemplate.opsForValue().set(getKey(request), connectionData, 30, TimeUnit.MINUTES);
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class AppSingUpUtils {
 	public void doPostSignUp(WebRequest request, String userId) {
 		String key = getKey(request);
 		if(!redisTemplate.hasKey(key)){
-			throw new AppSecretException("无法找到缓存的用户社交账号信息");
+			throw new AppSecretException("长时间未注册该链接已失效，请重新登录在绑定");
 		}
 		ConnectionData connectionData = (ConnectionData) redisTemplate.opsForValue().get(key);
 		Connection<?> connection = connectionFactoryLocator.getConnectionFactory(connectionData.getProviderId())
@@ -62,11 +62,11 @@ public class AppSingUpUtils {
 	 * @return
 	 */
 	private String getKey(WebRequest request) {
-		String deviceId = request.getParameter("deviceId");
+		String deviceId = request.getHeader("deviceId");
 		if (StringUtils.isBlank(deviceId)) {
 			throw new AppSecretException("deviceId参数不能为空");
 		}
-		return "app:security:social.connect." + deviceId;
+		return "security:social.connect." + deviceId;
 	}
 
 }

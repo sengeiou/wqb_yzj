@@ -1,6 +1,8 @@
 package com.wqb.services.impl;
 
+import com.wqb.domains.Account;
 import com.wqb.domains.Customer;
+import com.wqb.domains.User;
 import com.wqb.services.CustomerService;
 import com.wqb.services.base.BaseServiceImpl;
 import org.springframework.stereotype.Service;
@@ -16,4 +18,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerServiceImpl extends BaseServiceImpl<Customer> implements CustomerService {
 
+    @Override
+    public Customer getCustomerByAccount(Account account) {
+        Customer condition = new Customer();
+        condition.setAccountID(account.getAccountID());
+        return getOne(condition);
+    }
 }

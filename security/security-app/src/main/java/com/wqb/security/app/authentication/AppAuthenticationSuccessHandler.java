@@ -45,10 +45,16 @@ public class AppAuthenticationSuccessHandler extends SavedRequestAwareAuthentica
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException {
-		String[] clientInfo = ClientUtils.getClientInfo(request);
+        String[] clientInfo = new String[2];
 
-        if (clientInfo == null) {
-            ClientUtils.outputAbsentClient(response);
+        try {
+            clientInfo = ClientUtils.getClientInfo(request);
+            if (clientInfo == null) {
+                ClientUtils.outputAbsentClient(response);
+                return;
+            }
+        } catch (RuntimeException e) {
+            ClientUtils.outputErrorInfo(response, HttpStatus.UNAUTHORIZED, e.getMessage());
             return;
         }
 

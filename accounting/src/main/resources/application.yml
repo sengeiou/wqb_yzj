@@ -73,14 +73,14 @@ app:
         height: 30
         expireIn: 3600
         # 配置需要图形验证码验证的url, 两个验证码如果配的url中相同部分则短信优先级要高
-        url: /user/*
+        url:
 
       #短信验证码配置项，参见SmsCodeProperties
       sms:
         length: 6
         expireIn: 60
         # 配置需要短信验证码验证的url
-        url: /user/*
+        url:  /user/register/**
 
     #社交登录功能拦截的url,参见SocilaProperties
     social:
@@ -119,15 +119,17 @@ spring:
   profiles: dev
 
   datasource:
-    url: jdbc:mysql://192.168.1.10:3306/wqb_yjz?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
-    username: xw
-    password: Xw9999
-
+#    url: jdbc:mysql://192.168.1.10:3306/wqb_yjz?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+#    username: xw
+#    password: Xw9999
+    url: jdbc:mysql://www.lazyor.com:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: caipiao
+    password: caipiao...
   cache:
     type: redis
 
   redis:
-    host: 192.168.1.216
+    host: 127.0.0.1
     port: 6379
     timeout: 5000
 

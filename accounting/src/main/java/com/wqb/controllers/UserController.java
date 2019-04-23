@@ -1,9 +1,9 @@
 package com.wqb.controllers;
 
 
-import com.wqb.commons.vo.Response;
 import com.wqb.controllers.base.BaseController;
 import com.wqb.domains.Account;
+import com.wqb.domains.Customer;
 import com.wqb.domains.User;
 import com.wqb.security.app.social.AppSingUpUtils;
 import com.wqb.security.core.properties.SecurityProperties;
@@ -14,18 +14,14 @@ import io.jsonwebtoken.Jwts;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.security.SignatureException;
 
 /**
  * <p>
@@ -37,13 +33,7 @@ import java.security.SignatureException;
  */
 @RestController
 @RequestMapping("/user")
-public class UserController extends BaseController<User> {
-
-    @Autowired
-    private ProviderSignInUtils providerSignInUtils;
-
-	@Autowired
-	private AppSingUpUtils appSingUpUtils;
+public class UserController{
 
 	@Autowired
 	private SecurityProperties securityProperties;
@@ -52,15 +42,15 @@ public class UserController extends BaseController<User> {
     private UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity register(User user, Account account) {
-        User registerUser = userService.registerUser(user, account);
-        return ResponseUtils.ok(registerUser);
+    public ResponseEntity register(User user, Account account, Customer customer) {
+        User registerUser = userService.register(user, account, customer);
+        return ResponseUtils.created(registerUser);
     }
 
     @PostMapping("/register/connect")
-    public ResponseEntity register(HttpServletRequest request, User user, Account account) {
-        User registerUser = userService.registerUserWithConnection(request, user, account);
-        return ResponseUtils.ok(registerUser);
+    public ResponseEntity register(HttpServletRequest request, User user, Account account, Customer customer) {
+        User registerUser = userService.registerWithConnection(request, user, account, customer);
+        return ResponseUtils.created(registerUser);
     }
 
     @GetMapping("/me")

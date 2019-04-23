@@ -45,23 +45,11 @@ public class ClientUtils {
         response.getWriter().write(objectMapper.writeValueAsString(objectResponse));
     }
 
-    public static void outputAbsentClient(HttpServletResponse response) throws IOException {
-        Response objectResponse = new Response()
-                .setSuccess(false)
-                .setStatus(HttpStatus.BAD_REQUEST.value())
-                .setMessage("请求中未包含正确的客户端信息");
-
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("application/json,charset=utf-8");
-        response.setStatus(HttpStatus.BAD_REQUEST.value());
-        response.getWriter().write(objectMapper.writeValueAsString(objectResponse));
-    }
-
-    public static String[] getClientInfo(HttpServletRequest request) throws IOException {
+    public static String[] getClientInfo(HttpServletRequest request) {
         String header = request.getHeader("Authorization");
 
         if (header == null || !header.startsWith("Basic ")) {
-            throw new UnapprovedClientAuthenticationException("请求头中无client信息");
+            throw new UnapprovedClientAuthenticationException("请求头Authorization中无客户端信息");
         }
 
         byte[] base64Token = header.substring(6).getBytes(StandardCharsets.UTF_8);
@@ -70,7 +58,7 @@ public class ClientUtils {
         try {
             decoded = Base64.getDecoder().decode(base64Token);
         } catch (IllegalArgumentException e) {
-            throw new BadCredentialsException("Failed to decode basic authentication token");
+            throw new BadCredentialsException("不能解析客户端信息");
         }
 
         String token = new String(decoded, StandardCharsets.UTF_8);
@@ -87,5 +75,22 @@ public class ClientUtils {
         }
 
         return new String[] {token.substring(0, delim), token.substring(delim + 1) };
+    }
+
+    public static void outputAbsentClient(HttpServletResponse response) throws IOException {
+        outputErrorInfo(response, HttpStatus.BAD_REQUEST, "请求中未包含正确的客户端信息");
+    }
+
+    public static void outputErrorInfo(HttpServletResponse response, HttpStatus httpStatus, String message)
+            throws IOException {
+        Response objectResponse = new Response()
+                .setSuccess(false)
+                .setStatus(httpStatus.value())
+                .setMessage(message);
+
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json,charset=utf-8");
+        response.setStatus(httpStatus.value());
+        response.getWriter().write(objectMapper.writeValueAsString(objectResponse));
     }
 }

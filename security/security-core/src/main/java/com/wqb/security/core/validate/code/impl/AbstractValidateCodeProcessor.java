@@ -23,7 +23,7 @@ import java.util.Map;
  *
  * @author Shoven
  */
-public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> implements ValidateCodeProcessor {
+public abstract class AbstractValidateCodeProcessor<T extends ValidateCode> implements ValidateCodeProcessor {
 
     private static final Logger logger = LoggerFactory.getLogger(AbstractValidateCodeProcessor.class);
 
@@ -42,10 +42,10 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
 	@Override
 	public void create(ServletWebRequest request) {
         try {
-            C validateCode = generate(request);
+            T validateCode = generate(request);
             save(request, validateCode);
             send(request, validateCode);
-        } catch (IllegalArgumentException | ValidateCodeException e) {
+        } catch (ValidateCodeException e) {
             responseMessage(request, e.getMessage(), HttpStatus.BAD_REQUEST.value());
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
@@ -73,7 +73,7 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	private C generate(ServletWebRequest request) {
+	private T generate(ServletWebRequest request) {
 		String type = getValidateCodeType(request).toString().toLowerCase();
         String generatorName = validateCodeGenerators.keySet().stream()
                 .filter(name -> StringUtils.startsWith(name, type))
@@ -83,7 +83,7 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
         if (validateCodeGenerator == null) {
             throw new ValidateCodeException("没有 "+ generatorName +" 验证码生成器");
         }
-		return (C) validateCodeGenerator.generate(request);
+		return (T) validateCodeGenerator.generate(request);
 	}
 
 	/**
@@ -92,7 +92,7 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
 	 * @param request
 	 * @param validateCode
 	 */
-	private void save(ServletWebRequest request, C validateCode) {
+	private void save(ServletWebRequest request, T validateCode) {
 		ValidateCode code = new ValidateCode(validateCode.getCode(), validateCode.getExpireTime());
 		validateCodeRepository.save(request, code, getValidateCodeType(request));
 	}
@@ -104,7 +104,7 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
 	 * @param validateCode
 	 * @throws Exception
 	 */
-	protected abstract void send(ServletWebRequest request, C validateCode) throws Exception;
+	protected abstract void send(ServletWebRequest request, T validateCode) throws Exception;
 
 	/**
 	 * 根据请求的url获取校验码的类型
@@ -123,7 +123,7 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
 
 		ValidateCodeType codeType = getValidateCodeType(request);
 
-		C codeInSession = (C) validateCodeRepository.get(request, codeType);
+		T codeInSession = (T) validateCodeRepository.get(request, codeType);
 
 		String codeInRequest;
 		try {
@@ -133,7 +133,7 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
 		}
 
 		if (StringUtils.isBlank(codeInRequest)) {
-			throw new ValidateCodeException(codeType.getName() + "请输入验证码");
+			throw new ValidateCodeException("请输入" + codeType.getName() + "验证码");
 		}
 
 		if (codeInSession == null || codeInSession.isExpried()) {

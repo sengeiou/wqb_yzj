@@ -75,7 +75,7 @@ public class WeixinOAuth2Template extends OAuth2Template {
 	@SuppressWarnings("unchecked")
 	private AccessGrant getAccessToken(StringBuilder accessTokenRequestUrl) {
 //		String response = getRestTemplate().getForObject(accessTokenRequestUrl.toString(), String.class);
-        String response = "{\"access_token\":\"20_0hLmeyii-HfAzngFNKjbJgmlX-iMVWDydFln5f4g5gRWWNj-beXBn_yfWp6lQz3BUFOHxsD6asJSYsTsm2NFVQ\",\"expires_in\":7200,\"refresh_token\":\"20_ujqaWlIf_eoDXZ8_SChPzgehWIZssGpnssFiOoksow-BvXCoqawkDPHIv1TtWzrLKozqZ0A_yZ1eFwIUNVUvtg\",\"openid\":\"od4PTw7Iijvj9qAw3RtLXSUZpMOU\",\"scope\":\"snsapi_login\",\"unionid\":\"oEg8VuH4KoidJSzmviOKsY9n7igU\"}";
+        String response = "{\"access_token\":\"20_OjoL-GvnjMYFn5YSluEp3y1MmthbcaNRuh3bLk6RHyjA2SpA2Y58w86pcQT6r_b9102AIFZ5OhIKeIKY_wV98g\",\"expires_in\":7200,\"refresh_token\":\"20_fRN5EVnN4c-LM5dyhJW88jZV17EgHzE_XvZacurLdoJyBjUaAr12h0iKwL32JkTxoQAV5gu2GzMjzEdgVfh8OQ\",\"openid\":\"od4PTw7Iijvj9qAw3RtLXSUZpMOU\",\"scope\":\"snsapi_login\",\"unionid\":\"oEg8VuH4KoidJSzmviOKsY9n7igU\"}";
 		logger.info("获取weixin access_token响应: "+response);
 
 		Map<String, Object> result = null;

@@ -32,13 +32,4 @@ public interface ValidateCodeRepository {
 	 * @param codeType
 	 */
 	void remove(ServletWebRequest request, ValidateCodeType codeType);
-
-    /**
-     * 获取验证码所属的省份
-     *
-     * @param request
-     * @param type
-     * @return
-     */
-	String getIdentity(ServletWebRequest request, ValidateCodeType type);
 }

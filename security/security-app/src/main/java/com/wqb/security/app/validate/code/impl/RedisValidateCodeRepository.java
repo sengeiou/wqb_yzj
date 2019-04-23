@@ -2,8 +2,10 @@
 package com.wqb.security.app.validate.code.impl;
 
 import com.wqb.security.core.validate.code.ValidateCode;
+import com.wqb.security.core.validate.code.ValidateCodeException;
+import com.wqb.security.core.validate.code.ValidateCodeRepository;
 import com.wqb.security.core.validate.code.ValidateCodeType;
-import com.wqb.security.core.validate.code.impl.AbstractValidateCodeRepository;
+import io.micrometer.core.instrument.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -17,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  * 基于redis的验证码存取器，避免由于没有session导致无法存取验证码的问题
  */
 @Component
-public class RedisValidateCodeRepository extends AbstractValidateCodeRepository {
+public class RedisValidateCodeRepository implements ValidateCodeRepository {
 
 	@Autowired
 	private RedisTemplate<Object, Object> redisTemplate;
@@ -74,7 +76,11 @@ public class RedisValidateCodeRepository extends AbstractValidateCodeRepository 
 	 * @return
 	 */
 	private String buildKey(ServletWebRequest request, ValidateCodeType type) {
-		return "code:" + type.toString().toLowerCase() + ":" + getIdentity(request, type);
+        String deviceId = request.getHeader("deviceId");
+        if (StringUtils.isBlank(deviceId)) {
+            throw new ValidateCodeException("请在请求头中携带deviceId参数");
+        }
+        return "code:" + type.toString().toLowerCase() + ":" + deviceId;
 	}
 
 }

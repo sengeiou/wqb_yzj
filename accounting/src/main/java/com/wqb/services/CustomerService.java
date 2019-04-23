@@ -1,6 +1,8 @@
 package com.wqb.services;
 
+import com.wqb.domains.Account;
 import com.wqb.domains.Customer;
+import com.wqb.domains.User;
 import com.wqb.services.base.BaseService;
 
 /**
@@ -13,4 +15,11 @@ import com.wqb.services.base.BaseService;
  */
 public interface CustomerService extends BaseService<Customer> {
 
+    /**
+     * 获取当前客户信息（自己）
+     *
+     * @param account
+     * @return
+     */
+    Customer getCustomerByAccount(Account account);
 }

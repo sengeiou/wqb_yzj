@@ -92,7 +92,7 @@ public class AppSecurityController extends SocialController {
         Response<SocialUserInfo> response = new Response<SocialUserInfo>()
                 .setSuccess(false)
                 .setStatus(HttpStatus.UNAUTHORIZED.value())
-                .setMessage("第一次登录需要绑定账号")
+                .setMessage("第一次登录需要绑定账号，轻在30分钟内完成注册绑定")
                 .setData(socialUserInfo);
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);

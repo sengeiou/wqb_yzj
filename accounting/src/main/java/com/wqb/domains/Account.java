@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -48,6 +49,7 @@ public class Account implements Serializable {
     /**
      * 启用期间
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date period;
 
     /**

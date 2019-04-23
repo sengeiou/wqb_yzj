@@ -16,6 +16,7 @@ public class WqbConfigProvider implements AuthorizationConfigProvider {
 
 	@Override
 	public boolean config(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry config) {
+        config.antMatchers("/user/register/**").permitAll();
 		//demo项目授权配置
 		return false;
 	}

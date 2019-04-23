@@ -1,17 +1,9 @@
 
 package com.wqb.supports.security;
 
-import com.wqb.security.core.authentication.DefaultSocialUserDetailsService;
-import com.wqb.security.core.authentication.DefaultUserDetailsService;
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.codec.digest.Md5Crypt;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.social.security.SocialUserDetailsService;
 
 /**
  *
