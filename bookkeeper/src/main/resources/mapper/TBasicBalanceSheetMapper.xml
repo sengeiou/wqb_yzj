@@ -1,0 +1,1644 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="balanceSheet" >
+  <resultMap id="balanceSheet" type="balanceSheet" >
+    <id column="pk_balance_sheet_id" property="pkBalanceSheetId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="account_id" property="accountId" jdbcType="VARCHAR" />
+    <result column="account_period" property="accountPeriod" jdbcType="VARCHAR" />
+    <result column="init_cash" property="initCash" jdbcType="DECIMAL" />
+    <result column="end_cash" property="endCash" jdbcType="DECIMAL" />
+    <result column="init_transaction_monetary_assets" property="initTransactionMonetaryAssets" jdbcType="DECIMAL" />
+    <result column="end_transaction_monetary_assets" property="endTransactionMonetaryAssets" jdbcType="DECIMAL" />
+    <result column="init_notes_receivable" property="initNotesReceivable" jdbcType="DECIMAL" />
+    <result column="end_notes_receivable" property="endNotesReceivable" jdbcType="DECIMAL" />
+    <result column="init_accounts_receivable" property="initAccountsReceivable" jdbcType="DECIMAL" />
+    <result column="end_accounts_receivable" property="endAccountsReceivable" jdbcType="DECIMAL" />
+    <result column="init_accounts_prepaid" property="initAccountsPrepaid" jdbcType="DECIMAL" />
+    <result column="end_accounts_prepaid" property="endAccountsPrepaid" jdbcType="DECIMAL" />
+    <result column="init_interest_receivable" property="initInterestReceivable" jdbcType="DECIMAL" />
+    <result column="end_interest_receivable" property="endInterestReceivable" jdbcType="DECIMAL" />
+    <result column="init_dividend_receivable" property="initDividendReceivable" jdbcType="DECIMAL" />
+    <result column="end_dividend_receivable" property="endDividendReceivable" jdbcType="DECIMAL" />
+    <result column="init_other_receivables" property="initOtherReceivables" jdbcType="DECIMAL" />
+    <result column="end_other_receivables" property="endOtherReceivables" jdbcType="DECIMAL" />
+    <result column="init_inventories" property="initInventories" jdbcType="DECIMAL" />
+    <result column="end_inventories" property="endInventories" jdbcType="DECIMAL" />
+    <result column="init_non_current_assets_due_in_one_year" property="initNonCurrentAssetsDueInOneYear" jdbcType="DECIMAL" />
+    <result column="end_non_current_assets_due_in_one_year" property="endNonCurrentAssetsDueInOneYear" jdbcType="DECIMAL" />
+    <result column="init_other_current_assets" property="initOtherCurrentAssets" jdbcType="DECIMAL" />
+    <result column="end_other_current_assets" property="endOtherCurrentAssets" jdbcType="DECIMAL" />
+    <result column="init_total_current_assets" property="initTotalCurrentAssets" jdbcType="DECIMAL" />
+    <result column="end_total_current_assets" property="endTotalCurrentAssets" jdbcType="DECIMAL" />
+    <result column="init_available_for_sale_financial_assets" property="initAvailableForSaleFinancialAssets" jdbcType="DECIMAL" />
+    <result column="end_available_for_sale_financial_assets" property="endAvailableForSaleFinancialAssets" jdbcType="DECIMAL" />
+    <result column="init_held_to_maturity_investmen" property="initHeldToMaturityInvestmen" jdbcType="DECIMAL" />
+    <result column="end_held_to_maturity_investmen" property="endHeldToMaturityInvestmen" jdbcType="DECIMAL" />
+    <result column="init_long_term_receivables" property="initLongTermReceivables" jdbcType="DECIMAL" />
+    <result column="end_long_term_receivables" property="endLongTermReceivables" jdbcType="DECIMAL" />
+    <result column="init_long_term_equity_investment" property="initLongTermEquityInvestment" jdbcType="DECIMAL" />
+    <result column="end_long_term_equity_investment" property="endLongTermEquityInvestment" jdbcType="DECIMAL" />
+    <result column="init_investment_real_estates" property="initInvestmentRealEstates" jdbcType="DECIMAL" />
+    <result column="end_investment_real_estates" property="endInvestmentRealEstates" jdbcType="DECIMAL" />
+    <result column="init_fixed_assets" property="initFixedAssets" jdbcType="DECIMAL" />
+    <result column="end_fixed_assets" property="endFixedAssets" jdbcType="DECIMAL" />
+    <result column="init_construction_in_progress" property="initConstructionInProgress" jdbcType="DECIMAL" />
+    <result column="end_construction_in_progress" property="endConstructionInProgress" jdbcType="DECIMAL" />
+    <result column="init_construction_supplies" property="initConstructionSupplies" jdbcType="DECIMAL" />
+    <result column="end_construction_supplies" property="endConstructionSupplies" jdbcType="DECIMAL" />
+    <result column="init_fixed_assets_pending_disposal" property="initFixedAssetsPendingDisposal" jdbcType="DECIMAL" />
+    <result column="end_fixed_assets_pending_disposal" property="endFixedAssetsPendingDisposal" jdbcType="DECIMAL" />
+    <result column="init_bearer_biological_assets" property="initBearerBiologicalAssets" jdbcType="DECIMAL" />
+    <result column="end_bearer_biological_assets" property="endBearerBiologicalAssets" jdbcType="DECIMAL" />
+    <result column="init_oil_and_natural_gas_assets" property="initOilAndNaturalGasAssets" jdbcType="DECIMAL" />
+    <result column="end_oil_and_natural_gas_assets" property="endOilAndNaturalGasAssets" jdbcType="DECIMAL" />
+    <result column="init_intangibel_assets" property="initIntangibelAssets" jdbcType="DECIMAL" />
+    <result column="end_intangibel_assets" property="endIntangibelAssets" jdbcType="DECIMAL" />
+    <result column="init_research_and_development_costs" property="initResearchAndDevelopmentCosts" jdbcType="DECIMAL" />
+    <result column="end_research_and_development_costs" property="endResearchAndDevelopmentCosts" jdbcType="DECIMAL" />
+    <result column="init_goodwill" property="initGoodwill" jdbcType="DECIMAL" />
+    <result column="end_goodwill" property="endGoodwill" jdbcType="DECIMAL" />
+    <result column="init_long_term_deferred_expenses" property="initLongTermDeferredExpenses" jdbcType="DECIMAL" />
+    <result column="end_long_term_deferred_expenses" property="endLongTermDeferredExpenses" jdbcType="DECIMAL" />
+    <result column="init_deferred_tax_assets" property="initDeferredTaxAssets" jdbcType="DECIMAL" />
+    <result column="end_deferred_tax_assets" property="endDeferredTaxAssets" jdbcType="DECIMAL" />
+    <result column="init_other_non_current_assets" property="initOtherNonCurrentAssets" jdbcType="DECIMAL" />
+    <result column="end_other_non_current_assets" property="endOtherNonCurrentAssets" jdbcType="DECIMAL" />
+    <result column="init_total_of_non_current_asses" property="initTotalOfNonCurrentAsses" jdbcType="DECIMAL" />
+    <result column="end_total_of_non_current_asses" property="endTotalOfNonCurrentAsses" jdbcType="DECIMAL" />
+    <result column="init_total_of_assets" property="initTotalOfAssets" jdbcType="DECIMAL" />
+    <result column="end_total_of_assets" property="endTotalOfAssets" jdbcType="DECIMAL" />
+    <result column="init_short_term_loan" property="initShortTermLoan" jdbcType="DECIMAL" />
+    <result column="end_short_term_loan" property="endShortTermLoan" jdbcType="DECIMAL" />
+    <result column="init_tradable_financial_liabilities" property="initTradableFinancialLiabilities" jdbcType="DECIMAL" />
+    <result column="end_tradable_financial_liabilities" property="endTradableFinancialLiabilities" jdbcType="DECIMAL" />
+    <result column="init_notes_payable" property="initNotesPayable" jdbcType="DECIMAL" />
+    <result column="end_notes_payable" property="endNotesPayable" jdbcType="DECIMAL" />
+    <result column="init_accounts_payable" property="initAccountsPayable" jdbcType="DECIMAL" />
+    <result column="end_accounts_payable" property="endAccountsPayable" jdbcType="DECIMAL" />
+    <result column="init_advance_receipts" property="initAdvanceReceipts" jdbcType="DECIMAL" />
+    <result column="end_advance_receipts" property="endAdvanceReceipts" jdbcType="DECIMAL" />
+    <result column="init_accrued_payroll" property="initAccruedPayroll" jdbcType="DECIMAL" />
+    <result column="end_accrued_payroll" property="endAccruedPayroll" jdbcType="DECIMAL" />
+    <result column="init_accrued_tax" property="initAccruedTax" jdbcType="DECIMAL" />
+    <result column="end_accrued_tax" property="endAccruedTax" jdbcType="DECIMAL" />
+    <result column="init_accrued_interest_payable" property="initAccruedInterestPayable" jdbcType="DECIMAL" />
+    <result column="end_accrued_interest_payable" property="endAccruedInterestPayable" jdbcType="DECIMAL" />
+    <result column="init_dividend_payable" property="initDividendPayable" jdbcType="DECIMAL" />
+    <result column="end_dividend_payable" property="endDividendPayable" jdbcType="DECIMAL" />
+    <result column="init_other_payables" property="initOtherPayables" jdbcType="DECIMAL" />
+    <result column="end_other_payables" property="endOtherPayables" jdbcType="DECIMAL" />
+    <result column="init_current_liailities_falling_due_within_one_year" property="initCurrentLiailitiesFallingDueWithinOneYear" jdbcType="DECIMAL" />
+    <result column="end_current_liailities_falling_due_within_one_year" property="endCurrentLiailitiesFallingDueWithinOneYear" jdbcType="DECIMAL" />
+    <result column="init_other_current_liabilities" property="initOtherCurrentLiabilities" jdbcType="DECIMAL" />
+    <result column="end_other_current_liabilities" property="endOtherCurrentLiabilities" jdbcType="DECIMAL" />
+    <result column="init_total_of_current_liabilities" property="initTotalOfCurrentLiabilities" jdbcType="DECIMAL" />
+    <result column="end_total_of_current_liabilities" property="endTotalOfCurrentLiabilities" jdbcType="DECIMAL" />
+    <result column="init_long_term_loan" property="initLongTermLoan" jdbcType="DECIMAL" />
+    <result column="end_long_term_loan" property="endLongTermLoan" jdbcType="DECIMAL" />
+    <result column="init_bonds_payable" property="initBondsPayable" jdbcType="DECIMAL" />
+    <result column="end_bonds_payable" property="endBondsPayable" jdbcType="DECIMAL" />
+    <result column="init_long_term_accounts_payable" property="initLongTermAccountsPayable" jdbcType="DECIMAL" />
+    <result column="end_long_term_accounts_payable" property="endLongTermAccountsPayable" jdbcType="DECIMAL" />
+    <result column="init_accounts_payable_for_specialised_terms" property="initAccountsPayableForSpecialisedTerms" jdbcType="DECIMAL" />
+    <result column="end_accounts_payable_for_specialised_terms" property="endAccountsPayableForSpecialisedTerms" jdbcType="DECIMAL" />
+    <result column="init_provision_for_liabilities" property="initProvisionForLiabilities" jdbcType="DECIMAL" />
+    <result column="end_provision_for_liabilities" property="endProvisionForLiabilities" jdbcType="DECIMAL" />
+    <result column="init_deferred_income_tax_liabilities" property="initDeferredIncomeTaxLiabilities" jdbcType="DECIMAL" />
+    <result column="end_deferred_income_tax_liabilities" property="endDeferredIncomeTaxLiabilities" jdbcType="DECIMAL" />
+    <result column="init_other_non_current_liabilities" property="initOtherNonCurrentLiabilities" jdbcType="DECIMAL" />
+    <result column="end_other_non_current_liabilities" property="endOtherNonCurrentLiabilities" jdbcType="DECIMAL" />
+    <result column="init_total_of_non_current_liabilities" property="initTotalOfNonCurrentLiabilities" jdbcType="DECIMAL" />
+    <result column="end_total_of_non_current_liabilities" property="endTotalOfNonCurrentLiabilities" jdbcType="DECIMAL" />
+    <result column="init_total_of_liabilities" property="initTotalOfLiabilities" jdbcType="DECIMAL" />
+    <result column="end_total_of_liabilities" property="endTotalOfLiabilities" jdbcType="DECIMAL" />
+    <result column="init_capital" property="initCapital" jdbcType="DECIMAL" />
+    <result column="end_capital" property="endCapital" jdbcType="DECIMAL" />
+    <result column="init_capital_reserves" property="initCapitalReserves" jdbcType="DECIMAL" />
+    <result column="ent_capital_reserves" property="entCapitalReserves" jdbcType="DECIMAL" />
+    <result column="init_less_treasury_stock" property="initLessTreasuryStock" jdbcType="DECIMAL" />
+    <result column="end_less_treasury_stock" property="endLessTreasuryStock" jdbcType="DECIMAL" />
+    <result column="init_earnings_reserve" property="initEarningsReserve" jdbcType="DECIMAL" />
+    <result column="end_earnings_reserve" property="endEarningsReserve" jdbcType="DECIMAL" />
+    <result column="init_retained_earnings" property="initRetainedEarnings" jdbcType="DECIMAL" />
+    <result column="end_retained_earnings" property="endRetainedEarnings" jdbcType="DECIMAL" />
+    <result column="init_total_of_owners_equity" property="initTotalOfOwnersEquity" jdbcType="DECIMAL" />
+    <result column="end_total_of_owners_equity" property="endTotalOfOwnersEquity" jdbcType="DECIMAL" />
+    <result column="init_total_of_liabilities_and_owners_equity" property="initTotalOfLiabilitiesAndOwnersEquity" jdbcType="DECIMAL" />
+    <result column="end_total_of_liabilities_and_owners_equity" property="endTotalOfLiabilitiesAndOwnersEquity" jdbcType="DECIMAL" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="detail_type" property="detailType" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_timestamp" property="updateTimestamp" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pk_balance_sheet_id, user_id, account_id, account_period, init_cash, end_cash, init_transaction_monetary_assets, 
+    end_transaction_monetary_assets, init_notes_receivable, end_notes_receivable, init_accounts_receivable, 
+    end_accounts_receivable, init_accounts_prepaid, end_accounts_prepaid, init_interest_receivable, 
+    end_interest_receivable, init_dividend_receivable, end_dividend_receivable, init_other_receivables, 
+    end_other_receivables, init_inventories, end_inventories, init_non_current_assets_due_in_one_year, 
+    end_non_current_assets_due_in_one_year, init_other_current_assets, end_other_current_assets, 
+    init_total_current_assets, end_total_current_assets, init_available_for_sale_financial_assets, 
+    end_available_for_sale_financial_assets, init_held_to_maturity_investmen, end_held_to_maturity_investmen, 
+    init_long_term_receivables, end_long_term_receivables, init_long_term_equity_investment, 
+    end_long_term_equity_investment, init_investment_real_estates, end_investment_real_estates, 
+    init_fixed_assets, end_fixed_assets, init_construction_in_progress, end_construction_in_progress, 
+    init_construction_supplies, end_construction_supplies, init_fixed_assets_pending_disposal, 
+    end_fixed_assets_pending_disposal, init_bearer_biological_assets, end_bearer_biological_assets, 
+    init_oil_and_natural_gas_assets, end_oil_and_natural_gas_assets, init_intangibel_assets, 
+    end_intangibel_assets, init_research_and_development_costs, end_research_and_development_costs, 
+    init_goodwill, end_goodwill, init_long_term_deferred_expenses, end_long_term_deferred_expenses, 
+    init_deferred_tax_assets, end_deferred_tax_assets, init_other_non_current_assets, 
+    end_other_non_current_assets, init_total_of_non_current_asses, end_total_of_non_current_asses, 
+    init_total_of_assets, end_total_of_assets, init_short_term_loan, end_short_term_loan, 
+    init_tradable_financial_liabilities, end_tradable_financial_liabilities, init_notes_payable, 
+    end_notes_payable, init_accounts_payable, end_accounts_payable, init_advance_receipts, 
+    end_advance_receipts, init_accrued_payroll, end_accrued_payroll, init_accrued_tax, 
+    end_accrued_tax, init_accrued_interest_payable, end_accrued_interest_payable, init_dividend_payable, 
+    end_dividend_payable, init_other_payables, end_other_payables, init_current_liailities_falling_due_within_one_year, 
+    end_current_liailities_falling_due_within_one_year, init_other_current_liabilities, 
+    end_other_current_liabilities, init_total_of_current_liabilities, end_total_of_current_liabilities, 
+    init_long_term_loan, end_long_term_loan, init_bonds_payable, end_bonds_payable, init_long_term_accounts_payable, 
+    end_long_term_accounts_payable, init_accounts_payable_for_specialised_terms, end_accounts_payable_for_specialised_terms, 
+    init_provision_for_liabilities, end_provision_for_liabilities, init_deferred_income_tax_liabilities, 
+    end_deferred_income_tax_liabilities, init_other_non_current_liabilities, end_other_non_current_liabilities, 
+    init_total_of_non_current_liabilities, end_total_of_non_current_liabilities, init_total_of_liabilities, 
+    end_total_of_liabilities, init_capital, end_capital, init_capital_reserves, ent_capital_reserves, 
+    init_less_treasury_stock, end_less_treasury_stock, init_earnings_reserve, end_earnings_reserve, 
+    init_retained_earnings, end_retained_earnings, init_total_of_owners_equity, end_total_of_owners_equity, 
+    init_total_of_liabilities_and_owners_equity, end_total_of_liabilities_and_owners_equity, 
+    type, detail_type, update_date, update_timestamp
+  </sql>
+  
+  <select id="queryBalanceSheet"  parameterType="balanceSheet" resultMap="balanceSheet">
+    select 
+    <include refid="Base_Column_List" />
+    from t_basic_balance_sheet
+    where 
+<!--     	user_id = #{userId,jdbcType=VARCHAR} -->
+<!--     and  -->
+    	account_id = #{accountId,jdbcType=VARCHAR}
+    and 
+    	account_period = #{accountPeriod,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="queryBalanceSheet2"  parameterType="balanceSheet" resultMap="balanceSheet">
+    select 
+    <include refid="Base_Column_List" />
+    from t_basic_balance_sheet
+    where account_id = #{accountId,jdbcType=VARCHAR}
+    and   account_period = #{accountPeriod,jdbcType=VARCHAR}
+  </select>
+  
+  
+  
+  <select id="queryBalanceSheetMap"  parameterType="balanceSheet" resultMap="balanceSheet">
+    select 
+    <include refid="Base_Column_List" />
+    from t_basic_balance_sheet
+    where 
+    	pk_balance_sheet = #{pkBalanceSheet,jdbcType=VARCHAR}
+<!--     and  -->
+<!--     	account_id = #{accountId,jdbcType=VARCHAR} -->
+<!--     and  -->
+<!--     	account_period = #{accountPeriod,jdbcType=VARCHAR} -->
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="balanceSheet" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_basic_balance_sheet
+    where pk_balance_sheet_id = #{pkBalanceSheetId,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_basic_balance_sheet
+    where pk_balance_sheet_id = #{pkBalanceSheetId,jdbcType=VARCHAR}
+  </delete>
+  
+  <delete id="deleteBalanceSheet" parameterType="balanceSheet" >
+    delete from t_basic_balance_sheet
+    where 
+<!--     	user_id = #{userId,jdbcType=VARCHAR} -->
+<!--     and  -->
+    	account_id = #{accountId,jdbcType=VARCHAR}
+    and 
+    	account_period = #{accountPeriod,jdbcType=VARCHAR}
+  </delete>
+  
+   <insert id="addBalanceSheet" parameterType="balanceSheet" >
+    insert into t_basic_balance_sheet (pk_balance_sheet_id, user_id, account_id, 
+      account_period, init_cash, end_cash, 
+      init_transaction_monetary_assets, end_transaction_monetary_assets, 
+      init_notes_receivable, end_notes_receivable, 
+      init_accounts_receivable, end_accounts_receivable, 
+      init_accounts_prepaid, end_accounts_prepaid, 
+      init_interest_receivable, end_interest_receivable, 
+      init_dividend_receivable, end_dividend_receivable, 
+      init_other_receivables, end_other_receivables, 
+      init_inventories, end_inventories, init_non_current_assets_due_in_one_year, 
+      end_non_current_assets_due_in_one_year, init_other_current_assets, 
+      end_other_current_assets, init_total_current_assets, 
+      end_total_current_assets, init_available_for_sale_financial_assets, 
+      end_available_for_sale_financial_assets, init_held_to_maturity_investmen, 
+      end_held_to_maturity_investmen, init_long_term_receivables, 
+      end_long_term_receivables, init_long_term_equity_investment, 
+      end_long_term_equity_investment, init_investment_real_estates, 
+      end_investment_real_estates, init_fixed_assets, 
+      end_fixed_assets, init_construction_in_progress, 
+      end_construction_in_progress, init_construction_supplies, 
+      end_construction_supplies, init_fixed_assets_pending_disposal, 
+      end_fixed_assets_pending_disposal, init_bearer_biological_assets, 
+      end_bearer_biological_assets, init_oil_and_natural_gas_assets, 
+      end_oil_and_natural_gas_assets, init_intangibel_assets, 
+      end_intangibel_assets, init_research_and_development_costs, 
+      end_research_and_development_costs, init_goodwill, 
+      end_goodwill, init_long_term_deferred_expenses, 
+      end_long_term_deferred_expenses, init_deferred_tax_assets, 
+      end_deferred_tax_assets, init_other_non_current_assets, 
+      end_other_non_current_assets, init_total_of_non_current_asses, 
+      end_total_of_non_current_asses, init_total_of_assets, 
+      end_total_of_assets, init_short_term_loan, end_short_term_loan, 
+      init_tradable_financial_liabilities, end_tradable_financial_liabilities, 
+      init_notes_payable, end_notes_payable, init_accounts_payable, 
+      end_accounts_payable, init_advance_receipts, 
+      end_advance_receipts, init_accrued_payroll, 
+      end_accrued_payroll, init_accrued_tax, end_accrued_tax, 
+      init_accrued_interest_payable, end_accrued_interest_payable, 
+      init_dividend_payable, end_dividend_payable, 
+      init_other_payables, end_other_payables, init_current_liailities_falling_due_within_one_year, 
+      end_current_liailities_falling_due_within_one_year, init_other_current_liabilities, 
+      end_other_current_liabilities, init_total_of_current_liabilities, 
+      end_total_of_current_liabilities, init_long_term_loan, 
+      end_long_term_loan, init_bonds_payable, end_bonds_payable, 
+      init_long_term_accounts_payable, end_long_term_accounts_payable, 
+      init_accounts_payable_for_specialised_terms, end_accounts_payable_for_specialised_terms, 
+      init_provision_for_liabilities, end_provision_for_liabilities, 
+      init_deferred_income_tax_liabilities, end_deferred_income_tax_liabilities, 
+      init_other_non_current_liabilities, end_other_non_current_liabilities, 
+      init_total_of_non_current_liabilities, end_total_of_non_current_liabilities, 
+      init_total_of_liabilities, end_total_of_liabilities, 
+      init_capital, end_capital, init_capital_reserves, 
+      ent_capital_reserves, init_less_treasury_stock, 
+      end_less_treasury_stock, init_earnings_reserve, 
+      end_earnings_reserve, init_retained_earnings, 
+      end_retained_earnings, init_total_of_owners_equity, 
+      end_total_of_owners_equity, init_total_of_liabilities_and_owners_equity, 
+      end_total_of_liabilities_and_owners_equity, type, 
+      detail_type, update_date, update_timestamp
+      )
+    values (#{pkBalanceSheetId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, 
+      #{accountPeriod,jdbcType=VARCHAR}, #{initCash,jdbcType=DECIMAL}, #{endCash,jdbcType=DECIMAL}, 
+      #{initTransactionMonetaryAssets,jdbcType=DECIMAL}, #{endTransactionMonetaryAssets,jdbcType=DECIMAL}, 
+      #{initNotesReceivable,jdbcType=DECIMAL}, #{endNotesReceivable,jdbcType=DECIMAL}, 
+      #{initAccountsReceivable,jdbcType=DECIMAL}, #{endAccountsReceivable,jdbcType=DECIMAL}, 
+      #{initAccountsPrepaid,jdbcType=DECIMAL}, #{endAccountsPrepaid,jdbcType=DECIMAL}, 
+      #{initInterestReceivable,jdbcType=DECIMAL}, #{endInterestReceivable,jdbcType=DECIMAL}, 
+      #{initDividendReceivable,jdbcType=DECIMAL}, #{endDividendReceivable,jdbcType=DECIMAL}, 
+      #{initOtherReceivables,jdbcType=DECIMAL}, #{endOtherReceivables,jdbcType=DECIMAL}, 
+      #{initInventories,jdbcType=DECIMAL}, #{endInventories,jdbcType=DECIMAL}, #{initNonCurrentAssetsDueInOneYear,jdbcType=DECIMAL}, 
+      #{endNonCurrentAssetsDueInOneYear,jdbcType=DECIMAL}, #{initOtherCurrentAssets,jdbcType=DECIMAL}, 
+      #{endOtherCurrentAssets,jdbcType=DECIMAL}, #{initTotalCurrentAssets,jdbcType=DECIMAL}, 
+      #{endTotalCurrentAssets,jdbcType=DECIMAL}, #{initAvailableForSaleFinancialAssets,jdbcType=DECIMAL}, 
+      #{endAvailableForSaleFinancialAssets,jdbcType=DECIMAL}, #{initHeldToMaturityInvestmen,jdbcType=DECIMAL}, 
+      #{endHeldToMaturityInvestmen,jdbcType=DECIMAL}, #{initLongTermReceivables,jdbcType=DECIMAL}, 
+      #{endLongTermReceivables,jdbcType=DECIMAL}, #{initLongTermEquityInvestment,jdbcType=DECIMAL}, 
+      #{endLongTermEquityInvestment,jdbcType=DECIMAL}, #{initInvestmentRealEstates,jdbcType=DECIMAL}, 
+      #{endInvestmentRealEstates,jdbcType=DECIMAL}, #{initFixedAssets,jdbcType=DECIMAL}, 
+      #{endFixedAssets,jdbcType=DECIMAL}, #{initConstructionInProgress,jdbcType=DECIMAL}, 
+      #{endConstructionInProgress,jdbcType=DECIMAL}, #{initConstructionSupplies,jdbcType=DECIMAL}, 
+      #{endConstructionSupplies,jdbcType=DECIMAL}, #{initFixedAssetsPendingDisposal,jdbcType=DECIMAL}, 
+      #{endFixedAssetsPendingDisposal,jdbcType=DECIMAL}, #{initBearerBiologicalAssets,jdbcType=DECIMAL}, 
+      #{endBearerBiologicalAssets,jdbcType=DECIMAL}, #{initOilAndNaturalGasAssets,jdbcType=DECIMAL}, 
+      #{endOilAndNaturalGasAssets,jdbcType=DECIMAL}, #{initIntangibelAssets,jdbcType=DECIMAL}, 
+      #{endIntangibelAssets,jdbcType=DECIMAL}, #{initResearchAndDevelopmentCosts,jdbcType=DECIMAL}, 
+      #{endResearchAndDevelopmentCosts,jdbcType=DECIMAL}, #{initGoodwill,jdbcType=DECIMAL}, 
+      #{endGoodwill,jdbcType=DECIMAL}, #{initLongTermDeferredExpenses,jdbcType=DECIMAL}, 
+      #{endLongTermDeferredExpenses,jdbcType=DECIMAL}, #{initDeferredTaxAssets,jdbcType=DECIMAL}, 
+      #{endDeferredTaxAssets,jdbcType=DECIMAL}, #{initOtherNonCurrentAssets,jdbcType=DECIMAL}, 
+      #{endOtherNonCurrentAssets,jdbcType=DECIMAL}, #{initTotalOfNonCurrentAsses,jdbcType=DECIMAL}, 
+      #{endTotalOfNonCurrentAsses,jdbcType=DECIMAL}, #{initTotalOfAssets,jdbcType=DECIMAL}, 
+      #{endTotalOfAssets,jdbcType=DECIMAL}, #{initShortTermLoan,jdbcType=DECIMAL}, #{endShortTermLoan,jdbcType=DECIMAL}, 
+      #{initTradableFinancialLiabilities,jdbcType=DECIMAL}, #{endTradableFinancialLiabilities,jdbcType=DECIMAL}, 
+      #{initNotesPayable,jdbcType=DECIMAL}, #{endNotesPayable,jdbcType=DECIMAL}, #{initAccountsPayable,jdbcType=DECIMAL}, 
+      #{endAccountsPayable,jdbcType=DECIMAL}, #{initAdvanceReceipts,jdbcType=DECIMAL}, 
+      #{endAdvanceReceipts,jdbcType=DECIMAL}, #{initAccruedPayroll,jdbcType=DECIMAL}, 
+      #{endAccruedPayroll,jdbcType=DECIMAL}, #{initAccruedTax,jdbcType=DECIMAL}, #{endAccruedTax,jdbcType=DECIMAL}, 
+      #{initAccruedInterestPayable,jdbcType=DECIMAL}, #{endAccruedInterestPayable,jdbcType=DECIMAL}, 
+      #{initDividendPayable,jdbcType=DECIMAL}, #{endDividendPayable,jdbcType=DECIMAL}, 
+      #{initOtherPayables,jdbcType=DECIMAL}, #{endOtherPayables,jdbcType=DECIMAL}, #{initCurrentLiailitiesFallingDueWithinOneYear,jdbcType=DECIMAL}, 
+      #{endCurrentLiailitiesFallingDueWithinOneYear,jdbcType=DECIMAL}, #{initOtherCurrentLiabilities,jdbcType=DECIMAL}, 
+      #{endOtherCurrentLiabilities,jdbcType=DECIMAL}, #{initTotalOfCurrentLiabilities,jdbcType=DECIMAL}, 
+      #{endTotalOfCurrentLiabilities,jdbcType=DECIMAL}, #{initLongTermLoan,jdbcType=DECIMAL}, 
+      #{endLongTermLoan,jdbcType=DECIMAL}, #{initBondsPayable,jdbcType=DECIMAL}, #{endBondsPayable,jdbcType=DECIMAL}, 
+      #{initLongTermAccountsPayable,jdbcType=DECIMAL}, #{endLongTermAccountsPayable,jdbcType=DECIMAL}, 
+      #{initAccountsPayableForSpecialisedTerms,jdbcType=DECIMAL}, #{endAccountsPayableForSpecialisedTerms,jdbcType=DECIMAL}, 
+      #{initProvisionForLiabilities,jdbcType=DECIMAL}, #{endProvisionForLiabilities,jdbcType=DECIMAL}, 
+      #{initDeferredIncomeTaxLiabilities,jdbcType=DECIMAL}, #{endDeferredIncomeTaxLiabilities,jdbcType=DECIMAL}, 
+      #{initOtherNonCurrentLiabilities,jdbcType=DECIMAL}, #{endOtherNonCurrentLiabilities,jdbcType=DECIMAL}, 
+      #{initTotalOfNonCurrentLiabilities,jdbcType=DECIMAL}, #{endTotalOfNonCurrentLiabilities,jdbcType=DECIMAL}, 
+      #{initTotalOfLiabilities,jdbcType=DECIMAL}, #{endTotalOfLiabilities,jdbcType=DECIMAL}, 
+      #{initCapital,jdbcType=DECIMAL}, #{endCapital,jdbcType=DECIMAL}, #{initCapitalReserves,jdbcType=DECIMAL}, 
+      #{entCapitalReserves,jdbcType=DECIMAL}, #{initLessTreasuryStock,jdbcType=DECIMAL}, 
+      #{endLessTreasuryStock,jdbcType=DECIMAL}, #{initEarningsReserve,jdbcType=DECIMAL}, 
+      #{endEarningsReserve,jdbcType=DECIMAL}, #{initRetainedEarnings,jdbcType=DECIMAL}, 
+      #{endRetainedEarnings,jdbcType=DECIMAL}, #{initTotalOfOwnersEquity,jdbcType=DECIMAL}, 
+      #{endTotalOfOwnersEquity,jdbcType=DECIMAL}, #{initTotalOfLiabilitiesAndOwnersEquity,jdbcType=DECIMAL}, 
+      #{endTotalOfLiabilitiesAndOwnersEquity,jdbcType=DECIMAL}, #{type,jdbcType=VARCHAR}, 
+      #{detailType,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{updateTimestamp,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wqb.model.TBasicBalanceSheet" >
+    insert into t_basic_balance_sheet
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pkBalanceSheetId != null" >
+        pk_balance_sheet_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="accountPeriod != null" >
+        account_period,
+      </if>
+      <if test="initCash != null" >
+        init_cash,
+      </if>
+      <if test="endCash != null" >
+        end_cash,
+      </if>
+      <if test="initTransactionMonetaryAssets != null" >
+        init_transaction_monetary_assets,
+      </if>
+      <if test="endTransactionMonetaryAssets != null" >
+        end_transaction_monetary_assets,
+      </if>
+      <if test="initNotesReceivable != null" >
+        init_notes_receivable,
+      </if>
+      <if test="endNotesReceivable != null" >
+        end_notes_receivable,
+      </if>
+      <if test="initAccountsReceivable != null" >
+        init_accounts_receivable,
+      </if>
+      <if test="endAccountsReceivable != null" >
+        end_accounts_receivable,
+      </if>
+      <if test="initAccountsPrepaid != null" >
+        init_accounts_prepaid,
+      </if>
+      <if test="endAccountsPrepaid != null" >
+        end_accounts_prepaid,
+      </if>
+      <if test="initInterestReceivable != null" >
+        init_interest_receivable,
+      </if>
+      <if test="endInterestReceivable != null" >
+        end_interest_receivable,
+      </if>
+      <if test="initDividendReceivable != null" >
+        init_dividend_receivable,
+      </if>
+      <if test="endDividendReceivable != null" >
+        end_dividend_receivable,
+      </if>
+      <if test="initOtherReceivables != null" >
+        init_other_receivables,
+      </if>
+      <if test="endOtherReceivables != null" >
+        end_other_receivables,
+      </if>
+      <if test="initInventories != null" >
+        init_inventories,
+      </if>
+      <if test="endInventories != null" >
+        end_inventories,
+      </if>
+      <if test="initNonCurrentAssetsDueInOneYear != null" >
+        init_non_current_assets_due_in_one_year,
+      </if>
+      <if test="endNonCurrentAssetsDueInOneYear != null" >
+        end_non_current_assets_due_in_one_year,
+      </if>
+      <if test="initOtherCurrentAssets != null" >
+        init_other_current_assets,
+      </if>
+      <if test="endOtherCurrentAssets != null" >
+        end_other_current_assets,
+      </if>
+      <if test="initTotalCurrentAssets != null" >
+        init_total_current_assets,
+      </if>
+      <if test="endTotalCurrentAssets != null" >
+        end_total_current_assets,
+      </if>
+      <if test="initAvailableForSaleFinancialAssets != null" >
+        init_available_for_sale_financial_assets,
+      </if>
+      <if test="endAvailableForSaleFinancialAssets != null" >
+        end_available_for_sale_financial_assets,
+      </if>
+      <if test="initHeldToMaturityInvestmen != null" >
+        init_held_to_maturity_investmen,
+      </if>
+      <if test="endHeldToMaturityInvestmen != null" >
+        end_held_to_maturity_investmen,
+      </if>
+      <if test="initLongTermReceivables != null" >
+        init_long_term_receivables,
+      </if>
+      <if test="endLongTermReceivables != null" >
+        end_long_term_receivables,
+      </if>
+      <if test="initLongTermEquityInvestment != null" >
+        init_long_term_equity_investment,
+      </if>
+      <if test="endLongTermEquityInvestment != null" >
+        end_long_term_equity_investment,
+      </if>
+      <if test="initInvestmentRealEstates != null" >
+        init_investment_real_estates,
+      </if>
+      <if test="endInvestmentRealEstates != null" >
+        end_investment_real_estates,
+      </if>
+      <if test="initFixedAssets != null" >
+        init_fixed_assets,
+      </if>
+      <if test="endFixedAssets != null" >
+        end_fixed_assets,
+      </if>
+      <if test="initConstructionInProgress != null" >
+        init_construction_in_progress,
+      </if>
+      <if test="endConstructionInProgress != null" >
+        end_construction_in_progress,
+      </if>
+      <if test="initConstructionSupplies != null" >
+        init_construction_supplies,
+      </if>
+      <if test="endConstructionSupplies != null" >
+        end_construction_supplies,
+      </if>
+      <if test="initFixedAssetsPendingDisposal != null" >
+        init_fixed_assets_pending_disposal,
+      </if>
+      <if test="endFixedAssetsPendingDisposal != null" >
+        end_fixed_assets_pending_disposal,
+      </if>
+      <if test="initBearerBiologicalAssets != null" >
+        init_bearer_biological_assets,
+      </if>
+      <if test="endBearerBiologicalAssets != null" >
+        end_bearer_biological_assets,
+      </if>
+      <if test="initOilAndNaturalGasAssets != null" >
+        init_oil_and_natural_gas_assets,
+      </if>
+      <if test="endOilAndNaturalGasAssets != null" >
+        end_oil_and_natural_gas_assets,
+      </if>
+      <if test="initIntangibelAssets != null" >
+        init_intangibel_assets,
+      </if>
+      <if test="endIntangibelAssets != null" >
+        end_intangibel_assets,
+      </if>
+      <if test="initResearchAndDevelopmentCosts != null" >
+        init_research_and_development_costs,
+      </if>
+      <if test="endResearchAndDevelopmentCosts != null" >
+        end_research_and_development_costs,
+      </if>
+      <if test="initGoodwill != null" >
+        init_goodwill,
+      </if>
+      <if test="endGoodwill != null" >
+        end_goodwill,
+      </if>
+      <if test="initLongTermDeferredExpenses != null" >
+        init_long_term_deferred_expenses,
+      </if>
+      <if test="endLongTermDeferredExpenses != null" >
+        end_long_term_deferred_expenses,
+      </if>
+      <if test="initDeferredTaxAssets != null" >
+        init_deferred_tax_assets,
+      </if>
+      <if test="endDeferredTaxAssets != null" >
+        end_deferred_tax_assets,
+      </if>
+      <if test="initOtherNonCurrentAssets != null" >
+        init_other_non_current_assets,
+      </if>
+      <if test="endOtherNonCurrentAssets != null" >
+        end_other_non_current_assets,
+      </if>
+      <if test="initTotalOfNonCurrentAsses != null" >
+        init_total_of_non_current_asses,
+      </if>
+      <if test="endTotalOfNonCurrentAsses != null" >
+        end_total_of_non_current_asses,
+      </if>
+      <if test="initTotalOfAssets != null" >
+        init_total_of_assets,
+      </if>
+      <if test="endTotalOfAssets != null" >
+        end_total_of_assets,
+      </if>
+      <if test="initShortTermLoan != null" >
+        init_short_term_loan,
+      </if>
+      <if test="endShortTermLoan != null" >
+        end_short_term_loan,
+      </if>
+      <if test="initTradableFinancialLiabilities != null" >
+        init_tradable_financial_liabilities,
+      </if>
+      <if test="endTradableFinancialLiabilities != null" >
+        end_tradable_financial_liabilities,
+      </if>
+      <if test="initNotesPayable != null" >
+        init_notes_payable,
+      </if>
+      <if test="endNotesPayable != null" >
+        end_notes_payable,
+      </if>
+      <if test="initAccountsPayable != null" >
+        init_accounts_payable,
+      </if>
+      <if test="endAccountsPayable != null" >
+        end_accounts_payable,
+      </if>
+      <if test="initAdvanceReceipts != null" >
+        init_advance_receipts,
+      </if>
+      <if test="endAdvanceReceipts != null" >
+        end_advance_receipts,
+      </if>
+      <if test="initAccruedPayroll != null" >
+        init_accrued_payroll,
+      </if>
+      <if test="endAccruedPayroll != null" >
+        end_accrued_payroll,
+      </if>
+      <if test="initAccruedTax != null" >
+        init_accrued_tax,
+      </if>
+      <if test="endAccruedTax != null" >
+        end_accrued_tax,
+      </if>
+      <if test="initAccruedInterestPayable != null" >
+        init_accrued_interest_payable,
+      </if>
+      <if test="endAccruedInterestPayable != null" >
+        end_accrued_interest_payable,
+      </if>
+      <if test="initDividendPayable != null" >
+        init_dividend_payable,
+      </if>
+      <if test="endDividendPayable != null" >
+        end_dividend_payable,
+      </if>
+      <if test="initOtherPayables != null" >
+        init_other_payables,
+      </if>
+      <if test="endOtherPayables != null" >
+        end_other_payables,
+      </if>
+      <if test="initCurrentLiailitiesFallingDueWithinOneYear != null" >
+        init_current_liailities_falling_due_within_one_year,
+      </if>
+      <if test="endCurrentLiailitiesFallingDueWithinOneYear != null" >
+        end_current_liailities_falling_due_within_one_year,
+      </if>
+      <if test="initOtherCurrentLiabilities != null" >
+        init_other_current_liabilities,
+      </if>
+      <if test="endOtherCurrentLiabilities != null" >
+        end_other_current_liabilities,
+      </if>
+      <if test="initTotalOfCurrentLiabilities != null" >
+        init_total_of_current_liabilities,
+      </if>
+      <if test="endTotalOfCurrentLiabilities != null" >
+        end_total_of_current_liabilities,
+      </if>
+      <if test="initLongTermLoan != null" >
+        init_long_term_loan,
+      </if>
+      <if test="endLongTermLoan != null" >
+        end_long_term_loan,
+      </if>
+      <if test="initBondsPayable != null" >
+        init_bonds_payable,
+      </if>
+      <if test="endBondsPayable != null" >
+        end_bonds_payable,
+      </if>
+      <if test="initLongTermAccountsPayable != null" >
+        init_long_term_accounts_payable,
+      </if>
+      <if test="endLongTermAccountsPayable != null" >
+        end_long_term_accounts_payable,
+      </if>
+      <if test="initAccountsPayableForSpecialisedTerms != null" >
+        init_accounts_payable_for_specialised_terms,
+      </if>
+      <if test="endAccountsPayableForSpecialisedTerms != null" >
+        end_accounts_payable_for_specialised_terms,
+      </if>
+      <if test="initProvisionForLiabilities != null" >
+        init_provision_for_liabilities,
+      </if>
+      <if test="endProvisionForLiabilities != null" >
+        end_provision_for_liabilities,
+      </if>
+      <if test="initDeferredIncomeTaxLiabilities != null" >
+        init_deferred_income_tax_liabilities,
+      </if>
+      <if test="endDeferredIncomeTaxLiabilities != null" >
+        end_deferred_income_tax_liabilities,
+      </if>
+      <if test="initOtherNonCurrentLiabilities != null" >
+        init_other_non_current_liabilities,
+      </if>
+      <if test="endOtherNonCurrentLiabilities != null" >
+        end_other_non_current_liabilities,
+      </if>
+      <if test="initTotalOfNonCurrentLiabilities != null" >
+        init_total_of_non_current_liabilities,
+      </if>
+      <if test="endTotalOfNonCurrentLiabilities != null" >
+        end_total_of_non_current_liabilities,
+      </if>
+      <if test="initTotalOfLiabilities != null" >
+        init_total_of_liabilities,
+      </if>
+      <if test="endTotalOfLiabilities != null" >
+        end_total_of_liabilities,
+      </if>
+      <if test="initCapital != null" >
+        init_capital,
+      </if>
+      <if test="endCapital != null" >
+        end_capital,
+      </if>
+      <if test="initCapitalReserves != null" >
+        init_capital_reserves,
+      </if>
+      <if test="entCapitalReserves != null" >
+        ent_capital_reserves,
+      </if>
+      <if test="initLessTreasuryStock != null" >
+        init_less_treasury_stock,
+      </if>
+      <if test="endLessTreasuryStock != null" >
+        end_less_treasury_stock,
+      </if>
+      <if test="initEarningsReserve != null" >
+        init_earnings_reserve,
+      </if>
+      <if test="endEarningsReserve != null" >
+        end_earnings_reserve,
+      </if>
+      <if test="initRetainedEarnings != null" >
+        init_retained_earnings,
+      </if>
+      <if test="endRetainedEarnings != null" >
+        end_retained_earnings,
+      </if>
+      <if test="initTotalOfOwnersEquity != null" >
+        init_total_of_owners_equity,
+      </if>
+      <if test="endTotalOfOwnersEquity != null" >
+        end_total_of_owners_equity,
+      </if>
+      <if test="initTotalOfLiabilitiesAndOwnersEquity != null" >
+        init_total_of_liabilities_and_owners_equity,
+      </if>
+      <if test="endTotalOfLiabilitiesAndOwnersEquity != null" >
+        end_total_of_liabilities_and_owners_equity,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="detailType != null" >
+        detail_type,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="updateTimestamp != null" >
+        update_timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pkBalanceSheetId != null" >
+        #{pkBalanceSheetId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPeriod != null" >
+        #{accountPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="initCash != null" >
+        #{initCash,jdbcType=DECIMAL},
+      </if>
+      <if test="endCash != null" >
+        #{endCash,jdbcType=DECIMAL},
+      </if>
+      <if test="initTransactionMonetaryAssets != null" >
+        #{initTransactionMonetaryAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endTransactionMonetaryAssets != null" >
+        #{endTransactionMonetaryAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initNotesReceivable != null" >
+        #{initNotesReceivable,jdbcType=DECIMAL},
+      </if>
+      <if test="endNotesReceivable != null" >
+        #{endNotesReceivable,jdbcType=DECIMAL},
+      </if>
+      <if test="initAccountsReceivable != null" >
+        #{initAccountsReceivable,jdbcType=DECIMAL},
+      </if>
+      <if test="endAccountsReceivable != null" >
+        #{endAccountsReceivable,jdbcType=DECIMAL},
+      </if>
+      <if test="initAccountsPrepaid != null" >
+        #{initAccountsPrepaid,jdbcType=DECIMAL},
+      </if>
+      <if test="endAccountsPrepaid != null" >
+        #{endAccountsPrepaid,jdbcType=DECIMAL},
+      </if>
+      <if test="initInterestReceivable != null" >
+        #{initInterestReceivable,jdbcType=DECIMAL},
+      </if>
+      <if test="endInterestReceivable != null" >
+        #{endInterestReceivable,jdbcType=DECIMAL},
+      </if>
+      <if test="initDividendReceivable != null" >
+        #{initDividendReceivable,jdbcType=DECIMAL},
+      </if>
+      <if test="endDividendReceivable != null" >
+        #{endDividendReceivable,jdbcType=DECIMAL},
+      </if>
+      <if test="initOtherReceivables != null" >
+        #{initOtherReceivables,jdbcType=DECIMAL},
+      </if>
+      <if test="endOtherReceivables != null" >
+        #{endOtherReceivables,jdbcType=DECIMAL},
+      </if>
+      <if test="initInventories != null" >
+        #{initInventories,jdbcType=DECIMAL},
+      </if>
+      <if test="endInventories != null" >
+        #{endInventories,jdbcType=DECIMAL},
+      </if>
+      <if test="initNonCurrentAssetsDueInOneYear != null" >
+        #{initNonCurrentAssetsDueInOneYear,jdbcType=DECIMAL},
+      </if>
+      <if test="endNonCurrentAssetsDueInOneYear != null" >
+        #{endNonCurrentAssetsDueInOneYear,jdbcType=DECIMAL},
+      </if>
+      <if test="initOtherCurrentAssets != null" >
+        #{initOtherCurrentAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endOtherCurrentAssets != null" >
+        #{endOtherCurrentAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initTotalCurrentAssets != null" >
+        #{initTotalCurrentAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endTotalCurrentAssets != null" >
+        #{endTotalCurrentAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initAvailableForSaleFinancialAssets != null" >
+        #{initAvailableForSaleFinancialAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endAvailableForSaleFinancialAssets != null" >
+        #{endAvailableForSaleFinancialAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initHeldToMaturityInvestmen != null" >
+        #{initHeldToMaturityInvestmen,jdbcType=DECIMAL},
+      </if>
+      <if test="endHeldToMaturityInvestmen != null" >
+        #{endHeldToMaturityInvestmen,jdbcType=DECIMAL},
+      </if>
+      <if test="initLongTermReceivables != null" >
+        #{initLongTermReceivables,jdbcType=DECIMAL},
+      </if>
+      <if test="endLongTermReceivables != null" >
+        #{endLongTermReceivables,jdbcType=DECIMAL},
+      </if>
+      <if test="initLongTermEquityInvestment != null" >
+        #{initLongTermEquityInvestment,jdbcType=DECIMAL},
+      </if>
+      <if test="endLongTermEquityInvestment != null" >
+        #{endLongTermEquityInvestment,jdbcType=DECIMAL},
+      </if>
+      <if test="initInvestmentRealEstates != null" >
+        #{initInvestmentRealEstates,jdbcType=DECIMAL},
+      </if>
+      <if test="endInvestmentRealEstates != null" >
+        #{endInvestmentRealEstates,jdbcType=DECIMAL},
+      </if>
+      <if test="initFixedAssets != null" >
+        #{initFixedAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endFixedAssets != null" >
+        #{endFixedAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initConstructionInProgress != null" >
+        #{initConstructionInProgress,jdbcType=DECIMAL},
+      </if>
+      <if test="endConstructionInProgress != null" >
+        #{endConstructionInProgress,jdbcType=DECIMAL},
+      </if>
+      <if test="initConstructionSupplies != null" >
+        #{initConstructionSupplies,jdbcType=DECIMAL},
+      </if>
+      <if test="endConstructionSupplies != null" >
+        #{endConstructionSupplies,jdbcType=DECIMAL},
+      </if>
+      <if test="initFixedAssetsPendingDisposal != null" >
+        #{initFixedAssetsPendingDisposal,jdbcType=DECIMAL},
+      </if>
+      <if test="endFixedAssetsPendingDisposal != null" >
+        #{endFixedAssetsPendingDisposal,jdbcType=DECIMAL},
+      </if>
+      <if test="initBearerBiologicalAssets != null" >
+        #{initBearerBiologicalAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endBearerBiologicalAssets != null" >
+        #{endBearerBiologicalAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initOilAndNaturalGasAssets != null" >
+        #{initOilAndNaturalGasAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endOilAndNaturalGasAssets != null" >
+        #{endOilAndNaturalGasAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initIntangibelAssets != null" >
+        #{initIntangibelAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endIntangibelAssets != null" >
+        #{endIntangibelAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initResearchAndDevelopmentCosts != null" >
+        #{initResearchAndDevelopmentCosts,jdbcType=DECIMAL},
+      </if>
+      <if test="endResearchAndDevelopmentCosts != null" >
+        #{endResearchAndDevelopmentCosts,jdbcType=DECIMAL},
+      </if>
+      <if test="initGoodwill != null" >
+        #{initGoodwill,jdbcType=DECIMAL},
+      </if>
+      <if test="endGoodwill != null" >
+        #{endGoodwill,jdbcType=DECIMAL},
+      </if>
+      <if test="initLongTermDeferredExpenses != null" >
+        #{initLongTermDeferredExpenses,jdbcType=DECIMAL},
+      </if>
+      <if test="endLongTermDeferredExpenses != null" >
+        #{endLongTermDeferredExpenses,jdbcType=DECIMAL},
+      </if>
+      <if test="initDeferredTaxAssets != null" >
+        #{initDeferredTaxAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endDeferredTaxAssets != null" >
+        #{endDeferredTaxAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initOtherNonCurrentAssets != null" >
+        #{initOtherNonCurrentAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endOtherNonCurrentAssets != null" >
+        #{endOtherNonCurrentAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initTotalOfNonCurrentAsses != null" >
+        #{initTotalOfNonCurrentAsses,jdbcType=DECIMAL},
+      </if>
+      <if test="endTotalOfNonCurrentAsses != null" >
+        #{endTotalOfNonCurrentAsses,jdbcType=DECIMAL},
+      </if>
+      <if test="initTotalOfAssets != null" >
+        #{initTotalOfAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endTotalOfAssets != null" >
+        #{endTotalOfAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initShortTermLoan != null" >
+        #{initShortTermLoan,jdbcType=DECIMAL},
+      </if>
+      <if test="endShortTermLoan != null" >
+        #{endShortTermLoan,jdbcType=DECIMAL},
+      </if>
+      <if test="initTradableFinancialLiabilities != null" >
+        #{initTradableFinancialLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="endTradableFinancialLiabilities != null" >
+        #{endTradableFinancialLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="initNotesPayable != null" >
+        #{initNotesPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="endNotesPayable != null" >
+        #{endNotesPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="initAccountsPayable != null" >
+        #{initAccountsPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="endAccountsPayable != null" >
+        #{endAccountsPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="initAdvanceReceipts != null" >
+        #{initAdvanceReceipts,jdbcType=DECIMAL},
+      </if>
+      <if test="endAdvanceReceipts != null" >
+        #{endAdvanceReceipts,jdbcType=DECIMAL},
+      </if>
+      <if test="initAccruedPayroll != null" >
+        #{initAccruedPayroll,jdbcType=DECIMAL},
+      </if>
+      <if test="endAccruedPayroll != null" >
+        #{endAccruedPayroll,jdbcType=DECIMAL},
+      </if>
+      <if test="initAccruedTax != null" >
+        #{initAccruedTax,jdbcType=DECIMAL},
+      </if>
+      <if test="endAccruedTax != null" >
+        #{endAccruedTax,jdbcType=DECIMAL},
+      </if>
+      <if test="initAccruedInterestPayable != null" >
+        #{initAccruedInterestPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="endAccruedInterestPayable != null" >
+        #{endAccruedInterestPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="initDividendPayable != null" >
+        #{initDividendPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="endDividendPayable != null" >
+        #{endDividendPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="initOtherPayables != null" >
+        #{initOtherPayables,jdbcType=DECIMAL},
+      </if>
+      <if test="endOtherPayables != null" >
+        #{endOtherPayables,jdbcType=DECIMAL},
+      </if>
+      <if test="initCurrentLiailitiesFallingDueWithinOneYear != null" >
+        #{initCurrentLiailitiesFallingDueWithinOneYear,jdbcType=DECIMAL},
+      </if>
+      <if test="endCurrentLiailitiesFallingDueWithinOneYear != null" >
+        #{endCurrentLiailitiesFallingDueWithinOneYear,jdbcType=DECIMAL},
+      </if>
+      <if test="initOtherCurrentLiabilities != null" >
+        #{initOtherCurrentLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="endOtherCurrentLiabilities != null" >
+        #{endOtherCurrentLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="initTotalOfCurrentLiabilities != null" >
+        #{initTotalOfCurrentLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="endTotalOfCurrentLiabilities != null" >
+        #{endTotalOfCurrentLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="initLongTermLoan != null" >
+        #{initLongTermLoan,jdbcType=DECIMAL},
+      </if>
+      <if test="endLongTermLoan != null" >
+        #{endLongTermLoan,jdbcType=DECIMAL},
+      </if>
+      <if test="initBondsPayable != null" >
+        #{initBondsPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="endBondsPayable != null" >
+        #{endBondsPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="initLongTermAccountsPayable != null" >
+        #{initLongTermAccountsPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="endLongTermAccountsPayable != null" >
+        #{endLongTermAccountsPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="initAccountsPayableForSpecialisedTerms != null" >
+        #{initAccountsPayableForSpecialisedTerms,jdbcType=DECIMAL},
+      </if>
+      <if test="endAccountsPayableForSpecialisedTerms != null" >
+        #{endAccountsPayableForSpecialisedTerms,jdbcType=DECIMAL},
+      </if>
+      <if test="initProvisionForLiabilities != null" >
+        #{initProvisionForLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="endProvisionForLiabilities != null" >
+        #{endProvisionForLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="initDeferredIncomeTaxLiabilities != null" >
+        #{initDeferredIncomeTaxLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="endDeferredIncomeTaxLiabilities != null" >
+        #{endDeferredIncomeTaxLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="initOtherNonCurrentLiabilities != null" >
+        #{initOtherNonCurrentLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="endOtherNonCurrentLiabilities != null" >
+        #{endOtherNonCurrentLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="initTotalOfNonCurrentLiabilities != null" >
+        #{initTotalOfNonCurrentLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="endTotalOfNonCurrentLiabilities != null" >
+        #{endTotalOfNonCurrentLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="initTotalOfLiabilities != null" >
+        #{initTotalOfLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="endTotalOfLiabilities != null" >
+        #{endTotalOfLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="initCapital != null" >
+        #{initCapital,jdbcType=DECIMAL},
+      </if>
+      <if test="endCapital != null" >
+        #{endCapital,jdbcType=DECIMAL},
+      </if>
+      <if test="initCapitalReserves != null" >
+        #{initCapitalReserves,jdbcType=DECIMAL},
+      </if>
+      <if test="entCapitalReserves != null" >
+        #{entCapitalReserves,jdbcType=DECIMAL},
+      </if>
+      <if test="initLessTreasuryStock != null" >
+        #{initLessTreasuryStock,jdbcType=DECIMAL},
+      </if>
+      <if test="endLessTreasuryStock != null" >
+        #{endLessTreasuryStock,jdbcType=DECIMAL},
+      </if>
+      <if test="initEarningsReserve != null" >
+        #{initEarningsReserve,jdbcType=DECIMAL},
+      </if>
+      <if test="endEarningsReserve != null" >
+        #{endEarningsReserve,jdbcType=DECIMAL},
+      </if>
+      <if test="initRetainedEarnings != null" >
+        #{initRetainedEarnings,jdbcType=DECIMAL},
+      </if>
+      <if test="endRetainedEarnings != null" >
+        #{endRetainedEarnings,jdbcType=DECIMAL},
+      </if>
+      <if test="initTotalOfOwnersEquity != null" >
+        #{initTotalOfOwnersEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="endTotalOfOwnersEquity != null" >
+        #{endTotalOfOwnersEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="initTotalOfLiabilitiesAndOwnersEquity != null" >
+        #{initTotalOfLiabilitiesAndOwnersEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="endTotalOfLiabilitiesAndOwnersEquity != null" >
+        #{endTotalOfLiabilitiesAndOwnersEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="detailType != null" >
+        #{detailType,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        #{updateTimestamp,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wqb.model.TBasicBalanceSheet" >
+    update t_basic_balance_sheet
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPeriod != null" >
+        account_period = #{accountPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="initCash != null" >
+        init_cash = #{initCash,jdbcType=DECIMAL},
+      </if>
+      <if test="endCash != null" >
+        end_cash = #{endCash,jdbcType=DECIMAL},
+      </if>
+      <if test="initTransactionMonetaryAssets != null" >
+        init_transaction_monetary_assets = #{initTransactionMonetaryAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endTransactionMonetaryAssets != null" >
+        end_transaction_monetary_assets = #{endTransactionMonetaryAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initNotesReceivable != null" >
+        init_notes_receivable = #{initNotesReceivable,jdbcType=DECIMAL},
+      </if>
+      <if test="endNotesReceivable != null" >
+        end_notes_receivable = #{endNotesReceivable,jdbcType=DECIMAL},
+      </if>
+      <if test="initAccountsReceivable != null" >
+        init_accounts_receivable = #{initAccountsReceivable,jdbcType=DECIMAL},
+      </if>
+      <if test="endAccountsReceivable != null" >
+        end_accounts_receivable = #{endAccountsReceivable,jdbcType=DECIMAL},
+      </if>
+      <if test="initAccountsPrepaid != null" >
+        init_accounts_prepaid = #{initAccountsPrepaid,jdbcType=DECIMAL},
+      </if>
+      <if test="endAccountsPrepaid != null" >
+        end_accounts_prepaid = #{endAccountsPrepaid,jdbcType=DECIMAL},
+      </if>
+      <if test="initInterestReceivable != null" >
+        init_interest_receivable = #{initInterestReceivable,jdbcType=DECIMAL},
+      </if>
+      <if test="endInterestReceivable != null" >
+        end_interest_receivable = #{endInterestReceivable,jdbcType=DECIMAL},
+      </if>
+      <if test="initDividendReceivable != null" >
+        init_dividend_receivable = #{initDividendReceivable,jdbcType=DECIMAL},
+      </if>
+      <if test="endDividendReceivable != null" >
+        end_dividend_receivable = #{endDividendReceivable,jdbcType=DECIMAL},
+      </if>
+      <if test="initOtherReceivables != null" >
+        init_other_receivables = #{initOtherReceivables,jdbcType=DECIMAL},
+      </if>
+      <if test="endOtherReceivables != null" >
+        end_other_receivables = #{endOtherReceivables,jdbcType=DECIMAL},
+      </if>
+      <if test="initInventories != null" >
+        init_inventories = #{initInventories,jdbcType=DECIMAL},
+      </if>
+      <if test="endInventories != null" >
+        end_inventories = #{endInventories,jdbcType=DECIMAL},
+      </if>
+      <if test="initNonCurrentAssetsDueInOneYear != null" >
+        init_non_current_assets_due_in_one_year = #{initNonCurrentAssetsDueInOneYear,jdbcType=DECIMAL},
+      </if>
+      <if test="endNonCurrentAssetsDueInOneYear != null" >
+        end_non_current_assets_due_in_one_year = #{endNonCurrentAssetsDueInOneYear,jdbcType=DECIMAL},
+      </if>
+      <if test="initOtherCurrentAssets != null" >
+        init_other_current_assets = #{initOtherCurrentAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endOtherCurrentAssets != null" >
+        end_other_current_assets = #{endOtherCurrentAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initTotalCurrentAssets != null" >
+        init_total_current_assets = #{initTotalCurrentAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endTotalCurrentAssets != null" >
+        end_total_current_assets = #{endTotalCurrentAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initAvailableForSaleFinancialAssets != null" >
+        init_available_for_sale_financial_assets = #{initAvailableForSaleFinancialAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endAvailableForSaleFinancialAssets != null" >
+        end_available_for_sale_financial_assets = #{endAvailableForSaleFinancialAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initHeldToMaturityInvestmen != null" >
+        init_held_to_maturity_investmen = #{initHeldToMaturityInvestmen,jdbcType=DECIMAL},
+      </if>
+      <if test="endHeldToMaturityInvestmen != null" >
+        end_held_to_maturity_investmen = #{endHeldToMaturityInvestmen,jdbcType=DECIMAL},
+      </if>
+      <if test="initLongTermReceivables != null" >
+        init_long_term_receivables = #{initLongTermReceivables,jdbcType=DECIMAL},
+      </if>
+      <if test="endLongTermReceivables != null" >
+        end_long_term_receivables = #{endLongTermReceivables,jdbcType=DECIMAL},
+      </if>
+      <if test="initLongTermEquityInvestment != null" >
+        init_long_term_equity_investment = #{initLongTermEquityInvestment,jdbcType=DECIMAL},
+      </if>
+      <if test="endLongTermEquityInvestment != null" >
+        end_long_term_equity_investment = #{endLongTermEquityInvestment,jdbcType=DECIMAL},
+      </if>
+      <if test="initInvestmentRealEstates != null" >
+        init_investment_real_estates = #{initInvestmentRealEstates,jdbcType=DECIMAL},
+      </if>
+      <if test="endInvestmentRealEstates != null" >
+        end_investment_real_estates = #{endInvestmentRealEstates,jdbcType=DECIMAL},
+      </if>
+      <if test="initFixedAssets != null" >
+        init_fixed_assets = #{initFixedAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endFixedAssets != null" >
+        end_fixed_assets = #{endFixedAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initConstructionInProgress != null" >
+        init_construction_in_progress = #{initConstructionInProgress,jdbcType=DECIMAL},
+      </if>
+      <if test="endConstructionInProgress != null" >
+        end_construction_in_progress = #{endConstructionInProgress,jdbcType=DECIMAL},
+      </if>
+      <if test="initConstructionSupplies != null" >
+        init_construction_supplies = #{initConstructionSupplies,jdbcType=DECIMAL},
+      </if>
+      <if test="endConstructionSupplies != null" >
+        end_construction_supplies = #{endConstructionSupplies,jdbcType=DECIMAL},
+      </if>
+      <if test="initFixedAssetsPendingDisposal != null" >
+        init_fixed_assets_pending_disposal = #{initFixedAssetsPendingDisposal,jdbcType=DECIMAL},
+      </if>
+      <if test="endFixedAssetsPendingDisposal != null" >
+        end_fixed_assets_pending_disposal = #{endFixedAssetsPendingDisposal,jdbcType=DECIMAL},
+      </if>
+      <if test="initBearerBiologicalAssets != null" >
+        init_bearer_biological_assets = #{initBearerBiologicalAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endBearerBiologicalAssets != null" >
+        end_bearer_biological_assets = #{endBearerBiologicalAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initOilAndNaturalGasAssets != null" >
+        init_oil_and_natural_gas_assets = #{initOilAndNaturalGasAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endOilAndNaturalGasAssets != null" >
+        end_oil_and_natural_gas_assets = #{endOilAndNaturalGasAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initIntangibelAssets != null" >
+        init_intangibel_assets = #{initIntangibelAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endIntangibelAssets != null" >
+        end_intangibel_assets = #{endIntangibelAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initResearchAndDevelopmentCosts != null" >
+        init_research_and_development_costs = #{initResearchAndDevelopmentCosts,jdbcType=DECIMAL},
+      </if>
+      <if test="endResearchAndDevelopmentCosts != null" >
+        end_research_and_development_costs = #{endResearchAndDevelopmentCosts,jdbcType=DECIMAL},
+      </if>
+      <if test="initGoodwill != null" >
+        init_goodwill = #{initGoodwill,jdbcType=DECIMAL},
+      </if>
+      <if test="endGoodwill != null" >
+        end_goodwill = #{endGoodwill,jdbcType=DECIMAL},
+      </if>
+      <if test="initLongTermDeferredExpenses != null" >
+        init_long_term_deferred_expenses = #{initLongTermDeferredExpenses,jdbcType=DECIMAL},
+      </if>
+      <if test="endLongTermDeferredExpenses != null" >
+        end_long_term_deferred_expenses = #{endLongTermDeferredExpenses,jdbcType=DECIMAL},
+      </if>
+      <if test="initDeferredTaxAssets != null" >
+        init_deferred_tax_assets = #{initDeferredTaxAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endDeferredTaxAssets != null" >
+        end_deferred_tax_assets = #{endDeferredTaxAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initOtherNonCurrentAssets != null" >
+        init_other_non_current_assets = #{initOtherNonCurrentAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endOtherNonCurrentAssets != null" >
+        end_other_non_current_assets = #{endOtherNonCurrentAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initTotalOfNonCurrentAsses != null" >
+        init_total_of_non_current_asses = #{initTotalOfNonCurrentAsses,jdbcType=DECIMAL},
+      </if>
+      <if test="endTotalOfNonCurrentAsses != null" >
+        end_total_of_non_current_asses = #{endTotalOfNonCurrentAsses,jdbcType=DECIMAL},
+      </if>
+      <if test="initTotalOfAssets != null" >
+        init_total_of_assets = #{initTotalOfAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="endTotalOfAssets != null" >
+        end_total_of_assets = #{endTotalOfAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="initShortTermLoan != null" >
+        init_short_term_loan = #{initShortTermLoan,jdbcType=DECIMAL},
+      </if>
+      <if test="endShortTermLoan != null" >
+        end_short_term_loan = #{endShortTermLoan,jdbcType=DECIMAL},
+      </if>
+      <if test="initTradableFinancialLiabilities != null" >
+        init_tradable_financial_liabilities = #{initTradableFinancialLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="endTradableFinancialLiabilities != null" >
+        end_tradable_financial_liabilities = #{endTradableFinancialLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="initNotesPayable != null" >
+        init_notes_payable = #{initNotesPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="endNotesPayable != null" >
+        end_notes_payable = #{endNotesPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="initAccountsPayable != null" >
+        init_accounts_payable = #{initAccountsPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="endAccountsPayable != null" >
+        end_accounts_payable = #{endAccountsPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="initAdvanceReceipts != null" >
+        init_advance_receipts = #{initAdvanceReceipts,jdbcType=DECIMAL},
+      </if>
+      <if test="endAdvanceReceipts != null" >
+        end_advance_receipts = #{endAdvanceReceipts,jdbcType=DECIMAL},
+      </if>
+      <if test="initAccruedPayroll != null" >
+        init_accrued_payroll = #{initAccruedPayroll,jdbcType=DECIMAL},
+      </if>
+      <if test="endAccruedPayroll != null" >
+        end_accrued_payroll = #{endAccruedPayroll,jdbcType=DECIMAL},
+      </if>
+      <if test="initAccruedTax != null" >
+        init_accrued_tax = #{initAccruedTax,jdbcType=DECIMAL},
+      </if>
+      <if test="endAccruedTax != null" >
+        end_accrued_tax = #{endAccruedTax,jdbcType=DECIMAL},
+      </if>
+      <if test="initAccruedInterestPayable != null" >
+        init_accrued_interest_payable = #{initAccruedInterestPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="endAccruedInterestPayable != null" >
+        end_accrued_interest_payable = #{endAccruedInterestPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="initDividendPayable != null" >
+        init_dividend_payable = #{initDividendPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="endDividendPayable != null" >
+        end_dividend_payable = #{endDividendPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="initOtherPayables != null" >
+        init_other_payables = #{initOtherPayables,jdbcType=DECIMAL},
+      </if>
+      <if test="endOtherPayables != null" >
+        end_other_payables = #{endOtherPayables,jdbcType=DECIMAL},
+      </if>
+      <if test="initCurrentLiailitiesFallingDueWithinOneYear != null" >
+        init_current_liailities_falling_due_within_one_year = #{initCurrentLiailitiesFallingDueWithinOneYear,jdbcType=DECIMAL},
+      </if>
+      <if test="endCurrentLiailitiesFallingDueWithinOneYear != null" >
+        end_current_liailities_falling_due_within_one_year = #{endCurrentLiailitiesFallingDueWithinOneYear,jdbcType=DECIMAL},
+      </if>
+      <if test="initOtherCurrentLiabilities != null" >
+        init_other_current_liabilities = #{initOtherCurrentLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="endOtherCurrentLiabilities != null" >
+        end_other_current_liabilities = #{endOtherCurrentLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="initTotalOfCurrentLiabilities != null" >
+        init_total_of_current_liabilities = #{initTotalOfCurrentLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="endTotalOfCurrentLiabilities != null" >
+        end_total_of_current_liabilities = #{endTotalOfCurrentLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="initLongTermLoan != null" >
+        init_long_term_loan = #{initLongTermLoan,jdbcType=DECIMAL},
+      </if>
+      <if test="endLongTermLoan != null" >
+        end_long_term_loan = #{endLongTermLoan,jdbcType=DECIMAL},
+      </if>
+      <if test="initBondsPayable != null" >
+        init_bonds_payable = #{initBondsPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="endBondsPayable != null" >
+        end_bonds_payable = #{endBondsPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="initLongTermAccountsPayable != null" >
+        init_long_term_accounts_payable = #{initLongTermAccountsPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="endLongTermAccountsPayable != null" >
+        end_long_term_accounts_payable = #{endLongTermAccountsPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="initAccountsPayableForSpecialisedTerms != null" >
+        init_accounts_payable_for_specialised_terms = #{initAccountsPayableForSpecialisedTerms,jdbcType=DECIMAL},
+      </if>
+      <if test="endAccountsPayableForSpecialisedTerms != null" >
+        end_accounts_payable_for_specialised_terms = #{endAccountsPayableForSpecialisedTerms,jdbcType=DECIMAL},
+      </if>
+      <if test="initProvisionForLiabilities != null" >
+        init_provision_for_liabilities = #{initProvisionForLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="endProvisionForLiabilities != null" >
+        end_provision_for_liabilities = #{endProvisionForLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="initDeferredIncomeTaxLiabilities != null" >
+        init_deferred_income_tax_liabilities = #{initDeferredIncomeTaxLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="endDeferredIncomeTaxLiabilities != null" >
+        end_deferred_income_tax_liabilities = #{endDeferredIncomeTaxLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="initOtherNonCurrentLiabilities != null" >
+        init_other_non_current_liabilities = #{initOtherNonCurrentLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="endOtherNonCurrentLiabilities != null" >
+        end_other_non_current_liabilities = #{endOtherNonCurrentLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="initTotalOfNonCurrentLiabilities != null" >
+        init_total_of_non_current_liabilities = #{initTotalOfNonCurrentLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="endTotalOfNonCurrentLiabilities != null" >
+        end_total_of_non_current_liabilities = #{endTotalOfNonCurrentLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="initTotalOfLiabilities != null" >
+        init_total_of_liabilities = #{initTotalOfLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="endTotalOfLiabilities != null" >
+        end_total_of_liabilities = #{endTotalOfLiabilities,jdbcType=DECIMAL},
+      </if>
+      <if test="initCapital != null" >
+        init_capital = #{initCapital,jdbcType=DECIMAL},
+      </if>
+      <if test="endCapital != null" >
+        end_capital = #{endCapital,jdbcType=DECIMAL},
+      </if>
+      <if test="initCapitalReserves != null" >
+        init_capital_reserves = #{initCapitalReserves,jdbcType=DECIMAL},
+      </if>
+      <if test="entCapitalReserves != null" >
+        ent_capital_reserves = #{entCapitalReserves,jdbcType=DECIMAL},
+      </if>
+      <if test="initLessTreasuryStock != null" >
+        init_less_treasury_stock = #{initLessTreasuryStock,jdbcType=DECIMAL},
+      </if>
+      <if test="endLessTreasuryStock != null" >
+        end_less_treasury_stock = #{endLessTreasuryStock,jdbcType=DECIMAL},
+      </if>
+      <if test="initEarningsReserve != null" >
+        init_earnings_reserve = #{initEarningsReserve,jdbcType=DECIMAL},
+      </if>
+      <if test="endEarningsReserve != null" >
+        end_earnings_reserve = #{endEarningsReserve,jdbcType=DECIMAL},
+      </if>
+      <if test="initRetainedEarnings != null" >
+        init_retained_earnings = #{initRetainedEarnings,jdbcType=DECIMAL},
+      </if>
+      <if test="endRetainedEarnings != null" >
+        end_retained_earnings = #{endRetainedEarnings,jdbcType=DECIMAL},
+      </if>
+      <if test="initTotalOfOwnersEquity != null" >
+        init_total_of_owners_equity = #{initTotalOfOwnersEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="endTotalOfOwnersEquity != null" >
+        end_total_of_owners_equity = #{endTotalOfOwnersEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="initTotalOfLiabilitiesAndOwnersEquity != null" >
+        init_total_of_liabilities_and_owners_equity = #{initTotalOfLiabilitiesAndOwnersEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="endTotalOfLiabilitiesAndOwnersEquity != null" >
+        end_total_of_liabilities_and_owners_equity = #{endTotalOfLiabilitiesAndOwnersEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="detailType != null" >
+        detail_type = #{detailType,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        update_timestamp = #{updateTimestamp,jdbcType=CHAR},
+      </if>
+    </set>
+    where pk_balance_sheet_id = #{pkBalanceSheetId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wqb.model.TBasicBalanceSheet" >
+    update t_basic_balance_sheet
+    set user_id = #{userId,jdbcType=VARCHAR},
+      account_id = #{accountId,jdbcType=VARCHAR},
+      account_period = #{accountPeriod,jdbcType=VARCHAR},
+      init_cash = #{initCash,jdbcType=DECIMAL},
+      end_cash = #{endCash,jdbcType=DECIMAL},
+      init_transaction_monetary_assets = #{initTransactionMonetaryAssets,jdbcType=DECIMAL},
+      end_transaction_monetary_assets = #{endTransactionMonetaryAssets,jdbcType=DECIMAL},
+      init_notes_receivable = #{initNotesReceivable,jdbcType=DECIMAL},
+      end_notes_receivable = #{endNotesReceivable,jdbcType=DECIMAL},
+      init_accounts_receivable = #{initAccountsReceivable,jdbcType=DECIMAL},
+      end_accounts_receivable = #{endAccountsReceivable,jdbcType=DECIMAL},
+      init_accounts_prepaid = #{initAccountsPrepaid,jdbcType=DECIMAL},
+      end_accounts_prepaid = #{endAccountsPrepaid,jdbcType=DECIMAL},
+      init_interest_receivable = #{initInterestReceivable,jdbcType=DECIMAL},
+      end_interest_receivable = #{endInterestReceivable,jdbcType=DECIMAL},
+      init_dividend_receivable = #{initDividendReceivable,jdbcType=DECIMAL},
+      end_dividend_receivable = #{endDividendReceivable,jdbcType=DECIMAL},
+      init_other_receivables = #{initOtherReceivables,jdbcType=DECIMAL},
+      end_other_receivables = #{endOtherReceivables,jdbcType=DECIMAL},
+      init_inventories = #{initInventories,jdbcType=DECIMAL},
+      end_inventories = #{endInventories,jdbcType=DECIMAL},
+      init_non_current_assets_due_in_one_year = #{initNonCurrentAssetsDueInOneYear,jdbcType=DECIMAL},
+      end_non_current_assets_due_in_one_year = #{endNonCurrentAssetsDueInOneYear,jdbcType=DECIMAL},
+      init_other_current_assets = #{initOtherCurrentAssets,jdbcType=DECIMAL},
+      end_other_current_assets = #{endOtherCurrentAssets,jdbcType=DECIMAL},
+      init_total_current_assets = #{initTotalCurrentAssets,jdbcType=DECIMAL},
+      end_total_current_assets = #{endTotalCurrentAssets,jdbcType=DECIMAL},
+      init_available_for_sale_financial_assets = #{initAvailableForSaleFinancialAssets,jdbcType=DECIMAL},
+      end_available_for_sale_financial_assets = #{endAvailableForSaleFinancialAssets,jdbcType=DECIMAL},
+      init_held_to_maturity_investmen = #{initHeldToMaturityInvestmen,jdbcType=DECIMAL},
+      end_held_to_maturity_investmen = #{endHeldToMaturityInvestmen,jdbcType=DECIMAL},
+      init_long_term_receivables = #{initLongTermReceivables,jdbcType=DECIMAL},
+      end_long_term_receivables = #{endLongTermReceivables,jdbcType=DECIMAL},
+      init_long_term_equity_investment = #{initLongTermEquityInvestment,jdbcType=DECIMAL},
+      end_long_term_equity_investment = #{endLongTermEquityInvestment,jdbcType=DECIMAL},
+      init_investment_real_estates = #{initInvestmentRealEstates,jdbcType=DECIMAL},
+      end_investment_real_estates = #{endInvestmentRealEstates,jdbcType=DECIMAL},
+      init_fixed_assets = #{initFixedAssets,jdbcType=DECIMAL},
+      end_fixed_assets = #{endFixedAssets,jdbcType=DECIMAL},
+      init_construction_in_progress = #{initConstructionInProgress,jdbcType=DECIMAL},
+      end_construction_in_progress = #{endConstructionInProgress,jdbcType=DECIMAL},
+      init_construction_supplies = #{initConstructionSupplies,jdbcType=DECIMAL},
+      end_construction_supplies = #{endConstructionSupplies,jdbcType=DECIMAL},
+      init_fixed_assets_pending_disposal = #{initFixedAssetsPendingDisposal,jdbcType=DECIMAL},
+      end_fixed_assets_pending_disposal = #{endFixedAssetsPendingDisposal,jdbcType=DECIMAL},
+      init_bearer_biological_assets = #{initBearerBiologicalAssets,jdbcType=DECIMAL},
+      end_bearer_biological_assets = #{endBearerBiologicalAssets,jdbcType=DECIMAL},
+      init_oil_and_natural_gas_assets = #{initOilAndNaturalGasAssets,jdbcType=DECIMAL},
+      end_oil_and_natural_gas_assets = #{endOilAndNaturalGasAssets,jdbcType=DECIMAL},
+      init_intangibel_assets = #{initIntangibelAssets,jdbcType=DECIMAL},
+      end_intangibel_assets = #{endIntangibelAssets,jdbcType=DECIMAL},
+      init_research_and_development_costs = #{initResearchAndDevelopmentCosts,jdbcType=DECIMAL},
+      end_research_and_development_costs = #{endResearchAndDevelopmentCosts,jdbcType=DECIMAL},
+      init_goodwill = #{initGoodwill,jdbcType=DECIMAL},
+      end_goodwill = #{endGoodwill,jdbcType=DECIMAL},
+      init_long_term_deferred_expenses = #{initLongTermDeferredExpenses,jdbcType=DECIMAL},
+      end_long_term_deferred_expenses = #{endLongTermDeferredExpenses,jdbcType=DECIMAL},
+      init_deferred_tax_assets = #{initDeferredTaxAssets,jdbcType=DECIMAL},
+      end_deferred_tax_assets = #{endDeferredTaxAssets,jdbcType=DECIMAL},
+      init_other_non_current_assets = #{initOtherNonCurrentAssets,jdbcType=DECIMAL},
+      end_other_non_current_assets = #{endOtherNonCurrentAssets,jdbcType=DECIMAL},
+      init_total_of_non_current_asses = #{initTotalOfNonCurrentAsses,jdbcType=DECIMAL},
+      end_total_of_non_current_asses = #{endTotalOfNonCurrentAsses,jdbcType=DECIMAL},
+      init_total_of_assets = #{initTotalOfAssets,jdbcType=DECIMAL},
+      end_total_of_assets = #{endTotalOfAssets,jdbcType=DECIMAL},
+      init_short_term_loan = #{initShortTermLoan,jdbcType=DECIMAL},
+      end_short_term_loan = #{endShortTermLoan,jdbcType=DECIMAL},
+      init_tradable_financial_liabilities = #{initTradableFinancialLiabilities,jdbcType=DECIMAL},
+      end_tradable_financial_liabilities = #{endTradableFinancialLiabilities,jdbcType=DECIMAL},
+      init_notes_payable = #{initNotesPayable,jdbcType=DECIMAL},
+      end_notes_payable = #{endNotesPayable,jdbcType=DECIMAL},
+      init_accounts_payable = #{initAccountsPayable,jdbcType=DECIMAL},
+      end_accounts_payable = #{endAccountsPayable,jdbcType=DECIMAL},
+      init_advance_receipts = #{initAdvanceReceipts,jdbcType=DECIMAL},
+      end_advance_receipts = #{endAdvanceReceipts,jdbcType=DECIMAL},
+      init_accrued_payroll = #{initAccruedPayroll,jdbcType=DECIMAL},
+      end_accrued_payroll = #{endAccruedPayroll,jdbcType=DECIMAL},
+      init_accrued_tax = #{initAccruedTax,jdbcType=DECIMAL},
+      end_accrued_tax = #{endAccruedTax,jdbcType=DECIMAL},
+      init_accrued_interest_payable = #{initAccruedInterestPayable,jdbcType=DECIMAL},
+      end_accrued_interest_payable = #{endAccruedInterestPayable,jdbcType=DECIMAL},
+      init_dividend_payable = #{initDividendPayable,jdbcType=DECIMAL},
+      end_dividend_payable = #{endDividendPayable,jdbcType=DECIMAL},
+      init_other_payables = #{initOtherPayables,jdbcType=DECIMAL},
+      end_other_payables = #{endOtherPayables,jdbcType=DECIMAL},
+      init_current_liailities_falling_due_within_one_year = #{initCurrentLiailitiesFallingDueWithinOneYear,jdbcType=DECIMAL},
+      end_current_liailities_falling_due_within_one_year = #{endCurrentLiailitiesFallingDueWithinOneYear,jdbcType=DECIMAL},
+      init_other_current_liabilities = #{initOtherCurrentLiabilities,jdbcType=DECIMAL},
+      end_other_current_liabilities = #{endOtherCurrentLiabilities,jdbcType=DECIMAL},
+      init_total_of_current_liabilities = #{initTotalOfCurrentLiabilities,jdbcType=DECIMAL},
+      end_total_of_current_liabilities = #{endTotalOfCurrentLiabilities,jdbcType=DECIMAL},
+      init_long_term_loan = #{initLongTermLoan,jdbcType=DECIMAL},
+      end_long_term_loan = #{endLongTermLoan,jdbcType=DECIMAL},
+      init_bonds_payable = #{initBondsPayable,jdbcType=DECIMAL},
+      end_bonds_payable = #{endBondsPayable,jdbcType=DECIMAL},
+      init_long_term_accounts_payable = #{initLongTermAccountsPayable,jdbcType=DECIMAL},
+      end_long_term_accounts_payable = #{endLongTermAccountsPayable,jdbcType=DECIMAL},
+      init_accounts_payable_for_specialised_terms = #{initAccountsPayableForSpecialisedTerms,jdbcType=DECIMAL},
+      end_accounts_payable_for_specialised_terms = #{endAccountsPayableForSpecialisedTerms,jdbcType=DECIMAL},
+      init_provision_for_liabilities = #{initProvisionForLiabilities,jdbcType=DECIMAL},
+      end_provision_for_liabilities = #{endProvisionForLiabilities,jdbcType=DECIMAL},
+      init_deferred_income_tax_liabilities = #{initDeferredIncomeTaxLiabilities,jdbcType=DECIMAL},
+      end_deferred_income_tax_liabilities = #{endDeferredIncomeTaxLiabilities,jdbcType=DECIMAL},
+      init_other_non_current_liabilities = #{initOtherNonCurrentLiabilities,jdbcType=DECIMAL},
+      end_other_non_current_liabilities = #{endOtherNonCurrentLiabilities,jdbcType=DECIMAL},
+      init_total_of_non_current_liabilities = #{initTotalOfNonCurrentLiabilities,jdbcType=DECIMAL},
+      end_total_of_non_current_liabilities = #{endTotalOfNonCurrentLiabilities,jdbcType=DECIMAL},
+      init_total_of_liabilities = #{initTotalOfLiabilities,jdbcType=DECIMAL},
+      end_total_of_liabilities = #{endTotalOfLiabilities,jdbcType=DECIMAL},
+      init_capital = #{initCapital,jdbcType=DECIMAL},
+      end_capital = #{endCapital,jdbcType=DECIMAL},
+      init_capital_reserves = #{initCapitalReserves,jdbcType=DECIMAL},
+      ent_capital_reserves = #{entCapitalReserves,jdbcType=DECIMAL},
+      init_less_treasury_stock = #{initLessTreasuryStock,jdbcType=DECIMAL},
+      end_less_treasury_stock = #{endLessTreasuryStock,jdbcType=DECIMAL},
+      init_earnings_reserve = #{initEarningsReserve,jdbcType=DECIMAL},
+      end_earnings_reserve = #{endEarningsReserve,jdbcType=DECIMAL},
+      init_retained_earnings = #{initRetainedEarnings,jdbcType=DECIMAL},
+      end_retained_earnings = #{endRetainedEarnings,jdbcType=DECIMAL},
+      init_total_of_owners_equity = #{initTotalOfOwnersEquity,jdbcType=DECIMAL},
+      end_total_of_owners_equity = #{endTotalOfOwnersEquity,jdbcType=DECIMAL},
+      init_total_of_liabilities_and_owners_equity = #{initTotalOfLiabilitiesAndOwnersEquity,jdbcType=DECIMAL},
+      end_total_of_liabilities_and_owners_equity = #{endTotalOfLiabilitiesAndOwnersEquity,jdbcType=DECIMAL},
+      type = #{type,jdbcType=VARCHAR},
+      detail_type = #{detailType,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_timestamp = #{updateTimestamp,jdbcType=CHAR}
+    where pk_balance_sheet_id = #{pkBalanceSheetId,jdbcType=VARCHAR}
+  </update>
+</mapper>

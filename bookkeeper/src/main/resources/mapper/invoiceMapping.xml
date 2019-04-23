@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="invoiceMapping">
+
+	<insert id="insertBath" parameterType="java.util.List">
+		insert into t_fa_invoice_mapping
+		(
+			mapping_id,invoiceHID,invoiceBID,invoiceCode,invoiceNumber,invoiceType,accountID,period,mapping_sub_code,
+			price,amount,number,comName,spec,comNameSpec,measure,createDate,sourt,buyCorp,saleCorp
+		)
+		values
+		 <foreach collection="list" item="item" index="index" separator="," >
+		(
+			#{mapping_id},#{invoiceHID},#{invoiceBID},#{invoiceCode},#{invoiceNumber},#{invoiceType},
+			#{accountID},#{period},#{mapping_sub_code},#{price},#{amount},#{number},#{comName},
+			#{spec},#{comNameSpec},#{measure},#{createDate},#{sourt},#{buyCorp},#{saleCorp}
+		)
+		</foreach> 
+	</insert>
+	
+	
+	<insert id="insertMappingrecord" parameterType="com.wqb.model.InvoiceMappingrecord">
+		insert into t_fa_invoice_mappingrecord
+		(
+			mr_id,accountID,period,invoiceType,is_upload_save,save_num,saveDate
+		)
+		values
+		(
+			#{mr_id},#{accountID},#{period},#{invoiceType},#{is_upload_save},
+			#{save_num,jdbcType=INTEGER},#{saveDate,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<select id="queryMappingrecord" parameterType="map" resultType="com.wqb.model.InvoiceMappingrecord">
+		select * from t_fa_invoice_mappingrecord where accountID = #{accountID} and period = #{period} and invoiceType = #{invoiceType}
+	</select>
+	
+	<update id="updateMappingrecord" parameterType="map">
+		update t_fa_invoice_mappingrecord 
+		<set>
+			<if test="is_upload_save!=null">
+				is_upload_save = #{is_upload_save,jdbcType=VARCHAR},
+			</if>
+			<if test="save_num!=null">
+				save_num = #{save_num,jdbcType=INTEGER},
+			</if>
+			<if test="saveDate!=null">
+				saveDate = #{saveDate,jdbcType=DATE},
+			</if>
+		</set>
+	<!-- where accountID = #{accountID,jdbcType=VARCHAR}  and invoiceType = #{invoiceType,jdbcType=VARCHAR} and period = #{period,jdbcType=VARCHAR} -->
+	 where mr_id = #{mr_id}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>
+
+

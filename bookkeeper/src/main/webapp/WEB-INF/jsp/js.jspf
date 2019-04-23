@@ -1,0 +1,3 @@
+<script src="${pageContext.request.contextPath }/plugins/jquery-1.12.4.min.js"></script>
+<script src="${pageContext.request.contextPath }/plugins/layui/layui.all.js"></script>
+<script src="${pageContext.request.contextPath }/js/common.js?v=${timeStamp }"></script>

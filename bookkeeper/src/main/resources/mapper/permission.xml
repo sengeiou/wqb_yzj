@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="perm">
+	<!-- 权限映射 -->
+	<resultMap type="permission" id="perMap">
+		<result property="perID" column="perID" />
+		<result property="userID" column="userID" />
+		<result property="actionID" column="actionID" />
+		<result property="updatePsnID" column="updatePsnID" />
+		<result property="updatePsn" column="updatePsn" />
+		<result property="updatedate" column="updatedate" />
+		<result property="createPsnID" column="createPsnID" />
+		<result property="createpsn" column="createpsn" />
+		<result property="createdate" column="createdate" />
+	</resultMap>
+	<select id="queryPreByUserID" resultMap="perMap">
+		select
+		perID,userID,actionID,updatePsnID,updatePsn,updatedate,createPsnID,createpsn,createdate
+		from t_basic_permission where userID=#{userID};
+	</select>
+</mapper>

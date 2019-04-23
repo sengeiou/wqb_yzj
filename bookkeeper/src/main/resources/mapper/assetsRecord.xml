@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="assetsRecord">
+	<!-- 交通对账单映射 -->
+	<resultMap type="assetsRecord" id="assetsRecordMap">
+		<result property="zjid" column="zjid" />
+		<result property="assetsID" column="assetsID" />
+		<result property="ssyzje" column="ssyzje" />
+		<result property="period" column="period" />
+		<result property="accountID" column="accountID" />
+	</resultMap>
+	<insert id="insertAssetsRecord">
+		insert into t_assets_record(zjid,assetsID,ssyzje,period,accountID) values
+		(#{zjid},#{assetsID},#{ssyzje},#{period},#{accountID})
+	</insert>
+	
+	<select id="queryAssetsRecord" resultMap="assetsRecordMap">
+		select * from t_assets_record where period=#{period} and accountID=#{accountID};
+	</select>
+	
+	<delete id="delAssetsRecord">
+		delete from t_assets_record where assetsID=#{assetsID} and period=#{period}
+	</delete>
+</mapper>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="stateTrack">
+
+	<select id="queryState"   parameterType="map" resultType="com.wqb.model.StateTrack">
+		select st_id,isdel,type,del_num from state_track  where period=#{busDate} and accountID=#{accountID};
+	</select>
+	
+	
+	<insert id="insertStateTrack" parameterType="com.wqb.model.StateTrack">
+		insert into state_track
+		(
+			st_id,isdel,type,period,accountID,userID,des,delDate,del_num
+		)
+		values
+		(
+			#{st_id},#{isdel},#{type},#{period},#{accountID},#{userID},#{des},#{delDate},#{del_num}
+		)
+	</insert>
+	
+	
+	<update id="upStateByCondition" parameterType="map">
+		update state_track 
+		<set>
+			<if test="isdel!=null">
+				isdel = #{isdel},
+			</if>
+			<if test="del_num!=null">
+				del_num = #{del_num},
+			</if>
+			<if test="type!=null">
+				type = #{type}
+			</if>
+		</set>
+		where  period=#{busDate} and accountID=#{accountID};
+	</update>
+	
+	
+		<!-- 查询所有科目 -->
+	<select id="querySubTrack" parameterType="map" resultType="com.wqb.model.SubjectMessage">
+		SELECT 
+			pk_sub_id,sub_code,account_period,sub_name,
+			init_debit_balance,init_credit_balance,
+			current_amount_debit,current_amount_credit,
+			year_amount_debit,year_amount_credit,
+			ending_balance_debit,ending_balance_credit,
+			account_id,full_name,code_level,debit_credit_direction
+		from t_basic_subject_message 
+		WHERE
+			account_id = #{accountID}
+		AND 
+			account_period = #{period}
+		AND
+		(
+			current_amount_debit!=0 or current_amount_credit!=0
+		)
+	</select>
+	
+	
+	<!-- 更新科目 -->
+	<update id="upSubTrack" parameterType="map">
+		update t_basic_subject_message 
+		<set>
+			<if test="current_amount_debit!=null">
+				current_amount_debit = #{current_amount_debit},
+			</if>
+			<if test="current_amount_credit!=null">
+				current_amount_credit = #{current_amount_credit},
+			</if>
+			<if test="ending_balance_debit!=null">
+				ending_balance_debit = #{ending_balance_debit},
+			</if>
+			<if test="ending_balance_credit!=null">
+				ending_balance_credit = #{ending_balance_credit},
+			</if>
+			<if test="year_amount_debit!=null">
+				year_amount_debit = #{year_amount_debit},
+			</if>
+			<if test="year_amount_credit!=null">
+				year_amount_credit = #{year_amount_credit},
+			</if>
+		</set>
+		where  pk_sub_id=#{pk_sub_id}
+	</update>
+	
+</mapper>
+
+
+

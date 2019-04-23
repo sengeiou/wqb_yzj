@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="nyBankNew">
+	<!-- 农业银行(官网下载)对账单映射 -->
+	<resultMap type="nyBankNew" id="nyBankNewMap">
+		<result property="id" column="id" />
+		<result property="accountID" column="accountID" />
+		<result property="period" column="period" />
+		<result property="vouchID" column="vouchID" />
+		<result property="Date" column="Date" />
+		<result property="transactionTime" column="transactionTime" />
+		<result property="srAmount" column="srAmount" />
+		<result property="zcAmount" column="zcAmount" />
+		<result property="zhAmount" column="zhAmount" />
+		<result property="bcAmount" column="bcAmount" />
+		<result property="sxfAmont" column="sxfAmont" />
+		<result property="jyType" column="jyType" />
+		<result property="jyhm" column="jyhm" />
+		<result property="jylb" column="jylb" />
+		<result property="dfss" column="dfss" />
+		<result property="dfzh" column="dfzh" />
+		<result property="dfhm" column="dfhm" />
+		<result property="jyyt" column="jyyt" />
+		<result property="jysm" column="jysm" />
+		<result property="jyzy" column="jyzy" />
+		<result property="jyfy" column="jyfy" />
+		<result property="addTime" column="addTime" />
+		
+		<result property="sysSubjectCode" column="sysSubjectCode" />
+
+		<result property="sysSubjectName" column="sysSubjectName" />
+
+		<result property="sysSubjectID" column="sysSubjectID" />
+		<result property="sysSubjectFullName" column="sysSubjectFullName" />
+		<result property="bankAccount" column="bankAccount" />
+
+	</resultMap>
+
+	<insert id="insertNyBankNew">
+		insert into t_cm_bkbill_ny_new
+		(
+		id,accountID,period,vouchID,transactionTime,transactionStamp,srAmount,zcAmount,zhAmount,bcAmount,sxfAmont,jyType,jyhm,jylb,dfss,dfzh,dfhm,jyyt,jysm,jyzy,jyfy,addTime,
+		sysSubjectCode,sysSubjectName,sysSubjectID,sysSubjectFullName,bankAccount
+		)
+		values(
+		#{id},#{accountID},#{period},#{vouchID},#{transactionTime},#{transactionStamp},#{srAmount},#{zcAmount},#{zhAmount},#{bcAmount},#{sxfAmont},#{jyType},#{jyhm},#{jylb},#{dfss},#{dfzh},#{dfhm},#{jyyt},#{jysm},#{jyzy},#{jyfy},#{addTime},
+		#{sysSubjectCode},#{sysSubjectName},#{sysSubjectID},#{sysSubjectFullName},#{bankAccount}
+		)
+	</insert>
+
+	<select id="queryBankBillNew" resultType="com.wqb.model.bank.NyBankNew">
+		select * from t_cm_bkbill_ny_new where accountID = #{accountID} and
+		period=#{busDate}
+		<if
+			test="beginTime!=null and beginTime!='' and endTime!=null and endTime!=''">
+			and transactionTime between #{beginTime} and #{endTime}
+		</if>
+		<if test="bankType!=null and bankType!='' and bankType!='全部'">
+			and bankType=#{bankType}
+		</if>
+		<if test="keyWords!=null and keyWords!=''">
+			and dfhm like CONCAT('%','${keyWords}','%' )
+		</if>
+		order by addTime
+		<if test="begin != null and begin != '' or begin==0">
+			limit #{begin},#{maxPage}
+		</if>
+	</select>
+	
+	
+	<delete id="deleteNewByID">
+		delete from t_cm_bkbill_ny_new where id in ${bills};
+	</delete>
+	
+	
+	<!-- 银行凭证添加  查询当期全部数据 -->
+	<select id="queryNewAll"  parameterType="map" resultType="com.wqb.model.bank.NyBankNew">
+		select * from t_cm_bkbill_ny_new where  accountID = #{accountID} and period=#{busDate} order by  addTime
+	</select>
+	
+	<update id="updByID">
+		update t_cm_bkbill_ny set sysSubjectCode
+		=#{sysSubjectCode},sysSubjectName=#{sysSubjectName},
+		sysSubjectID=#{sysSubjectID},sysSubjectFullName=#{sysSubjectFullName}
+		where id=#{id};
+	</update>
+	
+	<update id="updByIDNew">
+		update t_cm_bkbill_ny_new set sysSubjectCode
+		=#{sysSubjectCode},sysSubjectName=#{sysSubjectName},
+		sysSubjectID=#{sysSubjectID},sysSubjectFullName=#{sysSubjectFullName}
+		where id=#{id};
+	</update>
+	
+</mapper>

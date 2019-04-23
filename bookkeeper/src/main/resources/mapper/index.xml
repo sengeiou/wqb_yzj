@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="index">
+	<!-- 登录用户映射 -->
+	<resultMap type="index" id="indexMap">
+		<result property="comName" column="comName" />
+		<result property="cusName" column="cusName" />
+		<result property="phone" column="phone" />
+		<result property="rwType" column="rwType" />
+		<result property="qyDate" column="qyDate" />
+		<result property="jsDate" column="jsDate" />
+		<result property="clr" column="clr" />
+		<result property="statu" column="statu" />
+		<result property="createDate" column="createDate" />
+	</resultMap>
+	<select id="queryIndexInfo" resultMap="indexMap">
+		SELECT
+		t1.companyName AS comName,
+		t2.loginUser as phone,
+		t1.period as qyDate,
+		t1.statu as statu,
+		t1.createDate as createDate
+		FROM
+		t_basic_account t1,
+		t_sys_user t2,
+		t_customer t3
+		WHERE
+		t1.accountID = t3.accountID
+		AND t1.userID = t2.userID
+		AND t1.userID = #{userID}
+		AND t1.period like CONCAT('%','${busDate}','%' );
+	</select>
+</mapper>

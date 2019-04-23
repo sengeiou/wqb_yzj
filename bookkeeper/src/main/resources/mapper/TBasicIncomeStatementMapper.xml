@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="incomeStatement" >
+  <resultMap id="incomeStatement" type="incomeStatement" >
+    <id column="pk_income_statement_id" property="pkIncomeStatementId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="account_id" property="accountId" jdbcType="VARCHAR" />
+    <result column="account_period" property="accountPeriod" jdbcType="VARCHAR" />
+    <result column="year_sales_from_operati" property="yearSalesFromOperati" jdbcType="DECIMAL" />
+    <result column="current_sales_from_operati" property="currentSalesFromOperati" jdbcType="DECIMAL" />
+    <result column="year_less_operating_costs" property="yearLessOperatingCosts" jdbcType="DECIMAL" />
+    <result column="current_less_operating_costs" property="currentLessOperatingCosts" jdbcType="DECIMAL" />
+    <result column="year_operating_tax_and_additions" property="yearOperatingTaxAndAdditions" jdbcType="DECIMAL" />
+    <result column="current_operating_tax_and_additions" property="currentOperatingTaxAndAdditions" jdbcType="DECIMAL" />
+    <result column="year_selling_expenses" property="yearSellingExpenses" jdbcType="DECIMAL" />
+    <result column="current_selling_expenses" property="currentSellingExpenses" jdbcType="DECIMAL" />
+    <result column="year_general_and_administrative_expense" property="yearGeneralAndAdministrativeExpense" jdbcType="DECIMAL" />
+    <result column="current_general_and_administrative_expense" property="currentGeneralAndAdministrativeExpense" jdbcType="DECIMAL" />
+    <result column="year_finaneia_expense" property="yearFinaneiaExpense" jdbcType="DECIMAL" />
+    <result column="current_finaneia_expense" property="currentFinaneiaExpense" jdbcType="DECIMAL" />
+    <result column="year_losses_on_the_asset_impairment" property="yearLossesOnTheAssetImpairment" jdbcType="DECIMAL" />
+    <result column="current_losses_on_the_asset_impairment" property="currentLossesOnTheAssetImpairment" jdbcType="DECIMAL" />
+    <result column="year_add_profits_or_losses_onthe_changes_in_fair_value" property="yearAddProfitsOrLossesOntheChangesInFairValue" jdbcType="DECIMAL" />
+    <result column="current_add_profits_or_losses_onthe_changes_in_fair_value" property="currentAddProfitsOrLossesOntheChangesInFairValue" jdbcType="DECIMAL" />
+    <result column="year_investment_income" property="yearInvestmentIncome" jdbcType="DECIMAL" />
+    <result column="current_investment_income" property="currentInvestmentIncome" jdbcType="DECIMAL" />
+    <result column="year_among_Investment_income_from_affiliated_business" property="yearAmongInvestmentIncomeFromAffiliatedBusiness" jdbcType="DECIMAL" />
+    <result column="current_among_Investment_income_from_affiliated_business" property="currentAmongInvestmentIncomeFromAffiliatedBusiness" jdbcType="DECIMAL" />
+    <result column="year_operating_income" property="yearOperatingIncome" jdbcType="DECIMAL" />
+    <result column="current_operating_income" property="currentOperatingIncome" jdbcType="DECIMAL" />
+    <result column="year_add_non_operating_income" property="yearAddNonOperatingIncome" jdbcType="DECIMAL" />
+    <result column="current_add_non_operating_income" property="currentAddNonOperatingIncome" jdbcType="DECIMAL" />
+    <result column="year_less_non_operating_expense" property="yearLessNonOperatingExpense" jdbcType="DECIMAL" />
+    <result column="current_less_non_operating_expense" property="currentLessNonOperatingExpense" jdbcType="DECIMAL" />
+    <result column="year_including_losses_from_disposal_of_non_current_assets" property="yearIncludingLossesFromDisposalOfNonCurrentAssets" jdbcType="DECIMAL" />
+    <result column="current_including_losses_from_disposal_of_non_current_assets" property="currentIncludingLossesFromDisposalOfNonCurrentAssets" jdbcType="DECIMAL" />
+    <result column="year_income_before_tax" property="yearIncomeBeforeTax" jdbcType="DECIMAL" />
+    <result column="current_income_before_tax" property="currentIncomeBeforeTax" jdbcType="DECIMAL" />
+    <result column="year_less_income_tax" property="yearLessIncomeTax" jdbcType="DECIMAL" />
+    <result column="current_less_income_tax" property="currentLessIncomeTax" jdbcType="DECIMAL" />
+    <result column="year_ent_income" property="yearEntIncome" jdbcType="DECIMAL" />
+    <result column="current_ent_income" property="currentEntIncome" jdbcType="DECIMAL" />
+    <result column="year_earnings_per_share" property="yearEarningsPerShare" jdbcType="DECIMAL" />
+    <result column="current_earnings_per_share" property="currentEarningsPerShare" jdbcType="DECIMAL" />
+    <result column="year_basic_eps" property="yearBasicEps" jdbcType="DECIMAL" />
+    <result column="current_basic_eps" property="currentBasicEps" jdbcType="DECIMAL" />
+    <result column="year_diluted_eps" property="yearDilutedEps" jdbcType="DECIMAL" />
+    <result column="current_diluted_eps" property="currentDilutedEps" jdbcType="DECIMAL" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_timestamp" property="updateTimestamp" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pk_income_statement_id, user_id, account_id, account_period, year_sales_from_operati, 
+    current_sales_from_operati, year_less_operating_costs, current_less_operating_costs, 
+    year_operating_tax_and_additions, current_operating_tax_and_additions, year_selling_expenses, 
+    current_selling_expenses, year_general_and_administrative_expense, current_general_and_administrative_expense, 
+    year_finaneia_expense, current_finaneia_expense, year_losses_on_the_asset_impairment, 
+    current_losses_on_the_asset_impairment, year_add_profits_or_losses_onthe_changes_in_fair_value, 
+    current_add_profits_or_losses_onthe_changes_in_fair_value, year_investment_income, 
+    current_investment_income, year_among_Investment_income_from_affiliated_business, 
+    current_among_Investment_income_from_affiliated_business, year_operating_income, 
+    current_operating_income, year_add_non_operating_income, current_add_non_operating_income, 
+    year_less_non_operating_expense, current_less_non_operating_expense, year_including_losses_from_disposal_of_non_current_assets, 
+    current_including_losses_from_disposal_of_non_current_assets, year_income_before_tax, 
+    current_income_before_tax, year_less_income_tax, current_less_income_tax, year_ent_income, 
+    current_ent_income, year_earnings_per_share, current_earnings_per_share, year_basic_eps, 
+    current_basic_eps, year_diluted_eps, current_diluted_eps, update_date, update_timestamp
+  </sql>
+  
+  <select id="queryIncomeStatrment"  parameterType="incomeStatement" resultMap="incomeStatement">
+    select 
+    <include refid="Base_Column_List" />
+    from t_basic_income_statement
+    where 
+<!--     	user_id = #{userId,jdbcType=VARCHAR} -->
+<!--     and  -->
+    	account_id = #{accountId,jdbcType=VARCHAR}
+    and 
+    	account_period = #{accountPeriod,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 查询账套利润 -->
+    <select id="queryIncomeStatrment2"  parameterType="incomeStatement" resultMap="incomeStatement">
+    select 
+    <include refid="Base_Column_List" />
+    from t_basic_income_statement where  account_id = #{accountId,jdbcType=VARCHAR} and account_period = #{accountPeriod,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <delete id="deleteIncomeStatrment"  parameterType="incomeStatement" >
+    delete from t_basic_income_statement
+    where
+<!--     	user_id = #{userId,jdbcType=VARCHAR} -->
+<!--     and  -->
+    	account_id = #{accountId,jdbcType=VARCHAR}
+    and 
+    	account_period = #{accountPeriod,jdbcType=VARCHAR}
+  </delete>
+  
+  <select id="selectByPrimaryKey" resultMap="incomeStatement" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_basic_income_statement
+    where pk_income_statement_id = #{pkIncomeStatementId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_basic_income_statement
+    where pk_income_statement_id = #{pkIncomeStatementId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="incomeStatement" >
+    insert into t_basic_income_statement (pk_income_statement_id, user_id, account_id, 
+      account_period, year_sales_from_operati, current_sales_from_operati, 
+      year_less_operating_costs, current_less_operating_costs, 
+      year_operating_tax_and_additions, current_operating_tax_and_additions, 
+      year_selling_expenses, current_selling_expenses, 
+      year_general_and_administrative_expense, current_general_and_administrative_expense, 
+      year_finaneia_expense, current_finaneia_expense, 
+      year_losses_on_the_asset_impairment, current_losses_on_the_asset_impairment, 
+      year_add_profits_or_losses_onthe_changes_in_fair_value, current_add_profits_or_losses_onthe_changes_in_fair_value, 
+      year_investment_income, current_investment_income, 
+      year_among_Investment_income_from_affiliated_business, current_among_Investment_income_from_affiliated_business, 
+      year_operating_income, current_operating_income, 
+      year_add_non_operating_income, current_add_non_operating_income, 
+      year_less_non_operating_expense, current_less_non_operating_expense, 
+      year_including_losses_from_disposal_of_non_current_assets, current_including_losses_from_disposal_of_non_current_assets, 
+      year_income_before_tax, current_income_before_tax, 
+      year_less_income_tax, current_less_income_tax, 
+      year_ent_income, current_ent_income, year_earnings_per_share, 
+      current_earnings_per_share, year_basic_eps, 
+      current_basic_eps, year_diluted_eps, current_diluted_eps, 
+      update_date, update_timestamp)
+    values (#{pkIncomeStatementId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, 
+      #{accountPeriod,jdbcType=VARCHAR}, #{yearSalesFromOperati,jdbcType=DECIMAL}, #{currentSalesFromOperati,jdbcType=DECIMAL}, 
+      #{yearLessOperatingCosts,jdbcType=DECIMAL}, #{currentLessOperatingCosts,jdbcType=DECIMAL}, 
+      #{yearOperatingTaxAndAdditions,jdbcType=DECIMAL}, #{currentOperatingTaxAndAdditions,jdbcType=DECIMAL}, 
+      #{yearSellingExpenses,jdbcType=DECIMAL}, #{currentSellingExpenses,jdbcType=DECIMAL}, 
+      #{yearGeneralAndAdministrativeExpense,jdbcType=DECIMAL}, #{currentGeneralAndAdministrativeExpense,jdbcType=DECIMAL}, 
+      #{yearFinaneiaExpense,jdbcType=DECIMAL}, #{currentFinaneiaExpense,jdbcType=DECIMAL}, 
+      #{yearLossesOnTheAssetImpairment,jdbcType=DECIMAL}, #{currentLossesOnTheAssetImpairment,jdbcType=DECIMAL}, 
+      #{yearAddProfitsOrLossesOntheChangesInFairValue,jdbcType=DECIMAL}, #{currentAddProfitsOrLossesOntheChangesInFairValue,jdbcType=DECIMAL}, 
+      #{yearInvestmentIncome,jdbcType=DECIMAL}, #{currentInvestmentIncome,jdbcType=DECIMAL}, 
+      #{yearAmongInvestmentIncomeFromAffiliatedBusiness,jdbcType=DECIMAL}, #{currentAmongInvestmentIncomeFromAffiliatedBusiness,jdbcType=DECIMAL}, 
+      #{yearOperatingIncome,jdbcType=DECIMAL}, #{currentOperatingIncome,jdbcType=DECIMAL}, 
+      #{yearAddNonOperatingIncome,jdbcType=DECIMAL}, #{currentAddNonOperatingIncome,jdbcType=DECIMAL}, 
+      #{yearLessNonOperatingExpense,jdbcType=DECIMAL}, #{currentLessNonOperatingExpense,jdbcType=DECIMAL}, 
+      #{yearIncludingLossesFromDisposalOfNonCurrentAssets,jdbcType=DECIMAL}, #{currentIncludingLossesFromDisposalOfNonCurrentAssets,jdbcType=DECIMAL}, 
+      #{yearIncomeBeforeTax,jdbcType=DECIMAL}, #{currentIncomeBeforeTax,jdbcType=DECIMAL}, 
+      #{yearLessIncomeTax,jdbcType=DECIMAL}, #{currentLessIncomeTax,jdbcType=DECIMAL}, 
+      #{yearEntIncome,jdbcType=DECIMAL}, #{currentEntIncome,jdbcType=DECIMAL}, #{yearEarningsPerShare,jdbcType=DECIMAL}, 
+      #{currentEarningsPerShare,jdbcType=DECIMAL}, #{yearBasicEps,jdbcType=DECIMAL}, 
+      #{currentBasicEps,jdbcType=DECIMAL}, #{yearDilutedEps,jdbcType=DECIMAL}, #{currentDilutedEps,jdbcType=DECIMAL}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{updateTimestamp,jdbcType=CHAR})
+  </insert>
+  <insert id="addIncomeStatement" parameterType="incomeStatement" >
+    insert into t_basic_income_statement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pkIncomeStatementId != null" >
+        pk_income_statement_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="accountPeriod != null" >
+        account_period,
+      </if>
+      <if test="yearSalesFromOperati != null" >
+        year_sales_from_operati,
+      </if>
+      <if test="currentSalesFromOperati != null" >
+        current_sales_from_operati,
+      </if>
+      <if test="yearLessOperatingCosts != null" >
+        year_less_operating_costs,
+      </if>
+      <if test="currentLessOperatingCosts != null" >
+        current_less_operating_costs,
+      </if>
+      <if test="yearOperatingTaxAndAdditions != null" >
+        year_operating_tax_and_additions,
+      </if>
+      <if test="currentOperatingTaxAndAdditions != null" >
+        current_operating_tax_and_additions,
+      </if>
+      <if test="yearSellingExpenses != null" >
+        year_selling_expenses,
+      </if>
+      <if test="currentSellingExpenses != null" >
+        current_selling_expenses,
+      </if>
+      <if test="yearGeneralAndAdministrativeExpense != null" >
+        year_general_and_administrative_expense,
+      </if>
+      <if test="currentGeneralAndAdministrativeExpense != null" >
+        current_general_and_administrative_expense,
+      </if>
+      <if test="yearFinaneiaExpense != null" >
+        year_finaneia_expense,
+      </if>
+      <if test="currentFinaneiaExpense != null" >
+        current_finaneia_expense,
+      </if>
+      <if test="yearLossesOnTheAssetImpairment != null" >
+        year_losses_on_the_asset_impairment,
+      </if>
+      <if test="currentLossesOnTheAssetImpairment != null" >
+        current_losses_on_the_asset_impairment,
+      </if>
+      <if test="yearAddProfitsOrLossesOntheChangesInFairValue != null" >
+        year_add_profits_or_losses_onthe_changes_in_fair_value,
+      </if>
+      <if test="currentAddProfitsOrLossesOntheChangesInFairValue != null" >
+        current_add_profits_or_losses_onthe_changes_in_fair_value,
+      </if>
+      <if test="yearInvestmentIncome != null" >
+        year_investment_income,
+      </if>
+      <if test="currentInvestmentIncome != null" >
+        current_investment_income,
+      </if>
+      <if test="yearAmongInvestmentIncomeFromAffiliatedBusiness != null" >
+        year_among_Investment_income_from_affiliated_business,
+      </if>
+      <if test="currentAmongInvestmentIncomeFromAffiliatedBusiness != null" >
+        current_among_Investment_income_from_affiliated_business,
+      </if>
+      <if test="yearOperatingIncome != null" >
+        year_operating_income,
+      </if>
+      <if test="currentOperatingIncome != null" >
+        current_operating_income,
+      </if>
+      <if test="yearAddNonOperatingIncome != null" >
+        year_add_non_operating_income,
+      </if>
+      <if test="currentAddNonOperatingIncome != null" >
+        current_add_non_operating_income,
+      </if>
+      <if test="yearLessNonOperatingExpense != null" >
+        year_less_non_operating_expense,
+      </if>
+      <if test="currentLessNonOperatingExpense != null" >
+        current_less_non_operating_expense,
+      </if>
+      <if test="yearIncludingLossesFromDisposalOfNonCurrentAssets != null" >
+        year_including_losses_from_disposal_of_non_current_assets,
+      </if>
+      <if test="currentIncludingLossesFromDisposalOfNonCurrentAssets != null" >
+        current_including_losses_from_disposal_of_non_current_assets,
+      </if>
+      <if test="yearIncomeBeforeTax != null" >
+        year_income_before_tax,
+      </if>
+      <if test="currentIncomeBeforeTax != null" >
+        current_income_before_tax,
+      </if>
+      <if test="yearLessIncomeTax != null" >
+        year_less_income_tax,
+      </if>
+      <if test="currentLessIncomeTax != null" >
+        current_less_income_tax,
+      </if>
+      <if test="yearEntIncome != null" >
+        year_ent_income,
+      </if>
+      <if test="currentEntIncome != null" >
+        current_ent_income,
+      </if>
+      <if test="yearEarningsPerShare != null" >
+        year_earnings_per_share,
+      </if>
+      <if test="currentEarningsPerShare != null" >
+        current_earnings_per_share,
+      </if>
+      <if test="yearBasicEps != null" >
+        year_basic_eps,
+      </if>
+      <if test="currentBasicEps != null" >
+        current_basic_eps,
+      </if>
+      <if test="yearDilutedEps != null" >
+        year_diluted_eps,
+      </if>
+      <if test="currentDilutedEps != null" >
+        current_diluted_eps,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="updateTimestamp != null" >
+        update_timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pkIncomeStatementId != null" >
+        #{pkIncomeStatementId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPeriod != null" >
+        #{accountPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="yearSalesFromOperati != null" >
+        #{yearSalesFromOperati,jdbcType=DECIMAL},
+      </if>
+      <if test="currentSalesFromOperati != null" >
+        #{currentSalesFromOperati,jdbcType=DECIMAL},
+      </if>
+      <if test="yearLessOperatingCosts != null" >
+        #{yearLessOperatingCosts,jdbcType=DECIMAL},
+      </if>
+      <if test="currentLessOperatingCosts != null" >
+        #{currentLessOperatingCosts,jdbcType=DECIMAL},
+      </if>
+      <if test="yearOperatingTaxAndAdditions != null" >
+        #{yearOperatingTaxAndAdditions,jdbcType=DECIMAL},
+      </if>
+      <if test="currentOperatingTaxAndAdditions != null" >
+        #{currentOperatingTaxAndAdditions,jdbcType=DECIMAL},
+      </if>
+      <if test="yearSellingExpenses != null" >
+        #{yearSellingExpenses,jdbcType=DECIMAL},
+      </if>
+      <if test="currentSellingExpenses != null" >
+        #{currentSellingExpenses,jdbcType=DECIMAL},
+      </if>
+      <if test="yearGeneralAndAdministrativeExpense != null" >
+        #{yearGeneralAndAdministrativeExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="currentGeneralAndAdministrativeExpense != null" >
+        #{currentGeneralAndAdministrativeExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="yearFinaneiaExpense != null" >
+        #{yearFinaneiaExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="currentFinaneiaExpense != null" >
+        #{currentFinaneiaExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="yearLossesOnTheAssetImpairment != null" >
+        #{yearLossesOnTheAssetImpairment,jdbcType=DECIMAL},
+      </if>
+      <if test="currentLossesOnTheAssetImpairment != null" >
+        #{currentLossesOnTheAssetImpairment,jdbcType=DECIMAL},
+      </if>
+      <if test="yearAddProfitsOrLossesOntheChangesInFairValue != null" >
+        #{yearAddProfitsOrLossesOntheChangesInFairValue,jdbcType=DECIMAL},
+      </if>
+      <if test="currentAddProfitsOrLossesOntheChangesInFairValue != null" >
+        #{currentAddProfitsOrLossesOntheChangesInFairValue,jdbcType=DECIMAL},
+      </if>
+      <if test="yearInvestmentIncome != null" >
+        #{yearInvestmentIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="currentInvestmentIncome != null" >
+        #{currentInvestmentIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="yearAmongInvestmentIncomeFromAffiliatedBusiness != null" >
+        #{yearAmongInvestmentIncomeFromAffiliatedBusiness,jdbcType=DECIMAL},
+      </if>
+      <if test="currentAmongInvestmentIncomeFromAffiliatedBusiness != null" >
+        #{currentAmongInvestmentIncomeFromAffiliatedBusiness,jdbcType=DECIMAL},
+      </if>
+      <if test="yearOperatingIncome != null" >
+        #{yearOperatingIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="currentOperatingIncome != null" >
+        #{currentOperatingIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="yearAddNonOperatingIncome != null" >
+        #{yearAddNonOperatingIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="currentAddNonOperatingIncome != null" >
+        #{currentAddNonOperatingIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="yearLessNonOperatingExpense != null" >
+        #{yearLessNonOperatingExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="currentLessNonOperatingExpense != null" >
+        #{currentLessNonOperatingExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="yearIncludingLossesFromDisposalOfNonCurrentAssets != null" >
+        #{yearIncludingLossesFromDisposalOfNonCurrentAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="currentIncludingLossesFromDisposalOfNonCurrentAssets != null" >
+        #{currentIncludingLossesFromDisposalOfNonCurrentAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="yearIncomeBeforeTax != null" >
+        #{yearIncomeBeforeTax,jdbcType=DECIMAL},
+      </if>
+      <if test="currentIncomeBeforeTax != null" >
+        #{currentIncomeBeforeTax,jdbcType=DECIMAL},
+      </if>
+      <if test="yearLessIncomeTax != null" >
+        #{yearLessIncomeTax,jdbcType=DECIMAL},
+      </if>
+      <if test="currentLessIncomeTax != null" >
+        #{currentLessIncomeTax,jdbcType=DECIMAL},
+      </if>
+      <if test="yearEntIncome != null" >
+        #{yearEntIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="currentEntIncome != null" >
+        #{currentEntIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="yearEarningsPerShare != null" >
+        #{yearEarningsPerShare,jdbcType=DECIMAL},
+      </if>
+      <if test="currentEarningsPerShare != null" >
+        #{currentEarningsPerShare,jdbcType=DECIMAL},
+      </if>
+      <if test="yearBasicEps != null" >
+        #{yearBasicEps,jdbcType=DECIMAL},
+      </if>
+      <if test="currentBasicEps != null" >
+        #{currentBasicEps,jdbcType=DECIMAL},
+      </if>
+      <if test="yearDilutedEps != null" >
+        #{yearDilutedEps,jdbcType=DECIMAL},
+      </if>
+      <if test="currentDilutedEps != null" >
+        #{currentDilutedEps,jdbcType=DECIMAL},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        #{updateTimestamp,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="incomeStatement" >
+    update t_basic_income_statement
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPeriod != null" >
+        account_period = #{accountPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="yearSalesFromOperati != null" >
+        year_sales_from_operati = #{yearSalesFromOperati,jdbcType=DECIMAL},
+      </if>
+      <if test="currentSalesFromOperati != null" >
+        current_sales_from_operati = #{currentSalesFromOperati,jdbcType=DECIMAL},
+      </if>
+      <if test="yearLessOperatingCosts != null" >
+        year_less_operating_costs = #{yearLessOperatingCosts,jdbcType=DECIMAL},
+      </if>
+      <if test="currentLessOperatingCosts != null" >
+        current_less_operating_costs = #{currentLessOperatingCosts,jdbcType=DECIMAL},
+      </if>
+      <if test="yearOperatingTaxAndAdditions != null" >
+        year_operating_tax_and_additions = #{yearOperatingTaxAndAdditions,jdbcType=DECIMAL},
+      </if>
+      <if test="currentOperatingTaxAndAdditions != null" >
+        current_operating_tax_and_additions = #{currentOperatingTaxAndAdditions,jdbcType=DECIMAL},
+      </if>
+      <if test="yearSellingExpenses != null" >
+        year_selling_expenses = #{yearSellingExpenses,jdbcType=DECIMAL},
+      </if>
+      <if test="currentSellingExpenses != null" >
+        current_selling_expenses = #{currentSellingExpenses,jdbcType=DECIMAL},
+      </if>
+      <if test="yearGeneralAndAdministrativeExpense != null" >
+        year_general_and_administrative_expense = #{yearGeneralAndAdministrativeExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="currentGeneralAndAdministrativeExpense != null" >
+        current_general_and_administrative_expense = #{currentGeneralAndAdministrativeExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="yearFinaneiaExpense != null" >
+        year_finaneia_expense = #{yearFinaneiaExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="currentFinaneiaExpense != null" >
+        current_finaneia_expense = #{currentFinaneiaExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="yearLossesOnTheAssetImpairment != null" >
+        year_losses_on_the_asset_impairment = #{yearLossesOnTheAssetImpairment,jdbcType=DECIMAL},
+      </if>
+      <if test="currentLossesOnTheAssetImpairment != null" >
+        current_losses_on_the_asset_impairment = #{currentLossesOnTheAssetImpairment,jdbcType=DECIMAL},
+      </if>
+      <if test="yearAddProfitsOrLossesOntheChangesInFairValue != null" >
+        year_add_profits_or_losses_onthe_changes_in_fair_value = #{yearAddProfitsOrLossesOntheChangesInFairValue,jdbcType=DECIMAL},
+      </if>
+      <if test="currentAddProfitsOrLossesOntheChangesInFairValue != null" >
+        current_add_profits_or_losses_onthe_changes_in_fair_value = #{currentAddProfitsOrLossesOntheChangesInFairValue,jdbcType=DECIMAL},
+      </if>
+      <if test="yearInvestmentIncome != null" >
+        year_investment_income = #{yearInvestmentIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="currentInvestmentIncome != null" >
+        current_investment_income = #{currentInvestmentIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="yearAmongInvestmentIncomeFromAffiliatedBusiness != null" >
+        year_among_Investment_income_from_affiliated_business = #{yearAmongInvestmentIncomeFromAffiliatedBusiness,jdbcType=DECIMAL},
+      </if>
+      <if test="currentAmongInvestmentIncomeFromAffiliatedBusiness != null" >
+        current_among_Investment_income_from_affiliated_business = #{currentAmongInvestmentIncomeFromAffiliatedBusiness,jdbcType=DECIMAL},
+      </if>
+      <if test="yearOperatingIncome != null" >
+        year_operating_income = #{yearOperatingIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="currentOperatingIncome != null" >
+        current_operating_income = #{currentOperatingIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="yearAddNonOperatingIncome != null" >
+        year_add_non_operating_income = #{yearAddNonOperatingIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="currentAddNonOperatingIncome != null" >
+        current_add_non_operating_income = #{currentAddNonOperatingIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="yearLessNonOperatingExpense != null" >
+        year_less_non_operating_expense = #{yearLessNonOperatingExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="currentLessNonOperatingExpense != null" >
+        current_less_non_operating_expense = #{currentLessNonOperatingExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="yearIncludingLossesFromDisposalOfNonCurrentAssets != null" >
+        year_including_losses_from_disposal_of_non_current_assets = #{yearIncludingLossesFromDisposalOfNonCurrentAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="currentIncludingLossesFromDisposalOfNonCurrentAssets != null" >
+        current_including_losses_from_disposal_of_non_current_assets = #{currentIncludingLossesFromDisposalOfNonCurrentAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="yearIncomeBeforeTax != null" >
+        year_income_before_tax = #{yearIncomeBeforeTax,jdbcType=DECIMAL},
+      </if>
+      <if test="currentIncomeBeforeTax != null" >
+        current_income_before_tax = #{currentIncomeBeforeTax,jdbcType=DECIMAL},
+      </if>
+      <if test="yearLessIncomeTax != null" >
+        year_less_income_tax = #{yearLessIncomeTax,jdbcType=DECIMAL},
+      </if>
+      <if test="currentLessIncomeTax != null" >
+        current_less_income_tax = #{currentLessIncomeTax,jdbcType=DECIMAL},
+      </if>
+      <if test="yearEntIncome != null" >
+        year_ent_income = #{yearEntIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="currentEntIncome != null" >
+        current_ent_income = #{currentEntIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="yearEarningsPerShare != null" >
+        year_earnings_per_share = #{yearEarningsPerShare,jdbcType=DECIMAL},
+      </if>
+      <if test="currentEarningsPerShare != null" >
+        current_earnings_per_share = #{currentEarningsPerShare,jdbcType=DECIMAL},
+      </if>
+      <if test="yearBasicEps != null" >
+        year_basic_eps = #{yearBasicEps,jdbcType=DECIMAL},
+      </if>
+      <if test="currentBasicEps != null" >
+        current_basic_eps = #{currentBasicEps,jdbcType=DECIMAL},
+      </if>
+      <if test="yearDilutedEps != null" >
+        year_diluted_eps = #{yearDilutedEps,jdbcType=DECIMAL},
+      </if>
+      <if test="currentDilutedEps != null" >
+        current_diluted_eps = #{currentDilutedEps,jdbcType=DECIMAL},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        update_timestamp = #{updateTimestamp,jdbcType=CHAR},
+      </if>
+    </set>
+    where pk_income_statement_id = #{pkIncomeStatementId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="incomeStatement" >
+    update t_basic_income_statement
+    set user_id = #{userId,jdbcType=VARCHAR},
+      account_id = #{accountId,jdbcType=VARCHAR},
+      account_period = #{accountPeriod,jdbcType=VARCHAR},
+      year_sales_from_operati = #{yearSalesFromOperati,jdbcType=DECIMAL},
+      current_sales_from_operati = #{currentSalesFromOperati,jdbcType=DECIMAL},
+      year_less_operating_costs = #{yearLessOperatingCosts,jdbcType=DECIMAL},
+      current_less_operating_costs = #{currentLessOperatingCosts,jdbcType=DECIMAL},
+      year_operating_tax_and_additions = #{yearOperatingTaxAndAdditions,jdbcType=DECIMAL},
+      current_operating_tax_and_additions = #{currentOperatingTaxAndAdditions,jdbcType=DECIMAL},
+      year_selling_expenses = #{yearSellingExpenses,jdbcType=DECIMAL},
+      current_selling_expenses = #{currentSellingExpenses,jdbcType=DECIMAL},
+      year_general_and_administrative_expense = #{yearGeneralAndAdministrativeExpense,jdbcType=DECIMAL},
+      current_general_and_administrative_expense = #{currentGeneralAndAdministrativeExpense,jdbcType=DECIMAL},
+      year_finaneia_expense = #{yearFinaneiaExpense,jdbcType=DECIMAL},
+      current_finaneia_expense = #{currentFinaneiaExpense,jdbcType=DECIMAL},
+      year_losses_on_the_asset_impairment = #{yearLossesOnTheAssetImpairment,jdbcType=DECIMAL},
+      current_losses_on_the_asset_impairment = #{currentLossesOnTheAssetImpairment,jdbcType=DECIMAL},
+      year_add_profits_or_losses_onthe_changes_in_fair_value = #{yearAddProfitsOrLossesOntheChangesInFairValue,jdbcType=DECIMAL},
+      current_add_profits_or_losses_onthe_changes_in_fair_value = #{currentAddProfitsOrLossesOntheChangesInFairValue,jdbcType=DECIMAL},
+      year_investment_income = #{yearInvestmentIncome,jdbcType=DECIMAL},
+      current_investment_income = #{currentInvestmentIncome,jdbcType=DECIMAL},
+      year_among_Investment_income_from_affiliated_business = #{yearAmongInvestmentIncomeFromAffiliatedBusiness,jdbcType=DECIMAL},
+      current_among_Investment_income_from_affiliated_business = #{currentAmongInvestmentIncomeFromAffiliatedBusiness,jdbcType=DECIMAL},
+      year_operating_income = #{yearOperatingIncome,jdbcType=DECIMAL},
+      current_operating_income = #{currentOperatingIncome,jdbcType=DECIMAL},
+      year_add_non_operating_income = #{yearAddNonOperatingIncome,jdbcType=DECIMAL},
+      current_add_non_operating_income = #{currentAddNonOperatingIncome,jdbcType=DECIMAL},
+      year_less_non_operating_expense = #{yearLessNonOperatingExpense,jdbcType=DECIMAL},
+      current_less_non_operating_expense = #{currentLessNonOperatingExpense,jdbcType=DECIMAL},
+      year_including_losses_from_disposal_of_non_current_assets = #{yearIncludingLossesFromDisposalOfNonCurrentAssets,jdbcType=DECIMAL},
+      current_including_losses_from_disposal_of_non_current_assets = #{currentIncludingLossesFromDisposalOfNonCurrentAssets,jdbcType=DECIMAL},
+      year_income_before_tax = #{yearIncomeBeforeTax,jdbcType=DECIMAL},
+      current_income_before_tax = #{currentIncomeBeforeTax,jdbcType=DECIMAL},
+      year_less_income_tax = #{yearLessIncomeTax,jdbcType=DECIMAL},
+      current_less_income_tax = #{currentLessIncomeTax,jdbcType=DECIMAL},
+      year_ent_income = #{yearEntIncome,jdbcType=DECIMAL},
+      current_ent_income = #{currentEntIncome,jdbcType=DECIMAL},
+      year_earnings_per_share = #{yearEarningsPerShare,jdbcType=DECIMAL},
+      current_earnings_per_share = #{currentEarningsPerShare,jdbcType=DECIMAL},
+      year_basic_eps = #{yearBasicEps,jdbcType=DECIMAL},
+      current_basic_eps = #{currentBasicEps,jdbcType=DECIMAL},
+      year_diluted_eps = #{yearDilutedEps,jdbcType=DECIMAL},
+      current_diluted_eps = #{currentDilutedEps,jdbcType=DECIMAL},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_timestamp = #{updateTimestamp,jdbcType=CHAR}
+    where pk_income_statement_id = #{pkIncomeStatementId,jdbcType=VARCHAR}
+  </update>
+</mapper>

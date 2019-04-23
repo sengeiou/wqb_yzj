@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/accounting/accounting.iml" filepath="$PROJECT_DIR$/accounting/accounting.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bookkeeper/bookkeeper.iml" filepath="$PROJECT_DIR$/bookkeeper/bookkeeper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/security/security.iml" filepath="$PROJECT_DIR$/security/security.iml" />
+      <module fileurl="file://$PROJECT_DIR$/security/security-app/security-app.iml" filepath="$PROJECT_DIR$/security/security-app/security-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/security/security-core/security-core.iml" filepath="$PROJECT_DIR$/security/security-core/security-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/wqb_yjz.iml" filepath="$PROJECT_DIR$/.idea/wqb_yjz.iml" />
+    </modules>
+  </component>
+</project>

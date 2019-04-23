@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="exchangeRate" >
+<!--     汇率设置表 -->
+  <resultMap id="exchangeRate" type="exchangeRate" >
+     <id column="pk_exchange_rate_id" property="pkExchangeRateId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="account_id" property="accountId" jdbcType="VARCHAR" />
+    <result column="currency_rate_no" property="currencyRateNo" jdbcType="VARCHAR" />
+    <result column="currency_full_name" property="currencyFullName" jdbcType="VARCHAR" />
+    <result column="currency_abbreviate_name" property="currencyAbbreviateName" jdbcType="VARCHAR" />
+    <result column="init_currency_rate" property="initCurrencyRate" jdbcType="DECIMAL" />
+    <result column="ending_currency_rate" property="endingCurrencyRate" jdbcType="DECIMAL" />
+    <result column="exchange_rate_date" property="exchangeRateDate" jdbcType="TIMESTAMP" />
+    <result column="exchange_rate_remarks" property="exchangeRateRemarks" jdbcType="VARCHAR" />
+    <result column="create_psn_id" property="createPsnId" jdbcType="VARCHAR" />
+    <result column="create_psn" property="createPsn" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_psn_id" property="updatePsnId" jdbcType="VARCHAR" />
+    <result column="update_psn" property="updatePsn" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="account_date" property="accountDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pk_exchange_rate_id, user_id, account_id, currency_rate_no, currency_full_name, currency_abbreviate_name, 
+    init_currency_rate, ending_currency_rate, exchange_rate_date, exchange_rate_remarks, 
+    create_psn_id, create_psn, create_date, update_psn_id, update_psn, update_date, account_date
+  </sql>
+	<!--    根据用户id，帐套id，币别全名查询 -->
+    <select id="queryExeRateByCuyAbbe" resultType="java.lang.Integer" parameterType="exchangeRate" >
+	   SELECT
+		COUNT(currency_abbreviate_name)
+	FROM
+		t_basic_exchange_rate
+	WHERE
+		1=1  
+<!-- 	<if test="userId != null" >   -->
+<!--             and user_id = #{userId,jdbcType=VARCHAR}   -->
+<!--     </if>  -->
+    <if test="accountId != null" >  
+            and account_id = #{accountId,jdbcType=VARCHAR}  
+    </if> 
+    <if test="currencyAbbreviateName != null" >  
+            and currency_abbreviate_name = #{currencyAbbreviateName,jdbcType=VARCHAR}  
+    </if> 
+  </select>
+<!--   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" > -->
+<!--     select  -->
+<!--     <include refid="Base_Column_List" /> -->
+<!--     from t_basic_exchange_rate -->
+<!--     where pk_exchange_rate_id = #{pkExchangeRateId,jdbcType=VARCHAR} -->
+<!--   </select> -->
+
+  <select id="queryExchangeRate" resultMap="exchangeRate" parameterType="exchangeRate" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_basic_exchange_rate
+    where 
+<!--     user_id = #{userId,jdbcType=VARCHAR}  -->
+<!--     and  -->
+    account_id = #{accountId,jdbcType=VARCHAR}
+  </select>
+
+
+  <delete id="deleteExchangeRateAll" parameterType="exchangeRate" >
+    delete from t_basic_exchange_rate
+    where 
+<!--     user_id = #{userId,jdbcType=VARCHAR} and  -->
+    account_id = #{accountId,jdbcType=VARCHAR}
+  </delete>
+  
+  <delete id="delExchangeByExchangeId" parameterType="exchangeRate" >
+    delete from t_basic_exchange_rate
+    where 
+<!--     	user_id = #{userId,jdbcType=VARCHAR}  -->
+<!--     and -->
+    	account_id = #{accountId,jdbcType=VARCHAR} 
+    and 
+    	pk_exchange_rate_id = #{pkExchangeRateId,jdbcType=VARCHAR} 
+  </delete>
+
+<!--   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" > -->
+<!--     delete from t_basic_exchange_rate -->
+<!--     where pk_exchange_rate_id = #{pkExchangeRateId,jdbcType=VARCHAR} -->
+<!--   </delete> -->
+  <insert id="insertExchangeRate" parameterType="exchangeRate" >
+     insert into t_basic_exchange_rate (pk_exchange_rate_id, user_id, account_id, 
+      currency_rate_no, currency_full_name, currency_abbreviate_name, 
+      init_currency_rate, ending_currency_rate, exchange_rate_date, 
+      exchange_rate_remarks, create_psn_id, create_psn, 
+      create_date, update_psn_id, update_psn, 
+      update_date, account_date)
+    values (#{pkExchangeRateId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, 
+      #{currencyRateNo,jdbcType=VARCHAR}, #{currencyFullName,jdbcType=VARCHAR}, #{currencyAbbreviateName,jdbcType=VARCHAR}, 
+      #{initCurrencyRate,jdbcType=DECIMAL}, #{endingCurrencyRate,jdbcType=DECIMAL}, #{exchangeRateDate,jdbcType=TIMESTAMP}, 
+      #{exchangeRateRemarks,jdbcType=VARCHAR}, #{createPsnId,jdbcType=VARCHAR}, #{createPsn,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updatePsnId,jdbcType=VARCHAR}, #{updatePsn,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{accountDate,jdbcType=TIMESTAMP})
+  </insert>
+<!--   <insert id="insertSelective" parameterType="com.wqb.model.TBasicExchangeRate" > -->
+<!--     insert into t_basic_exchange_rate -->
+<!--     <trim prefix="(" suffix=")" suffixOverrides="," > -->
+<!--       <if test="pkExchangeRateId != null" > -->
+<!--         pk_exchange_rate_id, -->
+<!--       </if> -->
+<!--       <if test="userId != null" > -->
+<!--         user_id, -->
+<!--       </if> -->
+<!--       <if test="accountId != null" > -->
+<!--         account_id, -->
+<!--       </if> -->
+<!--       <if test="currencyRateNo != null" > -->
+<!--         currency_rate_no, -->
+<!--       </if> -->
+<!--       <if test="currencyFullName != null" > -->
+<!--         currency_full_name, -->
+<!--       </if> -->
+<!--       <if test="currencyAbbreviateName != null" > -->
+<!--         currency_abbreviate_name, -->
+<!--       </if> -->
+<!--       <if test="initCurrencyRate != null" > -->
+<!--         init_currency_rate, -->
+<!--       </if> -->
+<!--       <if test="endingCurrencyRate != null" > -->
+<!--         ending_currency_rate, -->
+<!--       </if> -->
+<!--       <if test="exchangeRateDate != null" > -->
+<!--         exchange_rate_date, -->
+<!--       </if> -->
+<!--       <if test="exchangeRateRemarks != null" > -->
+<!--         exchange_rate_remarks, -->
+<!--       </if> -->
+<!--       <if test="createPsnId != null" > -->
+<!--         create_psn_id, -->
+<!--       </if> -->
+<!--       <if test="createPsn != null" > -->
+<!--         create_psn, -->
+<!--       </if> -->
+<!--       <if test="createDate != null" > -->
+<!--         create_date, -->
+<!--       </if> -->
+<!--       <if test="updatePsnId != null" > -->
+<!--         update_psn_id, -->
+<!--       </if> -->
+<!--       <if test="updatePsn != null" > -->
+<!--         update_psn, -->
+<!--       </if> -->
+<!--       <if test="updateDate != null" > -->
+<!--         update_date, -->
+<!--       </if> -->
+<!--       <if test="accountDate != null" > -->
+<!--         account_date, -->
+<!--       </if> -->
+<!--     </trim> -->
+<!--     <trim prefix="values (" suffix=")" suffixOverrides="," > -->
+<!--       <if test="pkExchangeRateId != null" > -->
+<!--         #{pkExchangeRateId,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="userId != null" > -->
+<!--         #{userId,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="accountId != null" > -->
+<!--         #{accountId,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="currencyRateNo != null" > -->
+<!--         #{currencyRateNo,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="currencyFullName != null" > -->
+<!--         #{currencyFullName,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="currencyAbbreviateName != null" > -->
+<!--         #{currencyAbbreviateName,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="initCurrencyRate != null" > -->
+<!--         #{initCurrencyRate,jdbcType=DECIMAL}, -->
+<!--       </if> -->
+<!--       <if test="endingCurrencyRate != null" > -->
+<!--         #{endingCurrencRate,jdbcType=DECIMAL}, -->
+<!--       </if> -->
+<!--       <if test="exchangeRateDate != null" > -->
+<!--         #{exchangeRateDate,jdbcType=TIMESTAMP}, -->
+<!--       </if> -->
+<!--       <if test="exchangeRateRemarks != null" > -->
+<!--         #{exchangeRateRemarks,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="createPsnId != null" > -->
+<!--         #{createPsnId,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="createPsn != null" > -->
+<!--         #{createPsn,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="createDate != null" > -->
+<!--         #{createDate,jdbcType=TIMESTAMP}, -->
+<!--       </if> -->
+<!--       <if test="updatePsnId != null" > -->
+<!--         #{updatePsnId,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="updatePsn != null" > -->
+<!--         #{updatePsn,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="updateDate != null" > -->
+<!--         #{updateDate,jdbcType=TIMESTAMP}, -->
+<!--       </if> -->
+<!--       <if test="accountDate != null" > -->
+<!--         #{accountDate,jdbcType=TIMESTAMP}, -->
+<!--       </if> -->
+<!--     </trim> -->
+<!--   </insert> -->
+	<!-- updateExchangeRate -->
+  <update id="updateExchangeRate" parameterType="java.util.Map" >
+    update t_basic_exchange_rate
+    <set >
+      <if test="currencyRateNo != null" >
+        currency_rate_no = #{currencyRateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyFullName != null" >
+        currency_full_name = #{currencyFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyAbbreviateName != null" >
+        currency_abbreviate_name = #{currencyAbbreviateName,jdbcType=VARCHAR},
+      </if>
+      <if test="initCurrencyRate != null" >
+        init_currency_rate = #{initCurrencyRate,jdbcType=DECIMAL},
+      </if>
+      <if test="endingCurrencyRate != null" >
+        ending_currency_rate = #{endingCurrencyRate,jdbcType=DECIMAL},
+      </if>
+      <if test="exchangeRateDate != null" >
+        exchange_rate_date = #{exchangeRateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exchangeRateRemarks != null" >
+        exchange_rate_remarks = #{exchangeRateRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="updatePsnId != null" >
+        update_psn_id = #{updatePsnId,jdbcType=VARCHAR},
+      </if>
+      <if test="updatePsn != null" >
+        update_psn = #{updatePsn,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountDate != null" >
+        account_date = #{accountDate,jdbcType=TIMESTAMP}
+      </if>
+    </set>
+    where pk_exchange_rate_id = #{pkExchangeRateId,jdbcType=VARCHAR}
+  </update>
+<!--   <update id="updateByPrimaryKey" parameterType="com.wqb.model.TBasicExchangeRate" > -->
+<!--     update t_basic_exchange_rate -->
+<!--     set user_id = #{userId,jdbcType=VARCHAR}, -->
+<!--       account_id = #{accountId,jdbcType=VARCHAR}, -->
+<!--       currency_rate_no = #{currencyRateNo,jdbcType=VARCHAR}, -->
+<!--       currency_full_name = #{currencyFullName,jdbcType=VARCHAR}, -->
+<!--       currency_abbreviate_name = #{currencyAbbreviateName,jdbcType=VARCHAR}, -->
+<!--       init_currency_rate = #{initCurrencyRate,jdbcType=DECIMAL}, -->
+<!--       ending_currency_rate = #{endingCurrencyRate,jdbcType=DECIMAL}, -->
+<!--       exchange_rate_date = #{exchangeRateDate,jdbcType=TIMESTAMP}, -->
+<!--       exchange_rate_remarks = #{exchangeRateRemarks,jdbcType=VARCHAR}, -->
+<!--       create_psn_id = #{createPsnId,jdbcType=VARCHAR}, -->
+<!--       create_psn = #{createPsn,jdbcType=VARCHAR}, -->
+<!--       create_date = #{createDate,jdbcType=TIMESTAMP}, -->
+<!--       update_psn_id = #{updatePsnId,jdbcType=VARCHAR}, -->
+<!--       update_psn = #{updatePsn,jdbcType=VARCHAR}, -->
+<!--       update_date = #{updateDate,jdbcType=TIMESTAMP}, -->
+<!--       account_date = #{accountDate,jdbcType=TIMESTAMP} -->
+<!--     where pk_exchange_rate_id = #{pkExchangeRateId,jdbcType=VARCHAR} -->
+<!--   </update> -->
+</mapper>

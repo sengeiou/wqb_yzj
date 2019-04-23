@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="trackComm">
+
+	<insert id="insertTrackComm" parameterType="map">
+		insert into track_comm
+		(
+			sub_code,
+			comNameSpec,
+			amount,
+			number,
+			direction,
+			accountID,
+			period,
+			des
+		)
+		values
+		(
+			#{sub_code},
+			#{comNameSpec},
+			#{amount,jdbcType=DECIMAL},
+			#{number,jdbcType=DECIMAL},
+			#{direction},
+			#{accountID},
+			#{period},
+			#{des}
+		)
+	</insert>
+</mapper>
+
+

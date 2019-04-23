@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="subjectMappingMiddle" >
+  <resultMap id="BaseResultMap" type="subjectMappingMiddle" >
+    <id column="pk_sub_mapping_middle_id" property="pkSubMappingMiddleId" jdbcType="INTEGER" />
+    <result column="account_id" property="accountId" jdbcType="VARCHAR" />
+    <result column="sub_mapping_code" property="subMappingCode" jdbcType="VARCHAR" />
+    <result column="sub_mapping_name" property="subMappingName" jdbcType="VARCHAR" />
+    <result column="sub_message_code" property="subMessageCode" jdbcType="VARCHAR" />
+    <result column="sub_message_name" property="subMessageName" jdbcType="VARCHAR" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_timestamp" property="updateTimestamp" jdbcType="CHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pk_sub_mapping_middle_id, account_id, sub_mapping_code, sub_mapping_name, sub_message_code, 
+    sub_message_name, create_person, create_date, update_person, update_date, update_timestamp,source
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_basic_subject_mapping_middle
+    where pk_sub_mapping_middle_id = #{pkSubMappingMiddleId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="querySubMappingMiddleByAccId" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_basic_subject_mapping_middle
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 效验科目映射表 -->
+  <select id="validationSubMappingMiddle" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_basic_subject_mapping_middle
+    where account_id = #{accountId,jdbcType=VARCHAR}
+    and sub_message_code = #{subMessageCode,jdbcType=VARCHAR}
+    and sub_message_name = #{subMessageName,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="querySubMappingMiddle" resultMap="BaseResultMap" >
+   select 
+   	 	<include refid="Base_Column_List" />
+    from 
+    	t_basic_subject_mapping_middle
+    where 
+    	account_id = #{accountId}
+    and
+    	sub_mapping_name = #{subMappingName}
+    and
+    	sub_mapping_code = #{subMappingCode}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_basic_subject_mapping_middle
+    where pk_sub_mapping_middle_id = #{pkSubMappingMiddleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="subjectMappingMiddle" >
+      
+    insert into t_basic_subject_mapping_middle (pk_sub_mapping_middle_id, account_id, 
+      sub_mapping_code, sub_mapping_name, sub_message_code, 
+      sub_message_name, create_person, create_date, 
+      update_person, update_date, update_timestamp, source
+      )
+    values (#{pkSubMappingMiddleId,jdbcType=INTEGER}, #{accountId,jdbcType=VARCHAR}, 
+      #{subMappingCode,jdbcType=VARCHAR}, #{subMappingName,jdbcType=VARCHAR}, #{subMessageCode,jdbcType=VARCHAR}, 
+      #{subMessageName,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{updateTimestamp,jdbcType=CHAR}, 
+      #{source,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <insert id="saveOrUpdate" parameterType="subjectMappingMiddle">
+     <selectKey keyProperty="pkSubMappingMiddleId" resultType="int" order="BEFORE">
+	    	select count(*) from 
+	    		t_basic_subject_mapping_middle 
+	    	where 
+			    sub_mapping_code = #{subMappingCode} 
+			and 
+			    sub_mapping_name = #{subMappingName}
+			and
+				account_id = #{accountId}
+	 	</selectKey>
+	 	<if test="pkSubMappingMiddleId > 0">
+	 	    update t_basic_subject_mapping_middle
+		    <set >
+		      <if test="accountId != null" >
+		        account_id = #{accountId,jdbcType=VARCHAR},
+		      </if>
+		      <if test="subMappingCode != null" >
+		        sub_mapping_code = #{subMappingCode,jdbcType=VARCHAR},
+		      </if>
+		      <if test="subMappingName != null" >
+		        sub_mapping_name = #{subMappingName,jdbcType=VARCHAR},
+		      </if>
+		      <if test="subMessageCode != null" >
+		        sub_message_code = #{subMessageCode,jdbcType=VARCHAR},
+		      </if>
+		      <if test="subMessageName != null" >
+		        sub_message_name = #{subMessageName,jdbcType=VARCHAR},
+		      </if>
+		      <if test="createPerson != null" >
+		        create_person = #{createPerson,jdbcType=VARCHAR},
+		      </if>
+		      <if test="createDate != null" >
+		        create_date = #{createDate,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="updatePerson != null" >
+		        update_person = #{updatePerson,jdbcType=VARCHAR},
+		      </if>
+		      <if test="updateDate != null" >
+		        update_date = #{updateDate,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="updateTimestamp != null" >
+		        update_timestamp = #{updateTimestamp,jdbcType=CHAR},
+		      </if>
+		      <if test="updatePerson != null" >
+		        source = #{source,jdbcType=VARCHAR},
+		      </if>
+		    </set>
+		    where 
+			    sub_mapping_code = #{subMappingCode} 
+			and 
+			    sub_mapping_name = #{subMappingName}
+			and
+				account_id = #{accountId}
+	 	</if>
+	 	<if test="pkSubMappingMiddleId==0">
+	 	 insert into t_basic_subject_mapping_middle (pk_sub_mapping_middle_id, account_id, 
+		      sub_mapping_code, sub_mapping_name, sub_message_code, 
+		      sub_message_name, create_person, create_date, 
+		      update_person, update_date, update_timestamp, source
+		      )
+		    values (#{pkSubMappingMiddleId,jdbcType=INTEGER}, #{accountId,jdbcType=VARCHAR}, 
+		      #{subMappingCode,jdbcType=VARCHAR}, #{subMappingName,jdbcType=VARCHAR}, #{subMessageCode,jdbcType=VARCHAR}, 
+		      #{subMessageName,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+		      #{updatePerson,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{updateTimestamp,jdbcType=CHAR}, 
+		      #{source,jdbcType=VARCHAR}
+		      )
+	  	</if>
+  </insert>
+  
+  <insert id="insertList" parameterType="subjectMappingMiddle" >
+	    
+  </insert>
+  
+  <insert id="insertSelective" parameterType="subjectMappingMiddle" >
+    insert into t_basic_subject_mapping_middle
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pkSubMappingMiddleId != null" >
+        pk_sub_mapping_middle_id,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="subMappingCode != null" >
+        sub_mapping_code,
+      </if>
+      <if test="subMappingName != null" >
+        sub_mapping_name,
+      </if>
+      <if test="subMessageCode != null" >
+        sub_message_code,
+      </if>
+      <if test="subMessageName != null" >
+        sub_message_name,
+      </if>
+      <if test="createPerson != null" >
+        create_person,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updatePerson != null" >
+        update_person,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="updateTimestamp != null" >
+        update_timestamp,
+      </if>
+       <if test="source != null" >
+        source
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pkSubMappingMiddleId != null" >
+        #{pkSubMappingMiddleId,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="subMappingCode != null" >
+        #{subMappingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subMappingName != null" >
+        #{subMappingName,jdbcType=VARCHAR},
+      </if>
+      <if test="subMessageCode != null" >
+        #{subMessageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subMessageName != null" >
+        #{subMessageName,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null" >
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        #{updateTimestamp,jdbcType=CHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="subjectMappingMiddle" >
+    update t_basic_subject_mapping_middle
+    <set >
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="subMappingCode != null" >
+        sub_mapping_code = #{subMappingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subMappingName != null" >
+        sub_mapping_name = #{subMappingName,jdbcType=VARCHAR},
+      </if>
+      <if test="subMessageCode != null" >
+        sub_message_code = #{subMessageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subMessageName != null" >
+        sub_message_name = #{subMessageName,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        update_timestamp = #{updateTimestamp,jdbcType=CHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pk_sub_mapping_middle_id = #{pkSubMappingMiddleId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="subjectMappingMiddle" >
+    update t_basic_subject_mapping_middle
+    set account_id = #{accountId,jdbcType=VARCHAR},
+      sub_mapping_code = #{subMappingCode,jdbcType=VARCHAR},
+      sub_mapping_name = #{subMappingName,jdbcType=VARCHAR},
+      sub_message_code = #{subMessageCode,jdbcType=VARCHAR},
+      sub_message_name = #{subMessageName,jdbcType=VARCHAR},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_timestamp = #{updateTimestamp,jdbcType=CHAR}
+      source = #{source,jdbcType=VARCHAR}
+    where pk_sub_mapping_middle_id = #{pkSubMappingMiddleId,jdbcType=INTEGER}
+  </update>
+
+    <delete id="deleteByAccountId">
+        delete from t_basic_subject_mapping_middle
+        where account_id = #{accountId}
+    </delete>
+</mapper>

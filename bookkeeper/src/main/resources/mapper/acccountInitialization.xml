@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="accInit">
+
+	<!--1 删除明细表数据  -->
+	<delete id="delSubBook" parameterType="map">
+		delete from t_basic_subject_book  where accountID = #{accountID}
+	</delete>
+	
+	<!--2 删除科目余额表数据  -->
+	<delete id="delSub" parameterType="map">
+		delete from t_basic_subject_message  where account_id = #{accountID}
+	</delete>
+	
+	<!--3 删除科目关系映射中间表  -->
+	<delete id="delSubMiddle" parameterType="map">
+		delete from t_basic_subject_mapping_middle  where account_id = #{accountID}
+	</delete>
+	
+	<!--4 EXCEL科目档案表  -->
+	<delete id="delSubExcel" parameterType="map">
+		delete from t_basic_subject_excel  where account_id = #{accountID}
+	</delete>
+	
+	<!--5 库存商品表  -->
+	<delete id="delComm" parameterType="map">
+		delete from t_kc_commodity  where accountID = #{accountID}
+	</delete>
+	
+	<!--6 删除固定资产档案表数据  -->
+	<delete id="delAssets" parameterType="map">
+		delete from t_assets  where accountID = #{accountID}
+	</delete>
+	<!--7 删除固定资产档案表数据  -->
+	<delete id="delAssetsExcel" parameterType="map">
+		delete from t_assets_excel  where accountID = #{accountID}
+	</delete>
+	<!--8 删除固定资产折旧明细记录表表数据  -->
+	<delete id="delAssetsRecord" parameterType="map">
+		delete from t_assets_record  where accountID = #{accountID}
+	</delete>
+	
+	
+	<!--10 删除操作表数据  -->
+	<delete id="delBasicAction" parameterType="map">
+		delete from t_basic_action  where accountID = #{accountID}
+	</delete>
+	
+	<!--11 删除资产负债表数据  -->
+	<delete id="delBalanceSheet" parameterType="map">
+		delete from t_basic_balance_sheet  where account_id = #{accountID}
+	</delete>
+	
+	<!--12 银行账户和科目映射表  -->
+	<delete id="delBankaccount2subject" parameterType="map">
+		delete from t_basic_bankaccount2subject  where accountID = #{accountID}
+	</delete>
+	
+	<!--13  单据表 -->
+	<delete id="delDocuments" parameterType="map">
+		delete from t_basic_documents  where account_id = #{accountID}
+	</delete>
+	
+	<!--14   汇率设置表-->
+	<delete id="delBasicExchangeRate" parameterType="map">
+		delete from t_basic_exchange_rate  where account_id = #{accountID}
+	</delete>
+	
+	<!--15  附件记录表 -->
+	<delete id="delBasicFj" parameterType="map">
+		delete from t_basic_fj  where accountID = #{accountID}
+	</delete>
+
+
+	<!--16  利润表 -->
+	<delete id="delIncomeStatement" parameterType="map">
+		delete from t_basic_income_statement  where account_id = #{accountID}
+	</delete>
+	
+	<!--17  计量单位表 -->
+	<delete id="delBasicMeasure" parameterType="map">
+		delete from t_basic_measure  where account_id = #{accountID}
+	</delete>
+	
+	<!--18  正在进行中的任务记录表 -->
+	<delete id="delBasicProgress" parameterType="map">
+		delete from t_basic_progress  where accountID = #{accountID}
+	</delete>
+	
+	<!--19   报税配置表-->
+	<delete id="delReporttax" parameterType="map">
+		delete from t_basic_reporttax  where accountID = #{accountID}
+	</delete>
+	
+	<!--20  新会计准则 -->
+	<delete id="delBasicSubject" parameterType="map">
+		delete from t_basic_subject  where accountID = #{accountID}
+	</delete>
+	
+	
+
+	
+	<!--22  中国农业银行-对账单-->
+	<delete id="delCmBkbillAbc" parameterType="map">
+		delete from t_cm_bkbill_abc  where accountID = #{accountID}
+	</delete>
+
+	<!--23  交通银行-对账单-->
+	<delete id="delCmBkbillBcm" parameterType="map">
+		delete from t_cm_bkbill_bcm  where accountID = #{accountID}
+	</delete>	
+	
+	<!--24  交通银行-对账单(谭显众提供-->
+	<delete id="delCmBkbillBcm1" parameterType="map">
+		delete from t_cm_bkbill_bcm1  where accountID = #{accountID}
+	</delete>
+
+	<!--25  中国银行-->
+	<delete id="delCmBkbillBoc" parameterType="map">
+		delete from t_cm_bkbill_boc  where account_id = #{accountID}
+	</delete>	
+	
+	<!--26  中信银行-对账单-->
+	<delete id="delCmBkbillCcb" parameterType="map">
+		delete from t_cm_bkbill_ccb  where accountID = #{accountID}
+	</delete>
+
+
+	<!--27  中国光大银行-对账单-->
+	<delete id="delCmBkbillCeb" parameterType="map">
+		delete from t_cm_bkbill_ceb  where accountID = #{accountID}
+	</delete>	
+	
+	<!--28  兴业银行-对账单-->
+	<delete id="delCmBkbillCib" parameterType="map">
+		delete from t_cm_bkbill_cib  where accountID = #{accountID}
+	</delete>
+	
+	<!--29 招商银行-对账单 -->
+	<delete id="delCmBkbillCmb" parameterType="map">
+		delete from t_cm_bkbill_cmb  where accountID = #{accountID}
+	</delete>	
+	
+	<!--30 中国民生银行-对账单 -->
+	<delete id="delCmBkbillCmbc" parameterType="map">
+		delete from t_cm_bkbill_cmbc  where accountID = #{accountID}
+	</delete>
+	
+	<!--31 工商银行-对账单 -->
+	<delete id="delCmBkbillIcbc" parameterType="map">
+		delete from t_cm_bkbill_icbc  where accountID = #{accountID}
+	</delete>	
+	
+	<!--32  建设银行-->
+	<delete id="delCmBkbillJs" parameterType="map">
+		delete from t_cm_bkbill_js  where accountID = #{accountID}
+	</delete>
+
+
+	<!--33  农业银行-->
+	<delete id="detCmBkbillNy" parameterType="map">
+		delete from t_cm_bkbill_ny  where accountID = #{accountID}
+	</delete>
+
+	<!--34  农业银行新模板-->
+	<delete id="deltCmBkbillNyNew" parameterType="map">
+		delete from t_cm_bkbill_ny_new  where accountID = #{accountID}
+	</delete>
+	
+	<!--35  平安银行-->
+	<delete id="delCmBkbillPa" parameterType="map">
+		delete from t_cm_bkbill_pa  where accountID = #{accountID}
+	</delete>
+
+
+	<!--36  农商行-对账单-->
+	<delete id="delCmBkbillSzrcb" parameterType="map">
+		delete from t_cm_bkbill_szrcb  where accountID = #{accountID}
+	</delete>
+
+	<!--37 招商银行对账单 -->
+	<delete id="delCmBkbillZs" parameterType="map">
+		delete from t_cm_bkbill_zs  where accountID = #{accountID}
+	</delete>
+	
+	<!--38  发票子表-->
+	<delete id="delInvoiceB" parameterType="map">
+		delete from t_fa_invoice_b  where accountID = #{accountID}
+	</delete>
+
+	<!--39 发票主表 -->
+	<delete id="delInvoiceH" parameterType="map">
+		delete from t_fa_invoice_h  where accountID = #{accountID}
+	</delete>
+
+	<!--40  发票映射科目记录表-->
+	<delete id="delInvoiceMappingrecord" parameterType="map">
+		delete from t_fa_invoice_mappingrecord  where accountID = #{accountID}
+	</delete>
+	
+	<!--41  期末结转参数设置-->
+	<delete id="deltQmjzSetting" parameterType="map">
+		delete from t_qmjz_setting  where accountID = #{accountID}
+	</delete>
+
+	<!--42 计提期间记录表 -->
+	<delete id="delStatusPeriod" parameterType="map">
+		delete from t_status_period  where accountID = #{accountID}
+	</delete>
+
+	<!--43 操作日志记录 -->
+	<delete id="delSysOperlog" parameterType="map">
+		delete from t_sys_operlog  where accountID = #{accountID}
+	</delete>
+	
+
+
+	<!--45 凭证模板类型 -->
+	<delete id="delTempType" parameterType="map">
+		delete from t_temp_type  where accountID = #{accountID}
+	</delete>
+
+	<!--46  后切换账套时间-->
+	<delete id="delUserAcc" parameterType="map">
+		delete from t_user_acc  where accountID = #{accountID}
+	</delete>
+	
+	
+	<!--47  凭证子表-->
+	<delete id="delVouchB" parameterType="map">
+		delete from t_vouch_b  where accountID = #{accountID}
+	</delete>
+
+	<!--48  凭证主表-->
+	<delete id="delVouchH" parameterType="map">
+		delete from t_vouch_h  where accountID = #{accountID}
+	</delete>
+	
+
+	
+	<!--50  凭证模版子表-->
+	<delete id="delVouchmdB" parameterType="map">
+		delete from t_vouchmd_b  where accountID = #{accountID}
+	</delete>
+
+	<!--51  人员薪资档案表-->
+	<delete id="delWaArch" parameterType="map">
+		delete from t_wa_arch  where accountID = #{accountID}
+	</delete>
+	
+	
+	<!--52  计提薪资部门配置表-->
+	<delete id="delWaExtra" parameterType="map">
+		delete from t_wa_extra  where accountID = #{accountID}
+	</delete>
+	
+	<!--53  结账记录表-->
+	<delete id="delZwPay" parameterType="map">
+		delete from t_zw_pay  where accountID = #{accountID}
+	</delete>
+	
+	<!--54 目配置表 -->
+	<delete id="delTblProCfg" parameterType="map">
+		delete from tbl_pro_cfg  where accountID = #{accountID}
+	</delete>
+	
+	
+	<update id="upAccInit" parameterType="map">
+		update  t_basic_account 
+	  	<set> 
+            <if test="mapping_states != null">
+                mapping_states = #{mapping_states},
+            </if>
+            <if test="initial_states != null">
+                initial_states = #{initial_states},
+            </if>
+		</set>
+		where  accountID = #{accountID}
+	</update>
+
+
+	
+</mapper>

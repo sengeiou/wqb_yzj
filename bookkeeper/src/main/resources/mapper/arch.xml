@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="archs">
+	<!-- 工资映射 -->
+	<resultMap type="arch" id="archMap">
+		<result property="archID" column="archID" />
+		<result property="acperiod" column="acperiod" />
+		<result property="archDate" column="archDate" />
+		<result property="acDepartment" column="acDepartment" />
+		<result property="acName" column="acName" />
+		<result property="basePay" column="basePay" />
+		<result property="subsidy" column="subsidy" />
+		<result property="overtimeFree" column="overtimeFree" />
+		<result property="overtimeWeekend" column="overtimeWeekend" />
+		<result property="otherFree" column="otherFree" />
+		<result property="payAble" column="payAble" />
+		<result property="socialfree" column="socialfree" />
+		<result property="taxFree" column="taxFree" />
+		<result property="deduction" column="deduction" />
+		<result property="utilities" column="utilities" />
+		<result property="realwages" column="realwages" />
+		<result property="accountID" column="accountID" />
+		<result property="importDate" column="importDate" />
+		<result property="createpsnID" column="createpsnID" />
+	</resultMap>
+
+
+	<insert id="insertArch" parameterType="com.wqb.model.Arch">
+		insert into t_wa_arch
+		(
+		archID,acperiod,archDate,acDepartment,acCode,acName,basePay,subsidy,overtimeFree,overtimeWeekend,otherFree,
+		payAble,socialfree,taxFree,totalCharged,provident,utilities,deduction,attendanceDays,attendanceActual,realwages,
+		accountID,importDate,createpsnID
+		)
+		values
+		(
+		#{archID},
+		#{acperiod},
+		#{archDate},
+		#{acDepartment},
+		#{acCode},
+		#{acName},
+		#{basePay,jdbcType=DOUBLE},
+		#{subsidy,jdbcType=DOUBLE},
+		#{overtimeFree,jdbcType=DOUBLE},
+		#{overtimeWeekend,jdbcType=DOUBLE},
+		#{otherFree,jdbcType=DOUBLE},
+		#{payAble,jdbcType=DOUBLE},
+		#{socialfree,jdbcType=DOUBLE},
+		#{taxFree,jdbcType=DOUBLE},
+		#{totalCharged,jdbcType=DOUBLE},
+		#{provident,jdbcType=DOUBLE},
+		#{utilities,jdbcType=DOUBLE},
+		#{deduction,jdbcType=DOUBLE},
+		#{attendanceDays,jdbcType=DOUBLE},
+		#{attendanceActual,jdbcType=DOUBLE},
+		#{realwages,jdbcType=DOUBLE},
+		#{accountID},
+		#{importDate},
+		#{createpsnID}
+
+		)
+	</insert>
+
+	<insert id="insertBath" parameterType="com.wqb.model.Arch">
+		insert into t_wa_arch
+		(
+		archID,acperiod,archDate,acDepartment,acCode,acName,basePay,subsidy,overtimeFree,overtimeWeekend,otherFree,
+		payAble,socialfree,taxFree,totalCharged,provident,utilities,deduction,attendanceDays,attendanceActual,
+		realwages,accountID,importDate,createpsnID
+		)
+		values
+
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(
+			#{item.archID},
+			#{item.acperiod},
+			#{item.archDate},
+			#{item.acDepartment},
+			#{item.acCode},
+			#{item.acName},
+			#{item.basePay,jdbcType=DOUBLE},
+			#{item.subsidy,jdbcType=DOUBLE},
+			#{item.overtimeFree,jdbcType=DOUBLE},
+			#{item.overtimeWeekend,jdbcType=DOUBLE},
+			#{item.otherFree,jdbcType=DOUBLE},
+			#{item.payAble,jdbcType=DOUBLE},
+			#{item.socialfree,jdbcType=DOUBLE},
+			#{item.taxFree,jdbcType=DOUBLE},
+			#{item.totalCharged,jdbcType=DOUBLE},
+			#{item.provident,jdbcType=DOUBLE},
+			#{item.utilities,jdbcType=DOUBLE},
+			#{item.deduction,jdbcType=DOUBLE},
+			#{item.attendanceDays,jdbcType=DOUBLE},
+			#{item.attendanceActual,jdbcType=DOUBLE},
+			#{item.realwages,jdbcType=DOUBLE},
+			#{item.accountID},
+			#{importDate},
+			#{createpsnID}
+
+			)
+		</foreach>
+	</insert>
+
+	<!-- 查询条件 -->
+	<sql id="whereCase">
+		<where>
+
+			<if test="accountID!=null">
+				and accountID = #{accountID}
+			</if>
+			<if test="acperiod!=null">
+				and acperiod = #{acperiod}
+			</if>
+
+
+			<if test="archDate!=null and archDate!='' ">
+				and archDate = #{archDate}
+			</if>
+			<if test="acName!=null and acName!='' ">
+				and acName LIKE '%${acName}%'
+			</if>
+			<if test="acCode!=null and acCode!='' ">
+				and acCode = #{acCode}
+			</if>
+
+
+
+		</where>
+	</sql>
+
+
+
+	<!-- 根据查询条件查询总数 -->
+	<select id="queryCount" parameterType="map" resultType="int">
+		select count(1) from t_wa_arch
+		<include refid="whereCase" />
+	</select>
+
+	<!-- //综合查询 分页(区间，姓名) -->
+	<select id="queryListPage" parameterType="map" resultType="com.wqb.model.Arch">
+		select
+		archID,acperiod,archDate,acDepartment,acCode,acName,basePay,subsidy,overtimeFree,overtimeWeekend,otherFree,
+		payAble,socialfree,taxFree,totalCharged,provident,utilities,deduction,attendanceDays,attendanceActual,realwages,accountID
+		from t_wa_arch
+		<include refid="whereCase" />
+		order by archDate,acCode
+		limit #{start},#{size}
+	</select>
+
+
+	<!-- 检查导入是否存在重复数据 期间 员工编码 -->
+	<select id="queryByCodeAndAcperiod" parameterType="map"
+		resultType="com.wqb.model.Arch">
+		select archID,acperiod,acCode,acName,accountID
+		from t_wa_arch
+		<include refid="whereCase" />
+	</select>
+
+
+	<!-- 删除 delById(Map<String, String> map) -->
+	<delete id="delById" parameterType="map">
+		delete from t_wa_arch where
+		accountID = #{accountID} and archID = #{archID}
+	</delete>
+
+	<!-- 批量删除 -->
+	<delete id="delBathById" parameterType="map">
+		delete from t_wa_arch where accountID = #{accountID} and archID in
+		<foreach collection="ids" open="(" close=")" item="id"
+			separator=",">
+			#{id}
+		</foreach>
+	</delete>
+
+	<select id="query2vouch" resultType="com.wqb.model.Arch">
+		select * from t_wa_arch
+		where accountID = #{accountID} and acperiod like
+		CONCAT('%','${busDate}','%' );
+	</select>
+
+	<select id="queryDepart" resultType="java.util.Map">
+		select sum(utilities) as sd,
+		sum(deduction) as qtkk,sum(taxFree) as grsds ,sum(provident) as gjj,
+		sum(socialfree) as sb,acDepartment,sum(realwages) as sf,sum(payAble)
+		as yf from t_wa_arch where accountID = #{accountID} and acperiod like
+		CONCAT('%','${busDate}','%' ) group by acDepartment;
+	</select>
+
+
+	<!-- 查询做账期间所有工资月份 -->
+	<select id="queryArchDate" parameterType="map" resultType="string">
+		select group_concat(DISTINCT archDate ORDER BY archDate ASC separator
+		'&amp;') from t_wa_arch
+		where accountID = #{accountID} and acperiod = #{acperiod}
+	</select>
+
+	<select id="queryArchDate2" parameterType="map" resultType="string">
+		<![CDATA[
+			select group_concat(DISTINCT archDate ORDER BY archDate ASC separator '&')  from t_wa_arch 
+		where accountID = #{accountID} and acperiod = #{acperiod}
+		]]>
+	</select>
+
+	<!-- 查询本期所有员工编码 -->
+	<select id="querycode" parameterType="map" resultType="string">
+		select
+		acCode from t_wa_arch where accountID = #{accountID} and acperiod =
+		#{acperiod} and and archDate = #{archDate}
+	</select>
+
+	<select id="queryFfArchData" resultType="java.util.Map">
+		select sum(socialfree) as sb,sum(provident) as
+		gjj,sum(taxFree) as gs from t_wa_arch where
+		accountID=#{accountID} and acperiod=#{period};
+	</select>
+	
+	
+	<select id="queryArchData" resultType="com.wqb.model.Arch">
+		select * from t_wa_arch where accountID=#{accountID} and acperiod=#{period};
+	</select>
+</mapper>

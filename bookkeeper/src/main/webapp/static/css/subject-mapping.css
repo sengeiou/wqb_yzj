@@ -1,0 +1,132 @@
+/* 科目映射 */
+/* 作为页面展示 */
+.must-import {
+    box-sizing: border-box;
+    padding: 0 20px;
+    min-width: 800px;
+}
+
+.must-item {
+    display: none;
+}
+
+.must-import .must-item {
+    display: block;
+}
+
+.must-import .table-box {
+    margin: 10px 0;
+}
+
+.must-import .table-box:after{
+    content:'';
+    position:absolute;
+    width: calc(100% - 40px);
+    border-top: 1px solid #e6e6e6;
+}
+
+.must-import .layui-table-body {
+    max-height: calc(100vh - 140px);
+}
+
+/* 作为弹窗展示 */
+/* 科目映射列表 */
+.table-box {
+    /* padding: 20px; */
+}
+
+.table-box .layui-table {
+    table-layout: fixed;
+}
+
+/* .layui-table tr:hover .book-subText {
+    -webkit-transition:all .3s;
+    transition:all .3s;
+    background-color: #e6eefc;
+    border-color: #e6eefc;
+} */
+
+.layui-table-body {
+    /* overflow-y: auto; */
+    margin-right: 0;
+    max-height: calc(100vh - 40px);
+}
+
+.layui-table-body td.book-subList {
+    vertical-align: top;
+}
+
+.layui-table-body .layui-table td:last-of-type {
+    padding: 0;
+}
+
+.book-subText {
+    display: block;
+    position: absolute;
+    padding: 3px 5px;
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    word-break: break-all;
+    box-sizing: border-box;
+    border: 1px solid #fff;
+    color: #333;
+}
+
+.book-subText:focus {
+    border-color: #4d90fe;
+}
+
+/* 科目下拉列表选择 */
+.subList {
+    display: none;
+    position: absolute;
+    width: 262px;
+    height: 180px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.subList.above > ul{
+    border-top: 1px solid #4d91fe;
+}
+
+.subList.below{}
+
+.subList>ul {
+    height: 148px;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    border: 1px solid #4d91fe;
+    border-top: 0;
+}
+
+.subList .sub-title {
+    padding: 6px 0;
+    margin: 0 4px;
+    border-bottom: 1px solid #a8a8a8;
+    font-size: 12px;
+    color: #333;
+}
+
+.subList .sub-title.on,
+.subList .sub-title:hover {
+    background-color: #eee;
+}
+
+.sub-addSub {
+    margin-top: -1px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #4d91fe;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.sub-addSub>span {
+    display: inline-block;
+    background-color: #4d91fe;
+    padding: 0 15px;
+}

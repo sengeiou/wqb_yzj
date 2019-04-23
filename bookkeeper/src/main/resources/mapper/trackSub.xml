@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="trackSub">
+
+	<insert id="insertTrackSub"  parameterType="com.wqb.model.TrackSub">
+		insert into track_sub
+		(
+			sub_name,
+			sub_code,
+			amount,
+			direction,
+			accountID,
+			updateDate,
+			period,
+			des
+		)
+		values
+		(
+			#{sub_name,jdbcType=VARCHAR},
+			#{sub_code,jdbcType=VARCHAR},
+			#{amount,jdbcType=DECIMAL},
+			#{direction,jdbcType=VARCHAR},
+			#{accountID,jdbcType=VARCHAR},
+			#{updateDate},
+			#{period,jdbcType=VARCHAR},
+			#{des,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	
+	
+	<update id="upTrackSub" parameterType="map">
+		update track_sub set period=#{period} where  tr_sub_id=#{tr_sub_id};
+	</update>
+	
+
+</mapper>
+
+

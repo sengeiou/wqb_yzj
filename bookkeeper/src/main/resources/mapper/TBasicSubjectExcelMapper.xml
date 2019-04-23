@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="subExcel" >
+<!-- <resultMap id="BaseResultMap" type="com.wqb.model.TBasicSubjectExcel" > -->
+    <resultMap id="subExcel" type="subExcel" >  <!-- type 对应的是实体类，有别名用别名。。id 对应xml传参类型或返回类型 -->
+    <id column="pk_sub_excel_id" property="pkSubExcelId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="account_id" property="accountId" jdbcType="VARCHAR" />
+    <result column="period" property="period" jdbcType="VARCHAR" />
+    <result column="sub_code" property="subCode" jdbcType="VARCHAR" />
+    <result column="sub_name" property="subName" jdbcType="VARCHAR" />
+    <result column="type_of_currency" property="typeOfCurrency" jdbcType="VARCHAR" />
+    <result column="init_debit_balance" property="initDebitBalance" jdbcType="DECIMAL" />
+    <result column="init_credit_balance" property="initCreditBalance" jdbcType="DECIMAL" />
+    <result column="current_amount_debit" property="currentAmountDebit" jdbcType="DECIMAL" />
+    <result column="current_amount_credit" property="currentAmountCredit" jdbcType="DECIMAL" />
+    <result column="year_amount_debit" property="yearAmountDebit" jdbcType="DECIMAL" />
+    <result column="year_amount_credit" property="yearAmountCredit" jdbcType="DECIMAL" />
+    <result column="ending_balance_debit" property="endingBalanceDebit" jdbcType="DECIMAL" />
+    <result column="ending_balance_credit" property="endingBalanceCredit" jdbcType="DECIMAL" />
+    <result column="is_multiple_siblings" property="isMultipleSiblings" jdbcType="VARCHAR" />
+    <result column="siblings_coding" property="siblingsCoding" jdbcType="VARCHAR" />
+    <result column="siblings_sub_name" property="siblingsSubName" jdbcType="VARCHAR" />
+    <result column="superior_coding" property="superiorCoding" jdbcType="VARCHAR" />
+    <result column="file_url" property="fileUrl" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_timestamp" property="updateTimestamp" jdbcType="CHAR" />
+    <result column="is_matching" property="isMatching" jdbcType="VARCHAR" />
+    <result column="debit_credit_direction" property="debitCreditDirection" jdbcType="VARCHAR" />
+  </resultMap>
+  
+ <sql id="Base_Column_List" >
+    pk_sub_excel_id, user_id, account_id, period, sub_code, sub_name, type_of_currency, 
+    init_debit_balance, init_credit_balance, current_amount_debit, current_amount_credit, 
+    year_amount_debit, year_amount_credit, ending_balance_debit, ending_balance_credit, 
+    is_multiple_siblings, siblings_coding, siblings_sub_name, superior_coding, file_url, update_date, update_timestamp, 
+    is_matching, debit_credit_direction
+  </sql>
+ 
+<!--   <select id="querySubExcel" resultMap="BaseResultMap" parameterType="java.lang.String" > -->
+<!--     select  -->
+<!--     <include refid="Base_Column_List" /> -->
+<!--     from t_basic_subject_excel -->
+<!--     where pk_sub_excel_id = #{pkSubExcelId,jdbcType=VARCHAR} -->
+<!--   </select> -->
+ 
+  <select id="querySubExcel" resultMap="subExcel" parameterType="java.util.Map" >
+    select  
+    <include refid="Base_Column_List" />
+    from t_basic_subject_excel
+    where
+<!--    	   user_id = #{userId,jdbcType=VARCHAR}  -->
+<!--     and  -->
+        account_id = #{accountId,jdbcType=VARCHAR} 
+    ORDER BY
+		sub_code ASC
+<!--     <if test="_parameter != null" > -->
+<!-- 	<include refid="Example_Where_Clause" /> -->
+<!--     </if> -->
+<!--     <if test="orderByClause != null" > -->
+<!--       order by ${orderByClause} -->
+<!--     </if> -->
+  </select>
+  
+  <!-- querySubExcelMoney 查询系统科目真实金额 -->
+  <select id="querySubExcelMoney" resultMap="subExcel" parameterType="java.util.Map" >
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			t_basic_subject_excel
+		WHERE
+<!-- 			user_id = #{userId,jdbcType=VARCHAR}  -->
+<!-- 		AND  -->
+			account_id = #{accountId,jdbcType=VARCHAR} 
+		AND 
+			(
+				type_of_currency = "综合本位币"
+				OR 
+					type_of_currency = ""
+				OR 
+					type_of_currency = NULL
+			)
+		AND 
+			 (
+			 	LENGTH
+			 		(sub_code) = 4 
+			 	OR 
+			 	LENGTH
+			 		(siblings_coding) = 4
+			 )
+		ORDER BY
+			sub_code ASC
+  </select>
+  <!-- querySubExcelMoney 查询系统科目真实金额 -->
+   
+  <select id="querySubByisMatching" resultMap="subExcel" parameterType="java.util.Map" >
+    select  
+    	<include refid="Base_Column_List" />
+    from 
+        t_basic_subject_excel
+    where 
+<!--     	user_id = #{userId,jdbcType=VARCHAR}  -->
+<!--     and  -->
+        account_id = #{accountId,jdbcType=VARCHAR} 
+    ORDER BY
+		sub_code ASC
+      
+  </select>
+  
+   <select id="querySubBySubSode" resultMap="subExcel" parameterType="java.util.Map" >
+    select  *
+    from 
+        t_basic_subject_excel
+<!--     where  -->
+<!--     	user_id = #{userId,jdbcType=VARCHAR}  -->
+      and 
+        account_id = #{accountId,jdbcType=VARCHAR} 
+        ORDER BY
+		sub_code ASC
+  </select>
+  
+  <delete id="deleteSubExcelAll" parameterType="subExcel" >
+    delete from t_basic_subject_excel
+    where 
+<!--     user_id = #{userId,jdbcType=VARCHAR} and  -->
+    account_id = #{accountId,jdbcType=VARCHAR}
+  </delete>
+  
+  
+  <insert id="uploadSubExcel" parameterType="com.wqb.model.TBasicSubjectExcel" >
+    insert into t_basic_subject_excel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pkSubExcelId != null" >
+        pk_sub_excel_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+      <if test="subCode != null" >
+        sub_code,
+      </if>
+      <if test="subName != null" >
+        sub_name,
+      </if>
+      <if test="typeOfCurrency != null" >
+        type_of_currency,
+      </if>
+      <if test="initDebitBalance != null" >
+        init_debit_balance,
+      </if>
+      <if test="initCreditBalance != null" >
+        init_credit_balance,
+      </if>
+      <if test="currentAmountDebit != null" >
+        current_amount_debit,
+      </if>
+      <if test="currentAmountCredit != null" >
+        current_amount_credit,
+      </if>
+      <if test="yearAmountDebit != null" >
+        year_amount_debit,
+      </if>
+      <if test="yearAmountCredit != null" >
+        year_amount_credit,
+      </if>
+      <if test="endingBalanceDebit != null" >
+        ending_balance_debit,
+      </if>
+      <if test="endingBalanceCredit != null" >
+        ending_balance_credit,
+      </if>
+      <if test="isMultipleSiblings != null" >
+        is_multiple_siblings,
+      </if>
+      <if test="siblingsCoding != null">
+	    siblings_coding,
+	  </if>
+      <if test="siblingsSubName != null">
+	    siblings_sub_name,
+	  </if>
+      <if test="superiorCoding != null" >
+        superior_coding,
+      </if>
+      <if test="fileUrl != null" >
+        file_url,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="updateTimestamp != null" >
+        update_timestamp,
+      </if>
+      <if test="isMatching != null" >
+        is_matching,
+      </if>
+      <if test="debitCreditDirection != null" >
+        debit_credit_direction
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pkSubExcelId != null" >
+        #{pkSubExcelId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=VARCHAR},
+      </if>
+      <if test="subCode != null" >
+        #{subCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subName != null" >
+        #{subName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeOfCurrency != null" >
+        #{typeOfCurrency,jdbcType=VARCHAR},
+      </if>
+      <if test="initDebitBalance != null" >
+        #{initDebitBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="initCreditBalance != null" >
+        #{initCreditBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="currentAmountDebit != null" >
+        #{currentAmountDebit,jdbcType=DECIMAL},
+      </if>
+      <if test="currentAmountCredit != null" >
+        #{currentAmountCredit,jdbcType=DECIMAL},
+      </if>
+      <if test="yearAmountDebit != null" >
+        #{yearAmountDebit,jdbcType=DECIMAL},
+      </if>
+      <if test="yearAmountCredit != null" >
+        #{yearAmountCredit,jdbcType=DECIMAL},
+      </if>
+      <if test="endingBalanceDebit != null" >
+        #{endingBalanceDebit,jdbcType=DECIMAL},
+      </if>
+      <if test="endingBalanceCredit != null" >
+        #{endingBalanceCredit,jdbcType=DECIMAL},
+      </if>
+      <if test="isMultipleSiblings != null" >
+        #{isMultipleSiblings,jdbcType=VARCHAR},
+      </if>
+      <if test="siblingsCoding != null">
+	    #{siblingsCoding,jdbcType=VARCHAR},
+	  </if>
+      <if test="siblingsSubName != null">
+	    #{siblingsSubName,jdbcType=VARCHAR},
+	  </if>
+      <if test="superiorCoding != null" >
+        #{superiorCoding,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null" >
+        #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        #{updateTimestamp,jdbcType=CHAR},
+      </if>
+      <if test="isMatching != null" >
+        #{isMatching,jdbcType=VARCHAR},
+      </if>
+      <if test="debitCreditDirection != null" >
+        #{debitCreditDirection,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+  
+   <!--uploadSubExcelList 添加excel科目集合 -->
+	<insert id="uploadSubExcelList" parameterType="java.util.List">
+		insert into t_basic_subject_excel (
+		pk_sub_excel_id,
+		user_id,
+		account_id,
+		period,
+		sub_code,
+		sub_name,
+		type_of_currency,
+		init_debit_balance,
+		init_credit_balance,
+		current_amount_debit,
+		current_amount_credit,
+		year_amount_debit,
+		year_amount_credit,
+		ending_balance_debit,
+		ending_balance_credit,
+		is_multiple_siblings,
+		siblings_coding,
+		siblings_sub_name,
+		superior_coding,
+		file_url,
+		update_date,
+		update_timestamp,
+		is_matching,
+		debit_credit_direction
+		)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.pkSubExcelId,jdbcType=VARCHAR},
+			#{item.userId,jdbcType=VARCHAR},
+			#{item.accountId,jdbcType=VARCHAR},
+			#{item.period,jdbcType=VARCHAR},
+			#{item.subCode,jdbcType=VARCHAR},
+			#{item.subName,jdbcType=VARCHAR},
+			#{item.typeOfCurrency,jdbcType=VARCHAR},
+			#{item.initDebitBalance,jdbcType=DECIMAL},
+			#{item.initCreditBalance,jdbcType=DECIMAL},
+			#{item.currentAmountDebit,jdbcType=DECIMAL},
+			#{item.currentAmountCredit,jdbcType=DECIMAL},
+			#{item.yearAmountDebit,jdbcType=DECIMAL},
+			#{item.yearAmountCredit,jdbcType=DECIMAL},
+			#{item.endingBalanceDebit,jdbcType=DECIMAL},
+			#{item.endingBalanceCredit,jdbcType=DECIMAL},
+			#{item.isMultipleSiblings,jdbcType=VARCHAR},
+			#{item.siblingsCoding,jdbcType=VARCHAR},
+			#{item.siblingsSubName,jdbcType=VARCHAR},
+			#{item.superiorCoding,jdbcType=VARCHAR},
+			#{item.fileUrl,jdbcType=VARCHAR},
+			#{item.updateDate,jdbcType=TIMESTAMP},
+			#{item.updateTimestamp,jdbcType=CHAR},
+			#{item.isMatching,jdbcType=VARCHAR},
+			#{item.debitCreditDirection,jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!-- uploadSubExcelList 结束分隔符 添加excel导入科目集合 -->
+	
+	<select id="getExcelSubByPKID" resultMap="subExcel">
+		select * from t_basic_subject_excel where pk_sub_excel_id=#{pkSubExcelID};
+	</select>
+</mapper>

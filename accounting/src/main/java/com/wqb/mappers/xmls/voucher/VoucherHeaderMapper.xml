@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wqb.mappers.voucher.VoucherHeaderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wqb.domains.voucher.VoucherHeader">
+        <id column="vouchID" property="vouchID" />
+        <result column="voucherNo" property="voucherNo" />
+        <result column="totalCredit" property="totalCredit" />
+        <result column="totalDbit" property="totalDbit" />
+        <result column="isproblem" property="isproblem" />
+        <result column="source" property="source" />
+        <result column="des" property="des" />
+        <result column="accountID" property="accountID" />
+        <result column="period" property="period" />
+        <result column="vcDate" property="vcDate" />
+        <result column="updatePsnID" property="updatePsnID" />
+        <result column="updatePsn" property="updatePsn" />
+        <result column="updatedate" property="updatedate" />
+        <result column="createPsnID" property="createPsnID" />
+        <result column="createpsn" property="createpsn" />
+        <result column="createDate" property="createDate" />
+        <result column="checkedDate" property="checkedDate" />
+        <result column="checker" property="checker" />
+        <result column="auditStatus" property="auditStatus" />
+        <result column="currency" property="currency" />
+        <result column="currencyID" property="currencyID" />
+        <result column="vouchFlag" property="vouchFlag" />
+        <result column="attachID" property="attachID" />
+        <result column="voucherType" property="voucherType" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        vouchID, voucherNo, totalCredit, totalDbit, isproblem, source, des, accountID, period, vcDate, updatePsnID, updatePsn, updatedate, createPsnID, createpsn, createDate, checkedDate, checker, auditStatus, currency, currencyID, vouchFlag, attachID, voucherType
+    </sql>
+
+    <select id="getMaxVoucherNo"  resultType="int">
+        select IFNULL(MAX(voucherNo) + 1, 1) from t_vouch_h
+        where accountID = #{accountId} and period = #{period}
+    </select>
+</mapper>

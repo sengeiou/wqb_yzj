@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wqb.mappers.subject.SubjectBookMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wqb.domains.subject.SubjectBook">
+        <id column="sub_bk_id" property="subBkId" />
+        <result column="accountID" property="accountID" />
+        <result column="period" property="period" />
+        <result column="vouchID" property="vouchID" />
+        <result column="vouchAID" property="vouchAID" />
+        <result column="vouchNum" property="vouchNum" />
+        <result column="vcabstact" property="vcabstact" />
+        <result column="sub_code" property="subCode" />
+        <result column="sub_name" property="subName" />
+        <result column="debitAmount" property="debitAmount" />
+        <result column="creditAmount" property="creditAmount" />
+        <result column="blanceAmount" property="blanceAmount" />
+        <result column="direction" property="direction" />
+        <result column="updateDate" property="updateDate" />
+        <result column="up_date" property="upDate" />
+        <result column="isEndSubCode" property="isEndSubCode" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        sub_bk_id, accountID, period, vouchID, vouchAID, vouchNum, vcabstact, sub_code, sub_name, debitAmount, creditAmount, blanceAmount, direction, updateDate, up_date, isEndSubCode
+    </sql>
+
+</mapper>

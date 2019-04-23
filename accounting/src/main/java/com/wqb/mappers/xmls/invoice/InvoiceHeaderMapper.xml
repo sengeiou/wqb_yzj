@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wqb.mappers.invoice.InvoiceHeaderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wqb.domains.invoice.InvoiceHeader">
+        <id column="invoiceHID" property="invoiceHID" />
+        <result column="period" property="period" />
+        <result column="invoiceType" property="invoiceType" />
+        <result column="invoiceCode" property="invoiceCode" />
+        <result column="invoiceNumber" property="invoiceNumber" />
+        <result column="invoiceName" property="invoiceName" />
+        <result column="invoiceState" property="invoiceState" />
+        <result column="invoiceDate" property="invoiceDate" />
+        <result column="invoicePerson" property="invoicePerson" />
+        <result column="buyTaxno" property="buyTaxno" />
+        <result column="buyCorp" property="buyCorp" />
+        <result column="buyBankno" property="buyBankno" />
+        <result column="address" property="address" />
+        <result column="saleCorp" property="saleCorp" />
+        <result column="saleTaxno" property="saleTaxno" />
+        <result column="saleBankno" property="saleBankno" />
+        <result column="vouchID" property="vouchID" />
+        <result column="auditPsn" property="auditPsn" />
+        <result column="fj" property="fj" />
+        <result column="invoiceDes" property="invoiceDes" />
+        <result column="createPsnID" property="createPsnID" />
+        <result column="createDate" property="createDate" />
+        <result column="createpsn" property="createpsn" />
+        <result column="accountID" property="accountID" />
+        <result column="invoice_confirmdate" property="invoiceConfirmdate" />
+        <result column="productVersion" property="productVersion" />
+        <result column="billNo" property="billNo" />
+        <result column="addressPhone" property="addressPhone" />
+        <result column="importDate" property="importDate" />
+        <result column="sureType" property="sureType" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        invoiceHID, period, invoiceType, invoiceCode, invoiceNumber, invoiceName, invoiceState, invoiceDate,
+        invoicePerson, buyTaxno, buyCorp, buyBankno, address, saleCorp, saleTaxno, saleBankno, vouchID, auditPsn,
+        fj, invoiceDes, createPsnID, createDate, createpsn, accountID, invoice_confirmdate, productVersion, billNo,
+        addressPhone, importDate, sureType
+    </sql>
+
+</mapper>

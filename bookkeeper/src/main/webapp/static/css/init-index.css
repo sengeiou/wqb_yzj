@@ -1,0 +1,454 @@
+@charset "utf-8";
+/* 首页 */
+
+.home {
+  width: 100%;
+  height: 100%;
+  min-width: 1192px;
+}
+
+.home .home-left {
+  float: left;
+  width: 72%;
+  min-width: 858px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-right: 20px;
+}
+
+.home-left .home-tab {
+  width: 100%;
+  height: 130px;
+  padding: 18px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #e0e0e0;
+}
+
+.home-left .home-tab-nav {
+  float: left;
+  height: 90px;
+  width: 19%;
+  text-align: center;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.home-left .home-tab-text {
+  position: relative;
+  display: block;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-top: 50px;
+  background-color: #fafafa;
+  border-radius: 3px;
+  border-bottom: 3px solid #e5e5e5;
+  font-size: 22px;
+  -webkit-box-shadow: 0 0 2px #ccc;
+  -moz-box-shadow: 0 0 2px #ccc;
+  box-shadow: 0 0 2px #ccc;
+}
+
+.home-left .home-tab .home-tab-nav:last-child {
+  margin-right: 0;
+}
+
+.home-left .home-tab-text:before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 14px;
+  margin-left: -15px;
+  width: 30px;
+  height: 30px;
+}
+
+.home-left .home-chart {
+  width: 100%;
+  margin-top: 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #e0e0e0;
+}
+
+.home-left .hone-chart-title,
+.home-right .home-notice .title,
+.home-right .hone-chart-title {
+  margin: 18px 20px;
+  padding-left: 8px;
+  line-height: 1.6;
+  font-size: 16px;
+  color: #333;
+  border-left: 3px solid #fbb533;
+  font-weight: 600;
+}
+
+.home-left .home-chart-table {
+  position: relative;
+  height: 600px;
+}
+
+/* 右边 */
+
+.home .home-right {
+  float: right;
+  min-width: 310px;
+  width: 28%;
+}
+
+.home-right .home-notice {
+  border: 1px solid #e0e0e0;
+  padding: 0 10px;
+  max-height: 231px;
+  overflow: hidden;
+}
+
+.home-right .home-notice .title,
+.home-right .hone-chart-title {
+  display: inline-block;
+  margin-left: 14px;
+  margin: 18px 0 4px;
+}
+
+.home-right .home-notice .more {
+  float: right;
+  position: relative;
+  padding: 18px 12px 4px 20px;
+  color: #888;
+}
+
+.home-right .home-notice .more:after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 23px;
+  border-top: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #888;
+}
+
+.home-right .home-list>li {
+  padding: 10px 0;
+  font-size: 12px;
+  border-bottom: 1px solid #e0e0e0;
+  color: #333;
+}
+
+.home-right .home-list>li:hover {
+  background-color: #f5fcff;
+}
+
+.home-right .home-list>li:last-child {
+  border-bottom: none;
+}
+
+.home-right .home-list .date {
+  float: right;
+}
+
+.home-right .home-chart {
+  margin-top: 20px;
+  padding: 0 10px;
+  border: 1px solid #e0e0e0;
+}
+
+.home-right .home-chart-round {
+  position: relative;
+  height: 360px;
+}
+
+.home #home-isData,
+.home #home-isNull {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 220px;
+  height: 116px;
+  text-align: center;
+  display: none;
+}
+
+.home .home-nodata {
+  width: 200px;
+}
+
+.home .home-nodata-text {
+  color: #888;
+  letter-spacing: 6px;
+  line-height: 2;
+  font-size: 16px;
+}
+
+.home-money {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-left: 108px;
+  height: 152px;
+  color: #333;
+}
+
+/* .home-money>p {
+  line-height: 28px;
+  font-size: 16px;
+}
+
+.home-money>p>i {
+  position: relative;
+  padding-right: 8px;
+  font-size: 14px;
+  color: #888;
+} */
+
+.home-money .home-money-all,
+.home-money .home-money-into,
+.home-money .home-money-cost,
+.home-money .home-money-profits,
+.home-money .home-money-num {
+  position: relative;
+  width: 42px;
+  text-align: left;
+  font-weight: 400;
+  line-height: 24px;
+  font-size: 14px;
+  color: #888;
+}
+
+.home-money .home-money-num {
+  text-align: right;
+  color: #333;
+}
+
+.home-money .home-money-all:before,
+.home-money .home-money-into:before,
+.home-money .home-money-cost:before,
+.home-money .home-money-profits:before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: -18px;
+  width: 12px;
+  height: 12px;
+  background-color: #72b4ff;
+}
+
+.home-money .home-money-into:before {
+  background-color: #f5736e;
+}
+
+.home-money .home-money-cost:before {
+  background-color: #fdd158;
+}
+
+.home-money .home-money-profits:before {
+  background-color: #a3db7a;
+}
+
+.home-left .home-voucher:hover {
+  border-bottom-color: #fbb533;
+}
+
+.home-left .home-balance:hover {
+  border-bottom-color: #4acd38;
+}
+
+.home-left .home-liabilities:hover {
+  border-bottom-color: #8797f8;
+}
+
+.home-left .home-profits:hover {
+  border-bottom-color: #63c3f5;
+}
+
+.home-left .home-traffic:hover {
+  border-bottom-color: #79b0f4;
+}
+
+.home-left .home-voucher:before {
+  background: url('../img/voucher.png') no-repeat 0 0;
+}
+
+.home-left .home-balance:before {
+  background: url('../img/balance.png') no-repeat 0 0;
+}
+
+.home-left .home-liabilities:before {
+  background: url('../img/liabilities.png') no-repeat 0 0;
+}
+
+.home-left .home-profits:before {
+  background: url('../img/profits.png') no-repeat 0 0;
+}
+
+.home-left .home-traffic:before {
+  background: url('../img/traffic.png') no-repeat 0 0;
+}
+
+/* 首页end */
+
+/* 文件上传 */
+
+.file {
+  padding-left: 10px;
+}
+
+.file label {
+  position: relative;
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 32px;
+  width: 280px;
+  padding: 5px 0 0 6px;
+  border: 1px solid #ccc;
+  background: url(../img/icon-up.png) no-repeat 250px;
+}
+
+.file .sub-btn {
+  vertical-align: top;
+}
+
+.file .in-file {
+  color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+/* 导入文件弹窗 */
+
+.leadModule {
+  margin: 40px 20px;
+}
+
+.leadModule .file {
+  padding-left: 0;
+}
+
+.leadModule .fileLabel {
+  background: url(../img/icon-up.png) no-repeat 250px;
+}
+
+.leadModule .btn-opr {
+  margin: 30px 0;
+}
+
+.mb15 {
+  margin-bottom: 15px;
+}
+
+.tabM {
+  margin: 0 10px;
+}
+
+.init_con {
+  padding-bottom: 85px;
+}
+
+/* 账套初始化 */
+.title_init {
+  height: 30px;
+  line-height: 30px;
+  margin: 0px 0 30px 0;
+  padding-left: 9px;
+  background: #f0f0f2;
+  color: #1a1a1a;
+}
+
+.account_info {
+  margin-left: 10px;
+}
+
+.info_list {
+  width: 420px;
+  float: left;
+}
+
+.info_list li {
+  height: 38px;
+}
+
+.accStatus {
+  color: #ff8f33;
+}
+
+/* 账套信息 */
+.info_list li {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.info_list li .name {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 70px;
+  -moz-box-flex: 0;
+  -ms-flex: 0 0 70px;
+  flex: 0 0 70px;
+  width: 70px;
+}
+
+.info_list li .detail {
+  padding-right: 10px;
+}
+
+/* 账套初始化重置文件上传 */
+.file {
+  /* padding-left: 10px; */
+  padding-bottom: 30px;
+}
+
+.file form {
+  vertical-align: top;
+}
+
+.file .layui-form-select {
+  margin-right: 10px;
+}
+
+.file .layui-input,
+.file .layui-form-select {
+  display: inline-block;
+  vertical-align: top;
+  width: 210px;
+}
+
+.file label {
+  vertical-align: top;
+  height: 30px;
+}
+
+/* 科目初始化 */
+.matchRes {
+  margin: 0 0 0 10px;
+}
+
+.bottomBtn {
+  margin-top: 20px;
+  padding-left: 10px;
+}
+
+.progress {
+  margin-top: 10px;
+}
+
+#setSubject{
+  padding-top: 50px;
+}
+#setSubject #navDOM1 {
+  top: 0;
+}

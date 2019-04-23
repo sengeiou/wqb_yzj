@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="subParent" >
+  <resultMap id="subParent" type="subParent" >
+    <id column="pk_sub_pareen_id" property="pkSubPareenId" jdbcType="VARCHAR" />
+    <result column="sub_code" property="subCode" jdbcType="VARCHAR" />
+    <result column="sub_name" property="subName" jdbcType="VARCHAR" />
+    <result column="mender" property="mender" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_timestamp" property="updateTimestamp" jdbcType="CHAR" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="debit_credit_direction" property="debitCreditDirection" jdbcType="VARCHAR" />
+    <result column="accounting_standard" property="accountingStandard" jdbcType="VARCHAR" />
+    <result column="company_type" property="companyType" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insertSubParent" parameterType="com.wqb.model.TBasicSubjectParent" >
+    insert into t_basic_subject_parent
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pkSubPareenId != null" >
+        pk_sub_pareen_id,
+      </if>
+      <if test="subCode != null" >
+        sub_code,
+      </if>
+      <if test="subName != null" >
+        sub_name,
+      </if>
+      <if test="mender != null" >
+        mender,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="updateTimestamp != null" >
+        update_timestamp,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="debitCreditDirection != null" >
+        debit_credit_direction,
+      </if>
+      <if test="accountingStandard != null" >
+        accounting_standard,
+      </if>
+      <if test="companyType != null" >
+        company_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pkSubPareenId != null" >
+        #{pkSubPareenId,jdbcType=VARCHAR},
+      </if>
+      <if test="subCode != null" >
+        #{subCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subName != null" >
+        #{subName,jdbcType=VARCHAR},
+      </if>
+      <if test="mender != null" >
+        #{mender,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        #{updateTimestamp,jdbcType=CHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="debitCreditDirection != null" >
+        #{debitCreditDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingStandard != null" >
+        #{accountingStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        #{companyType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="querySubParent" resultMap="subParent" parameterType="java.util.Map" >
+    select  *
+<!--     <if test="distinct" > -->
+<!--       distinct -->
+<!--     </if> -->
+<!--     <include refid="Base_Column_List" /> -->
+    from t_basic_subject_parent
+<!--     <if test="_parameter != null" > -->
+<!-- 	<include refid="Example_Where_Clause" /> -->
+<!--     </if> -->
+<!--     <if test="orderByClause != null" > -->
+<!--       order by ${orderByClause} -->
+<!--     </if> -->
+  </select>
+  
+  <select id="querySubCode" parameterType="string" resultType="string">
+  		select debit_credit_direction from t_basic_subject_parent where sub_code = #{value}
+  </select>
+  
+  
+  
+  
+</mapper>

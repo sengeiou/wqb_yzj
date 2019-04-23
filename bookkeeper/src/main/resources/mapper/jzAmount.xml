@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jzAmount">
+	<!-- 账套映射 -->
+	<resultMap type="jzAmount" id="jzAmountMap">
+
+		<result property="id" column="id" />
+		<result property="adminID" column="adminID" />
+		<result property="totalAmount" column="totalAmount" />
+		<result property="validAmount" column="validAmount" />
+		<result property="ptID" column="ptID" />
+
+	</resultMap>
+
+	<select id="queryJzAmount" resultMap="jzAmountMap">
+		select * from t_jz_amount
+		where ptID=#{ptID};
+	</select>
+
+	<insert id="addJzAmount">
+		insert into t_jz_amount
+		(id,totalAmount,validAmount,adminID,ptID)
+		values(#{id},#{totalAmount},#{validAmount},#{adminID},#{ptID})
+	</insert>
+	
+	<update id="updJzAmount">
+		update t_jz_amount set validAmount = validAmount-#{amount} where ptID=#{ptID};
+	</update>
+</mapper>

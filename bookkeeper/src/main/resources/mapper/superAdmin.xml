@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="superAdmin">
+	<resultMap type="periodStatu" id="periodStatuMap">
+		<result property="periodID" column="periodID" />
+		<result property="period" column="period" />
+		<result property="isCreateVoucher" column="isCreateVoucher" />
+		<result property="isCarryState" column="isCarryState" />
+		<result property="createPsnID" column="createPsnID" />
+		<result property="createPsn" column="createPsn" />
+		<result property="accountID" column="accountID" />
+		<result property="isJz" column="isJz" />
+		<result property="isCheck" column="isCheck" />
+		<result property="isDetection" column="isDetection" />
+		<result property="isJt" column="isJt" />
+	</resultMap>
+	<resultMap type="account" id="accountMap">
+		<result property="accountID" column="accountID" />
+		<result property="userID" column="userID" />
+		<result property="customerID" column="customerID" />
+		<result property="companyName" column="companyName" />
+		<result property="period" column="period" />
+		<result property="useLastPeriod" column="useLastPeriod" />
+		<result property="accstandards" column="accstandards" />
+		<result property="calculate" column="calculate" />
+		<result property="updatepsnID" column="updatepsnID" />
+		<result property="updatepsn" column="updatepsn" />
+		<result property="updatedate" column="updatedate" />
+		<result property="createpsnID" column="createpsnID" />
+		<result property="createpsn" column="createpsn" />
+		<result property="createDate" column="createDate" />
+		<result property="des" column="des" />
+		<result property="lastTime" column="lastTime" />
+		<result property="statu" column="statu" />
+		<result property="companyType" column="companyType" />
+		<result column="initial_states" property="initialStates"
+			jdbcType="INTEGER" />
+		<result property="ssType" column="ssType" />
+		<result property="type" column="type" />
+		<result property="source" column="source" />
+
+	</resultMap>
+	<select id="queryStatusCustomer0" resultMap="accountMap"
+		parameterType="map">
+		select a.userID, a.accountID,a.companyName,a.period,a.statu from t_basic_account a where 1=1
+		<if test="keyword != null">
+			and a.companyName LIKE CONCAT('%','${keyword}','%' )
+		</if>
+		order by accountID
+		<if test="begin !=null and end !=null">
+			limit #{begin},#{end}
+		</if>
+	</select>
+	<select id="queryStatusCustomer1" resultMap="periodStatuMap"
+		parameterType="map">
+		select
+		periodID,period,isCreateVoucher,isJt,isCarryState,createPsnID,createPsn,accountID,isCheck,isJz,isDetection
+		from t_status_period
+		where period =#{period} and isJz=#{isJZ}
+		order by
+		periodID
+
+		<if test="begin !=null and end !=null">
+			limit #{begin},#{end}
+		</if>
+	</select>
+	<select id="queryStatusCustomer2" resultMap="periodStatuMap"
+		parameterType="map">
+		select
+		periodID,period,isCreateVoucher,isJt,isCarryState,createPsnID,createPsn,accountID,isCheck,isJz,isDetection
+		from t_status_period
+		where period = #{period} and
+		isCreateVoucher=#{isCreateVoucher} and isJz = #{isJz}
+		order by periodID
+
+		<if test="begin !=null and end !=null">
+			limit #{begin},#{end}
+		</if>
+	</select>
+	<select id="queryStatusCustomer3" resultMap="accountMap"
+		parameterType="map">
+		select b.userID, b.accountID accountID,b.companyName companyName,b.period period,b.statu statu from t_status_period a,t_basic_account b where a.accountID=b.accountID and a.period=#{period} and a.isCreateVoucher=#{isCV} 
+		UNION
+		select a.userID a.accountID accountID,a.companyName companyName,a.period period,a.statu statu from t_basic_account a where  a.accountID not in(select b.accountID from t_status_period b where b.period=#{period} and(( b.isCreateVoucher=#{isCV} )or  (b.isCreateVoucher=#{isCreateVoucher} and b.isJz=#{isJz} ) or b.isJz=#{isJZ})) ORDER by period 
+
+		<if test="begin !=null and end !=null">
+			limit #{begin},#{end}
+		</if>
+	</select>
+	<select id="queryStatusCustomer5" resultType="int"
+		parameterType="map">
+		select count(1) from (
+		select b.accountID account from t_status_period a,t_basic_account b where a.accountID=b.accountID and a.period=#{period} and a.isCreateVoucher=#{isCV} 
+		UNION
+		select a.accountID account from t_basic_account a where a.accountID not in(select b.accountID from t_status_period b where b.period=#{period} and(( b.isCreateVoucher=#{isCV} )or  (b.isCreateVoucher=#{isCreateVoucher} and b.isJz=#{isJz} ) or b.isJz=#{isJZ}))
+		) a
+	</select>
+	<select id="queryStatusCustomer4" resultMap="periodStatuMap"
+		parameterType="map">
+		select
+		periodID,period,isCreateVoucher,isJt,isCarryState,createPsnID,createPsn,accountID,isCheck,isJz,isDetection
+		from t_status_period
+		where accountID=#{accountId} and period = #{period} 
+		order by periodID
+	</select>
+	<select id="getQueryCountQuantity0" parameterType="map"
+		resultType="int">
+		select count(1) from t_basic_account a where 1=1
+		<if test="keyword != null">
+			and a.companyName LIKE CONCAT('%','${keyword}','%' )
+		</if>
+	</select>
+	<select id="getQueryCountQuantity1" parameterType="map"
+		resultType="int">
+		select count(1) maxNo from t_basic_account 
+	</select>
+
+	<select id="getQueryCountQuantity2" parameterType="map"
+		resultType="int">
+		select count(1) maxNo from t_status_period a ,t_basic_account b where a.accountID=b.accountID and a.period
+		=#{period} and isJz=#{isJZ}
+	</select>
+
+	<select id="getQueryCountQuantity3" parameterType="map"
+		resultType="int">
+		select count(1) maxNo from t_status_period a,t_basic_account b where a.accountID=b.accountID and a.period =
+		#{period} and isCreateVoucher=#{isCreateVoucher} and isJz = #{isJz}
+	</select>
+
+
+
+
+	<select id="getPtActiveCount" resultType="java.util.Map">
+		select count(*) as sl
+		from t_basic_account where statu=1 and chgStatuTime like
+		CONCAT('','${Month}','%' );
+	</select>
+
+	<select id="getPtDzAccZz" resultType="java.util.Map">
+		select count(*) as sl from
+		t_basic_account t1,t_sys_user t2 where t1.userID = t2.userID and
+		(t2.userType=2 or t2.userType=5) and t1.chgStatuTime like
+		CONCAT('','${Month}','%' ) and t1.statu=1;
+
+	</select>
+
+	<select id="getPtJzAccZz" resultType="java.util.Map">
+		select count(*) as sl from
+		t_basic_account t1,t_sys_user t2 where t1.userID = t2.userID and
+		(t2.userType=3 or t2.userType=6) and t1.chgStatuTime like
+		CONCAT('','${Month}','%' ) and t1.statu=1;
+	</select>
+	<select id="getByXzQy" resultType="java.util.Map">
+		select count(*) as sl from
+		t_basic_account t1 where t1.createDate like CONCAT('','${time}','%' )
+		and t1.statu=1;
+	</select>
+	
+	<select id="getTotalQyByTime" resultType="java.util.Map">
+		select count(*) as sl from t_basic_account where statu=1 and createDate &lt; #{time}
+	</select>
+
+	<select id="getByTyQy" resultType="java.util.Map">
+		select count(*) as sl from
+		t_basic_account
+		t1 where t1.chgStatuTime like CONCAT('','${time}','%' )
+		and
+		t1.statu=2;
+	</select>
+
+	<select id="getPtTotalAcc" resultType="java.util.Map">
+		select count(*) as sl from
+		t_basic_account;
+		
+	</select>
+		<select id="getPtTotalTyAcc" resultType="java.util.Map">
+		select count(*) as sl
+		from t_basic_account where statu=2 ;
+	</select>
+
+	
+	<select id="getByXzDlCom" resultType="java.util.Map">
+		select count(*) as sl from t_sys_user where userType=2 and createDate like CONCAT('','${time}','%' );
+	</select>
+	
+	<select id="getDlCom" resultType="java.util.Map">
+		select count(*) as sl from t_sys_user where userType=2 ;
+	</select>
+
+</mapper>

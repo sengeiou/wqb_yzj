@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="customer">
+	<!-- 账套映射 -->
+	<!-- <resultMap type="customer" id="customerMap">
+		<result property="customID" column="customID" />
+		<result property="cusName" column="cusName" />
+		<result property="busNature" column="busNature" />
+		<result property="cusAddress" column="cusAddress" />
+		<result property="cusPhone" column="cusPhone" />
+		<result property="belongPersonID" column="belongPersonID" />
+		<result property="belongPerName" column="belongPerName" />
+		<result property="createPersionID" column="createPersionID" />
+		<result property="createPerName" column="createPerName" />
+		<result property="id" column="id" />
+		<result property="createDate" column="createDate" />
+		<result property="accountID" column="accountID" />
+	</resultMap> -->
+	
+	<select id="queryCusByAcc" resultType="com.wqb.model.Customer">
+		select * from t_customer where accountID=#{accountID};
+	</select>
+	
+		<!-- 根据用户id批量查询用户信息 -->
+	<select id="queryCusBath" resultType="com.wqb.model.Customer" parameterType="java.util.List">
+		select * from t_customer where  accountID in 
+		<foreach collection="list" open="(" close=")" item="item" index="index" separator="," >
+				#{item}
+		</foreach> 
+	</select>
+	
+	
+	
+	
+</mapper>

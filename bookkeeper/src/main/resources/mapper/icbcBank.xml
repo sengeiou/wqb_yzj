@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="icbc">
+	<!-- icbc工商银行映射 -->
+	<resultMap type="icbc" id="icbcMap">
+		<result property="icbcBillID" column="icbcBillID" />
+		<result property="accountID" column="accountID" />
+		<result property="period" column="period" />
+		<result property="busDate" column="busDate" />
+		<result property="rqDate" column="rqDate" />
+		<result property="transactionType" column="transactionType" />
+		<result property="vouchType" column="vouchType" />
+		<result property="vouchNo" column="vouchNo" />
+		<result property="dfAccountName" column="dfAccountName" />
+		<result property="dfAccount" column="dfAccount" />
+		<result property="des" column="des" />
+		<result property="jffsAmount" column="jffsAmount" />
+		<result property="dffsAmount" column="dffsAmount" />
+		<result property="balance" column="balance" />
+		<result property="bankType" column="bankType" />
+		<result property="sysSubjectCode" column="sysSubjectCode" />
+
+		<result property="sysSubjectName" column="sysSubjectName" />
+
+		<result property="sysSubjectID" column="sysSubjectID" />
+		<result property="sysSubjectFullName" column="sysSubjectFullName" />
+		
+		<result property="bankAccount" column="bankAccount" />
+		
+		
+
+	</resultMap>
+	<insert id="insertIcbc">
+		insert into t_cm_bkbill_icbc
+		(
+		icbcBillID ,
+		accountID,
+		period,
+		busDate,
+		rqDate,
+		transactionType,
+		vouchType,
+		vouchNo ,
+		dfAccountName ,
+		dfAccount,
+		des,
+		jffsAmount,
+		dffsAmount ,
+		balance,
+		sysSubjectCode,
+		sysSubjectName,
+		sysSubjectID,
+		sysSubjectFullName,
+		bankAccount
+		) values
+		(
+		#{icbcBillID },
+		#{accountID},
+		#{period},
+		#{busDate},
+		#{rqDate},
+		#{transactionType},
+		#{vouchType},
+		#{vouchNo },
+		#{dfAccountName},
+		#{dfAccount},
+		#{des},
+		#{jffsAmount},
+		#{dffsAmount},
+		#{balance},
+		#{sysSubjectCode},
+		#{sysSubjectName},
+		#{sysSubjectID},
+		#{sysSubjectFullName} ,
+		#{bankAccount}
+		)
+	</insert>
+	<delete id="deleteByID">
+		delete from t_cm_bkbill_icbc where
+		icbcBillID in ${bills};
+	</delete>
+
+	<!-- 不定项多条件分页查询 -->
+	<select id="queryBankBill" resultMap="icbcMap">
+		select * from t_cm_bkbill_icbc where accountID = #{accountID} and
+		period=#{busDate}
+		<if
+			test="beginTime!=null and beginTime!='' and endTime!=null and endTime!=''">
+			and rqDate between #{beginTime} and #{endTime}
+		</if>
+		<if test="bankType!=null and bankType!='' and bankType!='全部'">
+			and bankType=#{bankType}
+		</if>
+		<if test="keyWords!=null and keyWords!=''">
+			and dfAccountName like CONCAT('%','${keyWords}','%' )
+		</if>
+		order by busDate
+		<if test="begin != null and begin != '' or begin==0">
+			limit #{begin},#{maxPage}
+		</if>
+
+	</select>
+
+	<select id="querySame" resultMap="icbcMap">
+		select * from t_cm_bkbill_icbc
+		where accountID = #{accountID} and
+		period like
+		CONCAT('%','${busDate}','%' ) and bankType=#{bankType}
+	</select>
+
+	<!-- 银行凭证添加 查询当期全部数据 -->
+	<select id="queryAll" parameterType="map" resultMap="icbcMap">
+		select *
+		from t_cm_bkbill_icbc where accountID = #{accountID} and
+		period=#{busDate} order by busDate
+	</select>
+	<update id="delVouchID">
+		update t_cm_bkbill_icbc set vouchID ='' where
+		vouchID=#{vouchID};
+	</update>
+
+	<update id="addVouchID">
+		update t_cm_bkbill_icbc set vouchID =#{vouchID} where icbcBillID=#{bankID};
+	</update>
+	
+	<update id="updByID">
+		update t_cm_bkbill_icbc set sysSubjectCode
+		=#{sysSubjectCode},sysSubjectName=#{sysSubjectName},
+		sysSubjectID=#{sysSubjectID},sysSubjectFullName=#{sysSubjectFullName}
+		where icbcBillID=#{id};
+	</update>
+</mapper>

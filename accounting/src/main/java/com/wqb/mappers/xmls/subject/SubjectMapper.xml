@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wqb.mappers.subject.SubjectMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wqb.domains.subject.Subject">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="parent_code" property="parentCode" />
+        <result column="name" property="name" />
+        <result column="full_name" property="fullName" />
+        <result column="category" property="category" />
+        <result column="direction" property="direction" />
+        <result column="status" property="status" />
+        <result column="extend" property="extend" />
+        <result column="extend_key" property="extendKey" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, parent_code, name, full_name, category, direction, status, extend, extend_key
+    </sql>
+
+</mapper>

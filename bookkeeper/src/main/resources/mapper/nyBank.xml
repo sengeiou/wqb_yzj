@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="nyBank">
+
+	<insert id="insertNyBank" parameterType="com.wqb.model.bank.NyBank">
+		insert into
+		t_cm_bkbill_ny
+		(
+		nyBillID,
+		accountID,
+		period,
+		vouchID,
+		bankType,
+		accountNum,
+		typeCurrency,
+		vouchNo,
+		transaction_time,
+		jycode,
+		transactionID,
+		transactionEmp,
+		jfdf,
+		fsAmount,
+		accountBalance,
+		dfAccountNumber,
+		dfAccountName,
+		dfBankName,
+		reference,
+		notes,
+		userID,
+		addTime,
+		sysSubjectCode,
+ 		sysSubjectName,
+  		sysSubjectID,
+  		sysSubjectFullName
+		)
+		values
+		(
+		#{nyBillID},
+		#{accountID},
+		#{period},
+		#{vouchID},
+		#{bankType},
+		#{accountNum},
+		#{typeCurrency},
+		#{vouchNo},
+		#{transaction_time},
+		#{jycode},
+		#{transactionID},
+		#{transactionEmp},
+		#{jfdf},
+		#{fsAmount},
+		#{accountBalance},
+		#{dfAccountNumber},
+		#{dfAccountName},
+		#{dfBankName},
+		#{reference},
+		#{notes},
+		#{userID},
+		#{addTime},
+		#{sysSubjectCode},
+ 		#{sysSubjectName},
+  		#{sysSubjectID},
+  		#{sysSubjectFullName}
+		)
+	</insert>
+
+	<!-- 查询是否有重复数据导入 -->
+	<select id="querySame" parameterType="map" resultType="com.wqb.model.bank.NyBank">
+		select nyBillID,accountID,period from t_cm_bkbill_ny
+		where period = #{period} and accountID = #{accountID} and transactionID = #{transactionID}
+	</select>
+	
+	<select id="queryBankBill" resultType="com.wqb.model.bank.NyBank">
+		select * from t_cm_bkbill_ny where accountID = #{accountID} and
+		period=#{busDate}
+		<if
+			test="beginTime!=null and beginTime!='' and endTime!=null and endTime!=''">
+			and transaction_time between #{beginTime} and #{endTime}
+		</if>
+		<if test="bankType!=null and bankType!='' and bankType!='全部'">
+		   and bankType=#{bankType}
+		</if>
+		<if test="keyWords!=null and keyWords!=''">
+			and dfAccountName like CONCAT('%','${keyWords}','%' )
+		</if>
+		order by addTime
+		<if test="begin != null and begin != '' or begin==0">
+			limit #{begin},#{maxPage}
+		</if>
+	</select>
+	
+	<!-- 银行凭证添加  查询当期全部数据 -->
+	<select id="queryAll"  parameterType="map" resultType="com.wqb.model.bank.NyBank">
+		select * from t_cm_bkbill_ny where  accountID = #{accountID} and period=#{busDate} order by  addTime
+	</select>
+	
+	
+	<delete id="deleteByID">
+		delete from t_cm_bkbill_ny where nyBillID in ${bills};
+	</delete>
+
+
+	<update id="delVouchID">
+		update t_cm_bkbill_ny  set vouchID =''  where vouchID=#{vouchID};
+	</update>
+	
+	 <update id="addVouchID">
+   		update t_cm_bkbill_ny  set vouchID =#{vouchID}  where  nyBillID=#{bankID};
+    </update>
+    
+    
+	<select id="querytranID"  parameterType="map" resultType="string">
+		select transactionID from t_cm_bkbill_ny where  accountID = #{accountID} and period=#{busDate}
+	</select>
+    <update id="updByID">
+		update t_cm_bkbill_ny set sysSubjectCode
+		=#{sysSubjectCode},sysSubjectName=#{sysSubjectName},
+		sysSubjectID=#{sysSubjectID},sysSubjectFullName=#{sysSubjectFullName}
+		where nyBillID=#{id};
+	</update>
+    
+</mapper>

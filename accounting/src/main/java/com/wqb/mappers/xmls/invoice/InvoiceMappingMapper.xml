@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wqb.mappers.invoice.InvoiceMappingMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wqb.domains.invoice.InvoiceMapping">
+        <id column="mr_id" property="mrId" />
+        <result column="accountID" property="accountID" />
+        <result column="period" property="period" />
+        <result column="invoiceType" property="invoiceType" />
+        <result column="is_upload_save" property="isUploadSave" />
+        <result column="save_num" property="saveNum" />
+        <result column="saveDate" property="saveDate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        mr_id, accountID, period, invoiceType, is_upload_save, save_num, saveDate
+    </sql>
+
+</mapper>

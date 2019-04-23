@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+	<!--      有效企业趋势图 -->
+	<select id="effectiveCorpTrend" resultType="int" parameterType="Map">
+	SELECT       
+		sum(sl) AS sl
+	FROM
+		(
+			SELECT
+				count(*) AS sl
+			FROM
+				t_basic_account t1
+			WHERE
+<!-- 				userID = "c49f6d454eaf4ea496a51fe7f72956b3" -->
+				userID = '${userId}'
+			AND t1.statu = 1
+<!-- 			AND t1.chgStatuTime LIKE ('2018-06%' ) -->
+			AND t1.chgStatuTime LIKE('${busDate}%')
+			UNION ALL
+				SELECT
+					count(*)
+				FROM
+					t_basic_account t2
+				WHERE
+					userID IN (
+						SELECT
+							userID
+						FROM
+							t_sys_user
+						WHERE
+							parentUser IN (
+								SELECT
+									userID
+								FROM
+									t_sys_user
+								WHERE
+<!-- 									userID="c49f6d454eaf4ea496a51fe7f72956b3" -->
+									userID='${userId}'
+							)
+					)
+				AND t2.statu = 1
+<!-- 				AND t2.chgStatuTime LIKE ('2018-06%' ) -->
+				AND t2.chgStatuTime LIKE ('${busDate}%')
+<!-- 				{busDate=2018-07, userId=c49f6d454eaf4ea496a51fe7f72956b3} -->
+<!-- 				AND t2.chgStatuTime LIKE ('%','${busDate}','%' ) -->
+		) t
+	</select>
+	
+	<!-- 	各财务人员负责企业比例图 -->
+	<select id="staffCorpScale" resultType="Map" parameterType="Map">
+		SELECT
+			t1.sl rate,
+			t2.loginUser user
+		FROM
+			(
+				SELECT
+					count(*) AS sl,
+					userID
+				FROM
+					t_basic_account
+				WHERE
+					statu = 1
+				AND userID IN (
+					SELECT
+						userID
+					FROM
+						t_sys_user
+					WHERE
+						parentUser = '${userId}'
+				)
+				OR userID = '${userId}'
+				GROUP BY
+					userID
+				ORDER BY
+					count(*) DESC
+			) t1
+		LEFT JOIN t_sys_user t2 ON t1.userID = t2.userID;
+
+	</select>
+</mapper>

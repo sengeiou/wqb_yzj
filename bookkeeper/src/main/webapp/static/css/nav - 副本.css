@@ -1,0 +1,388 @@
+@charset "utf-8";
+body {
+  background: #f7f7f7;
+}
+
+#nav {
+  width: 100%;
+  height: 52px;
+  line-height: 52px;
+  z-index: 1;
+  background: #ff8f33;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+#balanceHint{
+  height: 20px;
+	line-height: 20px;
+	position: absolute;
+	right: 50%;
+	top: 18px;
+}
+/*#nav .left {
+    position: relative;
+    width: 230px;
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+}*/
+
+#nav .nav_logo {
+  position: absolute;
+  left: 20px;
+  top: 18px;
+  width: 210px;
+  height: 122px;
+  /*padding: 24px 0;*/
+  background-color: #fff;
+  text-align: center;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 2px 5px 1px rgba(204, 204, 204, 4);
+  box-shadow: 0 2px 5px 1px rgba(204, 204, 204, 4);
+}
+#nav .nav_logo a{
+	  width: 100%;
+    height: 100%;
+    display: block;
+}
+#nav .nav_logo a img{
+    margin: 20px auto;
+    display: block;
+}
+
+#nav .nav_logo a h1{
+	font-size: 18px;
+	color: #555;
+	margin-top: -16px;
+	letter-spacing: 1px;
+	display: block;
+}
+
+
+#nav .right {
+  position: relative;
+  font-size: 18px;
+  color: #fff;
+}
+
+#nav .cus {
+  display: none;
+  margin-left: 245px;
+  padding-left: 10px;
+  text-align: left;
+}
+
+#nav .cus .selectCus {
+  display: inline-block;
+  max-width: 300px;
+  vertical-align: top;
+}
+
+#nav .cus .icon-arrow {
+  font-size: 24px;
+}
+
+#nav .right_set {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 15px;
+}
+
+#nav .right_set li {
+  float: left;
+  width: 120px;
+  height: 52px;
+  text-align: center;
+}
+
+#nav .right_set li a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+}
+
+#nav .right_set .user {
+  padding: 0 15px;
+  width: auto;
+  min-width: 120px;
+  max-width: 180px;
+  margin: 0 30px;
+}
+
+#nav .right_set .date-select {
+  position: relative;
+  width: 180px;
+  line-height: 52px;
+}
+
+#nav .right_set .date-select .layui-icon {
+  position: absolute;
+  z-index: -1;
+  right: 5px;
+  top: 0;
+  color: #fff;
+}
+
+#nav .right_set .wMonth {
+  margin: 12px 0;
+  height: 28px;
+  line-height: 26px;
+  font-size: 16px;
+  border: solid 1px #f1f1f1;
+  border: solid 1px rgba(255, 255, 255, .2);
+  color: #fff;
+  background-color: transparent;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#33ffffff, endColorstr=#33ffffff);
+  background-color: rgba(255, 255, 255, .2);
+}
+
+#nav .right_set .wMonth::-webkit-input-placeholder {
+  color: #fff;
+}
+
+.icon-logout {
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 100%;
+  background: url(/wqb/img/icon-logout.png) no-repeat 0 center;
+}
+
+/*  客户选择 弹窗 */
+
+.cusSel {
+  background: #fcfcfc;
+  color: #333;
+  padding: 20px;
+   margin-top: 12px;
+}
+
+.cusSel .layui-table {
+  margin: 0;
+}
+
+.cusSel td:first-child,
+.cusSel th:first-child {
+  padding: 5px 20px;
+  height: 40px;
+  text-align: left;
+}
+
+.cusSel .tablebody2 {
+  max-height: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.cusSel .tablebody2 tr:first-child td {
+  border-top: 0;
+}
+
+.cusSel .tablebody2 td:last-child a {
+  padding: 10px;
+}
+
+.cusSel .upward {
+  position: absolute;
+  top: -20px;
+  left: 48px;
+  width: 0;
+  height: 0;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid white;
+  border-left: 10px solid transparent;
+}
+
+.cusSel i.icon-guanbi {
+  position: absolute;
+  top: -20px;
+  right: 4px;
+  font-size: 24px;
+  color: #bdb9b9;
+}
+
+.cusSel ::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.cusSel .head {
+  padding-right: 0;
+  border-right: 1px solid #ddd;
+}
+
+/* 左边菜单栏 */
+
+/* 导航 */
+
+.nav-floor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 247px;
+  height: 100%;
+  background-color: #f7f7f7;
+  z-index: 999;
+}
+
+.navigation {
+  position: relative;
+  line-height: 1;
+  padding: 10px 0;
+}
+
+.navigation:before {
+  content: '';
+  position: absolute;
+  left: 17px;
+  top: 20px;
+  width: 2px;
+  height: 90%;
+  background-color: #b3b3b3;
+}
+
+.navigation>a {
+  position: relative;
+  display: block;
+  padding: 10px 0 10px 44px;
+  font-size: 14px;
+  color: #b3b3b3;
+}
+
+.navigation a#nav_tickets,
+.navigation a#nav_assets,
+.navigation a#nav_certificate,
+.navigation a#nav_report,
+.navigation a#nav_taxReturn,
+.navigation a#nav_set {
+  padding: 12px 0 14px 40px;
+  font-size: 16px;
+}
+
+.navigation a:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  margin-top: -6px;
+  width: 12px;
+  height: 12px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  line-height: 23px;
+  color: #fff;
+  text-align: center;
+  background-color: #b3b3b3;
+}
+
+.navigation a#nav_tickets:before,
+.navigation a#nav_assets:before,
+.navigation a#nav_certificate:before,
+.navigation a#nav_report:before,
+.navigation a#nav_taxReturn:before,
+.navigation a#nav_set:before {
+  content: '1';
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  margin-top: -11px;
+  width: 22px;
+  height: 22px;
+}
+
+.navigation a#nav_certificate:before {
+  content: '2';
+}
+
+.navigation a#nav_report:before {
+  content: '3';
+}
+
+.navigation a#nav_taxReturn:before {
+  content: '4';
+}
+
+.navigation a#nav_set:before {
+  content: '5';
+}
+
+.navigation .blue {
+  color: #539dfc
+}
+
+.navigation .green {
+  color: #333;
+}
+
+.navigation .blue:before {
+  background-color: #539dfc;
+  -webkit-box-shadow: 0 0 6px 2px #539dfc;
+  box-shadow: 0 0 6px 2px #539dfc;
+}
+
+.navigation .green:before {
+  background-color: #6bbe42;
+  -webkit-box-shadow: 0 0 6px 2px #6bbe42;
+  box-shadow: 0 0 6px 2px #6bbe42;
+}
+
+/*.nav_set{
+  position: relative;
+  display: block;
+  padding: 12px 0 12px 40px;
+  line-height: 1;
+  font-size: 16px;
+  color: red;
+}
+.nav_set:before{
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  margin-top: -11px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50px;
+  background-color: #ff8f33;
+}
+*/
+
+#nav .user #getAdmin {
+  border: none;
+  background-color: inherit;
+  color: #fff;
+  width: 100%;
+  height: 52px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+#settle-accounts{
+	display: inline-block !important;
+}
+.selectSel{
+	height: 30px;
+  margin: -12px 0 8px;
+}
+.selectSel input{
+	height: 26px;
+	width: 260px;
+  padding-left: 12px;
+  border: 1px solid #e2e2e2;
+}
+#selectSel{
+  width: 60px;
+	height: 30px;
+	margin-left: 10px;
+	border: 0;
+	border-radius: 2px;
+	vertical-align: top;
+	font-size: 16px;
+	color: #fff;
+	cursor: pointer;
+	background-color: #539dfc;
+}

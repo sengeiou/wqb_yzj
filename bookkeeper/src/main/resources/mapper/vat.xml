@@ -1,0 +1,1240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="vat">
+
+
+	<resultMap id="subMessage" type="subMessage">
+		<id column="pk_sub_id" property="pkSubId" jdbcType="VARCHAR" />
+		<result column="sub_code" property="subCode" jdbcType="VARCHAR" />
+		<result column="user_id" property="userId" jdbcType="VARCHAR" />
+		<result column="account_id" property="accountId" jdbcType="VARCHAR" />
+		<result column="account_period" property="accountPeriod" jdbcType="VARCHAR" />
+		<result column="excel_import_period" property="excelImportPeriod"  jdbcType="VARCHAR" />
+		<result column="sub_name" property="subName" jdbcType="VARCHAR" />
+		<result column="type_of_currency" property="typeOfCurrency"  jdbcType="VARCHAR" />
+		<result column="init_debit_balance" property="initDebitBalance"  jdbcType="DECIMAL" />
+		<result column="init_credit_balance" property="initCreditBalance"  jdbcType="DECIMAL" />
+		<result column="current_amount_debit" property="currentAmountDebit"  jdbcType="DECIMAL" />
+		<result column="current_amount_credit" property="currentAmountCredit"  jdbcType="DECIMAL" />
+		<result column="year_amount_debit" property="yearAmountDebit"  jdbcType="DECIMAL" />
+		<result column="year_amount_credit" property="yearAmountCredit"  jdbcType="DECIMAL" />
+		<result column="ending_balance_debit" property="endingBalanceDebit"  jdbcType="DECIMAL" />
+		<result column="excel_import_code" property="excelImportCode"  jdbcType="VARCHAR" />
+		<result column="ending_balance_credit" property="endingBalanceCredit"  jdbcType="DECIMAL" />
+		<result column="is_multiple_siblings" property="isMultipleSiblings"  jdbcType="VARCHAR" />
+		<result column="excel_import_siblings_coding" property="excelImportSiblingsCoding"  jdbcType="VARCHAR" />
+		<result column="siblings_coding" property="siblingsCoding"  jdbcType="VARCHAR" />
+		<result column="siblings_sub_name" property="siblingsSubName"  jdbcType="VARCHAR" />
+		<result column="excel_import_superior_coding" property="excelImportSuperiorCoding"  jdbcType="VARCHAR" />
+		<result column="superior_coding" property="superiorCoding"  jdbcType="VARCHAR" />
+		<result column="full_name" property="fullName" jdbcType="VARCHAR" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="update_timestamp" property="updateTimestamp" jdbcType="CHAR" />
+		<result column="category" property="category" jdbcType="VARCHAR" />
+		<result column="sub_source" property="subSource" jdbcType="VARCHAR" />
+		<result column="unit" property="unit" jdbcType="VARCHAR" />
+		<result column="unit_id" property="unitId" jdbcType="DECIMAL" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+		<result column="number" property="number" jdbcType="DECIMAL" />
+		<result column="amount" property="amount" jdbcType="DECIMAL" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="mender" property="mender" jdbcType="VARCHAR" />
+		<result column="fk_t_basic_measure_id" property="fkTBasicMeasureId"  jdbcType="VARCHAR" />
+		<result column="measure_state" property="measureState"  jdbcType="INTEGER" />
+		<result column="fk_exchange_rate_id" property="fkExchangeRateId"  jdbcType="VARCHAR" />
+		<result column="exchange_rate__state" property="exchangeRateState"  jdbcType="INTEGER" />
+		<result column="code_level" property="codeLevel" jdbcType="INTEGER" />
+		<result column="debit_credit_direction" property="debitCreditDirection"  jdbcType="VARCHAR" />
+	</resultMap>
+
+
+
+	<!-- 根据条件查询销项与进项的税额 -->
+	<select id="queryTax" parameterType="map" resultType="com.wqb.model.InvoiceBody">
+	
+		select 
+			sum(b.taxAmount) taxAmount
+		from 
+			t_fa_invoice_h h,t_fa_invoice_b b  
+		where
+			h.invoiceHID = b.invoiceHID and h.accountID = #{accountID}  
+		<if test="type==1">
+		<!-- 1是 进项  时间为认证日期  认证日期 等于期间-->
+			<!-- and h.invoiceType = 1 and h.invoice_confirmdate like CONCAT('','${period}','%' ); -->
+			and h.invoiceType = 1 and h.period like CONCAT('','${period}','%' );
+			
+		</if>
+		<if test="type==2">
+		<!-- 2是销项  时间为发票日期 发票日期等于期间 -->
+		<!-- 	and h.invoiceType = 2 and h.invoiceDate like  CONCAT('','${period}','%' ); -->
+				and h.invoiceType = 2 and h.period like  CONCAT('','${period}','%' )
+		</if>
+	</select>
+	
+	
+		<!-- 根据条件查询销项与进项的税额 -->
+	<select id="queryjxjc" parameterType="map" resultType="com.wqb.model.InvoiceBody">
+	
+		select 
+			b.invoiceBID,
+			b.invoiceHID,
+			b.namount,
+			 <!--  税额 -->
+			b.comName,
+			b.accountID,
+			b.nnumber,
+			b.namount
+		from 
+			t_fa_invoice_h h,t_fa_invoice_b b  
+		where
+			h.invoiceHID = b.invoiceHID and h.accountID = #{accountID}  
+		<if test="type==1">
+		<!-- 如果为1是进项  时间为认证月份-->  
+			and h.invoiceType = 1 and h.invoice_confirmdate between #{beginTime} and #{endTime}
+		</if>
+		<if test="type==2">
+		<!-- 如果为2是销项  时间为发票日期-->
+			and h.invoiceType = 2 and h.invoiceDate between #{beginTime} and #{endTime}
+		</if>
+	</select>
+	
+		<select id="querySubjectVatTwo" parameterType="map" resultType="com.wqb.model.SubjectMessage">
+		select 
+			pk_sub_id,
+			user_id,
+			account_id,
+			account_period,
+			sub_code,
+			sub_name,
+			init_debit_balance,
+			init_credit_balance,
+			current_amount_debit,
+			current_amount_credit,
+			year_amount_debit,
+			year_amount_credit,
+			ending_balance_debit,
+			ending_balance_credit,
+			superior_coding,
+			year_amount_credit,
+			category,
+			state,full_name,
+			update_date,
+			update_timestamp
+		 from 
+		 	t_basic_subject_message
+		<where>
+		<!-- 科目编码 -->
+			<if test="sub_code!=null">
+				and sub_code  LIKE '${sub_code}%'
+			</if>
+		<!-- 编码长度 -->
+			<if test="sub_length!=null">
+				and LENGTH(sub_code)=#{sub_length,jdbcType=INTEGER}
+			</if>
+		<!-- 科目名字 -->
+			<if test="sub_name!=null and flag==null" >
+				 and sub_name=#{sub_name}
+			</if>
+			<if test="flag==1">
+				 and sub_name   LIKE CONCAT('%','${sub_name}','%' )
+			</if>
+		<!-- 所属账套 -->
+			<if test="account_id!=null">
+				 and account_id=#{account_id} 
+			</if>
+		<!-- 期间yyyy-MM-->
+			<if test="account_period!=null">
+				 and account_period=#{account_period} 
+			</if>
+		</where>
+		order by 
+			sub_code
+		desc limit 1
+	</select>
+	
+	
+	<select id="querySubjectVatThree" parameterType="map" resultType="com.wqb.model.SubjectMessage">
+		select 
+			pk_sub_id,
+			user_id,
+			account_id,
+			account_period,
+			sub_code,
+			sub_name,
+			init_debit_balance,
+			init_credit_balance,
+			current_amount_debit,
+			current_amount_credit,
+			year_amount_debit,
+			year_amount_credit,
+			ending_balance_debit,
+			ending_balance_credit,
+			superior_coding,
+			year_amount_credit,
+			category,
+			state,full_name,
+			update_date,
+			update_timestamp
+		 from 
+		 	t_basic_subject_message
+		<where>
+		<!-- 科目编码 -->
+			<if test="sub_code!=null">
+				and sub_code  LIKE '${sub_code}%'
+			</if>
+		<!-- 编码长度 -->
+			<if test="sub_length!=null">
+				and LENGTH(sub_code)=#{sub_length,jdbcType=INTEGER}
+			</if>
+		<!-- 科目名字 -->
+			<if test="sub_name!=null and flag==null" >
+				 and sub_name=#{sub_name}
+			</if>
+			<if test="flag==1">
+				 and sub_name   LIKE CONCAT('%','${sub_name}','%' )
+			</if>
+		<!-- 所属账套 -->
+			<if test="account_id!=null">
+				 and account_id=#{account_id} 
+			</if>
+		<!-- 期间yyyy-MM-->
+			<if test="account_period!=null">
+				 and account_period=#{account_period} 
+			</if>
+			
+		<!-- 科目等级-->
+			<if test="code_level!=null">
+				 and code_level=#{code_level} 
+			</if>
+			
+		</where>
+	</select>
+	
+	
+	
+	
+	
+	
+		<select id="querySubByCode" parameterType="map" resultType="com.wqb.model.SubjectMessage">
+		select * from 
+		 	t_basic_subject_message
+		<where>
+			<if test="sub_code!=null">
+				and sub_code = #{sub_code}
+			</if>
+			<if test="account_id!=null">
+				 and account_id=#{account_id}
+			</if>
+			<if test="account_period!=null">
+				 and account_period=#{account_period}
+			</if>
+		</where>
+		</select>
+		
+		
+			
+		<select id="querySubById" parameterType="map" resultType="com.wqb.model.SubjectMessage">
+		     select * from  t_basic_subject_message where pk_sub_id = #{subID}
+		</select>
+	
+	<insert id="insertSubject" parameterType="com.wqb.model.SubjectMessage">
+		insert into t_basic_subject_message 
+		(
+			pk_sub_id,
+			user_id,
+			account_id,
+			account_period,
+			excel_import_period,
+			sub_code,
+			sub_name,
+			type_of_currency,
+			init_debit_balance,
+			init_credit_balance,
+			current_amount_debit,
+			current_amount_credit,
+			year_amount_debit,
+			year_amount_credit,
+			ending_balance_debit,
+			excel_import_code,
+			ending_balance_credit,
+			is_multiple_siblings,
+			siblings_coding,
+			superior_coding,
+			full_name,
+			update_date,
+			update_timestamp,
+			category,
+			sub_source,
+			unit,
+			unit_id,
+			price,
+			number,
+			amount,
+			state,
+			mender,
+			fk_t_basic_measure_id,
+			measure_state,
+			fk_exchange_rate_id,
+			exchange_rate__state,
+			code_level,
+			debit_credit_direction
+		)
+			values
+		(
+		
+			#{pk_sub_id,jdbcType=VARCHAR},
+			#{user_id,jdbcType=VARCHAR},
+			#{account_id,jdbcType=VARCHAR},
+			#{account_period,jdbcType=VARCHAR},
+			#{excel_import_period,jdbcType=VARCHAR},
+			#{sub_code,jdbcType=VARCHAR},
+			#{sub_name,jdbcType=VARCHAR},
+			#{type_of_currency,jdbcType=VARCHAR},
+			#{init_debit_balance,jdbcType=DECIMAL},
+			#{init_credit_balance,jdbcType=DECIMAL},
+			#{current_amount_debit,jdbcType=DECIMAL},
+			#{current_amount_credit,jdbcType=DECIMAL},
+			#{year_amount_debit,jdbcType=DECIMAL},
+			#{year_amount_credit,jdbcType=DECIMAL},
+			#{ending_balance_debit,jdbcType=DECIMAL},
+			#{excel_import_code},
+			#{ending_balance_credit,jdbcType=DECIMAL},
+			#{is_multiple_siblings,jdbcType=VARCHAR},
+			#{siblings_coding,jdbcType=VARCHAR},
+			#{superior_coding,jdbcType=VARCHAR},
+			#{full_name,jdbcType=VARCHAR},
+			#{update_date,jdbcType=TIMESTAMP},
+			#{update_timestamp,jdbcType=CHAR},
+			#{category,jdbcType=VARCHAR},
+			#{sub_source,jdbcType=VARCHAR},
+			#{unit,jdbcType=VARCHAR},
+			#{unit_id,jdbcType=DECIMAL},
+			#{price,jdbcType=DECIMAL},
+			#{number,jdbcType=DECIMAL},
+			#{amount,jdbcType=DECIMAL},
+			#{state},
+			#{mender},
+			#{fk_t_basic_measure_id,jdbcType=DATE},
+			#{measure_state,jdbcType=INTEGER},
+			#{fk_exchange_rate_id,jdbcType=VARCHAR},
+			#{exchange_rate__state,jdbcType=INTEGER},
+			#{code_level,jdbcType=INTEGER},
+			#{debit_credit_direction,jdbcType=VARCHAR}
+		)
+	
+	</insert>
+	<!-- 留底金额更新 -->
+	<update id="updateSubject" parameterType="com.wqb.model.SubjectMessage">
+	
+	update 
+		t_basic_subject_message 
+	  <set> 
+            <if test="init_debit_balance!=null">
+                init_debit_balance = #{init_debit_balance,jdbcType=DECIMAL},
+            </if>
+            <if test="init_credit_balance!=null">
+                init_credit_balance = #{init_credit_balance,jdbcType=DECIMAL},
+            </if>
+            <if test="ending_balance_debit!=null">
+               ending_balance_debit = #{ending_balance_debit,jdbcType=DECIMAL},
+            </if>
+            <if test="ending_balance_credit!=null">
+               ending_balance_credit = #{ending_balance_credit,jdbcType=DECIMAL},
+            </if>
+            <if test="update_date!=null">
+               update_date = #{update_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="update_timestamp!=null">
+               update_timestamp = #{update_timestamp,jdbcType=CHAR},
+            </if>
+       		<if test="current_amount_debit!=null">
+                current_amount_debit = #{current_amount_debit,jdbcType=DECIMAL},
+            </if>
+            <if test="current_amount_credit!=null">
+               current_amount_credit = #{current_amount_credit,jdbcType=DECIMAL},
+            </if> 
+            <if test="year_amount_debit!=null">
+                year_amount_debit = #{year_amount_debit,jdbcType=DECIMAL},
+            </if>
+            <if test="year_amount_credit!=null">
+               year_amount_credit = #{year_amount_credit,jdbcType=DECIMAL},
+            </if>
+		</set>
+	where 
+		account_id=#{account_id} and pk_sub_id=#{pk_sub_id}
+	</update>
+	
+	<!-- 留底金额更新2 -->
+	<update id="updateSubjectMap" parameterType="map">
+	update 
+		t_basic_subject_message 
+	  <set> 
+            <if test="init_debit_balance!=null">
+                init_debit_balance = #{init_debit_balance,jdbcType=DECIMAL},
+            </if>
+            <if test="init_credit_balance!=null">
+                init_credit_balance = #{init_credit_balance,jdbcType=DECIMAL},
+            </if>
+            <if test="ending_balance_debit!=null">
+               ending_balance_debit = #{ending_balance_debit,jdbcType=DECIMAL},
+            </if>
+            <if test="ending_balance_credit!=null">
+               ending_balance_credit = #{ending_balance_credit,jdbcType=DECIMAL},
+            </if>
+            <if test="update_date!=null">
+               update_date = #{update_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="update_timestamp!=null">
+               update_timestamp = #{update_timestamp,jdbcType=CHAR},
+            </if>
+       		<if test="current_amount_debit!=null">
+                current_amount_debit = #{current_amount_debit,jdbcType=DECIMAL},
+            </if>
+            <if test="current_amount_credit!=null">
+               current_amount_credit = #{current_amount_credit,jdbcType=DECIMAL},
+            </if> 
+            <if test="year_amount_debit!=null">
+                year_amount_debit = #{year_amount_debit,jdbcType=DECIMAL},
+            </if>
+            <if test="year_amount_credit!=null">
+               year_amount_credit = #{year_amount_credit,jdbcType=DECIMAL},
+            </if>
+            <if test="category!=null">
+               category = #{category},
+            </if>
+            <if test="number!=null">
+               number = #{number,jdbcType=DECIMAL},
+            </if>
+            <if test="unit!=null and unit!='' ">
+               unit = #{unit},
+            </if>
+            <if test="sub_source!=null and sub_source!='' ">
+               sub_source = #{sub_source},
+            </if>
+		</set>
+	where  pk_sub_id=#{pk_sub_id}
+	</update>
+	
+	<!-- 根据主键查询 -->
+	<select id="queryByiD" parameterType="string" resultType="com.wqb.model.SubjectMessage">
+			select 
+				pk_sub_id,
+				user_id,
+				account_id,
+				account_period,
+				sub_code,
+				sub_name,
+				init_debit_balance,
+				init_credit_balance,
+				current_amount_debit,
+				current_amount_credit,
+				year_amount_debit,
+				year_amount_credit,
+				ending_balance_debit,
+				ending_balance_credit,
+				superior_coding,
+				year_amount_credit,
+				category,
+				debit_credit_direction,
+				state,full_name,
+				update_date,
+				update_timestamp
+			 from 
+			 	t_basic_subject_message 
+			 where 
+			 	pk_sub_id = #{pk_sub_id}
+	</select>
+	
+	<!-- 添加凭证-->
+	<insert id="insertVoHead" parameterType="com.wqb.model.VoucherHead">
+		insert into  t_vouch_h
+		(
+			vouchID,
+			vcDate,
+			currencyID,
+			currency,
+			des,
+			updatePsnID,
+			updatePsn,
+			updatedate,
+			createPsnID,
+			createpsn,
+			createDate,
+			accountID,
+			checkedDate,
+			period,
+			source,
+			totalCredit,
+			totalDbit,
+			vouchFlag,
+			voucherNO,
+			isproblem
+		)
+		values
+		(
+			#{vouchID},
+			#{vcDate},
+			#{currencyID},
+			#{currency},
+			#{des},
+			#{updatePsnID},
+			#{updatePsn},
+			#{updatedate},
+			#{createPsnID},
+			#{createpsn},
+			#{createDate},
+			#{accountID},
+			#{checkedDate},
+			#{period},
+			#{source},
+			#{totalCredit},
+			#{totalDbit},
+			#{vouchFlag},
+			#{voucherNO},
+			#{isproblem}
+		)
+		
+	
+	</insert>
+	
+	<!-- 添加凭证-->
+	<insert id="insertVoBody" parameterType="com.wqb.model.VoucherBody">
+		insert into t_vouch_b
+		(
+			vouchAID,
+			vouchID,
+			rowIndex,
+			vcabstact,
+			vcsubject,
+			vcunitID,
+			vcunit,
+			period,
+			debitAmount,
+			creditAmount,
+			accountID,
+			direction,
+			subjectID,
+			updatePsnID,
+			updatePsn,
+			updatedate,
+			price,
+			number,
+			isproblem,
+			des
+		)
+		values
+		(
+			#{vouchAID},
+			#{vouchID},
+			#{rowIndex},
+			#{vcabstact},
+			#{vcsubject},
+			#{vcunitID},
+			#{vcunit},
+			#{period},
+			#{debitAmount},
+			#{creditAmount},
+			#{accountID},
+			#{direction},
+			#{subjectID},
+			#{updatePsnID},
+			#{updatePsn},
+			#{updatedate},
+			#{price},
+			#{number},
+			#{isproblem},
+			#{des}
+		)
+	</insert>
+	
+	<!-- 结转记录-->
+	<insert id="isnertStatusPeriod" parameterType="com.wqb.model.StatusPeriod">
+	
+		insert into t_status_period
+		(
+			periodID,
+			period,
+			source,
+			waStartDate,
+			waeEndDate,
+			isCarryState,
+			isAccruedState,
+			isSettleSatet,
+			updatePsnID,
+			updatePsn,
+			updatedate,
+			createPsnID,
+			createPsn,
+			accountID,
+			user_id
+		)
+		values
+		(
+			#{periodID},
+			#{period},
+			#{source},
+			#{waStartDate},
+			#{waeEndDate},
+			#{isCarryState},
+			#{isAccruedState},
+			#{isSettleSatet},
+			#{updatePsnID},
+			#{updatePsn},
+			#{updatedate},
+			#{createPsnID},
+			#{createPsn},
+			#{accountID},
+			#{user_id}
+		)
+	
+	</insert>
+	
+	
+	<!-- 查询是否结转 -->
+	<select id="queryVatSta" parameterType="com.wqb.model.StatusPeriod" resultType="com.wqb.model.StatusPeriod">
+			select 	periodID,period,source,accountID
+			from t_status_period
+			where 
+			  accountID = #{accountID} and 
+			  period  = #{period} and
+			  source = #{source} and
+			  isCarryState = 1
+	</select>
+	
+	
+		<!-- 凭证子表查询 -->
+	<select id="queryVoBody" parameterType="map" resultType="com.wqb.model.VoucherBody">
+		select * from t_vouch_b 
+		<where>
+			<if test="vouchID!=null">
+			 	and vouchID = #{vouchID}
+			</if>
+			<if test="vouchAID!=null">
+			 	and vouchAID = #{vouchAID}
+			</if>
+			<if test="accountID!=null">
+			 	and accountID = #{accountID}
+			</if>
+			<if test="period!=null">
+			 	and period = #{period}
+			</if>
+			<if test="vcabstact!=null">
+			 	and vcabstact = #{vcabstact}
+			</if>
+		</where>
+		order by rowIndex 
+	</select>
+	
+	<!-- 查询凭证头 -->
+	<select id="queryVoHeahder" parameterType="map" resultType="com.wqb.model.VoucherHead">
+		select * from t_vouch_h 
+		<where>
+			<if test="vouchID!=null">
+				and vouchID = #{vouchID}
+			</if>
+			<if test="accountID!=null">
+				and accountID = #{accountID}
+			</if>
+		</where>
+	
+	</select>
+	
+	<!-- 根据ID查询凭证头 -->
+	<select id="queryVoHeahderById" parameterType="string" resultType="com.wqb.model.VoucherHead">
+		select * from t_vouch_h where vouchID = #{vouchID}
+	</select>
+	<!-- 根据ID查询凭证子表 -->
+	<select id="queryVoBodyById" parameterType="map" resultType="com.wqb.model.VoucherBody">
+		select * from t_vouch_b where vouchAID = #{vouchAID}
+	</select>
+	
+	<select id="queryAllInvoce" parameterType="map" resultType="com.wqb.model.InvoiceBody">
+		<!-- select h.period,h.invoiceType,h.accountID,b.invoiceBID,b.comName,b.measure,b.nnumber,b.namount,b.userID   from t_fa_invoice_h h join t_fa_invoice_b b on h.invoiceHID = b.invoiceHID 
+		where h.period like '2018-01%' and h.invoiceType = '1' and h.accountID = '568cb680dbe7427e83c0795f7cf962e6' -->
+		SELECT
+			h.invoiceType,
+			b.accountID,
+			b.invoiceBID,
+			b.comName,
+			b.spec,
+			IFNULL(SUM(b.nnumber),0) as nnumber,
+			IFNULL(SUM(b.namount),0) as namount
+		FROM
+			t_fa_invoice_h h
+		JOIN 
+			t_fa_invoice_b b 
+		ON 
+			h.invoiceHID = b.invoiceHID
+		WHERE
+			b.accountID = #{account_id}
+		
+		AND h.period LIKE CONCAT('','${account_period}','%' )
+		<if test="invoiceType==1">
+			AND h.invoiceType = 1
+		</if>
+		<if test="invoiceType==2">
+			AND h.invoiceType = 2
+		</if>
+		GROUP BY b.comName,b.spec
+			
+	</select>
+	
+	
+	<!-- 查询利润趋势 -->
+	<select id="queryProfitTrend" parameterType="map" resultType="com.wqb.model.ProfitTrendVo">
+		select 
+			pk_income_statement_id as id,
+			account_period as period,
+			account_id as accountID,
+			current_sales_from_operati as curr_yysr,
+			current_less_operating_costs as curr_yycb,
+			current_operating_tax_and_additions as curr_yysjjfj,
+			current_selling_expenses as curr_xxfy,
+			current_general_and_administrative_expense as curr_glfy,
+			current_finaneia_expense as curr_cwfy,
+			current_losses_on_the_asset_impairment as curr_zcjzss,
+			current_add_profits_or_losses_onthe_changes_in_fair_value as curr_bdsy,
+			current_investment_income as curr_tzsy,
+			current_among_Investment_income_from_affiliated_business as curr_lyhytzsy,
+			current_operating_income as curr_yylr,
+			current_ent_income as curr_jlr
+		 from 
+		t_basic_income_statement where account_id=#{account_id} and account_period in
+		<foreach collection="listMonth" item="id" open="(" close=")"
+			separator=",">
+			#{id}
+		</foreach>
+	</select>
+	
+	<!-- 查询利润分析 -->
+	<select id="queryprofitAnalyze" parameterType="map" resultType="com.wqb.model.ProfitTrendVo">
+		select 
+			pk_income_statement_id as id,
+			account_period as period,
+			account_id as accountID,
+			current_sales_from_operati as curr_yysr,
+			current_less_operating_costs as curr_yycb,
+			current_operating_tax_and_additions as curr_yysjjfj,
+			current_selling_expenses as curr_xxfy,
+			current_general_and_administrative_expense as curr_glfy,
+			current_finaneia_expense as curr_cwfy,
+			current_losses_on_the_asset_impairment as curr_zcjzss,
+			current_add_profits_or_losses_onthe_changes_in_fair_value as curr_bdsy,
+			current_investment_income as curr_tzsy,
+			current_among_Investment_income_from_affiliated_business as curr_lyhytzsy,
+			current_operating_income as curr_yylr,
+			current_ent_income as curr_jlr
+		 from 
+		t_basic_income_statement where account_id=#{account_id} and account_period = #{account_period}
+	</select>
+	
+	<!-- 查询是否结账 -->
+	<select id="queryAccountStaus" parameterType="map" resultType="com.wqb.model.StatusPeriod">
+		select * from t_status_period where accountID=#{account_id} and period = #{account_period}
+	</select>
+	
+	<!-- 查询账套启用期间 -->
+	<select id="queryAccount" parameterType="map" resultType="com.wqb.model.Account">
+		select * from t_basic_account where accountID=#{account_id}
+	</select>
+	
+	<!-- 查询手工凭证有没有成本结转的 -->
+	<select id="queryVoBySource" parameterType="map" resultType="com.wqb.model.VoucherHead">
+		SELECT
+			h.vouchID
+		FROM
+			t_vouch_h h
+		JOIN t_vouch_b b ON h.vouchID = b.vouchID
+		WHERE
+			h.accountID = #{accountID}
+		AND h.period = #{period}
+		AND h.source = 5
+		AND b.subjectID like CONCAT('','1405','%' )
+		AND b.direction =2
+	</select>
+	
+	<select id="queryVoBySource2" parameterType="map" resultType="com.wqb.model.VoucherHead">
+		SELECT
+			h.vouchID
+		FROM
+			t_vouch_h h
+		JOIN t_vouch_b b ON h.vouchID = b.vouchID
+		WHERE
+			h.accountID = #{accountID}
+		AND h.period = #{period}
+		<!-- AND h.source = 5 -->
+		AND b.vcabstact like CONCAT('%','成本','%' )
+		AND b.vcabstact like CONCAT('%','结转','%' )
+	</select>
+		
+	
+	
+	<!-- 测试数据1 satrt 测试完可以删除-->
+	<select id="getAllUser" resultType="com.wqb.model.User">
+		select userID,loginUser,userType,parentUser,type from  t_sys_user;
+	</select>
+	
+	<select id="getAccByUid" parameterType="map" resultType="com.wqb.model.Account">
+		select * from  t_basic_account where userID=#{userID};
+	</select>
+	
+	<update id="upAccSource" parameterType="map">
+		update t_basic_account set source=#{source},type=#{type} where accountID =#{accountID};
+	</update>
+	
+	<!-- 测试数据1 end -->
+	
+	
+	
+		<!-- 一键生成凭证查询科目 -->
+	<select id="querySubByVo" parameterType="map" resultType="com.wqb.model.SubjectMessage">
+		select 
+			pk_sub_id,
+			sub_code,
+			account_period,
+			sub_name,
+			account_id,
+			full_name,
+			debit_credit_direction,
+			init_debit_balance,
+			init_credit_balance,
+			current_amount_debit,
+			current_amount_credit,
+			year_amount_debit,
+			year_amount_credit,
+			ending_balance_debit,
+			ending_balance_credit
+		 from 
+			t_basic_subject_message 
+		 WHERE
+			account_id = #{accountID}
+		 AND 
+			account_period = #{period}
+		 AND 
+		 	sub_code  in
+		<foreach collection="codes" item="id" open="(" close=")"
+			separator=",">
+			#{id}
+		</foreach>
+	</select>
+	
+		<update id="upSubVo" parameterType="map">
+			update t_basic_subject_message set
+				current_amount_debit = #{current_amount_debit},
+				current_amount_credit = #{current_amount_credit},
+				year_amount_debit = #{year_amount_debit},
+				year_amount_credit = #{year_amount_credit},
+				ending_balance_debit = #{ending_balance_debit},
+				ending_balance_credit = #{ending_balance_credit}
+			where 
+				pk_sub_id = #{pk_sub_id}
+		</update>
+	
+	<!--凭证检查  更新 -->
+	<update id="upVouch" parameterType="map">
+			update t_vouch_h set
+				isproblem = "2",des = ""
+			where 
+				vouchID in 
+		<foreach collection="vhid" item="vid" open="(" close=")"  separator=",">
+			#{vid}
+		</foreach>
+	</update>
+	
+	<!--凭证检查  更新 -->
+	<update id="upVouchBody" parameterType="map">
+			update t_vouch_b set
+				isproblem = "2",des = ""
+			where 
+				vouchID in 
+		<foreach collection="vhid" item="vid" open="(" close=")"  separator=",">
+			#{vid}
+		</foreach>
+	</update>
+	
+	<select id="queryCbjzVo" parameterType="map" resultType="com.wqb.model.VoucherBody">
+		select * from t_vouch_b  where vouchID in(
+			select vouchID  from t_vouch_h where   accountID = #{accountID} and period = #{period} and source in(5,11)
+		) 
+		and vcabstact like CONCAT('%','成本','%' ) and vcabstact like CONCAT('%','结转','%' )  limit 1
+	</select>
+	
+	<select id="queryCbjzVo2" parameterType="map" resultType="com.wqb.model.VoucherHead">
+		select * from t_vouch_h  where period = #{period} and accountID = #{accountID} and  (voucherType = 57 or source = 7)
+	</select>
+	
+	<select id="upVoTypeByImport" parameterType="map" >
+		update t_vouch_h set voucherType = #{voucherType} where vouchID = #{vouchID}
+	</select>
+	
+	
+	
+	<update id="upSubByVo" parameterType="map">
+		update t_basic_subject_message set
+		<if test="direction==1">
+				current_amount_debit = IFNULL(current_amount_debit,0) +#{amount,jdbcType=DOUBLE},
+				year_amount_debit =IFNULL(year_amount_debit,0) + #{amount,jdbcType=DOUBLE},
+				ending_balance_debit = IFNULL(ending_balance_debit,0) + #{amount,jdbcType=DOUBLE}
+		</if>
+		<if test="direction==2">
+				current_amount_credit = IFNULL(current_amount_credit,0) +  #{amount,jdbcType=DOUBLE},
+				year_amount_credit =  IFNULL(year_amount_credit,0) +  #{amount,jdbcType=DOUBLE},
+				ending_balance_credit = IFNULL(ending_balance_credit,0) + #{amount,jdbcType=DOUBLE}
+		</if>
+		where pk_sub_id in
+		<foreach collection="ids" item="pid" open="(" close=")"  separator=",">
+			#{pid}
+		</foreach>
+	</update>
+	
+	
+	<!-- 1 更新期末借 -->
+	<update id="chgEndBlanceDebit" parameterType="java.util.List">
+		update 
+			t_basic_subject_message 
+		set 
+			ending_balance_debit  =   IFNULL(ending_balance_debit,0) -  IFNULL(ending_balance_credit,0),
+			ending_balance_credit = 0
+		where 
+			pk_sub_id in
+		<foreach collection="list" item="pid" open="(" close=")"  separator=",">
+			#{pid}
+		</foreach>
+	</update>
+	
+	<!-- 2  查询期末借 小于0 -->
+	<select id="getEndBlanceSub" parameterType="java.util.List" resultType="string">
+		select pk_sub_id from t_basic_subject_message 
+		where 
+			ending_balance_debit  &lt; 0
+		and 
+			pk_sub_id 
+		in
+		<foreach collection="list" item="pid" open="(" close=")"  separator=",">
+			#{pid}
+		</foreach>
+	</select>
+	
+	<!-- 3  更新期末贷 -->
+	<update id="chgEndBlanceCredit" parameterType="java.util.List">
+		update 
+			t_basic_subject_message 
+		set 
+			ending_balance_credit  =   ABS(IFNULL(ending_balance_debit,0)),
+			ending_balance_debit = 0
+		where 
+			pk_sub_id in
+		<foreach collection="list" item="pid" open="(" close=")"  separator=",">
+			#{pid}
+		</foreach>
+	</update>
+	
+	<select id="querySunYiSub" parameterType="map" resultType="com.wqb.model.SubjectMessage">
+		select 			
+			pk_sub_id,
+			sub_code,
+			account_period,
+			sub_name,
+			account_id,
+			full_name,
+			debit_credit_direction,
+			init_debit_balance,
+			init_credit_balance,
+			current_amount_debit,
+			current_amount_credit,
+			year_amount_debit,
+			year_amount_credit,
+			ending_balance_debit,
+			ending_balance_credit 
+		from 
+			t_basic_subject_message
+		WHERE
+			account_id = #{accountID}
+		 AND 
+			account_period = #{period}
+		 AND 
+		 (
+			 	sub_code  like "6901%" 
+			 or sub_code  like "6001%"  
+			 or sub_code  like "6051%"  
+			 or sub_code  like "6111%"  
+			 or sub_code  like "6301%"  
+			 or sub_code  like "6401%"  
+			 or sub_code  like "6402%"  
+			 or sub_code  like "6403%"  
+			 or sub_code  like "6711%"  
+			 or sub_code  like "6601%"  
+			 or sub_code  like "6602%"   
+			 or sub_code  like "6603%"  
+			 or sub_code  like "6701%"  
+			 or sub_code  like "6801%"
+		 )
+		
+	</select>
+	
+	<select id="queryAccAll"  resultType="com.wqb.model.Account">
+		select * from t_basic_account
+	</select>
+	
+	<update id="upAccCompanyName" parameterType="map">
+		update 
+			t_basic_account 
+		set 
+			companyNamePinYin = #{companyNamePinYin}
+		where 
+			accountID = #{accountID} 
+	</update>
+	
+	
+	
+	
+	
+	<select id="queryRedisSub" parameterType="map" resultType="com.wqb.model.vomodel.RedisSub">
+			select 
+				pk_sub_id,
+				sub_code,
+				sub_name,
+				full_name,
+				account_id,
+				account_period,
+				init_debit_balance,
+				init_credit_balance,
+				current_amount_debit,
+				current_amount_credit,
+				year_amount_debit,
+				year_amount_credit,
+				ending_balance_debit,
+				ending_balance_credit
+			from 
+				t_basic_subject_message 
+			where  
+				account_id = #{accountID} and account_period  = #{period}
+	</select>
+	
+	
+		<select id="queryRedisSubByCondition" parameterType="map" resultType="com.wqb.model.vomodel.RedisSub">
+			select 
+				pk_sub_id,
+				sub_code,
+				sub_name,
+				full_name,
+				account_id,
+				account_period,
+				init_debit_balance,
+				init_credit_balance,
+				current_amount_debit,
+				current_amount_credit,
+				year_amount_debit,
+				year_amount_credit,
+				ending_balance_debit,
+				ending_balance_credit
+			from 
+				t_basic_subject_message 
+			<where>
+				<if test="accountID!=null">
+					and account_id  = #{accountID}
+				</if>
+			
+				<if test="period!=null">
+					and account_period  = #{period}
+				</if>
+			
+				<if test="pk_sub_id!=null">
+					and pk_sub_id  = #{pk_sub_id}
+				</if>
+			
+				<if test="codes!=null and codes.size()>0">
+					and pk_sub_id in
+					<foreach collection="codes" item="id" open="(" close=")" separator=",">
+						#{id}
+					</foreach>
+				</if>
+				
+				<if test="codes2!=null">
+					and pk_sub_id in ${codes2}
+				</if>
+				
+				<if test="codes3!=null">
+					and pk_sub_id in (${codes3})
+				</if>
+			</where>
+	</select>
+	
+	
+
+	
+	<select id="queryTBasicSubjectMessageById"  parameterType="map" resultMap="subMessage">
+		select 
+			pk_sub_id, sub_code, account_id, account_period,
+			sub_name, init_debit_balance,
+			init_credit_balance, 
+			current_amount_debit,
+			current_amount_credit,
+			year_amount_debit, 
+			year_amount_credit,
+			ending_balance_debit,
+			ending_balance_credit,
+			superior_coding, 
+			full_name,
+			category, 
+			sub_source,
+			amount, state,
+			mender,code_level,debit_credit_direction
+		from t_basic_subject_message where pk_sub_id = #{pk_sub_id}
+	</select>
+	
+	<select id="queryTBasicSubjectMessageById2"  parameterType="map" resultMap="subMessage">
+		select *  from t_basic_subject_message where pk_sub_id = #{pk_sub_id}
+	</select>
+	
+	
+	
+	
+	<update id="chgSubAmountByDelete2" parameterType="map">
+		update t_basic_subject_message set
+		<if test="vb_dir==1">
+			current_amount_debit = IFNULL(current_amount_debit,0) - #{amount,jdbcType=DOUBLE},
+			year_amount_debit = IFNULL(year_amount_debit,0) - #{amount,jdbcType=DOUBLE},
+			ending_balance_debit = IFNULL(ending_balance_debit,0) - #{amount,jdbcType=DOUBLE}
+		</if>
+		<if test="vb_dir==2">
+			current_amount_credit = IFNULL(current_amount_credit,0) - #{amount,jdbcType=DOUBLE},
+			year_amount_credit = IFNULL(year_amount_credit,0) - #{amount,jdbcType=DOUBLE},
+			ending_balance_credit = IFNULL(ending_balance_credit,0) - #{amount,jdbcType=DOUBLE}
+		</if>
+		 where
+		<if test="ids!=null and ids.size()>0">
+			pk_sub_id in
+			<foreach collection="ids" item="id" open="(" close=")" separator=",">
+				#{id}
+			</foreach>
+		</if>
+		
+	</update>
+	
+	
+	
+		<select id="querySubjectMessageByPkid" parameterType="map" resultType="com.wqb.model.SubjectMessage">
+			select 
+				pk_sub_id,
+				user_id,
+				account_id,
+				account_period,
+				sub_code,
+				sub_name,
+				init_debit_balance,
+				init_credit_balance,
+				current_amount_debit,
+				current_amount_credit,
+				year_amount_debit,
+				year_amount_credit,
+				ending_balance_debit,
+				ending_balance_credit,
+				superior_coding,
+				year_amount_credit,
+				category,
+				debit_credit_direction,
+				state,full_name,
+				update_date,
+				update_timestamp
+			 from
+			 	t_basic_subject_message 
+			 where
+			<if test="ids!=null">
+				pk_sub_id in
+				<foreach collection="ids" item="id" open="(" close=")" separator=",">
+					#{id}
+				</foreach>
+			</if>
+	</select>
+		
+	<update id="chgSubAmountByDelete3" parameterType="map">
+		UPDATE t_basic_subject_message a
+			JOIN (
+				SELECT
+					pk_sub_id,IFNULL(ending_balance_debit, 0) - IFNULL(ending_balance_credit, 0) AS vals from t_basic_subject_message
+				WHERE
+					pk_sub_id IN (${codes3})
+			)tmp ON a.pk_sub_id = tmp.pk_sub_id 
+			
+			set a.ending_balance_debit = IF(tmp.vals > 0,tmp.vals,0),
+				a.ending_balance_credit = IF(tmp.vals > 0,0,ABS(tmp.vals))
+			WHERE
+				a.pk_sub_id IN (${codes3})
+	</update>
+	
+	<!-- 查询凭证 -->
+	<select id="queryNextOrPreviousVb" parameterType="map" resultType="com.wqb.model.VoucherHead">
+		SELECT
+			vouchID,voucherNo,totalCredit,totalDbit,isproblem,source,des,accountID,period,
+			auditStatus,attachID,voucherType
+		FROM
+			t_vouch_h
+		<where>
+			<if test="accountID!=null">
+				and  accountID = #{accountID}
+			</if>
+			<if test="period!=null">
+				and  period = #{period}
+			</if>
+			<if test="isproblem!=null">
+				and isproblem = #{isproblem}
+			</if>
+			<if test="nextNoucherNo!=null">
+				and  voucherNo &gt; #{nextNoucherNo}  ORDER BY voucherNo  ASC  LIMIT 1
+			</if>
+			<if test="previousVoucherNo!=null">
+				and  voucherNo &lt; #{previousVoucherNo}  ORDER BY voucherNo  DESC  LIMIT 1
+			</if>
+		</where>
+		
+	</select>
+	
+	
+	<select id="queryCountSubjectMessage" parameterType="map" resultType="int">
+			select 
+				count(*)
+			 from
+			 	t_basic_subject_message 
+			 where
+			account_id = #{accountID} and account_period  = #{period}
+			
+	</select>
+	
+	
+	<select id="queryProfit" parameterType="map" resultType="com.wqb.model.SubjectMessage">
+			select
+			pk_sub_id,account_id,account_period,
+			sub_code,sub_name,
+			current_amount_debit,current_amount_credit,
+			year_amount_debit,year_amount_credit
+			from
+				t_basic_subject_message 
+			where
+			account_id = #{accountID} 
+			
+			and sub_code in ('6001','6051','6401','6402','6403','6601','6602','6603','6701','6101','6111','6301','6711','6801')
+			
+			and account_period  in
+			<foreach collection="arr" item="period" open="(" close=")" separator=",">
+				#{period}
+			</foreach>
+	</select>
+	
+	
+		<select id="queryProfitCount" parameterType="map" resultType="int">
+			select count(1)
+			from  t_basic_income_statement 
+			where  account_id = #{accountID} 
+			and  account_period = #{period} 
+		</select>
+	
+	
+	
+	
+	
+	
+	
+</mapper>

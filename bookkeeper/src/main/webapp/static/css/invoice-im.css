@@ -1,0 +1,113 @@
+@charset "utf-8";
+
+/* 进销项发票导入 */
+/* 面包屑导航条 */
+.crumbs {
+	display: none !important;
+  width: 100%;
+  border-bottom: 1px solid #e6e6e6;
+}
+.crumbs .crumbsTxt {
+  display: inline-block;
+  padding: 0 15px;
+  height: 40px;
+  line-height: 40px;
+  color: #ff8f33;
+  border-bottom: 2px solid #ff8f33;
+}
+.crumbs.layui-tab-title .crumbsTxt {
+  color: #000;
+  border-bottom: 2px solid transparent;
+}
+.fixed-search{
+	width: 98% !important;
+}
+/* table */
+
+.table2 td {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.table1 td:nth-of-type(6),
+.table1 td:nth-of-type(10),
+.table2 td:nth-of-type(4),
+.table2 td:nth-of-type(7),
+.table2 td:nth-of-type(8) {
+    text-align: left;
+}
+
+.table1 td:nth-of-type(7),
+.table1 td:nth-of-type(8),
+.table2 td:nth-of-type(11),
+.table2 td:nth-of-type(12),
+.table2 td:nth-of-type(14) {
+    text-align: right;
+}
+
+.layui-table p {
+    margin-left: -5px;
+    margin-right: -5px;
+    padding: 8px 5px;
+    line-height: 1;
+    min-height: 14px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.layui-table p:last-of-type {
+    border-bottom: none;
+}
+
+.file label {
+    margin: 10px 0;
+}
+
+.popup {
+    min-width: 360px;
+}
+
+.popup .upload-btn {
+    display: inline-block;
+    margin-top: 10px;
+    vertical-align: top;
+}
+.view {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(../img/icon-view.png) no-repeat;
+  cursor: pointer;
+  margin: 0 3px;
+}
+
+/* 文件上传  */
+.file {
+  padding-left: 10px;
+}
+.file label {
+  position: relative;
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 32px;
+  width: 280px;
+  padding: 5px 0 0 6px;
+  border: 1px solid #ccc;
+  background: url(../img/icon-up.png) no-repeat 250px;
+}
+.file .sub-btn {
+  vertical-align: top;
+}
+.file .in-file {
+  color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  filter:alpha(opacity=0);
+}

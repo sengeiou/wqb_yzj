@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wqb.mappers.AccountMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wqb.domains.Account">
+        <id column="accountID" property="accountID" />
+        <result column="userID" property="userID" />
+        <result column="customID" property="customID" />
+        <result column="companyName" property="companyName" />
+        <result column="period" property="period" />
+        <result column="accstandards" property="accstandards" />
+        <result column="calculate" property="calculate" />
+        <result column="updatepsnID" property="updatepsnID" />
+        <result column="updatepsn" property="updatepsn" />
+        <result column="updatedate" property="updatedate" />
+        <result column="createpsnID" property="createpsnID" />
+        <result column="createpsn" property="createpsn" />
+        <result column="createDate" property="createDate" />
+        <result column="des" property="des" />
+        <result column="lastTime" property="lastTime" />
+        <result column="useLastPeriod" property="useLastPeriod" />
+        <result column="companyType" property="companyType" />
+        <result column="gsmm" property="gsmm" />
+        <result column="tyxydm" property="tyxydm" />
+        <result column="jzbwb" property="jzbwb" />
+        <result column="statu" property="statu" />
+        <result column="ssType" property="ssType" />
+        <result column="initial_states" property="initialStates" />
+        <result column="type" property="type" />
+        <result column="source" property="source" />
+        <result column="chgStatuTime" property="chgStatuTime" />
+        <result column="companyNamePinYin" property="companyNamePinYin" />
+        <result column="mapping_states" property="mappingStates" />
+        <result column="level" property="level" />
+        <result column="rule" property="rule" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        accountID, userID, customID, companyName, period, accstandards, calculate, updatepsnID, updatepsn, updatedate, createpsnID, createpsn, createDate, des, lastTime, useLastPeriod, companyType, gsmm, tyxydm, jzbwb, statu, ssType, initial_states, type, source, chgStatuTime, companyNamePinYin, mapping_states, level, rule
+    </sql>
+
+</mapper>

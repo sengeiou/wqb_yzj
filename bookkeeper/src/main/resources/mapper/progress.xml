@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="progress">
+	<!-- 进度映射 -->
+	<resultMap type="progress" id="progressMap">
+		<result property="id" column="id" />
+		<result property="accountID" column="accountID" />
+		<result property="period" column="period" />
+		<result property="cv" column="cv" />
+		<result property="jt" column="jt" />
+		<result property="unJt" column="unJt" />
+		<result property="carryState" column="carryState" />
+		<result property="unCarryState" column="unCarryState" />
+		<result property="jz" column="jz" />
+	</resultMap>
+
+	<insert id="addProgress">
+		insert into
+		t_basic_progress(id,accountID,period,cv,jt,unJt,carryState,unCarryState,jz)values(#{id},#{accountID},#{period},#{cv},#{jt},#{unJt},#{carryState},#{unCarryState},#{jz})
+	</insert>
+
+	<select id="queryProgress" resultMap="progressMap">
+		select * from
+		t_basic_progress where accountID=#{accountID} and period=#{period};
+	</select>
+
+	<update id="chgProgress">
+		update t_basic_progress set
+		<if test="cv!=null">
+			cv=#{cv}
+		</if>
+		<if test="jt!=null">
+			jt=#{jt}
+		</if>
+		<if test="unJt!=null">
+			unJt=#{unJt}
+		</if>
+		<if test="carryState!=null">
+			carryState=#{carryState}
+		</if>
+		<if test="unCarryState!=null">
+			unCarryState=#{unCarryState}
+		</if>
+		<if test="jz!=null">
+			jz=#{jz}
+		</if>
+		where accountID=#{accountID} and period=#{period};
+	</update>
+</mapper>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wqb.mappers.invoice.InvoiceBodyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wqb.domains.invoice.InvoiceBody">
+        <id column="invoiceBID" property="invoiceBID" />
+        <result column="invoiceHID" property="invoiceHID" />
+        <result column="period" property="period" />
+        <result column="taxRate" property="taxRate" />
+        <result column="ntaxAmount" property="ntaxAmount" />
+        <result column="taxAmount" property="taxAmount" />
+        <result column="namount" property="namount" />
+        <result column="nnumber" property="nnumber" />
+        <result column="comName" property="comName" />
+        <result column="spec" property="spec" />
+        <result column="comNameSpec" property="comNameSpec" />
+        <result column="invoiceType" property="invoiceType" />
+        <result column="accountID" property="accountID" />
+        <result column="measureID" property="measureID" />
+        <result column="measure" property="measure" />
+        <result column="nprice" property="nprice" />
+        <result column="taxClass" property="taxClass" />
+        <result column="updatePsnID" property="updatePsnID" />
+        <result column="updatePsn" property="updatePsn" />
+        <result column="updatedate" property="updatedate" />
+        <result column="createPsnID" property="createPsnID" />
+        <result column="CREATEpsn" property="CREATEpsn" />
+        <result column="userID" property="userID" />
+        <result column="taxTypeCode" property="taxTypeCode" />
+        <result column="des" property="des" />
+        <result column="sub_code" property="subCode" />
+        <result column="sub_full_name" property="subFullName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        invoiceBID, invoiceHID, period, taxRate, ntaxAmount, taxAmount, namount, nnumber, comName, spec, comNameSpec, invoiceType, accountID, measureID, measure, nprice, taxClass, updatePsnID, updatePsn, updatedate, createPsnID, CREATEpsn, userID, taxTypeCode, des, sub_code, sub_full_name
+    </sql>
+
+</mapper>

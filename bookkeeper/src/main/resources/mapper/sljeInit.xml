@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sljeInit">
+	<!-- 登录用户映射 -->
+	<resultMap type="sljeInit" id="sljeInitMap">
+		<result property="id" column="id" />
+		<result property="period" column="period" />
+		<result property="subNumber" column="subNumber" />
+		<result property="suName" column="suName" />
+		<result property="jdDirect" column="jdDirect" />
+		<result property="qcCount" column="qcCount" />
+		<result property="qcPrice" column="qcPrice" />
+		<result property="qcAmount" column="qcAmount" />
+		<result property="bqsrCount" column="bqsrCount" />
+		<result property="bqsrAmount" column="bqsrAmount" />
+		<result property="bqfcCount" column="bqfcCount" />
+		<result property="bqfcAmount" column="bqfcAmount" />
+		<result property="bnljsrCount" column="bnljsrCount" />
+		<result property="bnljsrAmount" column="bnljsrAmount" />
+		<result property="bnljfcCount" column="bnljfcCount" />
+		<result property="bnljfcAmount" column="bnljfcAmount" />
+		<result property="balanceJDDirect" column="balanceJDDirect" />
+		<result property="qmjcCount" column="qmjcCount" />
+		<result property="qmjcPrice" column="qmjcPrice" />
+		<result property="qmjcAmount" column="qmjcAmount" />
+		<result property="accountID" column="accountID" />
+		
+	</resultMap>
+
+	<insert id="insertSljeInit">
+		insert into t_slje
+		(
+		id,
+		period,
+		subNumber,
+		suName,
+		jdDirect,
+		qcCount,
+		qcPrice,
+		qcAmount,
+		bqsrCount,
+		bqsrAmount,
+		bqfcCount,
+		bqfcAmount,
+		bnljsrCount,
+		bnljsrAmount,
+		bnljfcCount,
+		bnljfcAmount,
+		balanceJDDirect,
+		qmjcCount,
+		qmjcPrice,
+		qmjcAmount,
+		accountID
+		) values
+		(
+		#{id},
+		#{period},
+		#{subNumber},
+		#{suName},
+		#{jdDirect},
+		#{qcCount},
+		#{qcPrice},
+		#{qcAmount},
+		#{bqsrCount},
+		#{bqsrAmount},
+		#{bqfcCount},
+		#{bqfcAmount},
+		#{bnljsrCount},
+		#{bnljsrAmount},
+		#{bnljfcCount},
+		#{bnljfcAmount},
+		#{balanceJDDirect},
+		#{qmjcCount},
+		#{qmjcPrice},
+		#{qmjcAmount },
+		#{accountID}
+		)
+	</insert>
+	
+	<select id="querySlje" resultMap="sljeInitMap">
+		select * from t_slje where accountID=#{accountID};
+	</select>
+	<select id="querySljeBySubNumber" resultMap="sljeInitMap">
+		select * from t_slje where accountID=#{accountID} and subNumber=#{subNumber};
+	</select>
+</mapper>

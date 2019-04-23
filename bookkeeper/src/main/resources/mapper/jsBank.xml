@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jsBank">
+
+	<insert id="insertJsBank" parameterType="com.wqb.model.bank.JsBank">
+
+
+		insert into
+		t_cm_bkbill_js
+		(
+		jsBillID,
+		accountID,
+		vouchID,
+		period,
+		transaction_time,
+		jffsAmount,
+		dffsAmount,
+		balance,
+		typeCurrency,
+		dfAccountName,
+		dfAccountNumber,
+		khhName,
+		transaction_date,
+		reference,
+		remarks,
+		transactionID,
+		companyTransactionID,
+		vouchType,
+		vouchNo,
+		glAccount,
+		importDate,
+		bankType,
+		sysSubjectCode,
+		sysSubjectName,
+		sysSubjectID,
+		sysSubjectFullName,
+		bankAccount
+		)
+		values
+		(
+		#{jsBillID},
+		#{accountID},
+		#{vouchID},
+		#{period},
+		#{transaction_time,jdbcType=TIMESTAMP},
+		#{jffsAmount,jdbcType=DECIMAL},
+		#{dffsAmount,jdbcType=DECIMAL},
+		#{balance,jdbcType=DECIMAL},
+		#{typeCurrency},
+		#{dfAccountName},
+		#{dfAccountNumber},
+		#{khhName},
+		#{transaction_date},
+		#{reference},
+		#{remarks},
+		#{transactionID},
+		#{companyTransactionID},
+		#{vouchType},
+		#{vouchNo},
+		#{glAccount},
+		#{importDate},
+		#{bankType},
+		#{sysSubjectCode},
+		#{sysSubjectName},
+		#{sysSubjectID},
+		#{sysSubjectFullName},
+		#{bankAccount}
+		)
+	</insert>
+
+	<!-- 查询是否有重复数据导入 -->
+	<select id="querySame" parameterType="map" resultType="com.wqb.model.bank.JsBank">
+		select
+		jsBillID,accountID,period from t_cm_bkbill_js
+		where
+		period = #{period}
+		and accountID = #{accountID}
+		and transactionID = #{transactionID}
+	</select>
+	<select id="queryBankBill" resultType="com.wqb.model.bank.JsBank">
+		select * from t_cm_bkbill_js where accountID = #{accountID} and
+		period=#{busDate}
+		<if
+			test="beginTime!=null and beginTime!='' and endTime!=null and endTime!=''">
+			and transaction_time between #{beginTime} and #{endTime}
+		</if>
+		<if test="bankType!=null and bankType!='' and bankType!='全部'">
+		   and bankType=#{bankType}
+		</if>
+		<if test="keyWords!=null and keyWords!=''">
+			and dfAccountName like CONCAT('%','${keyWords}','%' )
+		</if>
+		order by importDate
+		<if test="begin != null and begin != '' or begin==0">
+			limit #{begin},#{maxPage}
+		</if>
+	</select>
+	
+	<!-- 银行凭证添加  查询当期全部数据 -->
+	<select id="queryAll"  parameterType="map" resultType="com.wqb.model.bank.JsBank">
+		select * from t_cm_bkbill_js where  accountID = #{accountID} and period=#{busDate} order by importDate
+	</select>
+	
+	
+	<delete id="deleteByID">
+		delete from t_cm_bkbill_js where jsBillID in ${bills};
+	</delete>
+
+
+	<update id="delVouchID">
+		update t_cm_bkbill_js  set vouchID =''  where vouchID=#{vouchID};
+	</update>
+	
+	 <update id="addVouchID">
+   		update t_cm_bkbill_js  set vouchID =#{vouchID}  where jsBillID=#{bankID};
+    </update>
+    
+    <update id="updByID">
+		update t_cm_bkbill_js set sysSubjectCode
+		=#{sysSubjectCode},sysSubjectName=#{sysSubjectName},
+		sysSubjectID=#{sysSubjectID},sysSubjectFullName=#{sysSubjectFullName}
+		where jsBillID=#{id};
+	</update>
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="loginLog">
+	<!-- 登录日志表映射 -->
+	<resultMap type="loginLog" id="loginLogMap">
+		<result property="loginLogID" column="loginLogID" />
+		<result property="userID" column="userID" />
+		<result property="loginUser" column="loginUser" />
+		<result property="userName" column="userName" />
+		<result property="loginTime" column="loginTime" />
+		<result property="loginIP" column="loginIP" />
+		<result property="createDate" column="createDate" />
+	</resultMap>
+	<insert id="addLoginLog">
+		insert into
+		t_sys_loginlog(loginLogID,userID,loginUser,userName,loginTime,loginIP,createDate)
+		values(#{loginLogID},#{userID},#{loginUser},#{userName},#{loginTime},#{loginIP},#{createDate});
+	</insert>
+</mapper>

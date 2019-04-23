@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wqb.mappers.PayrollMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wqb.domains.Payroll">
+        <id column="archID" property="archID" />
+        <result column="acperiod" property="acperiod" />
+        <result column="archDate" property="archDate" />
+        <result column="accountID" property="accountID" />
+        <result column="acDepartment" property="acDepartment" />
+        <result column="acCode" property="acCode" />
+        <result column="acName" property="acName" />
+        <result column="basePay" property="basePay" />
+        <result column="subsidy" property="subsidy" />
+        <result column="overtimeFree" property="overtimeFree" />
+        <result column="overtimeWeekend" property="overtimeWeekend" />
+        <result column="otherFree" property="otherFree" />
+        <result column="payAble" property="payAble" />
+        <result column="socialfree" property="socialfree" />
+        <result column="taxFree" property="taxFree" />
+        <result column="totalCharged" property="totalCharged" />
+        <result column="provident" property="provident" />
+        <result column="utilities" property="utilities" />
+        <result column="deduction" property="deduction" />
+        <result column="attendanceDays" property="attendanceDays" />
+        <result column="attendanceActual" property="attendanceActual" />
+        <result column="realwages" property="realwages" />
+        <result column="importDate" property="importDate" />
+        <result column="createpsnID" property="createpsnID" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        archID, acperiod, archDate, accountID, acDepartment, acCode, acName, basePay, subsidy, overtimeFree, overtimeWeekend, otherFree, payAble, socialfree, taxFree, totalCharged, provident, utilities, deduction, attendanceDays, attendanceActual, realwages, importDate, createpsnID
+    </sql>
+
+</mapper>

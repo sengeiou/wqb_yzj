@@ -1,0 +1,756 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="account">
+	<!-- 账套映射 -->
+	<resultMap type="account" id="accountMap">
+		<result property="accountID" column="accountID" />
+		<result property="userID" column="userID" />
+		<result property="customerID" column="customerID" />
+		<result property="companyName" column="companyName" />
+		<result property="period" column="period" />
+		<result property="useLastPeriod" column="useLastPeriod" />
+		<result property="accstandards" column="accstandards" />
+		<result property="calculate" column="calculate" />
+		<result property="updatepsnID" column="updatepsnID" />
+		<result property="updatepsn" column="updatepsn" />
+		<result property="updatedate" column="updatedate" />
+		<result property="createpsnID" column="createpsnID" />
+		<result property="createpsn" column="createpsn" />
+		<result property="createDate" column="createDate" />
+		<result property="des" column="des" />
+		<result property="lastTime" column="lastTime" />
+		<result property="statu" column="statu" />
+		<result property="companyType" column="companyType" />
+		<result column="initial_states" property="initialStates"
+			jdbcType="INTEGER" />
+		<result property="ssType" column="ssType" />
+		<result property="type" column="type" />
+		<result property="source" column="source" />
+		<result property="companyNamePinYin" column="companyNamePinYin" />
+		<result column="mapping_states" property="mappingStates"
+			jdbcType="INTEGER" />
+	</resultMap>
+
+	<select id="queryAccByUserID" resultMap="accountMap">
+		select * from
+		t_basic_account where userID=#{userID} and statu=1;
+	</select>
+	<!--tangsheng 通过超级管理员登陆系统查询到的生成凭证流程节点的状态对应的账套客户信息begin -->
+	<select id="queryPeriodId" resultMap="accountMap" parameterType="map">
+		select userID, accountID,companyName,period,statu from t_basic_account
+		where accountID=#{accountId}
+		<if test="keyword != null">
+			and companyName LIKE CONCAT('%','${keyWord}','%' )
+		</if>
+	</select>
+	<!--tangsheng 通过超级管理员登陆系统查询到的生成凭证流程节点的状态对应的账套客户信息end -->
+	<select id="queryAccByID" resultMap="accountMap">
+		select
+		*
+		from t_basic_account
+		where accountID=#{accountID};
+	</select>
+	<update id="chgAccLastTime">
+		update t_basic_account set lastTime=#{lastTime} where
+		accountID =#{accountID} ;
+	</update>
+
+	<!-- 更新账套最后登陆时间和期间 -->
+	<update id="chgAccByCondintion" parameterType="map">
+		update t_basic_account
+		<set>
+			<if test="useLastPeriod!=null">
+				useLastPeriod=#{useLastPeriod},
+			</if>
+			<if test="lastTime!=null">
+				lastTime=#{lastTime},
+			</if>
+		</set>
+		where accountID =#{accountID}
+	</update>
+
+	<update id="chgAccInitialStates">
+		update t_basic_account
+		set
+		updatepsnID =
+		#{updatepsnID,jdbcType=VARCHAR},
+		updatepsn =
+		#{updatepsn,jdbcType=VARCHAR},
+		updatedate =
+		#{updatedate,jdbcType=TIMESTAMP},
+		initial_states =
+		#{initialStates,jdbcType=INTEGER}
+		where accountID =
+		#{accountID,jdbcType=VARCHAR}
+	</update>
+	
+	<update id="mappingStates">
+		update t_basic_account
+		set
+		updatepsnID =
+		#{updatepsnID,jdbcType=VARCHAR},
+		updatepsn =
+		#{updatepsn,jdbcType=VARCHAR},
+		updatedate =
+		#{updatedate,jdbcType=TIMESTAMP},
+		mapping_states =
+		#{mappingStates,jdbcType=INTEGER}
+		where accountID =
+		#{accountID,jdbcType=VARCHAR}
+	</update>
+
+	<select id="queryAllAccByUserID" resultMap="accountMap">
+		select * from
+		t_basic_account where userID=#{userID};
+	</select>
+
+	<select id="queryUserById" resultType="com.wqb.model.User"
+		parameterType="map">
+		select * from t_sys_user where parentUser=#{userID} and
+		state = 1;
+	</select>
+
+	<!-- 根据用户id批量查询 -->
+	<select id="queryAccs" resultType="com.wqb.model.Account"
+		parameterType="map">
+		select * from t_basic_account where statu = 1 and userID in
+		<foreach collection="ids" open="(" close=")" item="item"
+			index="index" separator=",">
+			#{item}
+		</foreach>
+		<if test="keyWord != null">
+			and companyName LIKE CONCAT('%','${keyWord}','%' )
+		</if>
+		<if test="begin != null">
+			limit #{begin},#{pageSize}
+		</if>
+	</select>
+
+
+	<select id="queryAccs2" resultType="com.wqb.model.Account"
+		parameterType="map">
+		select * from t_basic_account where userID =#{userID}
+		<if test="statu!=null">
+			and statu=#{statu}
+		</if>
+		<if test="statu0!=null">
+			and statu != #{statu0}
+		</if>
+		<if test="keyWord != null">
+			and companyName LIKE CONCAT('%','${keyWord}','%' )
+		</if>
+		<if test="begin != null">
+			limit #{begin},#{pageSize}
+		</if>
+	</select>
+
+
+
+	<select id="queryAccsNum" resultType="int" parameterType="map">
+		select count(*) from t_basic_account where statu=1 and userID in
+		<foreach collection="ids" open="(" close=")" item="item"
+			index="index" separator=",">
+			#{item}
+		</foreach>
+		<if test="keyWord != null">
+			and companyName LIKE CONCAT('%','${keyWord}','%' )
+		</if>
+		<if test="begin != null">
+			limit #{begin},#{pageSize}
+		</if>
+	</select>
+
+
+	<select id="queryAccsNum2" parameterType="map" resultType="com.wqb.model.Account">
+		select
+		<include refid="accCols1" />
+		from t_basic_account where userID =#{userID}
+
+		<if test="statu!=null">
+			and statu=#{statu}
+		</if>
+		<if test="statu0!=null">
+			and statu != #{statu0}
+		</if>
+		<if test="keyWord != null">
+			and companyName LIKE CONCAT('%','${keyWord}','%' )
+		</if>
+		<if test="begin != null">
+			limit #{begin},#{pageSize}
+		</if>
+	</select>
+
+
+	<!-- 根据用户查找账套 -->
+	<select id="queryAccByCondition" parameterType="map"  resultMap="accountMap">
+		select *  from
+		t_basic_account
+		<where>
+			<if test="userID!=null">
+				and userID=#{userID}
+			</if>
+			<if test="customID!=null">
+				and customID=#{customID}
+			</if>
+			<if test="period!=null"> <!-- date 启动期间 -->
+				and period like CONCAT('','${period}','%' )
+			</if>
+			<if test="keyWord != null">
+				and companyName LIKE CONCAT('%','${keyWord}','%' )
+			</if>
+			<if test="companyNamePinYin != null">
+				and companyNamePinYin LIKE CONCAT('%','${companyNamePinYin}','%' )
+			</if>
+			<if test="statu!=null">
+				and statu=#{statu}
+			</if>
+			<if test="statu0!=null">
+				and statu != #{statu0}
+			</if>
+			<if test="type!=null">
+				and type=#{type}
+			</if>
+			<if test="source!=null">
+				and source=#{source}
+			</if>
+
+			<if test="ids!=null">
+				and accountID in
+				<foreach collection="ids" item="aid" open="(" close=")"
+					separator=",">
+					#{aid}
+				</foreach>
+			</if>
+			<if test="myself=='myself'.toString()">
+				and accountID!=#{accountID}
+			</if>
+			<if test="lastTime != null">
+				order by lastTime desc
+			</if>
+			<if test="begin != null">
+				limit #{begin},#{pageSize}
+			</if>
+			<if test="limitLogin != null">
+				limit 1
+			</if>
+		</where>
+	</select>
+
+	<select id="queryAidByCondition" parameterType="map" resultType="string">
+		select accountID from t_basic_account
+		<where>
+			<if test="userID!=null">
+				and userID=#{userID}
+			</if>
+			<if test="customID!=null">
+				and customID=#{customID}
+			</if>
+			<if test="keyWord != null">
+				and companyName LIKE CONCAT('%','${keyWord}','%' )
+			</if>
+			
+			<if test="companyNamePinYin != null">
+				and companyNamePinYin LIKE CONCAT('%','${companyNamePinYin}','%' )
+			</if>
+			<if test="statu!=null">
+				and statu=#{statu}
+			</if>
+			<if test="type!=null">
+				and type=#{type}
+			</if>
+			<if test="source!=null">
+				and source=#{source}
+			</if>
+
+			<if test="ids!=null">
+				and accountID in
+				<foreach collection="ids" item="aid" open="(" close=")"
+					separator=",">
+					#{aid}
+				</foreach>
+			</if>
+			<if test="lastTime != null">
+				order by lastTime desc
+			</if>
+			<if test="begin != null">
+				limit #{begin},#{pageSize}
+			</if>
+		</where>
+	</select>
+
+
+
+	<select id="queryAccByConditionCount" parameterType="map"
+		resultType="int">
+		select count(*) from t_basic_account
+		<where>
+			<if test="userID!=null">
+				and userID=#{userID}
+			</if>
+			<if test="keyWord != null">
+				and companyName LIKE CONCAT('%','${keyWord}','%' )
+			</if>
+			
+			<if test="companyNamePinYin != null">
+				and companyNamePinYin LIKE CONCAT('%','${companyNamePinYin}','%' )
+			</if>
+			
+			<if test="statu!=null">
+				and statu=#{statu}
+			</if>
+			<if test="source!=null">
+				and source=#{source}
+			</if>
+			<if test="ids!=null">
+				and accountID in
+				<foreach collection="ids" item="aid" open="(" close=")"
+					separator=",">
+					#{aid}
+				</foreach>
+			</if>
+		</where>
+	</select>
+
+
+	<select id="queryAccRuning" parameterType="map" resultType="int">
+		select COUNT(*) num from t_status_period where period = #{period} and
+		isCreateVoucher = 1 and isJz!=1 AND accountID in (
+		SELECT accountID
+		FROM t_basic_account WHERE statu=1
+		<if test="source!=null">
+			and source = #{source}
+		</if>
+		<if test="userID!=null">
+			and userID = #{userID}
+		</if>
+		)
+	</select>
+
+	<select id="queryAccFinish" parameterType="map" resultType="int">
+		select COUNT(*) num from t_status_period where period = #{period} and
+		isJz=1 AND accountID in (
+		SELECT accountID FROM t_basic_account WHERE
+		statu=1
+		<if test="source!=null">
+			and source = #{source}
+		</if>
+		<if test="userID!=null">
+			and userID = #{userID}
+		</if>
+		)
+	</select>
+
+
+	<select id="queryStartStaPer" parameterType="map" resultType="string">
+		select accountID from t_status_period where period = #{period} and
+		isCreateVoucher = 1 AND accountID in
+		(
+		SELECT accountID FROM
+		t_basic_account WHERE statu=1
+		<if test="source!=null">
+			and source = #{source}
+		</if>
+		<if test="userID!=null">
+			and userID = #{userID}
+		</if>
+		)
+	</select>
+
+	<select id="queryFinishStaPer" parameterType="map" resultType="string">
+		select accountID from t_status_period where period = #{period} and
+		isJz=1 AND accountID in
+		(
+		SELECT accountID FROM t_basic_account WHERE
+		statu=1
+		<if test="source!=null">
+			and source = #{source}
+		</if>
+		<if test="userID!=null">
+			and userID = #{userID}
+		</if>
+		)
+		limit #{begin},#{pageSize}
+	</select>
+
+
+
+	<select id="queryAccJoinStatusPeriod" parameterType="map"
+		resultType="com.wqb.model.vomodel.AccStatusPeriod">
+		select
+		a.accountID,a.userID,a.customID,a.companyName,a.period,a.statu,a.source,
+		a.lastTime,
+		s.isCreateVoucher,s.isJz,s.period as speriod
+		from
+		t_basic_account a
+		left join
+		t_status_period s
+		on
+		a.accountID = s.accountID
+		<where>
+			<if test="source!=null">
+				and a.source=#{source}
+			</if>
+			<if test="period!=null">
+				and s.period = #{period}
+			</if>
+			<if test="userID!=null">
+				and a.userID=#{userID}
+			</if>
+			<if test="statu!=null">
+				and a.statu=#{statu}
+			</if>
+			<!-- 0已完成 -->
+			<if test="statuType0!=null">
+				and s.isJz=1
+			</if>
+			<!-- 1进行中 -->
+			<if test="statuType1!=null">
+				and s.isCreateVoucher=1 and s.isJz!=1
+			</if>
+
+			<!-- 未开始start -->
+			<if test="statuType2!=null">
+				and s.isCreateVoucher=1
+			</if>
+			<if test="keyWord != null">
+				and a.companyName LIKE CONCAT('%','${keyWord}','%' )
+			</if>
+
+			<if test="ids!=null">
+				a.accountID in
+				<foreach collection="ids" item="aid" open="(" close=")"
+					separator=",">
+					#{aid}
+				</foreach>
+			</if><!-- 未完成end -->
+			<if test="begin != null">
+				limit #{begin},#{pageSize}
+			</if>
+			<if test="lastTime != null">
+				order by lastTime desc
+			</if>
+		</where>
+	</select>
+
+
+	<select id="queryAccJoinStatusPeriodCount" parameterType="map"
+		resultType="int">
+		select
+		count(*)
+		from
+		t_basic_account a
+		left join
+		t_status_period s
+		on
+		a.accountID = s.accountID
+		<where>
+			<if test="source!=null">
+				and a.source=#{source}
+			</if>
+			<if test="period!=null">
+				and s.period = #{period}
+			</if>
+			<if test="userID!=null">
+				and a.userID=#{userID}
+			</if>
+			<if test="statu!=null">
+				and a.statu=#{statu}
+			</if>
+			<!-- 0已完成 -->
+			<if test="statuType0!=null">
+				and s.isJz=1
+			</if>
+			<!-- 1进行中 -->
+			<if test="statuType1!=null">
+				and s.isCreateVoucher=1 and s.isJz!=1
+			</if>
+
+			<!-- 未开始start -->
+			<if test="statuType2!=null">
+				and s.isCreateVoucher=1
+			</if>
+
+			<if test="ids!=null">
+				a.accountID in
+				<foreach collection="ids" item="aid" open="(" close=")"
+					separator=",">
+					#{aid}
+				</foreach>
+			</if><!-- 未完成end -->
+			<if test="begin != null">
+				limit #{begin},#{pageSize}
+			</if>
+			<if test="lastTime != null">
+				order by lastTime desc
+			</if>
+		</where>
+	</select>
+
+
+	<sql id="accCols1">
+		accountID,period,userID,customID,companyName,statu,createDate,type,source,ssType
+	</sql>
+
+
+	<!-- 账套查询 -->
+
+	<sql id="whereCase2">
+		<where>
+			<if test="userID!=null">
+				and userID=#{userID}
+			</if>
+			<if test="customID!=null">
+				and customID=#{customID}
+			</if>
+			<if test="period!=null">
+				and period like CONCAT('','${period}','%' )
+			</if>
+			<if test="keyWord != null">
+				and companyName LIKE CONCAT('%','${keyWord}','%' )
+			</if>
+			<if test="statu!=null">
+				and statu=#{statu}
+			</if>
+			<if test="statu0!=null">
+				and statu != #{statu0}
+			</if>
+			<if test="type!=null">
+				and type=#{type}
+			</if>
+			<if test="source!=null">
+				and source=#{source}
+			</if>
+			<if test="begin != null">
+				limit #{begin},#{pageSize}
+			</if>
+			<if test="lastTime != null">
+				order by lastTime desc
+			</if>
+		</where>
+	</sql>
+
+
+	<select id="queryStatusPeriod" parameterType="map"
+		resultType="com.wqb.model.StatusPeriod">
+		select isCreateVoucher,isCarryState,isJz from t_basic_account a left
+		join t_status_period s where s.period = #{period} and a.accountID in
+		<foreach collection="ids" open="(" close=")" item="item"
+			separator=",">
+			#{item}
+		</foreach>
+	</select>
+
+
+	<select id="queryStaPeriod2" parameterType="map"
+		resultType="com.wqb.model.StatusPeriod">
+		select accountID,isCreateVoucher,isCarryState,isJz from
+		t_status_period where period = #{period} and accountID in
+		<foreach collection="ids" open="(" close=")" item="item"
+			separator=",">
+			#{item}
+		</foreach>
+	</select>
+
+
+
+
+	<select id="getMonthAddAcc" resultType="java.util.Map">
+		select count(*) as
+		monthAddAccCou from t_basic_account where userID = #{userID} and
+		createDate between #{begin} and #{end} and statu=1;
+	</select>
+
+
+
+	<select id="getMonthTyAcc" resultType="java.util.Map">
+		select count(*) as
+		monthTyAccCou from t_basic_account where userID = #{userID} and
+		chgStatuTime between #{begin} and #{end} and statu=2;
+	</select>
+
+	<select id="getDzqyAccCount" resultType="java.util.Map">
+		SELECT
+		b.*, c.loginUser
+		FROM
+		(
+		SELECT
+		adminUser,
+		count(adminUser) AS sl
+		FROM
+		(
+		SELECT
+		t1.*,
+		IF (
+		t2.userType = 2,
+		t2.userID,
+		parentUser
+		) AS adminUser
+		FROM
+		t_basic_account
+		t1,
+		t_sys_user t2
+		WHERE
+		t1.userID = t2.userID
+		AND (
+		(
+		t2.userType = 2
+		OR
+		t2.userType = 5
+		)
+		AND t1.statu != 0
+		)
+		) t
+		GROUP BY
+		adminUser
+		ORDER BY
+		count(adminUser) DESC
+		) b,
+		t_sys_user c
+		WHERE
+		b.adminUser = c.userID;
+	</select>
+	<!-- 获取本月新增企业数 -->
+	<select id="getByxzqy" resultType="java.util.Map">
+		select count(*) as sl from
+		t_basic_account where chgStatuTime like CONCAT('%','${time}','%' ) and
+		statu=1 and userID=#{userID};
+	</select>
+	<!-- 获取截止到上月的总企业数 -->
+	<select id="getSyzqy" resultType="java.util.Map">
+		select count(*) as sl from
+		t_basic_account where chgStatuTime &lt; #{time} and statu=1 and
+		userID=#{userID};
+	</select>
+
+	<!-- 查看员工总停用企业数 -->
+	<select id="getZtyqys" resultType="java.util.Map">
+		select count(*) as sl from
+		t_basic_account where statu=2 and userID =#{userID};
+	</select>
+
+	<select id="getZqys" resultType="java.util.Map">
+		select count(*) as sl from
+		t_basic_account where statu!=0 and userID =#{userID};
+	</select>
+
+	<!-- 查询用户下面的所有帐套 -->
+	<select id="queryAllAccByUserIdStr" parameterType="string"
+		resultType="com.wqb.model.Account">
+		select * from
+		t_basic_account where userID=#{userID};
+	</select>
+
+	<!-- 按年份查询用户下面所有的帐套 -->
+	<select id="queryAllAccByUserIdYear" resultType="com.wqb.model.Account">
+		select * from
+		t_basic_account where userID=#{userID} and chgStatuTime like
+		CONCAT('%','${busDate}','%' );
+	</select>
+
+
+
+
+
+	<!-- 第四版统计 -->
+	<select id="queryAdminFirstData" resultType="java.util.Map">
+				SELECT
+						t4.*, 
+						IFNULL(t5.xz, 0) AS xz,
+						IFNULL(t6.userTy, 0) as userTy
+				FROM
+					(
+						SELECT
+							count(*) AS sl,
+							userID,
+							userName,
+							loginUser
+						FROM
+							(
+								SELECT
+									t1.*, t2.userName,
+									t2.loginUser
+								FROM
+									t_basic_account t1,
+									t_sys_user t2
+								WHERE
+									t1.source = #{userID}
+								AND t1.userID != #{userID}
+								AND t1.statu = 1
+								AND t1.userID = t2.userID
+							) t3
+						GROUP BY
+							t3.userID,
+							t3.userName
+						ORDER BY
+							count(*) DESC
+					) t4
+				LEFT JOIN (
+					SELECT
+						count(*) AS xz,
+						userID
+					FROM
+						t_basic_account
+					WHERE
+						createDate LIKE CONCAT('','${time}','%' )
+					AND statu = 1
+					GROUP BY
+						userID
+				) t5 ON t4.userID = t5.userID
+				LEFT JOIN (
+					SELECT
+						count(*) AS userTy,
+						userID
+					FROM
+						t_basic_account
+					WHERE
+						chgStatuTime LIKE CONCAT('','${time}','%' )
+					AND statu = 2
+					GROUP BY
+						userID
+				) t6 ON t5.userID = t6.userID;
+				
+				
+
+	</select>
+
+	<select id="queryAdminXzHj" resultType="java.util.Map">
+		select count(*) as xzhj
+		from t_basic_account where userID=#{userID} and createDate like
+		CONCAT('','${time}','%' ) and statu=1
+	</select>
+
+	<select id="queryXzCount" resultType="java.util.Map">
+		select count(*) as xz from
+		t_basic_account where userID= #{userID} and createDate like
+		CONCAT('','${time}','%' ) and statu=1
+	</select>
+
+	<select id="queryHj" resultType="java.util.Map">
+		select count(*) as hj from
+		t_basic_account where source=#{userID} and statu=1 ;
+	</select>
+
+	<select id="queryXzHj" resultType="java.util.Map">
+		select count(*) as xzhj from
+		t_basic_account where source=#{userID} and createDate like
+		CONCAT('','${time}','%' ) and statu=1
+	</select>
+
+	<select id="queryTy" resultType="java.util.Map">
+		select count(*) as ty from
+		t_basic_account where userID=#{userID} and chgStatuTime like
+		CONCAT('','${time}','%' ) and statu=2;
+	</select>
+
+	<select id="queryHjTy" resultType="java.util.Map">
+		select count(*) as hjty from
+		t_basic_account where source=#{userID} and chgStatuTime like
+		CONCAT('','${time}','%' ) and statu=2;
+	</select>
+
+	<update id="updateMappingStates" >
+		UPDATE t_basic_account SET mapping_states = 0 WHERE mapping_states = 1
+	</update>
+</mapper>

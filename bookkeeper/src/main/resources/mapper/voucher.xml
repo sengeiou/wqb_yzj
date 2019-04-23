@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="voucher">
+	<!-- 凭证头映射 -->
+	<resultMap type="voucherHead" id="voucherHMap">
+		<result property="vouchID" column="vouchID" />
+		<result property="vcDate" column="vcDate" />
+		<result property="currencyID" column="currencyID" />
+		<result property="currency" column="currency" />
+		<result property="des" column="des" />
+		<result property="updatePsnID" column="updatePsnID" />
+		<result property="updatePsn" column="updatePsn" />
+		<result property="updatedate" column="updatedate" />
+		<result property="createPsnID" column="createPsnID" />
+		<result property="createpsn" column="createpsn" />
+		<result property="createDate" column="createDate" />
+		<result property="accountID" column="accountID" />
+		<result property="checkedDate" column="checkedDate" />
+		<result property="period" column="period" />
+		<result property="checker" column="checker" />
+		<result property="auditStatus" column="auditStatus" />
+		<result property="source" column="source" />
+		<result property="totalCredit" column="totalCredit" />
+		<result property="totalDbit" column="totalDbit" />
+		<result property="vouchFlag" column="vouchFlag" />
+		<result property="voucherNO" column="voucherNO" />
+		<result property="isproblem" column="isproblem" />
+		<result property="attachID" column="attachID" />
+
+	</resultMap>
+	<!-- 凭证体映射 -->
+	<resultMap type="voucherBody" id="voucherBMap">
+		<result property="vouchAID" column="vouchAID" />
+		<result property="vouchID" column="vouchID" />
+		<result property="rowIndex" column="rowIndex" />
+		<result property="vcabstact" column="vcabstact" />
+		<result property="vcsubject" column="vcsubject" />
+		<result property="vcunitID" column="vcunitID" />
+		<result property="vcunit" column="vcunit" />
+		<result property="debitAmount" column="debitAmount" />
+		<result property="creditAmount" column="creditAmount" />
+		<result property="accountID" column="accountID" />
+		<result property="direction" column="direction" />
+		<result property="subjectID" column="subjectID" />
+		<result property="updatePsnID" column="updatePsnID" />
+		<result property="updatePsn" column="updatePsn" />
+		<result property="updatedate" column="updatedate" />
+
+		<result property="number" column="number" />
+		<result property="price" column="price" />
+		<result property="isproblem" column="isproblem" />
+		<result property="des" column="des" />
+	</resultMap>
+	<select id="queryMaxVouchNO" parameterType="java.util.Map"
+		resultType="int">
+		select max(voucherNo)
+		from t_vouch_h where
+		accountID=#{accountID} and period=#{period};
+	</select>
+
+	<insert id="insertVouchHead">
+		insert into
+		t_vouch_h
+		(vouchID,vcDate,currencyID,currency,des,updatePsnID,updatePsn,updatedate,createPsnID,createpsn,createDate,accountID,checkedDate,
+		period,checker,auditStatus,source,totalCredit,totalDbit,vouchFlag,voucherNO,isproblem,voucherType
+		)values(#{vouchID},#{vcDate},#{currencyID},#{currency},#{des},#{updatePsnID},#{updatePsn},#{updatedate},
+		#{createPsnID},#{createpsn},#{createDate},#{accountID},#{checkedDate},
+		#{period},#{checker},#{auditStatus},#{source},#{totalCredit},#{totalDbit},#{vouchFlag},#{voucherNO},#{isproblem},#{voucherType,jdbcType=INTEGER});
+	</insert>
+
+	<insert id="insertVouchBody">
+		insert into
+		t_vouch_b(vouchAID,vouchID,rowIndex,vcabstact,vcsubject,vcunitID,vcunit,debitAmount,creditAmount,accountID,
+		direction,subjectID,updatePsnID,updatePsn,updatedate,number,price,isproblem,des,period)
+		values(#{vouchAID},#{vouchID},#{rowIndex},#{vcabstact},#{vcsubject},#{vcunitID},
+		#{vcunit},#{debitAmount},#{creditAmount},#{accountID},#{direction},#{subjectID},
+		#{updatePsnID},#{updatePsn},#{updatedate},#{number},#{price},#{isproblem},#{des},#{period});
+	</insert>
+
+	<select id="queryVouHByID" resultMap="voucherHMap">
+		select
+		*
+		from t_vouch_h where vouchID = #{vouchID};
+	</select>
+
+	<select id="queryVouBodyByHID" resultMap="voucherBMap">
+		select
+		*
+		from t_vouch_b
+		where vouchID=#{vouchID} order by rowIndex+0;
+	</select>
+
+	<update id="updVouBodyByID">
+		update t_vouch_b set
+		vouchAID=#{vouchAID},vouchID=#{vouchID},rowIndex=#{rowIndex},vcabstact=#{vcabstact},vcsubject=#{vcsubject},vcunitID=#{vcunitID},vcunit=#{vcunit},debitAmount=#{debitAmount},creditAmount=#{creditAmount},accountID=#{accountID},direction={direction},subjectID=#{subjectID},updatePsnID=#{updatePsnID},updatePsn=#{updatePsn},updatedate=#{updatedate}
+		where vouchAID=#{vouchAID};
+	</update>
+	<delete id="deleteVouBodyByID">
+		delete from t_vouch_b where vouchID=#{vouchID};
+	</delete>
+	<update id="updVouHByID">
+		update t_vouch_h set
+		vcDate=#{vcDate},currencyID=#{currencyID},currency=#{currency},des=#{des},updatePsnID=#{updatePsnID},updatePsn=#{updatePsn},updatedate=#{updatedate},createPsnID=#{createPsnID},createpsn=#{createpsn},createDate=#{createDate},accountID=#{accountID},checkedDate=#{checkedDate},
+		period=#{period},checker=#{checker},auditStatus=#{auditStatus},source=#{source},totalCredit=#{totalCredit},totalDbit=#{totalDbit},vouchFlag=#{vouchFlag},voucherNO=#{voucherNO}
+		where vouchID=#{vouchID}
+	</update>
+
+	<!-- List<VoucherHead> queryVHByUserIdAndVouchID(String userID,String vouchID); -->
+
+	<!-- 凭证断号整理查询 -->
+	<select id="queryVHByUserIdAndVouchID" parameterType="Map"  resultType="com.wqb.model.VoucherHead">
+		select * from t_vouch_h
+		where
+		accountID=#{accountID}
+		and
+		period=#{period};
+	</select>
+
+	<!-- 凭证断号整理更新 -->
+	<update id="updatevoucherNo" parameterType="Map">
+		update t_vouch_h set
+		voucherNo=#{voucherNo}
+		where vouchID=#{vouchID}
+
+	</update>
+
+
+	<delete id="deleteVouHeadByID">
+		delete from t_vouch_h where vouchID=#{vouchID};
+	</delete>
+
+	<!-- 凭证审核与反审核 -->
+	<update id="chgVouchStatus">
+		update t_vouch_h set auditStatus=#{auditStatus} where
+		vouchID=#{vouchID};
+	</update>
+
+	<select id="queryVouHead" resultMap="voucherHMap">
+		select * from t_vouch_h where accountID=#{accountID} and period like
+		CONCAT('','${busDate}','%' )
+		order by voucherNo
+		<if test="begin != null and begin != '' or begin==0">
+			limit #{begin},#{maxPage};
+		</if>
+	</select>
+
+	<!-- 获取凭证最大号自增1 -->
+	<select id="getMaxVoucherNo" parameterType="map" resultType="int">
+		select IFNULL(MAX(voucherNo)+1,1) from t_vouch_h where accountID =
+		#{accountID} and period = #{period}
+	</select>
+
+	<!-- 凭证金额更新 -->
+	<update id="chgVouchAmount" parameterType="map">
+		update t_vouch_h
+		<set>
+			<if test="isproblem!=null">
+				isproblem = #{isproblem},
+			</if>
+			<if test="totalCredit!=null">
+				totalCredit = #{totalCredit},
+			</if>
+			<if test="totalDbit!=null">
+				totalDbit = #{totalDbit},
+			</if>
+		</set>
+		where vouchID=#{vouchID};
+	</update>
+
+	<!-- 查询发票和银行对账单凭证 -->
+	<select id="queryInvAndBankVou" resultMap="voucherHMap">
+		select
+		*
+		from t_vouch_H
+		where accountID=#{accountID} and period=#{busDate} and source!=5 and
+		source!=11;
+	</select>
+	<select id="queryAllVouch" resultMap="voucherHMap">
+		select
+		*
+		from t_vouch_H where
+		accountID=#{accountID} and period=#{busDate};
+	</select>
+
+	<update id="oneKeyCheckVoucher">
+		update t_vouch_h set auditStatus=#{auditStatus} where
+		accountID=#{accountID}
+		and period=#{busDate};
+
+	</update>
+	<!-- 发放薪资查询凭证 -->
+	<select id="queryArchVouch" resultMap="voucherBMap">
+		select * from t_vouch_b
+		where vcabstact='计提本月工资' and accountID=#{accountID};
+	</select>
+	<!-- 根据摘要查询凭证 -->
+	<select id="queryjzCarry" resultType="com.wqb.model.VoucherBody"
+		parameterType="map">
+		select * from t_vouch_b where
+		accountID=#{accountID} and
+		period = #{period} and vcabstact =
+		CONCAT('%','${vcabstact}','%' )
+	</select>
+	<!-- 检查凭证是否有问题并标记 -->
+	<update id="upVouBodyById"  parameterType="map">
+		update t_vouch_b set
+		des=#{des,jdbcType=VARCHAR},isproblem = #{isproblem,jdbcType=VARCHAR}
+		where vouchAID=#{vouchAID}
+	</update>
+	<update id="upVouHeadByCheckId" parameterType="map">
+		update t_vouch_h set
+		des=#{des,jdbcType=VARCHAR},isproblem = #{isproblem,jdbcType=VARCHAR}
+		where vouchID=#{vouchID}
+	</update>
+
+	<update id="upVouHeadByCheckIdCall" parameterType="map"
+		statementType="CALLABLE">
+		<![CDATA[
+		  {
+			call upVouHeadByCheckIdCall(
+				#{vouchID,mode=IN,jdbcType=VARCHAR},
+				#{isproblem,mode=IN,jdbcType=VARCHAR},
+				#{des,mode=IN,jdbcType=VARCHAR}
+			)}
+		 ]]>
+	</update>
+
+	<!-- 查询反结账需要删除的凭证 -->
+	<select id="queryUnjzVouch" resultMap="voucherBMap">
+		select * from t_vouch_b
+		where accountID=#{accountID} and period = #{period} and
+		subjectID=#{subjectID} and vcsubject=#{vcsubject};
+	</select>
+
+	<select id="queryVouSummary" parameterType="map"
+		resultType="com.wqb.model.TBasicSubjectMessage">
+		select sub_code as subCode,
+		sub_name as subName,
+		current_amount_debit as
+		currentAmountDebit,
+		current_amount_credit as currentAmountCredit,
+		debit_credit_direction as debitCreditDirection
+		from
+		t_basic_subject_message
+		where code_level = '1'
+		<!-- and (current_amount_debit&gt;0 or current_amount_credit&gt;0) -->
+		and ((current_amount_debit&gt;0 or current_amount_debit &lt;0 or
+		current_amount_credit&gt;0 or current_amount_credit &lt;0))
+		and
+		account_period = #{period} and account_id = #{accountID} order by
+		sub_code
+	</select>
+
+	<!-- 查询反结转需要删除的凭证 -->
+	<select id="queryUnQmjzVouch" resultMap="voucherHMap">
+		select * from t_vouch_h
+		where accountID=#{accountID} and period = #{busDate} and
+		source=#{source}
+	</select>
+
+	<!-- 查询凭证总数 -->
+	<select id="queryCountVouch" parameterType="map" resultType="int">
+		select count(*) from t_vouch_h where accountID=#{accountID} and period
+		= #{period}
+	</select>
+	
+	<!-- 查询凭证总数  如果有凭证不能初始化科目余额表 -->
+	<select id="queryCountVouch2" parameterType="map" resultType="int">
+		select count(*) from t_vouch_h where accountID=#{accountID}
+	</select>
+
+	<select id="queryImportVoucher" resultMap="voucherHMap">
+		select * from
+		t_vouch_h where accountID=#{accountID} and period = #{period} and
+		source=#{source} order by voucherNo;
+	</select>
+
+	<!-- 批量插入凭证体 -->
+	<insert id="insertVouchBatch" parameterType="map">
+		insert into t_vouch_b
+		(
+		vouchAID,
+		vouchID,
+		rowIndex,
+		vcabstact,
+		vcsubject,
+		vcunitID,
+		vcunit,
+		debitAmount,
+		creditAmount,
+		accountID,
+		direction,
+		subjectID,
+		updatePsnID,
+		updatePsn,
+		updatedate,
+		number,
+		price,
+		isproblem,
+		des,
+		period
+		)
+		values
+		<foreach collection="list" item="vb" separator=",">
+			(
+			#{vb.vouchAID},
+			#{vb.vouchID},
+			#{vb.rowIndex},
+			#{vb.vcabstact},
+			#{vb.vcsubject},
+			#{vb.vcunitID},
+			#{vb.vcunit},
+			#{vb.debitAmount},
+			#{vb.creditAmount},
+			#{vb.accountID},
+			#{vb.direction},
+			#{vb.subjectID},
+			#{vb.updatePsnID},
+			#{vb.updatePsn},
+			#{vb.updatedate},
+			#{vb.number},
+			#{vb.price},
+			#{vb.isproblem},
+			#{vb.des},
+			#{vb.period}
+			)
+		</foreach>
+	</insert>
+	
+
+	<select id="queryRevisedVoucher" resultMap="voucherHMap">
+		select * from t_vouch_h where accountID=#{accountID} and period =
+		#{period} and isproblem = #{isProblem} order by voucherNo 
+		<if test="begin!=null and maxPage!=null">
+			limit #{begin},#{maxPage}
+		</if>
+	</select>
+
+	<select id="queryAttachByID" resultMap="voucherHMap">
+		select * from t_vouch_h
+		where vouchID=#{vouchID};
+	</select>
+
+	<select id="queryVouchByAttachID" resultMap="voucherHMap">
+		select * from
+		t_vouch_h where accountID=#{accountID} and period = #{period} and
+		attachID like CONCAT('%','${attachID}','%' )
+	</select>
+
+	<update id="updAttachID">
+		update t_vouch_h set attachID=#{attachID} where
+		vouchID=#{vouchID};
+	</update>
+	
+	<select id="queryVouBySubname" resultMap="voucherBMap">
+
+		SELECT
+			*
+		FROM
+			t_vouch_b
+		WHERE
+			(
+				vouchID = (
+					SELECT
+						vouchID
+					FROM
+						t_vouch_h
+					WHERE
+						source = #{source}
+					AND accountID = #{accountID}
+					AND period = #{period}
+				)
+			)
+		AND subjectID = #{subjectID}
+	</select>
+	
+	<select id="queryVoBody" parameterType="map" resultType="com.wqb.model.VoucherBody">
+		select * from t_vouch_b 
+		<where>
+			<if test="vouchID!=null">
+			 	and vouchID = #{vouchID}
+			</if>
+			<if test="vouchAID!=null">
+			 	and vouchAID = #{vouchAID}
+			</if>
+			<if test="accountID!=null">
+			 	and accountID = #{accountID}
+			</if>
+			<if test="period!=null">
+			 	and period = #{period}
+			</if>
+			<if test="sub_code!=null">
+			 	and subjectID = #{sub_code}
+			</if>
+			<if test="vcabstact!=null">
+			 	and vcabstact = #{vcabstact}
+			</if>
+		</where>
+	</select>
+	
+	<select id="queryVouchByNo" resultMap="voucherHMap">
+		select * from t_vouch_h  where accountID = #{accountID} and period=#{period} and voucherNo = #{voucherNo};
+	</select>
+	
+	<select id="queryImportVouch" resultType="java.util.Map">
+		SELECT
+			vouchID,
+			sum(debitAmount) AS sd
+		FROM
+			t_vouch_b
+		WHERE
+			vouchID IN (
+				SELECT
+					vouchID
+				FROM
+				t_vouch_h
+			WHERE
+			source = 11
+			AND accountID = #{accountID}
+			AND period = #{period}
+			)
+		GROUP BY
+		vouchID;
+	
+	</select>
+	
+	
+	<update id="updVouchAmount">
+		update t_vouch_h set totalCredit=#{sd},totalDbit=#{sd} where vouchID=#{vouchID}
+	</update>
+	
+	<select id="queryProblemVouch"  resultMap="voucherHMap">
+		select * from t_vouch_h  where accountID = #{accountID} and period=#{period} and isProblem = #{isProblem} order by voucherNO;
+	</select>
+	
+	<select id="querySameVouchNo" resultMap="voucherHMap">
+		select * from t_vouch_h  where accountID = #{accountID} and period=#{period} and  vouchID!=#{vouchID} and voucherNO=#{voucherNo};
+	</select>
+	
+	
+		
+	
+	<update id="updeVbByAddSubMessage" parameterType="map">
+		update t_vouch_b set 
+			subjectID = #{subCode},
+			vcsubject = #{fullName}
+		where 
+			period = #{period} and accountID = #{accountID} and subjectID = #{parentCode}
+	</update>
+
+	<!--查询凭证断号-->
+	<select id="queryVoucherBrokenNo">
+		SELECT
+			(
+				SELECT
+					max(voucherNo) + 1
+				FROM
+					(
+						SELECT
+							voucherNo
+						FROM
+							t_vouch_h
+						WHERE
+							accountID = #{accountID}
+						AND
+							period = #{period}
+					) AS b
+				WHERE
+					voucherNo &lt; a.voucherNo
+			) AS voucherBrokenNo
+		FROM
+			(
+				SELECT
+					voucherNo
+				FROM
+					t_vouch_h
+				WHERE
+					accountID = #{accountID}
+					AND period = #{period}
+			  ) AS a
+		  WHERE
+			a.voucherNo >
+			(
+					SELECT
+						max(voucherNo) + 1
+					FROM
+					(
+						SELECT
+							voucherNo
+						FROM
+							t_vouch_h
+						WHERE
+							accountID = #{accountID}
+						AND period = #{period}
+					) AS b
+					WHERE
+					voucherNo &lt; a.voucherNo
+			)
+		ORDER BY
+		voucherNo ASC
+	</select>
+
+	<select id="querySalary" parameterType="map" resultType="com.wqb.model.VoucherBody">
+		SELECT
+			*
+		FROM
+			t_vouch_b
+		WHERE
+			vouchID IN (
+				SELECT
+					vouchID
+				FROM
+					t_vouch_h
+				WHERE
+					accountID = #{accountID}
+					AND
+					period = #{period}
+			)
+		AND vcabstact LIKE '%工资%'
+		AND(
+			subjectID LIKE '6601%'
+		OR
+			subjectID LIKE '6602%'
+		OR
+			subjectID LIKE '2211%')
+	</select>
+
+
+	<select id="getPrintVoucherRange" resultType="java.util.Map">
+		select min(voucherNo) as minNo,max(voucherNo) as maxNo from t_vouch_h 
+		where accountID=#{accountID} and period=#{period}  
+	</select>
+	
+	<select id="getRangeVoucher" resultMap="voucherHMap">
+		select * from t_vouch_h where accountID=#{accountID} and period=#{period} 
+		<if test="begin != null and begin != '' or begin==0">
+			and voucherNO <![CDATA[>= ]]> ${begin} 
+		</if>
+		<if test="end != null and end != '' or end==0">
+			and voucherNO <![CDATA[<= ]]> ${end} 
+		</if>
+		 order by voucherNo ;
+	</select>
+</mapper>

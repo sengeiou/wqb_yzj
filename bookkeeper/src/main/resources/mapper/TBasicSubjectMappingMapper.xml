@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="subjectMapping" >
+  <resultMap id="BaseResultMap" type="subjectMapping" >
+    <id column="pk_sub_mapping_id" property="pkSubMappingId" jdbcType="INTEGER" />
+    <result column="sub_mapping_code" property="subMappingCode" jdbcType="VARCHAR" />
+    <result column="sub_mapping_name" property="subMappingName" jdbcType="VARCHAR" />
+    <result column="similar_name" property="similarName" jdbcType="VARCHAR" />
+    <result column="small_scale_trading" property="smallScaleTrading" jdbcType="SMALLINT" />
+    <result column="general_taxpayer_trading" property="generalTaxpayerTrading" jdbcType="SMALLINT" />
+    <result column="small_scale_production" property="smallScaleProduction" jdbcType="SMALLINT" />
+    <result column="general_taxpayer_production" property="generalTaxpayerProduction" jdbcType="SMALLINT" />
+    <result column="small_scale_import_and_export" property="smallScaleImportAndExport" jdbcType="SMALLINT" />
+    <result column="general_taxpayer_import_and_export" property="generalTaxpayerImportAndExport" jdbcType="SMALLINT" />
+    <result column="small_scale_high_tech" property="smallScaleHighTech" jdbcType="SMALLINT" />
+    <result column="general_taxpayer_high_tech" property="generalTaxpayerHighTech" jdbcType="SMALLINT" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_timestamp" property="updateTimestamp" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pk_sub_mapping_id, sub_mapping_code, sub_mapping_name, similar_name, small_scale_trading, 
+    general_taxpayer_trading, small_scale_production, general_taxpayer_production, small_scale_import_and_export, 
+    general_taxpayer_import_and_export, small_scale_high_tech, general_taxpayer_high_tech, 
+    create_person, create_date, update_person, update_date, update_timestamp
+  </sql>
+  
+  <!-- parameterType="java.util.List" -->
+	<!-- updateMeasureList 结束分隔符 添加excel导入计量单位集合 -->
+    <insert id="updateSubMappingList" parameterType="com.wqb.model.TBasicSubjectMapping" >
+     insert into t_basic_subject_mapping 
+	     (pk_sub_mapping_id, sub_mapping_code, sub_mapping_name, 
+      similar_name, small_scale_trading, general_taxpayer_trading, 
+      small_scale_production, general_taxpayer_production, 
+      small_scale_import_and_export, general_taxpayer_import_and_export, 
+      small_scale_high_tech, general_taxpayer_high_tech, 
+      create_person, create_date, update_person, 
+      update_date, update_timestamp)
+       values 
+      <foreach collection="list" item="item" index="index" separator=",">
+	     (
+	     #{item.pkSubMappingId,jdbcType=INTEGER}, #{item.subMappingCode,jdbcType=VARCHAR}, #{item.subMappingName,jdbcType=VARCHAR}, 
+      #{item.similarName,jdbcType=VARCHAR}, #{item.smallScaleTrading,jdbcType=SMALLINT}, #{item.generalTaxpayerTrading,jdbcType=SMALLINT}, 
+      #{item.smallScaleProduction,jdbcType=SMALLINT}, #{item.generalTaxpayerProduction,jdbcType=SMALLINT}, 
+      #{item.smallScaleImportAndExport,jdbcType=SMALLINT}, #{item.generalTaxpayerImportAndExport,jdbcType=SMALLINT}, 
+      #{item.smallScaleHighTech,jdbcType=SMALLINT}, #{item.generalTaxpayerHighTech,jdbcType=SMALLINT}, 
+      #{item.createPerson,jdbcType=VARCHAR}, #{item.createDate,jdbcType=TIMESTAMP}, #{item.updatePerson,jdbcType=VARCHAR}, 
+      #{item.updateDate,jdbcType=TIMESTAMP}, #{item.updateTimestamp,jdbcType=CHAR})
+      </foreach>
+  </insert>
+  
+  <delete id="deleteAll" parameterType="java.lang.Integer" >
+<!-- 清空全部数据，不写日志，不可恢复，速度极快 -->
+<!-- 	truncate table 表名; -->
+ 
+<!-- 清空全部数据，写日志，数据可恢复，速度慢 -->
+<!-- 	delete from 表名 -->
+    delete from t_basic_subject_mapping
+  </delete>
+  
+  <delete id="deleteMeasureList" parameterType="subjectMapping" >
+    delete from t_basic_subject_mapping
+    where 
+    <foreach collection="list" item="item" index="index" separator="or">
+    	 pk_sub_mapping_id = #{item.pkSubMappingId,jdbcType=INTEGER}
+    </foreach>
+  </delete>
+  
+  <select id="querySubMappingList" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_basic_subject_mapping
+    <if test="accountType==1">
+    	where sub_mapping_name not in('转出未交增值税','进项税','进项税转出','留抵税','销项税');
+    </if>
+    <if test="accountType==0">
+   		where sub_mapping_name not in('应交增值税');
+    </if>
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_basic_subject_mapping
+    where pk_sub_mapping_id = #{pkSubMappingId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_basic_subject_mapping
+    where pk_sub_mapping_id = #{pkSubMappingId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wqb.model.TBasicSubjectMapping" >
+    insert into t_basic_subject_mapping (pk_sub_mapping_id, sub_mapping_code, sub_mapping_name, 
+      similar_name, small_scale_trading, general_taxpayer_trading, 
+      small_scale_production, general_taxpayer_production, 
+      small_scale_import_and_export, general_taxpayer_import_and_export, 
+      small_scale_high_tech, general_taxpayer_high_tech, 
+      create_person, create_date, update_person, 
+      update_date, update_timestamp)
+    values (#{pkSubMappingId,jdbcType=INTEGER}, #{subMappingCode,jdbcType=VARCHAR}, #{subMappingName,jdbcType=VARCHAR}, 
+      #{similarName,jdbcType=VARCHAR}, #{smallScaleTrading,jdbcType=SMALLINT}, #{generalTaxpayerTrading,jdbcType=SMALLINT}, 
+      #{smallScaleProduction,jdbcType=SMALLINT}, #{generalTaxpayerProduction,jdbcType=SMALLINT}, 
+      #{smallScaleImportAndExport,jdbcType=SMALLINT}, #{generalTaxpayerImportAndExport,jdbcType=SMALLINT}, 
+      #{smallScaleHighTech,jdbcType=SMALLINT}, #{generalTaxpayerHighTech,jdbcType=SMALLINT}, 
+      #{createPerson,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{updateTimestamp,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wqb.model.TBasicSubjectMapping" >
+    insert into t_basic_subject_mapping
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pkSubMappingId != null" >
+        pk_sub_mapping_id,
+      </if>
+      <if test="subMappingCode != null" >
+        sub_mapping_code,
+      </if>
+      <if test="subMappingName != null" >
+        sub_mapping_name,
+      </if>
+      <if test="similarName != null" >
+        similar_name,
+      </if>
+      <if test="smallScaleTrading != null" >
+        small_scale_trading,
+      </if>
+      <if test="generalTaxpayerTrading != null" >
+        general_taxpayer_trading,
+      </if>
+      <if test="smallScaleProduction != null" >
+        small_scale_production,
+      </if>
+      <if test="generalTaxpayerProduction != null" >
+        general_taxpayer_production,
+      </if>
+      <if test="smallScaleImportAndExport != null" >
+        small_scale_import_and_export,
+      </if>
+      <if test="generalTaxpayerImportAndExport != null" >
+        general_taxpayer_import_and_export,
+      </if>
+      <if test="smallScaleHighTech != null" >
+        small_scale_high_tech,
+      </if>
+      <if test="generalTaxpayerHighTech != null" >
+        general_taxpayer_high_tech,
+      </if>
+      <if test="createPerson != null" >
+        create_person,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updatePerson != null" >
+        update_person,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="updateTimestamp != null" >
+        update_timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pkSubMappingId != null" >
+        #{pkSubMappingId,jdbcType=INTEGER},
+      </if>
+      <if test="subMappingCode != null" >
+        #{subMappingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subMappingName != null" >
+        #{subMappingName,jdbcType=VARCHAR},
+      </if>
+      <if test="similarName != null" >
+        #{similarName,jdbcType=VARCHAR},
+      </if>
+      <if test="smallScaleTrading != null" >
+        #{smallScaleTrading,jdbcType=SMALLINT},
+      </if>
+      <if test="generalTaxpayerTrading != null" >
+        #{generalTaxpayerTrading,jdbcType=SMALLINT},
+      </if>
+      <if test="smallScaleProduction != null" >
+        #{smallScaleProduction,jdbcType=SMALLINT},
+      </if>
+      <if test="generalTaxpayerProduction != null" >
+        #{generalTaxpayerProduction,jdbcType=SMALLINT},
+      </if>
+      <if test="smallScaleImportAndExport != null" >
+        #{smallScaleImportAndExport,jdbcType=SMALLINT},
+      </if>
+      <if test="generalTaxpayerImportAndExport != null" >
+        #{generalTaxpayerImportAndExport,jdbcType=SMALLINT},
+      </if>
+      <if test="smallScaleHighTech != null" >
+        #{smallScaleHighTech,jdbcType=SMALLINT},
+      </if>
+      <if test="generalTaxpayerHighTech != null" >
+        #{generalTaxpayerHighTech,jdbcType=SMALLINT},
+      </if>
+      <if test="createPerson != null" >
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        #{updateTimestamp,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wqb.model.TBasicSubjectMapping" >
+    update t_basic_subject_mapping
+    <set >
+      <if test="subMappingCode != null" >
+        sub_mapping_code = #{subMappingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subMappingName != null" >
+        sub_mapping_name = #{subMappingName,jdbcType=VARCHAR},
+      </if>
+      <if test="similarName != null" >
+        similar_name = #{similarName,jdbcType=VARCHAR},
+      </if>
+      <if test="smallScaleTrading != null" >
+        small_scale_trading = #{smallScaleTrading,jdbcType=SMALLINT},
+      </if>
+      <if test="generalTaxpayerTrading != null" >
+        general_taxpayer_trading = #{generalTaxpayerTrading,jdbcType=SMALLINT},
+      </if>
+      <if test="smallScaleProduction != null" >
+        small_scale_production = #{smallScaleProduction,jdbcType=SMALLINT},
+      </if>
+      <if test="generalTaxpayerProduction != null" >
+        general_taxpayer_production = #{generalTaxpayerProduction,jdbcType=SMALLINT},
+      </if>
+      <if test="smallScaleImportAndExport != null" >
+        small_scale_import_and_export = #{smallScaleImportAndExport,jdbcType=SMALLINT},
+      </if>
+      <if test="generalTaxpayerImportAndExport != null" >
+        general_taxpayer_import_and_export = #{generalTaxpayerImportAndExport,jdbcType=SMALLINT},
+      </if>
+      <if test="smallScaleHighTech != null" >
+        small_scale_high_tech = #{smallScaleHighTech,jdbcType=SMALLINT},
+      </if>
+      <if test="generalTaxpayerHighTech != null" >
+        general_taxpayer_high_tech = #{generalTaxpayerHighTech,jdbcType=SMALLINT},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        update_timestamp = #{updateTimestamp,jdbcType=CHAR},
+      </if>
+    </set>
+    where pk_sub_mapping_id = #{pkSubMappingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wqb.model.TBasicSubjectMapping" >
+    update t_basic_subject_mapping
+    set sub_mapping_code = #{subMappingCode,jdbcType=VARCHAR},
+      sub_mapping_name = #{subMappingName,jdbcType=VARCHAR},
+      similar_name = #{similarName,jdbcType=VARCHAR},
+      small_scale_trading = #{smallScaleTrading,jdbcType=SMALLINT},
+      general_taxpayer_trading = #{generalTaxpayerTrading,jdbcType=SMALLINT},
+      small_scale_production = #{smallScaleProduction,jdbcType=SMALLINT},
+      general_taxpayer_production = #{generalTaxpayerProduction,jdbcType=SMALLINT},
+      small_scale_import_and_export = #{smallScaleImportAndExport,jdbcType=SMALLINT},
+      general_taxpayer_import_and_export = #{generalTaxpayerImportAndExport,jdbcType=SMALLINT},
+      small_scale_high_tech = #{smallScaleHighTech,jdbcType=SMALLINT},
+      general_taxpayer_high_tech = #{generalTaxpayerHighTech,jdbcType=SMALLINT},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_timestamp = #{updateTimestamp,jdbcType=CHAR}
+    where pk_sub_mapping_id = #{pkSubMappingId,jdbcType=INTEGER}
+  </update>
+</mapper>

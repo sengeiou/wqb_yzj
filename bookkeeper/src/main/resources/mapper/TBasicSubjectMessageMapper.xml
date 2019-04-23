@@ -1,0 +1,1290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="subMessage">
+	<resultMap id="subMessage" type="subMessage">
+		<id column="pk_sub_id" property="pkSubId" jdbcType="VARCHAR" />
+		<result column="sub_code" property="subCode" jdbcType="VARCHAR" />
+		<result column="user_id" property="userId" jdbcType="VARCHAR" />
+		<result column="account_id" property="accountId" jdbcType="VARCHAR" />
+		<result column="account_period" property="accountPeriod"
+			jdbcType="VARCHAR" />
+		<result column="excel_import_period" property="excelImportPeriod"
+			jdbcType="VARCHAR" />
+		<result column="sub_name" property="subName" jdbcType="VARCHAR" />
+		<result column="type_of_currency" property="typeOfCurrency"
+			jdbcType="VARCHAR" />
+		<result column="init_debit_balance" property="initDebitBalance"
+			jdbcType="DECIMAL" />
+		<result column="init_credit_balance" property="initCreditBalance"
+			jdbcType="DECIMAL" />
+		<result column="current_amount_debit" property="currentAmountDebit"
+			jdbcType="DECIMAL" />
+		<result column="current_amount_credit" property="currentAmountCredit"
+			jdbcType="DECIMAL" />
+		<result column="year_amount_debit" property="yearAmountDebit"
+			jdbcType="DECIMAL" />
+		<result column="year_amount_credit" property="yearAmountCredit"
+			jdbcType="DECIMAL" />
+		<result column="ending_balance_debit" property="endingBalanceDebit"
+			jdbcType="DECIMAL" />
+		<result column="excel_import_code" property="excelImportCode"
+			jdbcType="VARCHAR" />
+		<result column="ending_balance_credit" property="endingBalanceCredit"
+			jdbcType="DECIMAL" />
+		<result column="is_multiple_siblings" property="isMultipleSiblings"
+			jdbcType="VARCHAR" />
+		<result column="excel_import_siblings_coding" property="excelImportSiblingsCoding"
+			jdbcType="VARCHAR" />
+		<result column="siblings_coding" property="siblingsCoding"
+			jdbcType="VARCHAR" />
+		<result column="siblings_sub_name" property="siblingsSubName"
+			jdbcType="VARCHAR" />
+		<result column="excel_import_superior_coding" property="excelImportSuperiorCoding"
+			jdbcType="VARCHAR" />
+		<result column="superior_coding" property="superiorCoding"
+			jdbcType="VARCHAR" />
+		<result column="full_name" property="fullName" jdbcType="VARCHAR" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="update_timestamp" property="updateTimestamp"
+			jdbcType="CHAR" />
+		<result column="category" property="category" jdbcType="VARCHAR" />
+		<result column="sub_source" property="subSource" jdbcType="VARCHAR" />
+		<result column="unit" property="unit" jdbcType="VARCHAR" />
+		<result column="unit_id" property="unitId" jdbcType="DECIMAL" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+		<result column="number" property="number" jdbcType="DECIMAL" />
+		<result column="amount" property="amount" jdbcType="DECIMAL" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="mender" property="mender" jdbcType="VARCHAR" />
+		<result column="fk_t_basic_measure_id" property="fkTBasicMeasureId"
+			jdbcType="VARCHAR" />
+		<result column="measure_state" property="measureState"
+			jdbcType="INTEGER" />
+		<result column="fk_exchange_rate_id" property="fkExchangeRateId"
+			jdbcType="VARCHAR" />
+		<result column="exchange_rate__state" property="exchangeRateState"
+			jdbcType="INTEGER" />
+		<result column="code_level" property="codeLevel" jdbcType="INTEGER" />
+		<result column="debit_credit_direction" property="debitCreditDirection"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		pk_sub_id, sub_code, user_id, account_id, account_period,
+		excel_import_period,
+		sub_name,
+		type_of_currency, init_debit_balance,
+		init_credit_balance, current_amount_debit,
+		current_amount_credit,
+		year_amount_debit, year_amount_credit,
+		ending_balance_debit,
+		excel_import_code, ending_balance_credit, is_multiple_siblings,
+		excel_import_siblings_coding,
+		siblings_coding,
+		siblings_sub_name,
+		excel_import_superior_coding, superior_coding, full_name,
+		update_date,
+		update_timestamp, category, sub_source, unit, unit_id, price, number,
+		amount, state,
+		mender, fk_t_basic_measure_id, measure_state,
+		fk_exchange_rate_id,
+		exchange_rate__state,
+		code_level,debit_credit_direction
+	</sql>
+
+	<!-- querySubMessageMaxSubCode 结束分隔符 根据科目编码查询系统中最大科目代码 -->
+	<select id="querySubMessageMaxSubCode" resultType="java.lang.String"
+		parameterType="subMessage">
+		SELECT
+		max(sub_code)
+		FROM
+		t_basic_subject_message
+		WHERE
+		<!-- user_id = #{userId,jdbcType=VARCHAR} -->
+		<!-- AND -->
+		account_id =
+		#{accountId,jdbcType=VARCHAR}
+		AND
+		account_period =
+		#{accountPeriod,jdbcType=VARCHAR}
+		AND code_level =
+		#{codeLevel,jdbcType=VARCHAR}
+		<!-- AND superior_coding = -->
+		<!-- #{superiorCoding,jdbcType=VARCHAR} -->
+		<!-- 做帐系统添加页面有问题，暂时先查询以什么XX开头的 也可以在模版里面加上上级科目编码 -->
+		AND sub_code LIKE CONCAT('','${superiorCoding}','%' )
+
+	</select>
+	<!-- querySubMessageMaxSubCode 结束分隔符 根据科目编码查询系统中的科目 -->
+	
+	<!-- "queryLedgerByParameters" 根据起始时间 和结束时间 和科目代码或名称查询科目 -->
+	<select id="queryLedgerByParameters" resultMap="subMessage"
+		parameterType="Map">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		t_basic_subject_message
+		WHERE account_id =
+		#{accountId,jdbcType=VARCHAR}
+
+		<!-- 朱述渊新建银行科目时没有加user_id条件 暂时注释 -->
+		<!-- <if test="userId !='' and userId != null"> -->
+		<!-- AND user_id = #{userId,jdbcType=VARCHAR} -->
+		<!-- </if> -->
+		<if test="subMessage !='' and subMessage != null">
+			AND sub_code = #{subMessage}
+		</if>
+		<if test="codeLevel != '' and codeLevel != null">
+			AND code_level = #{codeLevel}
+		</if>
+		<if test="startTime !='' and startTime != null">
+			AND account_period between #{startTime}
+		</if>
+		<if test=" endTime !='' and endTime != null">
+			AND #{endTime}
+		</if>
+		<if test=" accountPeriod != '' and accountPeriod != null">
+			AND account_period = #{accountPeriod}
+		</if>
+		<if test="typeOfCurrency !='' and typeOfCurrency != null">
+			AND type_of_currency = #{typeOfCurrency}
+		</if>
+
+		<if test="sub_code !='' and sub_code != null">
+			AND sub_code LIKE CONCAT('','${sub_code}','%' )
+		</if>
+		<if test="sub_name != '' and sub_name != null">
+			AND sub_name LIKE CONCAT('%','${sub_name}','%' )
+		</if>
+
+		ORDER BY account_period ASC,sub_code ASC
+	</select>
+	<!-- "queryLedgerByParameters" 根据起始时间 和结束时间 和科目代码或名称查询科目 -->
+
+
+	<!-- addSubMessage 添加系统科目 -->
+	<insert id="addSubMessage" parameterType="subMessage">
+		insert into t_basic_subject_message
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="pkSubId != null">
+				pk_sub_id,
+			</if>
+			<if test="subCode != null">
+				sub_code,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="accountId != null">
+				account_id,
+			</if>
+			<if test="accountPeriod != null">
+				account_period,
+			</if>
+			<if test="excelImportPeriod != null">
+				excel_import_period,
+			</if>
+			<if test="subName != null">
+				sub_name,
+			</if>
+			<if test="typeOfCurrency != null">
+				type_of_currency,
+			</if>
+			<if test="initDebitBalance != null">
+				init_debit_balance,
+			</if>
+			<if test="initCreditBalance != null">
+				init_credit_balance,
+			</if>
+			<if test="currentAmountDebit != null">
+				current_amount_debit,
+			</if>
+			<if test="currentAmountCredit != null">
+				current_amount_credit,
+			</if>
+			<if test="yearAmountDebit != null">
+				year_amount_debit,
+			</if>
+			<if test="yearAmountCredit != null">
+				year_amount_credit,
+			</if>
+			<if test="endingBalanceDebit != null">
+				ending_balance_debit,
+			</if>
+			<if test="excelImportCode != null">
+				excel_import_code,
+			</if>
+			<if test="endingBalanceCredit != null">
+				ending_balance_credit,
+			</if>
+			<if test="isMultipleSiblings != null">
+				is_multiple_siblings,
+			</if>
+			<if test="excelImportSiblingsCoding != null">
+				excel_import_siblings_coding,
+			</if>
+			<if test="siblingsCoding != null">
+				siblings_coding,
+			</if>
+			<if test="siblingsSubName != null">
+				siblings_sub_name,
+			</if>
+			<if test="excelImportSuperiorCoding != null">
+				excel_import_superior_coding,
+			</if>
+			<if test="superiorCoding != null">
+				superior_coding,
+			</if>
+			<if test="fullName != null">
+				full_name,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+			<if test="updateTimestamp != null">
+				update_timestamp,
+			</if>
+			<if test="category != null">
+				category,
+			</if>
+			<if test="subSource != null">
+				sub_source,
+			</if>
+			<if test="unit != null">
+				unit,
+			</if>
+			<if test="unitId != null">
+				unit_id,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="number != null">
+				number,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="mender != null">
+				mender,
+			</if>
+			<if test="fkTBasicMeasureId != null">
+				fk_t_basic_measure_id,
+			</if>
+			<if test="measureState != null">
+				measure_state,
+			</if>
+			<if test="fkExchangeRateId != null">
+				fk_exchange_rate_id,
+			</if>
+			<if test="exchangeRateState != null">
+				exchange_rate__state,
+			</if>
+			<if test="codeLevel != null">
+				code_level,
+			</if>
+			<if test="debitCreditDirection != null">
+				debit_credit_direction,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="pkSubId != null">
+				#{pkSubId,jdbcType=VARCHAR},
+			</if>
+			<if test="subCode != null">
+				#{subCode,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="accountId != null">
+				#{accountId,jdbcType=VARCHAR},
+			</if>
+			<if test="accountPeriod != null">
+				#{accountPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="excelImportPeriod != null">
+				#{excelImportPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="subName != null">
+				#{subName,jdbcType=VARCHAR},
+			</if>
+			<if test="typeOfCurrency != null">
+				#{typeOfCurrency,jdbcType=VARCHAR},
+			</if>
+			<if test="initDebitBalance != null">
+				#{initDebitBalance,jdbcType=DECIMAL},
+			</if>
+			<if test="initCreditBalance != null">
+				#{initCreditBalance,jdbcType=DECIMAL},
+			</if>
+			<if test="currentAmountDebit != null">
+				#{currentAmountDebit,jdbcType=DECIMAL},
+			</if>
+			<if test="currentAmountCredit != null">
+				#{currentAmountCredit,jdbcType=DECIMAL},
+			</if>
+			<if test="yearAmountDebit != null">
+				#{yearAmountDebit,jdbcType=DECIMAL},
+			</if>
+			<if test="yearAmountCredit != null">
+				#{yearAmountCredit,jdbcType=DECIMAL},
+			</if>
+			<if test="endingBalanceDebit != null">
+				#{endingBalanceDebit,jdbcType=DECIMAL},
+			</if>
+			<if test="excelImportCode != null">
+				#{excelImportCode,jdbcType=VARCHAR},
+			</if>
+			<if test="endingBalanceCredit != null">
+				#{endingBalanceCredit,jdbcType=DECIMAL},
+			</if>
+			<if test="isMultipleSiblings != null">
+				#{isMultipleSiblings,jdbcType=VARCHAR},
+			</if>
+			<if test="excelImportSiblingsCoding != null">
+				#{excelImportSiblingsCoding,jdbcType=VARCHAR},
+			</if>
+			<if test="siblingsCoding != null">
+				#{siblingsCoding,jdbcType=VARCHAR},
+			</if>
+			<if test="siblingsSubName != null">
+				#{siblingsSubName,jdbcType=VARCHAR},
+			</if>
+			<if test="excelImportSuperiorCoding != null">
+				#{excelImportSuperiorCoding,jdbcType=VARCHAR},
+			</if>
+			<if test="superiorCoding != null">
+				#{superiorCoding,jdbcType=VARCHAR},
+			</if>
+			<if test="fullName != null">
+				#{fullName,jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTimestamp != null">
+				#{updateTimestamp,jdbcType=CHAR},
+			</if>
+			<if test="category != null">
+				#{category,jdbcType=VARCHAR},
+			</if>
+			<if test="subSource != null">
+				#{subSource,jdbcType=VARCHAR},
+			</if>
+			<if test="unit != null">
+				#{unit,jdbcType=VARCHAR},
+			</if>
+			<if test="unitId != null">
+				#{unitId,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DECIMAL},
+			</if>
+			<if test="number != null">
+				#{number,jdbcType=DECIMAL},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=VARCHAR},
+			</if>
+			<if test="mender != null">
+				#{mender,jdbcType=VARCHAR},
+			</if>
+			<if test="fkTBasicMeasureId != null">
+				#{fkTBasicMeasureId,jdbcType=VARCHAR},
+			</if>
+			<if test="measureState != null">
+				#{measureState,jdbcType=INTEGER},
+			</if>
+			<if test="fkExchangeRateId != null">
+				#{fkExchangeRateId,jdbcType=VARCHAR},
+			</if>
+			<if test="exchangeRateState != null">
+				#{exchangeRateState,jdbcType=INTEGER},
+			</if>
+			<if test="codeLevel != null">
+				#{codeLevel,jdbcType=INTEGER},
+			</if>
+			<if test="debitCreditDirection != null">
+				#{debitCreditDirection,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<!-- addSubMessage 结束分隔符 添加系统科目 -->
+
+	<!-- 添加系统科目集合 -->
+	<insert id="addSubMessageList" parameterType="java.util.List">
+		insert into t_basic_subject_message (
+		pk_sub_id,
+		sub_code,
+		user_id,
+		account_id,
+		account_period,
+		excel_import_period,
+		sub_name,
+		type_of_currency,
+		init_debit_balance,
+		init_credit_balance,
+		current_amount_debit,
+		current_amount_credit,
+		year_amount_debit,
+		year_amount_credit,
+		ending_balance_debit,
+		excel_import_code,
+		ending_balance_credit,
+		is_multiple_siblings,
+		excel_import_siblings_coding,
+		siblings_coding,
+		siblings_sub_name,
+		excel_import_superior_coding,
+		superior_coding,
+		full_name,
+		update_date,
+		update_timestamp,
+		category,
+		sub_source,
+		unit,
+		unit_id,
+		price,
+		number,
+		amount,
+		state,
+		mender,
+		fk_t_basic_measure_id,
+		measure_state,
+		fk_exchange_rate_id,
+		exchange_rate__state,
+		code_level,
+		debit_credit_direction
+		)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.pkSubId,jdbcType=VARCHAR},
+			#{item.subCode,jdbcType=VARCHAR},
+			#{item.userId,jdbcType=VARCHAR},
+			#{item.accountId,jdbcType=VARCHAR},
+			#{item.accountPeriod,jdbcType=VARCHAR},
+			#{item.excelImportPeriod,jdbcType=VARCHAR},
+			#{item.subName,jdbcType=VARCHAR},
+			#{item.typeOfCurrency,jdbcType=VARCHAR},
+			#{item.initDebitBalance,jdbcType=DECIMAL},
+			#{item.initCreditBalance,jdbcType=DECIMAL},
+			#{item.currentAmountDebit,jdbcType=DECIMAL},
+			#{item.currentAmountCredit,jdbcType=DECIMAL},
+			#{item.yearAmountDebit,jdbcType=DECIMAL},
+			#{item.yearAmountCredit,jdbcType=DECIMAL},
+			#{item.endingBalanceDebit,jdbcType=DECIMAL},
+			#{item.excelImportCode,jdbcType=VARCHAR},
+			#{item.endingBalanceCredit,jdbcType=DECIMAL},
+			#{item.isMultipleSiblings,jdbcType=VARCHAR},
+			#{item.excelImportSiblingsCoding,jdbcType=VARCHAR},
+			#{item.siblingsCoding,jdbcType=VARCHAR},
+			#{item.siblingsSubName,jdbcType=VARCHAR},
+			#{item.excelImportSuperiorCoding,jdbcType=VARCHAR},
+			#{item.superiorCoding,jdbcType=VARCHAR},
+			#{item.fullName,jdbcType=VARCHAR},
+			#{item.updateDate,jdbcType=TIMESTAMP},
+			#{item.updateTimestamp,jdbcType=CHAR},
+			#{item.category,jdbcType=VARCHAR},
+			#{item.subSource,jdbcType=VARCHAR},
+			#{item.unit,jdbcType=VARCHAR},
+			#{item.unitId,jdbcType=DECIMAL},
+			#{item.price,jdbcType=DECIMAL},
+			#{item.number,jdbcType=DECIMAL},
+			#{item.amount,jdbcType=DECIMAL},
+			#{item.state,jdbcType=VARCHAR},
+			#{item.mender,jdbcType=VARCHAR},
+			#{item.fkTBasicMeasureId,jdbcType=VARCHAR},
+			#{item.measureState,jdbcType=INTEGER},
+			#{item.fkExchangeRateId,jdbcType=VARCHAR},
+			#{item.exchangeRateState,jdbcType=INTEGER},
+			#{item.codeLevel,jdbcType=INTEGER},
+			#{item.debitCreditDirection,jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<!-- addSubMessageList 结束分隔符 添加系统科目集合 -->
+
+	<!-- querySubMessage 查询系统中该账套的全部科目 -->
+	<select id="querySubMessage" resultMap="subMessage"
+		parameterType="subMessage">
+		select
+		<include refid="Base_Column_List" />
+		from t_basic_subject_message
+		where
+		<!-- user_id = #{userId,jdbcType=VARCHAR} -->
+		<!-- and -->
+		account_id = #{accountId,jdbcType=VARCHAR}
+		and
+		account_period =
+		#{accountPeriod,jdbcType=VARCHAR}
+		ORDER BY
+		sub_code ASC
+	</select>
+	<!-- querySubMessage 结束分隔符 查询系统中该账套的全部科目 -->
+
+
+
+
+	<!-- "querySbujectBalance" 根据起始时间 和结束时间 查询系统 《科目余额表》 -->
+	<select id="querySbujectBalance" resultMap="subMessage"
+		parameterType="Map">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		t_basic_subject_message
+		WHERE
+		<!-- 朱述渊新建银行科目时没有加user_id条件 暂时注释 -->
+		<!-- <if test="userId !='' and userId != null"> -->
+		<!-- user_id = #{userId,jdbcType=VARCHAR} -->
+		<!-- AND -->
+		<!-- </if> -->
+		account_id = #{accountId,jdbcType=VARCHAR}
+		<if test="subMessage !='' and subMessage != null">
+			AND
+			sub_code = #{subMessage}
+		</if>
+
+
+		<if test="sub_code_app !='' and sub_code_app != null">
+			and sub_code LIKE CONCAT('','${sub_code_app}','%' )
+		</if>
+		<if test="sub_name_app !='' and sub_name_app != null">
+			and sub_name LIKE CONCAT('%','${sub_name_app}','%' )
+		</if>
+
+		<if test="codeLevel != '' and codeLevel != null">
+			AND
+			code_level = #{codeLevel}
+		</if>
+		<if test="startTime !='' and startTime != null">
+			AND
+			account_period between #{startTime}
+		</if>
+		<if test=" endTime !='' and endTime != null">
+			AND
+			#{endTime}
+		</if>
+		<if test=" accountPeriod != '' and accountPeriod != null">
+			AND
+			account_period = #{accountPeriod}
+		</if>
+		<if test="typeOfCurrency !='' and typeOfCurrency != null">
+			AND
+			type_of_currency = #{typeOfCurrency}
+		</if>
+		ORDER BY
+		account_period ASC,sub_code ASC
+	</select>
+	<!-- "querySbujectBalance" 根据起始时间 和结束时间 查询系统科目余额表 -->
+
+
+
+
+
+	<!-- querySubMessageLevel 指定查询科目级别科目编码名称不为空 -->
+	<select id="querySubMessageLevel" resultMap="subMessage"
+		parameterType="subMessage">
+		select
+		<include refid="Base_Column_List" />
+		from t_basic_subject_message
+		where
+		<!-- user_id = #{userId,jdbcType=VARCHAR} -->
+		<!-- and -->
+		account_id = #{accountId,jdbcType=VARCHAR}
+		<if test="codeLevel !='' and codeLevel != null and codeLevel != 0">
+			AND code_level = #{codeLevel,jdbcType=INTEGER}
+		</if>
+		and
+		account_period = #{accountPeriod,jdbcType=VARCHAR}
+		AND (sub_code !=
+		''
+		OR sub_code != NULL)
+		AND (sub_name != ''
+		OR sub_name != NULL)
+		ORDER BY
+		sub_code ASC
+	</select>
+	<!-- querySubMessageLevel 结束分隔符 指定查询科目级别科目编码名称不为空 -->
+
+	<!-- querySubMessageListMoney 查询系统科目真实金额 -->
+	<select id="querySubMessageListMoney" resultMap="subMessage"
+		parameterType="subMessage">
+		select
+		<include refid="Base_Column_List" />
+		from t_basic_subject_message
+		where
+		<!-- user_id = #{userId,jdbcType=VARCHAR} -->
+		<!-- and -->
+		account_id = #{accountId,jdbcType=VARCHAR}
+		and
+		account_period =
+		#{accountPeriod,jdbcType=VARCHAR}
+		AND code_level =
+		#{codeLevel,jdbcType=INTEGER}
+		AND (type_of_currency =
+		"综合本位币"
+		OR
+		type_of_currency = ""
+		OR
+		type_of_currency = NULL)
+		ORDER BY
+		sub_code ASC
+	</select>
+	<!-- querySubMessageListMoney 结束分隔符 查询系统科目真实金额 -->
+
+	<!-- querySubMessageBySubCode 根据科目编码查询系统中的科目 -->
+	<select id="querySubMessageBySubCode" resultMap="subMessage"
+		parameterType="subMessage">
+		select
+		<include refid="Base_Column_List" />
+		from t_basic_subject_message
+		where 
+		account_id = 
+		#{accountId,jdbcType=VARCHAR}
+		and
+		sub_code =
+		#{subCode,jdbcType=VARCHAR}
+		and
+		account_period =
+		#{accountPeriod,jdbcType=VARCHAR}
+		ORDER BY
+		sub_code ASC
+	</select>
+	<!-- querySubMessageBySubCode 结束分隔符 根据科目编码查询系统中的科目 -->
+
+	<!-- querySubMessageBySubName 根据科目名称查询系统中的科目 -->
+	<select id="querySubMessageBySubName" resultMap="subMessage"
+		parameterType="subMessage">
+		select
+		<include refid="Base_Column_List" />
+		from t_basic_subject_message
+		where pk_sub_name =
+		#{pkSubName,jdbcType=VARCHAR}
+		and
+		account_period =
+		#{accountPeriod,jdbcType=VARCHAR}
+		ORDER BY
+		sub_code ASC
+	</select>
+	<!-- querySubMessageBySubName 结束分隔符 根据科目名称查询系统中的科目 -->
+
+	<!-- updateMessage 更新系统中的科目 -->
+	<update id="updateMessage" parameterType="subMessage">
+		update t_basic_subject_message
+		<set>
+			<if test="subCode != null">
+				sub_code = #{subCode,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="accountId != null">
+				account_id = #{accountId,jdbcType=VARCHAR},
+			</if>
+			<if test="accountPeriod != null">
+				account_period = #{accountPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="excelImportPeriod != null">
+				excel_import_period =
+				#{excelImportPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="subName != null">
+				sub_name = #{subName,jdbcType=VARCHAR},
+			</if>
+			<if test="typeOfCurrency != null">
+				type_of_currency = #{typeOfCurrency,jdbcType=VARCHAR},
+			</if>
+			<if test="initDebitBalance != null">
+				init_debit_balance =
+				#{initDebitBalance,jdbcType=DECIMAL},
+			</if>
+			<if test="initCreditBalance != null">
+				init_credit_balance =
+				#{initCreditBalance,jdbcType=DECIMAL},
+			</if>
+			<if test="currentAmountDebit != null">
+				current_amount_debit =
+				#{currentAmountDebit,jdbcType=DECIMAL},
+			</if>
+			<if test="currentAmountCredit != null">
+				current_amount_credit =
+				#{currentAmountCredit,jdbcType=DECIMAL},
+			</if>
+			<if test="yearAmountDebit != null">
+				year_amount_debit = #{yearAmountDebit,jdbcType=DECIMAL},
+			</if>
+			<if test="yearAmountCredit != null">
+				year_amount_credit =
+				#{yearAmountCredit,jdbcType=DECIMAL},
+			</if>
+			<if test="endingBalanceDebit != null">
+				ending_balance_debit =
+				#{endingBalanceDebit,jdbcType=DECIMAL},
+			</if>
+			<if test="excelImportCode != null">
+				excel_import_code = #{excelImportCode,jdbcType=VARCHAR},
+			</if>
+			<if test="endingBalanceCredit != null">
+				ending_balance_credit =
+				#{endingBalanceCredit,jdbcType=DECIMAL},
+			</if>
+			<if test="isMultipleSiblings != null">
+				is_multiple_siblings =
+				#{isMultipleSiblings,jdbcType=VARCHAR},
+			</if>
+			<if test="excelImportSiblingsCoding != null">
+				excel_import_siblings_coding =
+				#{excelImportSiblingsCoding,jdbcType=VARCHAR},
+			</if>
+			<if test="siblingsCoding != null">
+				siblings_coding = #{siblingsCoding,jdbcType=VARCHAR},
+			</if>
+			<if test="siblingsSubName != null">
+				siblings_sub_name = #{siblingsSubName,jdbcType=VARCHAR},
+			</if>
+			<if test="excelImportSuperiorCoding != null">
+				excel_import_superior_coding =
+				#{excelImportSuperiorCoding,jdbcType=VARCHAR},
+			</if>
+			<if test="superiorCoding != null">
+				superior_coding = #{superiorCoding,jdbcType=VARCHAR},
+			</if>
+			<if test="fullName != null">
+				full_name = #{fullName,jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTimestamp != null">
+				update_timestamp = #{updateTimestamp,jdbcType=CHAR},
+			</if>
+			<if test="category != null">
+				category = #{category,jdbcType=VARCHAR},
+			</if>
+			<if test="subSource != null">
+				sub_source = #{subSource,jdbcType=VARCHAR},
+			</if>
+			<if test="unit != null">
+				unit = #{unit,jdbcType=VARCHAR},
+			</if>
+			<if test="unitId != null">
+				unit_id = #{unitId,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=DECIMAL},
+			</if>
+			<if test="number != null">
+				number = #{number,jdbcType=DECIMAL},
+			</if>
+			<if test="amount != null">
+				amount = #{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=VARCHAR},
+			</if>
+			<if test="mender != null">
+				mender = #{mender,jdbcType=VARCHAR},
+			</if>
+			<if test="fkTBasicMeasureId != null">
+				fk_t_basic_measure_id =
+				#{fkTBasicMeasureId,jdbcType=VARCHAR},
+			</if>
+			<if test="measureState != null">
+				measure_state = #{measureState,jdbcType=INTEGER},
+			</if>
+			<if test="fkExchangeRateId != null">
+				fk_exchange_rate_id =
+				#{fkExchangeRateId,jdbcType=VARCHAR},
+			</if>
+			<if test="exchangeRateState != null">
+				exchange_rate__state =
+				#{exchangeRateState,jdbcType=INTEGER},
+			</if>
+			<if test="codeLevel != null">
+				code_level = #{codeLevel,jdbcType=INTEGER},
+			</if>
+			<if test="codeLevel != null">
+				debit_credit_direction =
+				#{item.debitCreditDirection,jdbcType=VARCHAR}
+			</if>
+
+		</set>
+		where pk_sub_id = #{pkSubId,jdbcType=VARCHAR}
+	</update>
+	<!-- updateMessage 结束分隔符 更新系统中的科目 -->
+
+	<!-- deleteMessageByPrimaryKey 结束分隔符 根据主键删除系统中的科目 -->
+	<delete id="deleteMessageByPrimaryKey" parameterType="subMessage">
+		delete from
+		t_basic_subject_message
+		where pk_sub_id = #{pkSubId,jdbcType=VARCHAR}
+		and
+		account_id =
+		#{accountId,jdbcType=VARCHAR}
+	</delete>
+	<!-- deleteMessageByPrimaryKey 结束分隔符 根据主键删除系统中的科目 -->
+	
+	
+	
+	<select id="querySunYiSub" parameterType="map"  resultMap="subMessage">
+		select * from t_basic_subject_message
+		WHERE
+			account_id = #{accountID}
+		 AND 
+			account_period = #{period}
+		 AND 
+		 (
+			 	sub_code  like "6901%" 
+			 or sub_code  like "6001%"  
+			 or sub_code  like "6051%"  
+			 or sub_code  like "6111%"  
+			 or sub_code  like "6301%"  
+			 or sub_code  like "6401%"  
+			 or sub_code  like "6402%"  
+			 or sub_code  like "6403%"  
+			 or sub_code  like "6711%"  
+			 or sub_code  like "6601%"  
+			 or sub_code  like "6602%"   
+			 or sub_code  like "6603%"  
+			 or sub_code  like "6701%"  
+			 or sub_code  like "6801%"
+		 )
+		
+	</select>
+
+	<!-- deleteMessage 结束分隔符 根据主键删除系统中的科目 -->
+	<delete id="deleteMessage" parameterType="subMessage">
+		<!-- delete from -->
+		<!-- t_basic_subject_message -->
+		<!-- where pk_sub_id = #{pkSubId,jdbcType=VARCHAR} -->
+		<!-- and -->
+		<!-- account_id = -->
+		<!-- #{accountId,jdbcType=VARCHAR} -->
+	</delete>
+	<!-- deleteMessage 结束分隔符 根据主键删除系统中的科目 -->
+
+	<!-- deleteMessageAll 结束分隔符 根据帐套id删除系统中的科目 -->
+	<delete id="deleteMessageAll" parameterType="subMessage">
+		delete from
+		t_basic_subject_message
+		where account_id =
+		#{accountId,jdbcType=VARCHAR}
+	</delete>
+	<!-- deleteMessageAll 结束分隔符 根据帐套id删除系统中的科目 -->
+	
+	<!-- deleteMessageByAcctperiod 结束分隔符 根据帐套id删除系统本期间中的科目 -->
+	<delete id="deleteMessageByAcctperiod" parameterType="subMessage">
+		delete from
+		t_basic_subject_message
+		where account_id =
+		#{accountId,jdbcType=VARCHAR}
+		and 
+		account_period = #{accountPeriod,jdbcType=VARCHAR}
+	</delete>
+	<!-- deleteMessageAll 结束分隔符 根据帐套id删除系统中的科目 -->
+
+	<!-- 注意字段大小写 -->
+	<update id="chgSubAmountByCreate" parameterType="map">
+		update t_basic_subject_message set
+		<if test="direction==1">
+			<if test="subjectID==4103">
+				current_amount_debit = IFNULL(current_amount_debit,0) +  #{amount,jdbcType=DOUBLE}
+			</if>
+			<if test="subjectID!=4103">
+				current_amount_debit = IFNULL(current_amount_debit,0) +#{amount,jdbcType=DOUBLE},
+				year_amount_debit =IFNULL(year_amount_debit,0) + #{amount,jdbcType=DOUBLE},
+				ending_balance_debit = IFNULL(ending_balance_debit,0) + #{amount,jdbcType=DOUBLE}
+			</if>
+		</if>
+		<if test="direction==2">
+			<if test="subjectID==4103">
+				current_amount_credit = IFNULL(current_amount_credit,0) +  #{amount,jdbcType=DOUBLE}
+			</if>
+			<if test="subjectID!=4103 ">
+				current_amount_credit = IFNULL(current_amount_credit,0) +  #{amount,jdbcType=DOUBLE},
+				year_amount_credit =  IFNULL(year_amount_credit,0) +  #{amount,jdbcType=DOUBLE},
+				ending_balance_credit = IFNULL(ending_balance_credit,0) + #{amount,jdbcType=DOUBLE}
+			</if>
+		</if>
+		where account_id=#{accountID} and account_period=#{busDate} and sub_code=#{subjectID}
+	</update>
+	
+	<update id="chgSySubAmount" parameterType="map">
+		update t_basic_subject_message set
+		<if test="direction==1">
+			year_amount_debit = IFNULL(year_amount_debit,0) +
+			#{amount,jdbcType=DOUBLE},
+			ending_balance_debit =
+			IFNULL(ending_balance_debit,0) + #{amount,jdbcType=DOUBLE}
+		</if>
+		<if test="direction==2">
+			year_amount_credit = IFNULL(year_amount_credit,0) +
+			#{amount,jdbcType=DOUBLE},
+			ending_balance_credit =
+			IFNULL(ending_balance_credit,0) + #{amount,jdbcType=DOUBLE}
+		</if>
+		where account_id=#{accountID} and account_period=#{busDate} and
+		sub_code =#{subjectID}
+	</update>
+
+	<update id="updQnjlr">
+		update t_basic_subject_message set
+
+		current_amount_credit=#{amount},year_amount_credit =
+		IFNULL(year_amount_credit,0) + #{amount,jdbcType=DOUBLE},
+		ending_balance_credit = 0
+		where account_id=#{accountID} and
+		account_period=#{busDate} and
+
+		sub_code
+		=#{subjectID}
+	</update>
+
+
+	<update id="chgSubAmountByDelete" parameterType="map">
+		update t_basic_subject_message set
+		<if test="direction==1">
+			current_amount_debit = IFNULL(current_amount_debit,0) - #{amount,jdbcType=DOUBLE},
+			year_amount_debit = IFNULL(year_amount_debit,0) - #{amount,jdbcType=DOUBLE},
+			ending_balance_debit = IFNULL(ending_balance_debit,0) - #{amount,jdbcType=DOUBLE}
+		</if>
+		<if test="direction==2">
+			current_amount_credit = IFNULL(current_amount_credit,0) - #{amount,jdbcType=DOUBLE},
+			year_amount_credit = IFNULL(year_amount_credit,0) - #{amount,jdbcType=DOUBLE},
+			ending_balance_credit = IFNULL(ending_balance_credit,0) - #{amount,jdbcType=DOUBLE}
+		</if>
+		where account_id=#{accountID} and account_period=#{busDate} and  sub_code = #{subjectID}
+	</update>
+
+	<select id="querySubByIDAndName" resultMap="subMessage">
+		select *
+		from
+		t_basic_subject_message where account_id=#{accountID} and
+		account_period=#{busDate} and (sub_code like
+		CONCAT('','${keyWord}','%' ) or sub_name like
+		CONCAT('%','${keyWord}','%' )) order by sub_code;
+	</select>
+
+	<select id="queryAllSubject" resultMap="subMessage">
+		select * from
+		t_basic_subject_message where account_id=#{accountID} and
+		account_period=#{busDate}  order by sub_code;
+	</select>
+
+	<select id="querySubjectByName" resultMap="subMessage"
+		resultType="String">
+		select * from t_basic_subject_message where
+		account_id=#{accountID} and account_period=#{busDate} and
+		sub_name=#{subName} and sub_code like CONCAT('','${subjectID}','%' );
+	</select>
+
+	<select id="queryFuzzySubByName" resultMap="subMessage"
+		resultType="String">
+		select * from t_basic_subject_message where
+		account_id=#{accountID} and account_period=#{busDate} and
+		sub_code like
+		CONCAT('','${subjectID}','%' ) and LENGTH(sub_code) >4;
+	</select>
+
+	<!-- "querySubMessageByCategory" 根据科目名称或代码 和 科目类别查询科目 -->
+	<select id="querySubMessageByCategory" resultMap="subMessage"
+		resultType="String">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		t_basic_subject_message
+		WHERE
+		<!-- user_id = #{userId} -->
+		<!-- AND -->
+		account_id =
+		#{accountId}
+		AND
+		account_period=#{busDate}
+		AND
+		category =
+		#{category}
+		<if test="subject !='' and subject != null">
+			AND
+			(sub_code like
+			CONCAT
+			('${subject}','%' )
+			or
+			sub_name
+			like
+			CONCAT
+			('%','${subject}','%' ))
+		</if>
+		ORDER BY
+		sub_code ASC
+	</select>
+	<!-- "querySubMessageByCategory" 根据科目名称或代码 和 科目类别查询科目 -->
+
+	<select id="querySubByAccAndCode" resultMap="subMessage">
+		select * from
+		t_basic_subject_message where sub_code=#{subjectID} and
+		account_id=#{accountID} and account_period=#{busDate};
+	</select>
+
+	<update id="updQmAmount">
+		update t_basic_subject_message set
+		<if test="flag==0">
+			ending_balance_debit = 0 , ending_balance_credit =0
+		</if>
+		<if test="flag==1">
+			ending_balance_debit = #{amount}, ending_balance_credit =0
+		</if>
+		<if test="flag==2">
+			ending_balance_credit= #{amount}, ending_balance_debit =0
+		</if>
+
+		where pk_sub_id = #{pkSubId}
+	</update>
+
+	<update id="updQmAmount1">
+		update t_basic_subject_message set
+		ending_balance_debit = 0,
+		ending_balance_credit =0
+		where
+		account_id=#{accountID} and account_period=#{busDate} and
+		sub_code like
+		CONCAT('','${subjectID}','%' )
+	</update>
+
+
+	<update id="updQmAmount2">
+		update t_basic_subject_message set
+		current_amount_debit = #{dAmount},
+		year_amount_debit
+		=year_amount_debit+ #{dAmount},
+		ending_balance_debit = 0,
+
+		current_amount_credit =#{cAmount},
+		year_amount_credit =
+		year_amount_credit+#{cAmount},
+		ending_balance_credit =0
+
+		where
+		account_id=#{accountID} and account_period=#{busDate} and
+		sub_code
+		=#{subjectID}
+	</update>
+
+
+	<select id="selectLastArch" resultMap="subMessage">
+		select * from
+		t_basic_subject_message where account_id=#{accountID} and
+		account_period=#{lastDate} and
+		sub_code like
+		CONCAT('','${subjectID}','%' ) and sub_name like
+		CONCAT('%','${subName}','' )
+	</select>
+
+	<select id="selectLastArch2" resultMap="subMessage">
+		select * from
+		t_basic_subject_message where account_id=#{accountID} and
+		account_period=#{lastDate} and
+		sub_code like
+		CONCAT('','${subjectID}','%' ) and sub_name like
+		CONCAT('%','${subName}','%' )
+	</select>
+
+	<update id="updatejzcb" parameterType="map">
+		update t_basic_subject_message set
+		<if test="flag==2">
+			current_amount_credit = IFNULL(current_amount_credit,0) +
+			#{amount,jdbcType=DOUBLE},
+			ending_balance_credit =
+			IFNULL(ending_balance_credit,0) + #{amount,jdbcType=DOUBLE},
+			year_amount_credit = IFNULL(year_amount_credit,0) +
+			#{amount,jdbcType=DOUBLE}
+		</if>
+		<if test="flag==1">
+			current_amount_debit = IFNULL(current_amount_debit,0) +
+			#{amount,jdbcType=DOUBLE},
+			year_amount_debit =
+			IFNULL(year_amount_debit,0) + #{amount,jdbcType=DOUBLE},
+			ending_balance_debit = IFNULL(ending_balance_debit,0) +
+			#{amount,jdbcType=DOUBLE}
+		</if>
+
+		where account_id=#{accountID} and account_period=#{period} and
+		sub_code =#{subCode}
+	</update>
+
+	<update id="setFfArch">
+		update t_basic_subject_message set
+
+		current_amount_debit = #{dAmount},
+		year_amount_debit
+		=year_amount_debit+ #{dAmount},
+		ending_balance_debit = 0,
+
+		current_amount_credit =#{cAmount},
+		year_amount_credit =
+		year_amount_credit+#{cAmount},
+		ending_balance_credit =0
+		where
+		account_id=#{accountID} and
+		account_period=#{lastDate} and
+		sub_code like
+		CONCAT('','${subjectID}','%' )
+	</update>
+
+	<delete id="delUnjzSub">
+		delete from t_basic_subject_message where
+		account_id=#{accountID} and
+		account_period=#{nextPeriod};
+	</delete>
+	<!-- 反结转修改留抵税科目金额 -->
+	<update id="unLdAmount">
+		update t_basic_subject_message set
+		ending_balance_debit=init_debit_balance,
+		ending_balance_credit=init_credit_balance,
+		year_amount_debit=year_amount_debit-current_amount_debit,
+		year_amount_credit=year_amount_credit-current_amount_credit,
+		current_amount_credit=0,
+		current_amount_debit=0
+		where
+		account_id=#{accountID} and account_period=#{period} and
+		sub_code=#{subCode}
+	</update>
+	
+	<!--  根据科目代码查询   以此科目代码开头的科目有几条 -->
+	<select id="querySubjectByCode" parameterType="subMessage" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			t_basic_subject_message
+		WHERE
+			account_id = #{accountID}
+		AND account_period = #{busDate}
+		AND sub_code LIKE CONCAT('%','${subCode}','%' )
+	</select>
+	
+	<!--  根据科目代码查询    结束    以此科目代码开头的科目有几条-->
+	
+	<!-- querySubMessageBySubcode     根据科目编码、期间、帐套id查询科目信息 -->
+<!-- 	  <select id="querySubMessageBySubCode2" resultMap="subMessage" -->
+<!-- 		parameterType="subMessage"> -->
+<!-- 		select -->
+<!-- 		<include refid="Base_Column_List" /> -->
+<!-- 		from t_basic_subject_message -->
+<!-- 		where -->
+<!-- 		account_id = #{accountId,jdbcType=VARCHAR} -->
+<!-- 		and -->
+<!-- 		account_period = -->
+<!-- 		#{accountPeriod,jdbcType=VARCHAR} -->
+<!-- 		and -->
+<!-- 		sub_code = -->
+<!-- 		#{subCode,jdbcType=VARCHAR} -->
+<!-- 	</select> -->
+	<select id="querySubMessageBySubCode2" resultMap="subMessage"
+			parameterType="subMessage">
+			select
+			<include refid="Base_Column_List" />
+			from t_basic_subject_message
+			where
+			<!-- user_id = #{userId,jdbcType=VARCHAR} -->
+			<!-- and -->
+			account_id = #{accountId,jdbcType=VARCHAR}
+			and
+			account_period =
+			#{accountPeriod,jdbcType=VARCHAR}
+			and
+			sub_code =
+			#{subCode,jdbcType=VARCHAR}
+	</select>
+	<!-- querySubMessageBySubcode   结束    根据科目编码、期间、帐套id查询科目信息 -->
+	
+	<select id="querySubject" resultMap="subMessage">
+		select * from
+		t_basic_subject_message where sub_code like CONCAT('','${subCode}','%'
+		) and sub_name like CONCAT('%','${subName}','%' ) and
+		account_id=#{accountID}
+
+		and account_period=#{period}
+	</select>
+	
+	<select id="querySysBankSubject" resultMap="subMessage">
+		select * from
+		t_basic_subject_message where sub_code like CONCAT('','${subCode}','%'
+		) and
+		account_id=#{accountID} and account_period=#{period} order by sub_code  ;
+	</select>
+	
+	<select id="querySbuMessageByMapping" resultMap="subMessage">
+		select * from
+			t_basic_subject_message 
+		where 
+			sub_code like CONCAT('','${subCode}','%')
+		and 
+			sub_name = #{subName}
+		and
+			account_id=#{accountId}
+		and 
+			account_period=#{period}
+	</select>
+	
+	<select id="isLastStage" resultType="int">
+		select COUNT(*) from
+			t_basic_subject_message 
+		where 
+			sub_code like CONCAT('','${subCode}','%')
+		and
+			account_id=#{accountId}
+		and 
+			account_period=#{period}
+	
+	</select>
+	<!-- 科目对照界面 -->
+	<select id="querySubMessageByPkSubId" resultMap="subMessage">
+		select * from t_basic_subject_message  where pk_sub_id=#{pkSubId}
+	</select>
+	
+	<delete id="delSubMessageByPkSubId">
+		delete from  t_basic_subject_message where pk_sub_id=#{pkSubId}
+	</delete>
+	
+	
+	<update id="chgSubAmountByDeleteSub" parameterType="map">
+		update t_basic_subject_message set
+		<if test="direction==1">
+			init_debit_balance = IFNULL(init_debit_balance,0) - #{initDebitAmount,jdbcType=DOUBLE}	,	
+			ending_balance_debit = IFNULL(ending_balance_debit,0) - #{endDebitAmount,jdbcType=DOUBLE}
+		</if>
+		<if test="direction==2">
+			init_credit_balance = IFNULL(init_credit_balance,0) - #{initCreditAmount,jdbcType=DOUBLE},
+			ending_balance_credit = IFNULL(ending_balance_credit,0) - #{endCreditAmount,jdbcType=DOUBLE}
+		</if>
+		where account_id=#{accountID} and account_period=#{busDate} and  sub_code = #{subCode}
+	</update>
+	
+	
+	<update id="chgSubAmountByAddSub" parameterType="map">
+		update t_basic_subject_message set
+		<if test="direction==1">
+			init_debit_balance = IFNULL(init_debit_balance,0) + #{initDebitAmount,jdbcType=DOUBLE}	,	
+			ending_balance_debit = IFNULL(ending_balance_debit,0) + #{endDebitAmount,jdbcType=DOUBLE}
+		</if>
+		<if test="direction==2">
+			init_credit_balance = IFNULL(init_credit_balance,0) + #{initCreditAmount,jdbcType=DOUBLE},
+			ending_balance_credit = IFNULL(ending_balance_credit,0) + #{endCreditAmount,jdbcType=DOUBLE}
+		</if>
+		where account_id=#{accountID} and account_period=#{busDate} and  sub_code = #{subCode}
+	</update>
+	
+	
+	<select id="queryBankSub" resultMap="subMessage">
+		select * from t_basic_subject_message where account_id=#{accountID} and account_period=#{busDate} and  sub_name
+		
+		like CONCAT('%','${bankAccount}','%' );
+	</select>
+	
+</mapper>

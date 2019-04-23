@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="subject">
+	<!-- 科目映射 -->
+	<resultMap type="subject" id="subjectMap">
+		<result property="subjectID" column="subjectID" />
+		<result property="userID" column="userID" />
+		<result property="accountID" column="accountID" />
+		<result property="sunumber" column="sunumber" />
+		<result property="suname" column="suname" />
+		<result property="fullname" column="fullname" />
+		<result property="sutype" column="sutype" />
+		<result property="sudirect" column="sudirect" />
+		<result property="initBalace" column="initBalace" />
+		<result property="totalDebit" column="totalDebit" />
+		<result property="totalCredit" column="totalCredit" />
+		<result property="qmBalace" column="qmBalace" />
+		<result property="beginPeriod" column="beginPeriod" />
+		<result property="balanceDirect" column="balanceDirect" />
+		<result property="dispName" column="dispName" />
+		<result property="amount" column="amount" />
+		<result property="number" column="number" />
+		<result property="price" column="price" />
+		<result property="unit" column="unit" />
+		<result property="initJFBalance" column="initJFBalance" />
+		<result property="initDFBalance" column="initDFBalance" />
+	</resultMap>
+
+
+	<resultMap type="subjectExcel" id="subjectExcelMap">
+		<result property="subjectID" column="subjectID" />
+		<result property="userID" column="userID" />
+		<result property="accountID" column="accountID" />
+		<result property="sunumber" column="sunumber" />
+		<result property="suname" column="suname" />
+		<result property="fullname" column="fullname" />
+		<result property="sutype" column="sutype" />
+		<result property="sudirect" column="sudirect" />
+		<result property="initBalace" column="initBalace" />
+		<result property="totalDebit" column="totalDebit" />
+		<result property="totalCredit" column="totalCredit" />
+		<result property="qmBalace" column="qmBalace" />
+		<result property="beginPeriod" column="beginPeriod" />
+		<result property="balanceDirect" column="balanceDirect" />
+		<result property="dispName" column="dispName" />
+		<result property="amount" column="amount" />
+		<result property="number" column="number" />
+		<result property="price" column="price" />
+		<result property="unit" column="unit" />
+		<result property="initJFBalance" column="initJFBalance" />
+		<result property="initDFBalance" column="initDFBalance" />
+	</resultMap>
+
+
+
+	<update id="udpSubDAmt">
+		update t_basic_subject set totalDebit = totalDebit
+		+#{totalDebit} where accountID=#{accountID} and
+		sunumber=#{sunumber};
+	</update>
+
+	<update id="udpSubCAmt">
+		update t_basic_subject set totalCredit = totalCredit
+		+#{totalCredit} where accountID=#{accountID} and
+		sunumber=#{sunumber};
+	</update>
+
+	<select id="queryVouSubject" resultMap="subjectMap">
+		select
+		subjectID,userID,accountID,sunumber,suname,fullname,sutype,sudirect,initBalace,totalDebit,totalCredit,qmBalace,beginPeriod,balanceDirect,
+		dispName,amount,number,price,unit,initJFBalance,initDFBalance from
+		t_basic_subject where accountID=#{accountID} and
+		sunumber like
+		CONCAT('','#{sunumber}','%' );
+	</select>
+
+
+	<select id="querySysSub" resultMap="subjectMap">
+		select
+		subjectID,userID,accountID,sunumber,suname,fullname,sutype,sudirect,initBalace,totalDebit,totalCredit,qmBalace,beginPeriod,balanceDirect,
+		dispName,amount,number,price,unit,initJFBalance,initDFBalance from
+		t_basic_subject where accountID=#{accountID} ;
+	</select>
+
+	<select id="queryExcelSub" resultMap="subjectExcelMap">
+		select
+		subjectID,userID,accountID,sunumber,suname,fullname,sutype,sudirect,initBalace,totalDebit,totalCredit,qmBalace,beginPeriod,balanceDirect,
+		dispName,amount,number,price,unit,initJFBalance,initDFBalance from
+		t_basic_subject_excel where
+		accountID=#{accountID} ;
+	</select>
+	<!-- 查询科目(进项发票生成凭证使用) -->
+	<select id="querySubNumber" resultMap="subjectMap">
+		select
+		subjectID,userID,accountID,sunumber,suname,fullname,sutype,sudirect,initBalace,totalDebit,totalCredit,qmBalace,beginPeriod,balanceDirect,
+		dispName,amount,number,price,unit,initJFBalance,initDFBalance from
+		t_basic_subject where accountID=#{accountID} and sunumber like
+		CONCAT('','${subNumber}','%' ) and fullname=#{fullname};
+	</select>
+
+	<select id="selectMax7Sub" resultMap="subjectMap">
+		select
+		subjectID,userID,accountID,sunumber,suname,fullname,sutype,sudirect,initBalace,totalDebit,totalCredit,qmBalace,beginPeriod,balanceDirect,
+		dispName,amount,number,price,unit,initJFBalance,initDFBalance from
+		t_basic_subject where accountID=#{accountID} and length(sunumber)=7
+		order by sunumber*1 desc;
+	</select>
+
+</mapper>

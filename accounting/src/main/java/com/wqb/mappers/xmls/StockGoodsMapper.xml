@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wqb.mappers.StockGoodsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wqb.domains.StockGoods">
+        <id column="comID" property="comID" />
+        <result column="sub_code" property="subCode" />
+        <result column="importSubcode" property="importSubcode" />
+        <result column="sub_comName" property="subComname" />
+        <result column="comNameSpec" property="comNameSpec" />
+        <result column="comName" property="comName" />
+        <result column="spec" property="spec" />
+        <result column="balance_direction" property="balanceDirection" />
+        <result column="period" property="period" />
+        <result column="qc_balanceNum" property="qcBalancenum" />
+        <result column="qc_balancePrice" property="qcBalanceprice" />
+        <result column="qc_balanceAmount" property="qcBalanceamount" />
+        <result column="bq_incomeNum" property="bqIncomenum" />
+        <result column="bq_incomeAmount" property="bqIncomeamount" />
+        <result column="bq_incomePrice" property="bqIncomeprice" />
+        <result column="bq_issueNum" property="bqIssuenum" />
+        <result column="bq_issueAmount" property="bqIssueamount" />
+        <result column="bq_issuePrice" property="bqIssueprice" />
+        <result column="total_incomeNum" property="totalIncomenum" />
+        <result column="total_incomeAmount" property="totalIncomeamount" />
+        <result column="total_issueNum" property="totalIssuenum" />
+        <result column="total_issueAmount" property="totalIssueamount" />
+        <result column="qm_balanceNum" property="qmBalancenum" />
+        <result column="qm_balancePrice" property="qmBalanceprice" />
+        <result column="qm_balanceAmount" property="qmBalanceamount" />
+        <result column="direction" property="direction" />
+        <result column="accountID" property="accountID" />
+        <result column="startPeriod" property="startPeriod" />
+        <result column="endPeriod" property="endPeriod" />
+        <result column="updatePsnID" property="updatePsnID" />
+        <result column="updatePsn" property="updatePsn" />
+        <result column="updatedate" property="updatedate" />
+        <result column="createPsnID" property="createPsnID" />
+        <result column="createDate" property="createDate" />
+        <result column="createPsn" property="createPsn" />
+        <result column="des" property="des" />
+        <result column="importDate" property="importDate" />
+        <result column="balanceDate" property="balanceDate" />
+        <result column="vcunit" property="vcunit" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        comID, sub_code, importSubcode, sub_comName, comNameSpec, comName, spec, balance_direction, period, qc_balanceNum, qc_balancePrice, qc_balanceAmount, bq_incomeNum, bq_incomeAmount, bq_incomePrice, bq_issueNum, bq_issueAmount, bq_issuePrice, total_incomeNum, total_incomeAmount, total_issueNum, total_issueAmount, qm_balanceNum, qm_balancePrice, qm_balanceAmount, direction, accountID, startPeriod, endPeriod, updatePsnID, updatePsn, updatedate, createPsnID, createDate, createPsn, des, importDate, balanceDate, vcunit
+    </sql>
+
+</mapper>

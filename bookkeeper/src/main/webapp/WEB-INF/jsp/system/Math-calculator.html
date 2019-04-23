@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Math.js</title>
+  <style>
+    body,
+    ul {
+      margin: 0px;
+      padding: 0px;
+      background-color: #ffffff;
+    }
+
+    li {
+      list-style: none;
+      color: #6a6a6a;
+      font-size: 16px;
+      font-family: 'Microsoft YaHei';
+      font-weight: 500;
+    }
+
+    .fl {
+      float: left;
+    }
+
+    .fr {
+      float: right;
+    }
+
+    .clearfix:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    .clearfix {
+      zoom: 1;
+    }
+
+    /*是用inset可以将外部阴影改成内部阴影;若要实现内外阴影同时存在，将其并在一行用逗号隔开*/
+
+    .calBox {
+      width: 460px;
+      padding-bottom: 10px;
+      padding-top: 25px;
+      background: #fff;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -230px;
+      margin-top: -210px;
+      overflow: hidden;
+    }
+
+    .screen {
+      width: 410px;
+      height: 72px;
+      border-radius: 3px;
+      background: #FCFDEB;
+      padding: 0 10px;
+      margin-left: 6px;
+      box-shadow: inset 1px 1px 6px #808080;
+    }
+
+    .screen input {
+      width: 395px;
+      margin: 10px 13px 0px;
+      padding: 10px;
+      border: none;
+      outline: none;
+      padding: 0;
+      background-color: #FCFDEB;
+      text-align: right;
+      font-family: "微软雅黑";
+      font-size: 40px;
+    }
+
+    li {
+      list-style: none;
+      width: 74px;
+      height: 34px;
+      line-height: 34px;
+      text-align: center;
+      font-family: "微软雅黑";
+      border: 1px solid #e8e8e8;
+      border-radius: 3px;
+      float: left;
+      margin: 12px 6px 0px;
+    }
+
+    .one li {
+      height: 44px;
+      line-height: 44px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .one li:hover {
+      background-color: #63bf5c;
+      border: 1px solid #63bf5c;
+      color: #fff;
+    }
+
+    .one .orange {
+      font-size: 16px;
+      border: 1px solid #e8e8e8;
+    }
+
+    .one .black {
+      border: 1px solid #e8e8e8;
+      color: #6a6a6a;
+    }
+
+    .one .gray {
+      border: 1px solid #e8e8e8;
+    }
+
+    .zero {
+      width: 160px;
+    }
+
+    .one .deng {
+      height: 100px;
+    }
+
+    .twoBox {
+      width: 353px;
+      overflow: hidden;
+    }
+
+    .two {
+      width: 358px;
+    }
+
+    .calBox .three {
+      margin: 0px;
+    }
+
+    .calu {
+      padding: 0px 10px;
+      width: 470px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="calBox">
+    <div class="calu">
+      <div class="screen">
+        <input type="text" id="text" />
+      </div>
+      <ul class="one clearfix">
+        <li class="orange on" style="display: none;">开机</li>
+        <li class="orange off" style="display: none;">关机</li>
+        <li class="orange copy">复制</li>
+        <li class="orange backspace">退格</li>
+        <li class="orange clea">清屏</li>
+        <li class="black zheng">+/-</li>
+        <li class="black rec">1/x</li>
+        <li class="num">7</li>
+        <li class="num">8</li>
+        <li class="num">9</li>
+        <li class="gray oper">/</li>
+        <li class="black yu">%</li>
+        <li class="num">4</li>
+        <li class="num">5</li>
+        <li class="num">6</li>
+        <li class="gray oper">*</li>
+        <li class="black sq">√</li>
+        <!--  -->
+      </ul>
+      <div class="clearfix">
+        <div class="twoBox fl">
+          <ul class="one fl two">
+            <li class="num">1</li>
+            <li class="num">2</li>
+            <li class="num">3</li>
+            <li class="gray oper">-</li>
+            <li class="zero num">0</li>
+            <li class="num">.</li>
+            <li class="gray oper">+</li>
+          </ul>
+        </div>
+        <ul class="one three clearfix fl">
+          <li class="black deng fl">=</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <input type="text" id="per" style="display: none" />
+  <input type="text" id="text1" style="display: none" />
+    <script src="../plugins/jquery-1.12.4.js"></script>
+    <script src="../plugins/math.min.js"></script>
+    <script type="text/javascript">
+      function findArr(a, c) {
+        for (var b = 0; b < a.length; b++) {
+          if (a[b] == c) {
+            return true
+          }
+        }
+        return false
+      }
+
+      function getClass(d, f) {
+        if (document.getElementsByClassName) {
+          return d.getElementsByClassName(f)
+        } else {
+          var a = [];
+          var e = document.getElementsByTagName("*");
+          for (var c = 0; c < e.length; c++) {
+            var b = e[c].className.split(" ");
+            if (findArr(b, f)) {
+              a.push(e[c])
+            }
+          }
+          return a
+        }
+      };
+
+      window.onload = function () {
+        var aNum = getClass(document, 'num');
+        var oText = document.getElementById('text');
+        var aPer = getClass(document, 'oper');
+        var oPer = document.getElementById('per');
+        var oText1 = document.getElementById('text1');
+        var oDeng = getClass(document, 'deng')[0];
+        var oSq = getClass(document, 'sq')[0];
+        var oRec = getClass(document, 'rec')[0];
+        var oZheng = getClass(document, 'zheng')[0];
+        var oOn = getClass(document, 'on')[0];
+        var oOff = getClass(document, 'off')[0];
+        var oClea = getClass(document, 'clea')[0];
+        var oCopy = getClass(document, 'copy')[0];
+        var oClose = getClass(document, 'close')[0];
+        var oBackspace = getClass(document, 'backspace')[0];
+        //            var bOnOrOffClick = false;
+        var backOper = getClass(document, 'yu')[0];
+        function fnNum(a) {
+          var bClear = false;
+          oText.value = '0'
+          for (var i = 0; i < aNum.length; i++) {
+            aNum[i].onclick = function () {
+              if (!bOnOrOffClick) return;
+              if (bClear) {
+                bClear = false;
+              }
+              if (oText.value.indexOf('.') != -1) {
+                if (this.innerHTML == '.') {
+                  return;
+                }
+              }
+              if (oPer.value && oText.value && oText1.value == '') {
+                oText1.value = oText.value;
+                oText.value = '';
+              }
+
+              var re = /^0\.{1}\d+$/;
+              var re1 = /^([0]\d+)$/;
+              oText.value += this.innerHTML;
+              if (re.test(oText.value)) {
+                return;
+              }
+              if (re1.test(oText.value)) {
+                oText.value = this.innerHTML;
+              }
+            }
+
+            //符号部分的添加
+            for (var j = 0; j < aPer.length; j++) {
+              aPer[j].onclick = function () {
+
+                if (oText.value && oPer.value && oText1.value) {
+                  var n = eval(oText1.value + oPer.value + oText.value);
+                  oText.value = n;
+                  oText1.value = '';
+                }
+                oPer.value = this.innerHTML;
+              }
+
+            }
+
+
+
+            //点击等号的时候
+            oDeng.onclick = function () {
+              //+-*/%的情况
+              if (oText1.value == '' && oPer.value == '' && oText.value == '') {
+                return;
+              }
+              math.config({
+                number: 'BigNumber'
+              });
+              var n = math.parser().eval(oText1.value + oPer.value + oText.value);
+              oText.value = n;
+              oText1.value = '';
+              oPer.value = '';
+              bClear = true;
+            }
+
+            //点击开根号的时候
+            oSq.onclick = function () {
+              var m = Math.sqrt(oText.value);
+              oText.value = m;
+            }
+            //点击%号的时候
+            backOper.onclick = function () {
+              if (oText.value == '') {
+                return;
+              }
+              var m = oText.value.valueOf() / 100;
+              oText.value = m;
+            }
+
+            //点击倒数的时候
+            oRec.onclick = function () {
+              var a = 1 / oText.value;
+
+              if (oText.value == '0') {
+                a = '正无穷'
+              }
+              oText.value = a;
+            }
+
+            //正负号的时候
+            oZheng.onclick = function () {
+              if (oText.value > 0) {
+                oText.value = -oText.value;
+              } else {
+                oText.value = -oText.value;
+              }
+            }
+
+            //清屏的时候
+            oClea.onclick = function () {
+              oText.value = '0';
+              oText1.value = '';
+              oPer.value = '';
+            }
+          }
+        }
+
+        //on时
+        oOn.onclick = function () {
+          bOnOrOffClick = true;
+          fnNum(bOnOrOffClick);
+        }
+
+        //off时
+        oOff.onclick = function () {
+          bOnOrOffClick = false;
+          fnNum(bOnOrOffClick);
+          oText.value = '';
+        }
+
+        //关闭时
+        //oClose.onclick = function () {
+        //    window.parent.document.getElementById("ShowCalculator").style.display = "none";
+        //    oClea.onclick();
+        //}
+        oBackspace.onclick = function () {
+          if (oText.value.length > 0) {
+            oText.value = oText.value.substr(0, oText.value.length - 1);
+          }
+        }
+        //默认打开后即启用
+        oOn.click();
+
+        //复制
+        oCopy.onclick = function () {
+          oText.select();
+          document.execCommand('copy');
+          alert("复制成功！");
+        }
+
+        $(oCopy).on("copy", function (e) {
+          e.preventDefault();
+          if (e.clipboardData) {
+            e.clipboardData.setData('text/plain', document.all("text").value);
+          } else if (window.clipboardData) {
+            window.clipboardData.setData('Text', document.all("text").value);
+          }
+        });
+      }
+
+      function CopyData(value) {
+        if (window.clipboardData) {
+          window.clipboardData.clearData();
+          var couponResult = window.clipboardData.setData("Text",
+            couponResultHtml);
+          if (couponResult) {
+            alert("复制成功！");
+          } else {
+            alert("复制失败！");
+          }
+        } else if (navigator.userAgent.indexOf("Opera") != -1) {
+          window.location = couponResultHtml;
+        } else if (navigator.userAgent.indexOf("Chrome") != -1) {
+          document.execCommand('copy');
+        }
+        else if (window.netscape) {
+          try {
+            netscape.security.PrivilegeManager
+              .enablePrivilege("UniversalXPConnect");
+          } catch (e) {
+            alert("被浏览器拒绝！\n请在浏览器地址栏输入'about:config'并回车\n然后将'signed.applets.codebase_principal_support'设置为'true'");
+          }
+          var clip = Components.classes['@mozilla.org/widget/clipboard;1']
+            .createInstance(Components.interfaces.nsIClipboard);
+          if (!clip)
+            return;
+          var trans = Components.classes['@mozilla.org/widget/transferable;1']
+            .createInstance(Components.interfaces.nsITransferable);
+          if (!trans)
+            return;
+          trans.addDataFlavor('text/unicode');
+          var str = new Object();
+          var len = new Object();
+          var str = Components.classes["@mozilla.org/supports-string;1"]
+            .createInstance(Components.interfaces.nsISupportsString);
+          var copytext = couponResultHtml;
+          str.data = copytext;
+          trans.setTransferData("text/unicode", str, copytext.length * 2);
+          var clipid = Components.interfaces.nsIClipboard;
+          if (!clip)
+            return false;
+          clip.setData(trans, null, clipid.kGlobalClipboard);
+        }
+      }
+    </script>
+</body>
+
+</html>

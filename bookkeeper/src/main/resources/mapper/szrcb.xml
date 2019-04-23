@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="szrcb">
+	<!-- 深圳农商行对账单映射 -->
+	<resultMap type="szrcb" id="szrcbMap">
+		<result property="szrcbBillID" column="szrcbBillID" />
+		<result property="accountID" column="accountID" />
+		<result property="period" column="period" />
+		<result property="busDate" column="busDate" />
+		<result property="rowNumber" column="rowNumber" />
+		<result property="transactionDate" column="transactionDate" />
+		<result property="des" column="des" />
+		<result property="debitAmount" column="debitAmount" />
+		<result property="creditAmount" column="creditAmount" />
+		<result property="accountBalance" column="accountBalance" />
+		<result property="dfAccountName" column="dfAccountName" />
+		<result property="dfAccountNumber" column="dfAccountNumber" />
+		<result property="voucherType" column="voucherType" />
+		<result property="voucherNo" column="voucherNo" />
+		<result property="transjg" column="transjg" />
+		<result property="bz" column="bz" />
+		<result property="bankType" column="bankType" />
+		
+		<result property="sysSubjectCode" column="sysSubjectCode" />
+
+		<result property="sysSubjectName" column="sysSubjectName" />
+
+		<result property="sysSubjectID" column="sysSubjectID" />
+		<result property="sysSubjectFullName" column="sysSubjectFullName" />
+		<result property="bankAccount" column="bankAccount" />
+		
+	</resultMap>
+
+	<insert id="insertSzrcb">
+		insert into t_cm_bkbill_szrcb
+		(
+		szrcbBillID,
+		accountID,
+		period,
+		busDate,
+		rowNumber,
+		transactionDate,
+		des,
+		debitAmount,
+		creditAmount,
+		accountBalance,
+		dfAccountName,
+		dfAccountNumber,
+		voucherType,
+		voucherNo,
+		transjg,
+		bz,
+		bankAccount,
+		sysSubjectCode,
+		sysSubjectName,
+		sysSubjectID,
+		sysSubjectFullName
+		) values
+		(
+		#{szrcbBillID},
+		#{accountID},
+		#{period},
+		#{busDate},
+		#{rowNumber},
+		#{transactionDate},
+		#{des},
+		#{debitAmount},
+		#{creditAmount},
+		#{accountBalance},
+		#{dfAccountName},
+		#{dfAccountNumber},
+		#{voucherType},
+		#{voucherNo},
+		#{transjg},
+		#{bz},
+		#{bankAccount},
+		#{sysSubjectCode},
+		#{sysSubjectName},
+		#{sysSubjectID},
+		#{sysSubjectFullName}
+		)
+	</insert>
+
+	<select id="querySame" resultMap="szrcbMap">
+		select * from t_cm_bkbill_szrcb
+		where accountID=#{accountID} and period=#{period} and
+		rowNumber=#{rowNumber};
+	</select>
+	
+	<delete id="deleteByID">
+		delete from t_cm_bkbill_szrcb where szrcbBillID  in ${bills};
+	</delete>
+	
+	<!-- 分页查询 -->
+	<select id="queryBankBill" resultMap="szrcbMap">
+		select * from t_cm_bkbill_szrcb where accountID=#{accountID} and period=#{busDate} 
+		<if
+			test="beginTime!=null and beginTime!='' and endTime!=null and endTime!=''">
+			and transactionDate between #{beginTime} and #{endTime}
+		</if>
+		<if test="bankType!=null and bankType!='' and bankType!='全部'">
+		   and bankType=#{bankType}
+		</if>
+		<if test="keyWords!=null and keyWords!=''">
+			and dfAccountName like CONCAT('%','${keyWords}','%' )
+		</if>
+			order by busDate
+		<if test="begin != null and begin != '' or begin==0">
+			limit  #{begin},#{maxPage}
+		</if>
+	</select>
+	
+	<!-- 银行凭证添加  查询当期全部数据 -->
+	<select id="queryAll"  parameterType="map" resultMap="szrcbMap">
+		select * from t_cm_bkbill_szrcb where  accountID = #{accountID} and period=#{busDate} order by busDate 
+	</select> 
+	<update id="delVouchID">
+		update t_cm_bkbill_szrcb  set vouchID =''  where vouchID=#{vouchID};
+	</update>
+	
+	
+	<update id="addVouchID">
+   		update t_cm_bkbill_szrcb  set vouchID =#{vouchID}  where szrcbBillID=#{bankID};
+    </update>
+    
+    <update id="updByID">
+		update t_cm_bkbill_szrcb set sysSubjectCode
+		=#{sysSubjectCode},sysSubjectName=#{sysSubjectName},
+		sysSubjectID=#{sysSubjectID},sysSubjectFullName=#{sysSubjectFullName}
+		where szrcbBillID=#{id};
+	</update>
+</mapper>

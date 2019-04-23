@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--企业所得税结转 -->
+<mapper namespace="businessTax">
+	
+	<select id="querySub" resultType="com.wqb.model.SubjectMessage">
+		select * from t_basic_subject_test where pk_sub_id  = '30c5e186a11444d59e439b57f74991b5'
+	</select>
+</mapper>

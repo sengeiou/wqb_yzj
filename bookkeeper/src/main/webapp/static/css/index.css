@@ -1,0 +1,762 @@
+@charset "utf-8";
+body {
+  background: #f7f7f7;
+}
+@font-face {
+  font-family: 'iconFont';
+  src: url('../font/iconfont.eot');
+  src: url('../font/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../font/iconfont.woff') format('woff'), url('../font/iconfont.ttf') format('truetype'), url('../font/iconfont.svg#YourWebFontName') format('svg');
+}
+.colorF {
+  color: #fff;
+}
+a:hover {
+  cursor: pointer;
+}
+.bgc1 {
+  background: #ff8f33;
+  color: #fff;
+}
+.bgc2 {
+  background: #539dfc;
+  color: #fff;
+}
+.color1 {
+  color: #ff8f33;
+}
+.color2 {
+  color: #539dfc;
+}
+.wqb_btn {
+  padding: 6px 16px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  cursor: default;
+}
+.active_color {
+  color: #ff8f33;
+  background: #ff8f33;
+}
+.operate_btn {
+  display: inline-block;
+  width: 100px;
+  border: 1px solid #f1efef;
+  margin: 0 10px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+.operate_btn a {
+  cursor: default;
+}
+a.operate_btn {
+  border: 1px solid #999;
+}
+input[type=checkbox],
+input[type=radio] {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 12;
+  width: 100%;
+  height: 100%;
+}
+.lbl {
+  z-index: 11;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  padding-bottom: 3px;
+  background: url(../img/icon-box.png) no-repeat 0 3px;
+}
+.KmNotTable .lbl {
+  margin: 8px 0 5px 0;
+}
+/* 复选框 */
+input[type=checkbox]:checked + .lbl {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  padding-bottom: 3px;
+  background: url(../img/icon-selected.png) no-repeat 0 3px;
+}
+/* 调试 */
+.allS input[type=checkbox] + .lbl {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  padding-bottom: 3px;
+  background: url(../img/icon-selected.png) no-repeat 0 3px;
+}
+
+.Search .searchList {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 32px;
+  padding-left: 9px;
+}
+.lead_btn {
+  display: inline-block;
+  width: 80px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  background: none;
+  border: 1px solid #f1efef;
+}
+.inNBorder {
+  border: none;
+  background: none;
+}
+.minBtn {
+  display: inline;
+  padding: 5px;
+}
+/* 底部批量删除 */
+.table-bot {
+  height: 50px;
+  line-height: 50px;
+}
+.noOrder {
+  text-align: center;
+  font-size: 20px;
+  color: #999;
+  margin-top: 20%;
+  margin-bottom: 20%;
+}
+.minBtn {
+  display: inline-block;
+  border: 1px solid #f1efef;
+  padding: 0px 5px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+}
+/* 内容区块 */
+.allContent {
+  margin-top: 80px;
+  overflow: hidden;
+}
+/* 右边内容区 */
+.contentR {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: auto;
+  overflow: auto;
+  margin-left: 200px;
+  padding: 0 10px;
+}
+.con_list {
+  position: relative;
+  height: 100%;
+  padding: 0;
+  margin-top: 52px;
+  margin-left: 210px;
+}
+/* 面包屑导航及 导入  */
+/* 需要删除 */
+.formTit {
+  background: #f8f9fb;
+  border: 1px solid #f1efef;
+  padding-left: 10px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 16px;
+}
+/* 公用样式 */
+.crumbs {
+  width: 100%;
+  border-bottom: 1px solid #e6e6e6;
+}
+.crumbs .crumbsTxt {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  color: #ff8f33;
+  border-bottom: 2px solid #ff8f33;
+}
+.line_btn {
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #b3b3b3;
+  padding: 0 16px;
+  vertical-align: top;
+}
+/* 12.28 开始，改变layui的样式 */
+.layui-layer .layui-layer-title {
+  height: 46px;
+  line-height: 46px;
+  padding-left: 24px;
+  font-size: 16px;
+  background: #ff8f33;
+  color: #fff;
+}
+.layui-table thead tr,
+.layui-table-click,
+.layui-table-header,
+.layui-table-hover,
+.layui-table-mend,
+.layui-table-patch,
+.layui-table-tool,
+.layui-table[lay-even] tr:nth-child(even) {
+  background: #f9f9f9;
+}
+.layui-table tbody tr:hover {
+  background-color: #e6eefc;
+}
+.layui-table td {
+  border-color: #f1efef;
+}
+/* ************** 初始化 ********************** */
+/* 重改样式，需删除
+.init_con{
+	display: flex;
+	padding: 20px;
+	.info_tit{
+		font-size: 16px;
+		font-size: 16px;
+		height: 40px;
+		line-height: 40px;
+		font-weight: bold;
+	}
+*/
+/* 左侧账套信息 */
+/*	.account_info{
+		flex: 1;
+		.layui-icon{color: @theme-color;}
+		li{
+			height: 30px;
+			line-height: 30px;
+		}
+		.info_list{
+			margin-top: 30px;
+		}
+	}
+*/
+.con_list {
+  padding: 20px;
+}
+.init_con {
+  padding: 0 20px 20px 20px;
+  background: #fff;
+  -webkit-box-shadow: 2px 2px 3px #e1e1e3, -2px 0px 3px #e1e1e3;
+  box-shadow: 2px 2px 3px #e1e1e3, -2px 0px 3px #e1e1e3;
+}
+/* 科目对照 */
+.init_contrast .kmNav {
+  width: 100%;
+  height: 78px;
+  line-height: 78px;
+  overflow: hidden;
+  text-align: right;
+  margin-right: 25px;
+  font-size: 0;
+}
+.init_contrast .kmNav .writeBegin {
+  margin-right: 35px;
+}
+.init_contrast .kmNav .wqb_btn {
+  font-size: 14px;
+}
+.init_contrast .kmNav .searchIn {
+  width: 180px;
+  height: 28px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 14px;
+  border: solid 1px #cccccc;
+  padding-left: 9px;
+  margin-right: 10px;
+}
+.init_contrast .kmTable {
+  padding: 0 25px 16px 25px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -moz-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+.init_contrast .kmTable .space {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.init_contrast .kmTable .wqbKm td:first-child,
+.init_contrast .kmTable .wqbKm td:nth-child(2) {
+  text-align: left;
+}
+.init_contrast .kmTable .wqbKm tr {
+  height: 38px;
+}
+.init_contrast .kmTable .leadKm {
+  margin-left: 20px;
+}
+.init_contrast .kmTable .leadKm td:nth-child(2),
+.init_contrast .kmTable .leadKm td:nth-child(3) {
+  text-align: left;
+}
+.init_contrast .tablebody {
+  height: 360px;
+}
+.init_contrast .tablebody td:first-child {
+  border-left: none;
+}
+.init_contrast .head {
+  padding-right: 18px;
+}
+.init_contrast .tabletit {
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  border: 1px solid #e4e4e4;
+  border-bottom: none;
+  background-color: #f9f9f9;
+  color: #333333;
+}
+.init_contrast td {
+  cursor: pointer;
+  padding: 0 5px;
+}
+.init_contrast .noLead {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 30px;
+  color: #f00;
+}
+/* 新增科目 */
+.addKm > div {
+  height: 30px;
+  line-height: 30px;
+  padding: 10px 50px;
+}
+.addKm .input {
+  display: inline-block;
+  width: 220px;
+  border: 1px solid #e4e4e4;
+  padding-left: 9px;
+}
+.addKm .input input {
+  border: none;
+}
+/* 需要修改  样式与UI页面对接 */
+/* 工资导入  */
+.nav_opr {
+  height: 70px;
+  line-height: 70px;
+}
+.nav_opr .bill-select {
+  margin-top: 19px ;
+  margin-right: 30px;
+}
+.nav_opr .bill-select .layui-input {
+  height: 32px;
+}
+/* 表格上右部操作  后期需删除*/
+.navRightUl {
+  margin-top: 20px;
+  height: 34px;
+  line-height: 34px;
+}
+.navRightUl li {
+  float: left;
+  margin-left: 15px;
+}
+.navRightUl .inNBorder {
+  width: auto;
+  height: 34px;
+  line-height: 34px;
+  display: inline-block;
+}
+.navRightUl .hasInput {
+  height: 34px;
+  line-height: 34px;
+  border: 1px solid #e4e4e4;
+  padding: 0 5px;
+}
+.navRightUl .hasInput i {
+  color: #ff8f33;
+  font-weight: 600;
+  padding: 5px;
+  font-size: 18px;
+}
+.navRightUl .selectDate {
+  position: relative;
+}
+.navRightUl .selectDate i {
+  position: absolute;
+  top: 0;
+  right: 6px;
+  padding: 0;
+  z-index: -1;
+  cursor: default;
+}
+.navRightUl .selInput input {
+  text-align: center;
+  cursor: default;
+}
+.navRightUl .bankSelect {
+  position: relative;
+}
+/* 导入按钮 的弹窗  */
+/* 文件上传  */
+.file {
+  padding-left: 10px;
+}
+.file label {
+  position: relative;
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 32px;
+  width: 280px;
+  padding: 5px 0 0 6px;
+  border: 1px solid #ccc;
+  background: url(../img/icon-up.png) no-repeat 250px;
+}
+.file .sub-btn {
+  vertical-align: top;
+}
+.file .in-file {
+  color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  filter:alpha(opacity=0);
+}
+.leadModule {
+  margin: 40px 20px;
+}
+.leadModule .file {
+  padding-left: 0 ;
+}
+.leadModule .fileLabel {
+  background: url(../img/icon-up.png) no-repeat 250px;
+}
+.leadModule .btn-opr {
+  margin: 30px 0;
+}
+.table-card {
+  margin-top: 0;
+  border-top: none;
+}
+.table-card .layui-tab-title {
+  height: 60px;
+  line-height: 60px;
+  background: #fff;
+}
+.table-card .layui-tab-title li {
+  height: 60px;
+  line-height: 60px;
+}
+.table-card .layui-tab-title .layui-this {
+  background: #f2f2f2;
+}
+.table-card .layui-tab-title .layui-this:after {
+  height: 61px;
+}
+.table-card .layui-tab-content {
+  padding: 0;
+}
+.table-card .nav_right {
+  height: 0;
+  line-height: 0;
+}
+.table-card .navRightUl {
+  position: absolute;
+  top: 13px;
+  right: 0;
+  margin-top: 0;
+}
+/* 导入按钮 的弹窗 */
+.leadInput {
+  padding-left: 0;
+  height: 34px;
+  line-height: 34px;
+  font-size: 0;
+  margin: 20px 0;
+}
+.leadInput .fileName {
+  font-size: 14px;
+}
+.leadInput label {
+  display: inline-block;
+  width: 300px;
+  height: 100%;
+  position: relative;
+  border: 1px solid #e4e4e4;
+  padding-left: 10px;
+}
+.leadInput .in-file {
+  width: 100%;
+  color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: 100%;
+  z-index: 10;
+}
+.leadInput .change-btn {
+  width: 50px;
+  text-align: center;
+  height: 34px;
+  line-height: 34px;
+  border: 1px solid #ff8f33;
+  padding: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  background-color: #ff8f33;
+  margin-top: -1px;
+}
+.lead_operate a {
+  width: 100px;
+}
+.lead_operate a.btn_sure {
+  color: #ff8f33;
+  border-color: #ff8f33;
+}
+.layui-layer-btn .layui-layer-btn0 {
+  background: #539dfc !important;
+  color: #fff !important;
+}
+/* 导入按钮的弹窗 -- 结束 */
+/* 插件样式修改 */
+a.operate_btn {
+  height: 38px;
+  line-height: 36px;
+}
+.layui-btn.wqb {
+  background: none;
+  border: 1px solid #e4e4e4;
+  color: #333;
+}
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+  background-color: #ff8f33;
+}
+.layui-laypage a:hover {
+  color: #539dfc;
+}
+.layui-laydate-footer span:hover {
+  color: #ff8f33;
+}
+.layui-laypage {
+  margin: 0;
+}
+.layui-laypage a,
+.layui-laypage span {
+  height: 34px;
+  line-height: 34px;
+}
+/* 表格样式 */
+table {
+  cursor: default;
+}
+.layui-table th,
+.layui-table td {
+  text-align: center;
+}
+/* 日历 */
+.layui-laydate-header i:hover,
+.layui-laydate-header span:hover,
+.layui-laydate-footer span:hover {
+  color: #539dfc !important;
+}
+.layui-laydate td.layui-this {
+  background-color: #ff8f33 !important;
+  color: #fff !important;
+}
+.layui-table[lay-size=lg] td,
+.layui-table[lay-size=lg] th {
+  padding: 15px 0;
+}
+.head .layui-table,
+.layui-table-view {
+  margin-bottom: 0 ;
+}
+.tablebody .layui-table,
+.layui-table-view {
+  margin-top: 0 ;
+}
+.head {
+  padding-right: 21px;
+  background: #f9f9f9;
+  border-top: 1px solid #e4e4e4;
+  border-right: 1px solid #e4e4e4;
+}
+.head th {
+  border-bottom: none;
+  border-top: none;
+}
+.head th:last-child {
+  border-right: none;
+}
+.tablebody {
+  height: 600px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  border: 1px solid #e4e4e4;
+  border-top: none;
+}
+.layui-table {
+  margin: 0;
+}
+.table1 {
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+  -moz-box-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+  margin-right: 50px;
+}
+.table2 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.layui-table[lay-size=lg] td,
+.layui-table[lay-size=lg] th {
+  padding: 15px 0;
+}
+.layui-laydate .layui-laydate-list .layui-this {
+  background-color: #539dfc !important;
+}
+.layui-laydate-footer span {
+  margin-left: 10px;
+}
+.laydate-footer-btns span {
+  margin-left: 10px;
+}
+/* 12.28 开始，改变layui的样式 */
+.layui-layer .layui-layer-title {
+  height: 46px;
+  line-height: 46px;
+  padding-left: 24px;
+  font-size: 16px;
+  background: #ff8f33;
+  color: #fff;
+}
+.layui-table thead tr,
+.layui-table-click,
+.layui-table-header,
+.layui-table-hover,
+.layui-table-mend,
+.layui-table-patch,
+.layui-table-tool,
+.layui-table[lay-even] tr:nth-child(even) {
+  background: #f9f9f9;
+}
+.layui-table tbody tr:hover {
+  background-color: #e6eefc;
+}
+.layui-table td {
+  border-color: #e4e4e4;
+}
+/* 公用样式 */
+.crumbs {
+  width: 100%;
+  border-bottom: 1px solid #e6e6e6;
+}
+.crumbs .crumbsTxt {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  color: #ff8f33;
+  border-bottom: 2px solid #ff8f33;
+}
+.btn {
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+.line-btn {
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #b3b3b3;
+  padding: 0 16px;
+  vertical-align: top;
+  cursor: pointer;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+.bgc2.lead_btn {
+  width: 28px;
+  background: #539dfc;
+  margin-right: 15px;
+}
+.min-btn {
+  border: none;
+  padding: 0px 16px;
+  display: inline-block;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+.lineBC {
+  border: 1px solid #539dfc;
+  color: #539dfc;
+}
+.min-line {
+  border: 1px solid #b3b3b3;
+}
+.lg-btn {
+  width: 94px;
+  height: 30px;
+  display: inline-block;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+.lg-btn.line {
+  border: 1px solid #b3b3b3;
+}
+.add {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(../img/icon-add.png) no-repeat;
+  cursor: pointer;
+}
+.lead {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url(../img/icon-lead.png) no-repeat 0 2px;
+  cursor: pointer;
+}
+.del {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(../img/icon-del.png) no-repeat;
+  cursor: pointer;
+}
+.view {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(../img/icon-view.png) no-repeat;
+  cursor: pointer;
+}

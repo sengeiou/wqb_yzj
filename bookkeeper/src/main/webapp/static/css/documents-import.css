@@ -1,0 +1,379 @@
+@charset "utf-8";
+.mt20 {
+    margin-top: 20px;
+}
+
+.layui-body {
+    color: #333;
+}
+
+#tab-content {
+    padding-top: 48px;
+}
+
+#content {
+    top: 0 !important;
+}
+
+#content > .layui-tab {
+    margin: 0;
+}
+
+#content .fixed-head {
+    display: none !important;
+}
+
+.layui-body h2 {
+    margin-bottom: 10px;
+    padding-left: 10px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    font-weight: normal;
+    background: #f0f9ff;
+}
+
+.layui-tab-title li {
+    border-right: none;
+}
+
+.fixed-nav {
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.layui-body h4 {
+    position: relative;
+    padding: 0 15px;
+    height: 37px;
+    line-height: 38px;
+    font-size: 16px;
+    font-weight: normal;
+    color: #171717;
+    text-align: left;
+    border: 1px solid #e7e7eb;
+    background-color: #f7f7f7;
+    background: -webkit-linear-gradient(#fafafa, #f3f3f3);
+    background: -o-linear-gradient(#fafafa, #f3f3f3);
+    background: -moz-linear-gradient(#fafafa, #f3f3f3);
+    background: linear-gradient(#fafafa, #f3f3f3);
+}
+
+.crumbs {
+    height: 40px;
+}
+
+.crumbs li {
+    height: 40px;
+}
+
+.fixed-search {
+    width: 25% !important;
+    min-width: 200px;
+    right: 25px;
+    float: right;
+    background: #ccc0;
+    left: 73% !important;
+}
+
+#searchDOM5 .search_btn {
+    margin-left: 50px;
+}
+
+.layui-tab-title li.dn {
+    display: none;
+}
+
+/*form*/
+
+.save_btn {
+    display: none;
+}
+
+.layui-tab-item.edit_tab .save_btn {
+    display: inline-block;
+}
+
+.layui-tab-item.edit_tab .add_btn {
+    display: none;
+}
+
+.form-item {
+    display: inline-block;
+    margin: 10px 20px 10px 0;
+    vertical-align: middle;
+    border: 1px solid #dbdbdb;
+    padding-right: 10px;
+    border-radius: 4px;
+}
+
+.form-item.dn {
+    display: none;
+}
+
+.form-item .layui-form-label {
+    float: none;
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 10px;
+    width: 150px;
+    word-break: break-all;
+    vertical-align: middle;
+}
+
+.form-item .layui-input-inline {
+    width: 100px;
+}
+
+#form1,
+#form2 {
+    z-index: 0;
+}
+
+/*list*/
+
+.layui-table .tl {
+    text-align: left;
+}
+
+.layui-table .tr {
+    text-align: right;
+}
+
+/*采购票*/
+
+.layui-tab-card>.layui-tab-more .layui-this {
+    color: #539dfc;
+    background-color: #fff;
+}
+
+.proc-raw-l,
+.proc-raw-r {
+    /*height: -webkit-calc(100vh - 282px);
+    height: calc(100vh - 282px);*/
+}
+
+.proc-raw-l {
+    position: absolute;
+    z-index: 1;
+    width: 252px;
+}
+
+#form2 .layui-tab-title .layui-this:after,
+#form1 .layui-tab-title .layui-this:after,
+#form1 .layui-tab-title,
+#form2 .layui-tab-title {
+    height: 35px;
+}
+
+#form1 .layui-tab-title li,
+#form2 .layui-tab-title li {
+    height: 35px;
+    line-height: 35px;
+}
+
+#form2 .layui-tab-title span,
+#form1 .layui-tab-title span {
+    display: none;
+}
+
+.proc-raw-l .layui-tab-card {
+    margin-top: 0;
+}
+
+.proc-raw-l .layui-tab-title li {
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: 44px;
+    font-size: 15px;
+}
+
+.tickets-search,
+.subcode-search {
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #e1e1e3;
+    border-radius: 3px;
+    padding-left: 4px;
+    font-size: 13px;
+}
+
+.subcode-search {
+    margin: 10px 5%;
+    width: 90%;
+}
+
+.subcode-list {
+    overflow-y: auto;
+    max-height: calc(100vh - 226px);
+}
+
+.subcode-item {
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.subcode-item.on {
+    background-color: #1E9FFF;
+    color: #fff;
+}
+
+.subcode-empty {
+    text-align: center;
+    line-height: 80px;
+}
+
+.proc-raw-r {
+    /*display: inline-block;*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: 260px;
+    width: 100%;
+}
+
+.tickets-list .proc-title {
+    border-top: 0;
+    color: #1a1a1a;
+    background-color: #f2f2f2;
+}
+
+.proc-title,
+.proc-list {
+    /*table-layout: fixed;*/
+    width: 100%;
+    display: table;
+    border-bottom: 1px solid #e4e4e4;
+    border-left: 1px solid #e4e4e4;
+}
+
+.proc-title {
+    box-sizing: border-box;
+    border-top: 1px solid #e4e4e4;
+}
+
+.proc-title.side {
+    padding-right: 17px;
+}
+
+.proc-title .layui-form-label {
+    float: none;
+    display: inline-block;
+}
+
+.title-item,
+.list-item {
+    display: table-cell;
+    padding: 0 5px;
+    height: 36px;
+    font-size: 14px;
+    vertical-align: middle;
+    border-right: 1px solid #e4e4e4;
+}
+
+.title-item {
+    font-size: 16px;
+    text-align: center;
+    color: #000;
+}
+
+.title-item.tl {
+    text-align: left;
+}
+
+.w1 {
+    width: 210px;
+}
+
+.w2 {
+    width: 170px;
+}
+
+.w3 {
+    width: 120px;
+}
+
+#proc-raw-list,
+#proc-stock-list {
+    overflow-y: auto;
+    max-height: calc(100vh - 214px);
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.proc-list {
+    width: calc(100% - 1px);
+}
+
+.proc-list:last-of-type {
+    border-bottom: 0;
+}
+
+.list-item {
+    word-break: break-all;
+    color: #4d4d4d;
+}
+
+/*计量单位*/
+
+.unit-popup {
+    display: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    overflow-y: auto;
+    width: 160px;
+    height: 180px;
+    border: 1px solid #4d91fe;
+    background-color: #fff;
+}
+
+.unit-popup.above{
+    border-bottom: 0;
+}
+
+.unit-popup.below{
+    border-top: 0;
+}
+
+.unit-item {
+    padding: 6px 0;
+    margin: 0 4px;
+    border-bottom: 1px solid #e4e4e4;
+    font-size: 12px;
+    color: #333;
+}
+
+.unit-item:hover {
+    background-color: #eee;
+}
+
+.unit-item.disabled:hover {
+    background-color: none;
+}
+
+.unit-text.focus {
+    border-color: #4d91fe!important;
+}
+
+/*销售收入票*/
+
+.tax-select {
+    display: inline-block;
+    padding-left: 10px;
+    width: 104px;
+    height: 40px;
+    vertical-align: middle;
+}
+
+.tax-select .layui-form-radio {
+    margin: 0;
+    line-height: 20px;
+    vertical-align: top;
+}
+
+.tax-select .layui-form-radio>i {
+    font-size: 16px;
+}

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="first">
+	<!-- 登录用户映射 -->
+	<resultMap type="first" id="firstMap">
+		<result property="cusName" column="cusName" />
+		<result property="telephone" column="telephone" />
+		<result property="period" column="period" />
+		<result property="clName" column="clName" />
+		<result property="statu" column="statu" />
+		<result property="cv" column="cv" />
+		<result property="cs" column="cs" />
+		<result property="jz" column="jz" />
+		<result property="jd" column="jd" />
+		<result property="accountID" column="accountID" />
+	</resultMap>
+	<select id="queryFirstPage" resultMap="firstMap">
+		<if test="type==2 or type==3">
+			SELECT
+			*
+			FROM
+			(
+			SELECT
+			t2.cusName AS cusName,
+			t2.cusPhone AS
+			telphone,
+			t3.period AS period,
+			t1.loginUser AS clName,
+			t3.statu AS
+			statu,
+			t4.isCreateVoucher AS cv,
+			t4.isCarryState AS cs,
+			t4.isJz AS jz,
+			t4.period as qj,
+			t3.accountID
+			FROM
+			t_sys_user t1,
+			t_customer t2,
+			t_basic_account t3,
+			t_status_period t4
+			WHERE
+			t1.userID =
+			t3.userID
+			AND
+			t2.accountID = t3.accountID
+			and t2.accountID = t4.accountID
+			AND
+			t3.accountID=t4.accountID
+			AND t1.parentUser =
+			#{userID}
+			and
+			t4.period=#{busDate}
+			and
+			(
+			t2.cusName LIKE CONCAT(
+			'%',
+			#{keyWord},'%'
+			) or
+			t2.cusPhone like
+			CONCAT(
+			'%',
+			#{keyWord},'%') or t1.loginUser like
+			CONCAT('%',
+			#{keyWord},'%' ))
+			) t
+			<if test="begin != null and begin != '' or begin==0">
+				LIMIT #{begin},#{maxSize};
+			</if>
+		</if>
+		<if test="type==5 or type==6">
+			SELECT
+			*
+			FROM
+			(
+			SELECT
+			t2.cusName AS cusName,
+			t2.cusPhone AS
+			telphone,
+			t3.period AS period,
+			t1.loginUser AS clName,
+			t3.statu AS
+			statu,
+			t4.isCreateVoucher AS cv,
+			t4.isCarryState AS cs,
+			t4.isJz AS jz,
+			t4.period as qj,
+			t3.accountID
+			FROM
+			t_sys_user t1,
+			t_customer t2,
+			t_basic_account t3,
+			t_status_period t4
+			WHERE
+			t1.userID =
+			t3.userID
+			AND
+			t2.accountID = t3.accountID
+			and t2.accountID = t4.accountID
+			AND
+			t3.accountID=t4.accountID
+			AND t1.userID =
+			#{userID}
+			and
+			t4.period=#{busDate}
+			and
+			(
+			t2.cusName LIKE CONCAT(
+			'%',
+			#{keyWord},'%'
+			) or
+			t2.cusPhone like
+			CONCAT(
+			'%',
+			#{keyWord},'%') or t1.loginUser like
+			CONCAT('%',
+			#{keyWord},'%' ))
+			) t
+			<if test="begin != null and begin != '' or begin==0">
+				LIMIT #{begin},#{maxSize};
+			</if>
+		</if>
+	</select>
+</mapper>

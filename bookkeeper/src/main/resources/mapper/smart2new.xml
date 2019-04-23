@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="smart2new">
+	<!-- 小企业与新会计准则映射 -->
+	<resultMap type="smart2new" id="smart2newMap">
+		<result property="id" column="id" />
+
+		<result property="smartSubCode" column="smartSubCode" />
+		<result property="smartSubName" column="smartSubName" />
+		<result property="newSubCode" column="newSubCode" />
+		<result property="newSubName" column="newSubName" />
+		<result property="mark" column="mark" />
+
+	</resultMap>
+	<select id="queryAllSmart2New" resultMap="smart2newMap">
+		select * from
+		t_basic_subject_smart2new
+	</select>
+</mapper>

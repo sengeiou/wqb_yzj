@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wqb.mappers.subject.SubjectBalanceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wqb.domains.subject.SubjectBalance">
+        <id column="pk_sub_id" property="pkSubId" />
+        <result column="sub_code" property="subCode" />
+        <result column="superior_coding" property="superiorCoding" />
+        <result column="account_id" property="accountId" />
+        <result column="account_period" property="accountPeriod" />
+        <result column="sub_name" property="subName" />
+        <result column="init_debit_balance" property="initDebitBalance" />
+        <result column="init_credit_balance" property="initCreditBalance" />
+        <result column="current_amount_debit" property="currentAmountDebit" />
+        <result column="current_amount_credit" property="currentAmountCredit" />
+        <result column="ending_balance_debit" property="endingBalanceDebit" />
+        <result column="ending_balance_credit" property="endingBalanceCredit" />
+        <result column="year_amount_debit" property="yearAmountDebit" />
+        <result column="year_amount_credit" property="yearAmountCredit" />
+        <result column="is_multiple_siblings" property="isMultipleSiblings" />
+        <result column="excel_import_code" property="excelImportCode" />
+        <result column="excel_import_siblings_coding" property="excelImportSiblingsCoding" />
+        <result column="user_id" property="userId" />
+        <result column="excel_import_period" property="excelImportPeriod" />
+        <result column="type_of_currency" property="typeOfCurrency" />
+        <result column="siblings_sub_name" property="siblingsSubName" />
+        <result column="excel_import_superior_coding" property="excelImportSuperiorCoding" />
+        <result column="full_name" property="fullName" />
+        <result column="create_time" property="createTime" />
+        <result column="update_date" property="updateDate" />
+        <result column="update_timestamp" property="updateTimestamp" />
+        <result column="category" property="category" />
+        <result column="sub_source" property="subSource" />
+        <result column="unit" property="unit" />
+        <result column="unit_id" property="unitId" />
+        <result column="price" property="price" />
+        <result column="number" property="number" />
+        <result column="amount" property="amount" />
+        <result column="siblings_coding" property="siblingsCoding" />
+        <result column="state" property="state" />
+        <result column="mender" property="mender" />
+        <result column="fk_t_basic_measure_id" property="fkTBasicMeasureId" />
+        <result column="measure_state" property="measureState" />
+        <result column="fk_exchange_rate_id" property="fkExchangeRateId" />
+        <result column="exchange_rate__state" property="exchangeRateState" />
+        <result column="code_level" property="codeLevel" />
+        <result column="debit_credit_direction" property="debitCreditDirection" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        pk_sub_id, sub_code, superior_coding, account_id, account_period, sub_name, init_debit_balance,
+        init_credit_balance, current_amount_debit, current_amount_credit, ending_balance_debit, ending_balance_credit,
+        year_amount_debit, year_amount_credit, is_multiple_siblings, excel_import_code, excel_import_siblings_coding,
+        user_id, excel_import_period, type_of_currency, siblings_sub_name, excel_import_superior_coding, full_name,
+        create_time, update_date, update_timestamp, category, sub_source, unit, unit_id, price, number, amount,
+        siblings_coding, state, mender, fk_t_basic_measure_id, measure_state, fk_exchange_rate_id, exchange_rate__state,
+        code_level, debit_credit_direction
+    </sql>
+
+</mapper>

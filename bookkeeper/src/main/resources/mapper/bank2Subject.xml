@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bank2Subject">
+	<!-- 银行账户和科目映射 -->
+	<resultMap type="bank2Subject" id="bank2SubjectMap">
+		<result property="id" column="id" />
+		<result property="accountID" column="accountID" />
+		<result property="bankAccount" column="bankAccount" />
+		<result property="subID" column="subID" />
+		<result property="subName" column="subName" />
+		<result property="subFullName" column="subFullName" />
+		<result property="bankName" column="bankName" />
+		<result property="bankType" column="bankType" />
+		<result property="currency" column="currency" />
+		<result property="subCode" column="subCode" />
+		<result property="createName" column="createName" />
+		<result property="createTime" column="createTime" />
+		<result property="createTel" column="createTel" />
+		<result property="createID" column="createID" />
+
+	</resultMap>
+
+	<select id="queryBank2Subject" resultMap="bank2SubjectMap">
+		select * from
+		t_basic_bankaccount2subject where accountID=#{accountID} ;
+	</select>
+
+	<insert id="addBank2Subject">
+		insert into
+		t_basic_bankaccount2subject(id,accountID,bankAccount,subID,subName,subFullName,bankName,bankType,currency,subCode,createName,createTime,createTel,createID)
+		values
+		(#{id},#{accountID},#{bankAccount},#{subID},#{subName},#{subFullName},#{bankName},#{bankType},#{currency},#{subCode},#{createName},#{createTime},#{createTel},#{createID});
+	</insert>
+
+	<update id="updBank2Subject">
+		update t_basic_bankaccount2subject set
+		subID=#{subID},subCode=#{subCode},subName=#{subName},subFullName=#{subFullName},bankName=#{bankName},bankType=#{bankType},currency=#{currency}
+		where id=#{id};
+	</update>
+
+	<select id="queryBank2SubjectByID" resultMap="bank2SubjectMap">
+		select * from
+		t_basic_bankaccount2subject where id=#{id};
+	</select>
+
+	<select id="queryByBankAccount" resultMap="bank2SubjectMap">
+		select * from
+		t_basic_bankaccount2subject where bankAccount=#{bankAccount};
+	</select>
+</mapper>

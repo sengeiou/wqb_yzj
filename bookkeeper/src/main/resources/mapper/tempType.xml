@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="tempType">
+	<insert id="insertTempType" parameterType="com.wqb.model.TempType"  useGeneratedKeys="true" keyProperty="tempID">
+			 <selectKey keyProperty="tempID"  resultType="java.lang.Integer" order="AFTER">
+	            select LAST_INSERT_ID()
+	    	</selectKey>
+			insert into t_temp_type
+		(
+			<!-- tempID, -->
+			accountID,parentID,tempName,assistName,saveAmount,tempSoure,vbContent,updateA,updateB,des
+		)
+
+		values
+		(
+			<!-- #{tempID,jdbcType=INTEGER}, -->
+			#{accountID},#{parentID},#{tempName},#{assistName},#{saveAmount},#{tempSoure},#{vbContent},#{updateA},#{updateB},#{des}
+		)
+	</insert>
+	
+	
+	<select id="queryTemp" parameterType="map" resultType="com.wqb.model.TempType">
+		
+		select tempID,accountID,parentID,tempName,assistName,saveAmount,tempSoure,vbContent  from t_temp_type 
+		<where>
+			<if test="tempID!=null">
+				and tempID = #{tempID}
+			</if>
+			<if test="accountID!=null">
+				and accountID = #{accountID}
+			</if>
+			<if test="parentID!=null">
+				and parentID = #{parentID}
+			</if>
+			<if test="parentIDB!=null">
+				and parentID != 0
+			</if>
+		</where>
+		order by updateB desc
+	</select>
+	
+	
+	<select id="queryTempCount" parameterType="map" resultType="int">
+		select count(*) from t_temp_type 
+		<where>
+			<if test="tempID!=null">
+				and tempID = #{tempID}
+			</if>
+			<if test="accountID!=null">
+				and accountID = #{accountID}
+			</if>
+			<if test="parentID!=null">
+				and parentID = #{parentID}
+			</if>
+			<if test="parentIDA!=null">
+				and parentID = 0
+			</if>
+			<if test="parentIDB!=null">
+				and parentID != 0
+			</if>
+			<if test="assistName!=null">
+				and assistName = #{assistName}
+			</if>
+		</where>
+	</select>
+	
+	
+	
+	<delete id="delTem" parameterType="map" >
+		delete from t_temp_type 
+		<where>
+			<if test="tempID!=null">
+				and tempID = #{tempID}
+			</if>
+			<if test="accountID!=null">
+				and accountID = #{accountID}
+			</if>
+			<if test="parentID!=null">
+				and parentID = #{parentID}
+			</if>
+		</where>
+	</delete>
+	
+	<update id="upTem" parameterType="map" >
+		update  t_temp_type 
+		<set>
+			
+			<if test="tempName!=null">
+				tempName = #{tempName},
+			</if>
+		</set>
+		<where>
+			<if test="parentID!=null">
+				and parentID = #{parentID}
+			</if>
+			<if test="tempID!=null">
+				 and tempID = #{tempID}
+			</if>
+		</where>
+	</update>
+	
+	<select id="queryGroupSub" parameterType="map" resultType="map">
+		select count(*) num,account_period from t_basic_subject_message   where account_id = #{accountID}
+		 GROUP BY  account_period order by num desc limit 1
+	</select>
+	
+	<select id="queryAllSub" parameterType="map" resultType="com.wqb.model.SubjectMessage">
+		select pk_sub_id,account_period,sub_code,sub_name,full_name,account_id from t_basic_subject_message  
+		where account_id = #{accountID} and  account_period = #{period} order by sub_code
+	</select>
+
+	
+	<select id="querySubCount" parameterType="map"  resultType="int">
+		select count(*) from t_basic_subject_message   where account_id = #{accountID}
+	</select>
+	
+	
+	<select id="queryCountVB" parameterType="map"  resultType="int">
+		select count(*) from t_vouch_b   where accountID = #{accountID}
+	</select>
+	
+	<select id="querySalaryVB" parameterType="map"  resultType="com.wqb.model.vomodel.TempVo">
+		SELECT subjectID subCode,vcsubject subName,direction dir,vcabstact zy
+ 			FROM  t_vouch_b  WHERE vouchID = (
+	 			select  vouchID from t_vouch_b where (vcabstact like "%工资%" or vcabstact like "%薪酬%" )  and accountID = #{accountID}  limit 1
+			)
+	</select>
+	
+	<select id="queryGoodsVB" parameterType="map"  resultType="com.wqb.model.vomodel.TempVo">
+		SELECT subjectID subCode,vcsubject subName,direction dir,vcabstact zy
+ 			FROM  t_vouch_b  WHERE vouchID = (
+	 			select  vouchID from t_vouch_b where direction = "1"  and subjectID like "1405%"  and accountID = #{accountID} limit 1
+			)
+	</select>
+	
+	
+	
+	
+	
+	
+	
+</mapper>

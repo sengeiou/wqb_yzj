@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wqb.mappers.CustomerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wqb.domains.Customer">
+        <id column="customID" property="customID" />
+        <result column="cusName" property="cusName" />
+        <result column="busNature" property="busNature" />
+        <result column="accountID" property="accountID" />
+        <result column="cusAddress" property="cusAddress" />
+        <result column="cusPhone" property="cusPhone" />
+        <result column="belongPersonID" property="belongPersonID" />
+        <result column="belongPerName" property="belongPerName" />
+        <result column="createPersionID" property="createPersionID" />
+        <result column="createPerName" property="createPerName" />
+        <result column="id" property="id" />
+        <result column="createDate" property="createDate" />
+        <result column="tax_num" property="taxNum" />
+        <result column="binding_phone" property="bindingPhone" />
+        <result column="state_tax_code" property="stateTaxCode" />
+        <result column="land_tax_code" property="landTaxCode" />
+        <result column="real_account" property="realAccount" />
+        <result column="real_account_code" property="realAccountCode" />
+        <result column="period" property="period" />
+        <result column="com_tyxydm" property="comTyxydm" />
+        <result column="three_and_one" property="threeAndOne" />
+        <result column="com_kjxzxqy" property="comKjxzxqy" />
+        <result column="com_gxjsqy" property="comGxjsqy" />
+        <result column="com_jsrgynssx" property="comJsrgynssx" />
+        <result column="companyType" property="companyType" />
+        <result column="ssType" property="ssType" />
+        <result column="accstandards" property="accstandards" />
+        <result column="jzbwb" property="jzbwb" />
+        <result column="com_scale" property="comScale" />
+        <result column="com_city_area" property="comCityArea" />
+        <result column="com_comcode" property="comComcode" />
+        <result column="pay_method" property="payMethod" />
+        <result column="increment_tax" property="incrementTax" />
+        <result column="income_tax" property="incomeTax" />
+        <result column="attachment_tax" property="attachmentTax" />
+        <result column="stamp_duty_tax" property="stampDutyTax" />
+        <result column="bank_name" property="bankName" />
+        <result column="bank_account" property="bankAccount" />
+        <result column="data_synchro" property="dataSynchro" />
+        <result column="province" property="province" />
+        <result column="provinceName" property="provinceName" />
+        <result column="city" property="city" />
+        <result column="cityName" property="cityName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        customID, cusName, busNature, accountID, cusAddress, cusPhone, belongPersonID, belongPerName, createPersionID, createPerName, id, createDate, tax_num, binding_phone, state_tax_code, land_tax_code, real_account, real_account_code, period, com_tyxydm, three_and_one, com_kjxzxqy, com_gxjsqy, com_jsrgynssx, companyType, ssType, accstandards, jzbwb, com_scale, com_city_area, com_comcode, pay_method, increment_tax, income_tax, attachment_tax, stamp_duty_tax, bank_name, bank_account, data_synchro, province, provinceName, city, cityName
+    </sql>
+
+</mapper>

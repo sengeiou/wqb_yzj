@@ -1,0 +1,61 @@
+body {
+  background: #f7f7f7;
+}
+.container {
+  margin: 0 20px;
+}
+.param-item {
+  margin: 20px 0;
+}
+.param-item h4 {
+  margin: 20px 0;
+  padding-left: 10px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  color: #1a1a1a;
+  background: #f0f0f2;
+}
+.param-item .form-item {
+  margin-bottom: 15px;
+  padding-left: 100px;
+  vertical-align: top;
+}
+.param-item .form-item label {
+  position: absolute;
+  margin-left: -100px;
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  text-align: right;
+}
+.param-item .form-item .layui-input,
+.param-item .form-item .layui-form-select {
+  width: 180px;
+}
+.param-item .form-item .layui-disabled {
+  color: #999 !important;
+  background-color: #f0f0f2;
+}
+.param-item .form-item .tips {
+  margin-left: 40px;
+  font-size: 12px;
+  color: #aaa;
+}
+.param-item .form-item .tips .layui-layer-ico0 {
+  position: absolute;
+  margin-top: 6px;
+  margin-left: -20px;
+  width: 16px;
+  height: 16px;
+  background-size: 112px auto;
+}
+.param-item.subject-param .form-item .layui-input,
+.param-item.subject-param .form-item .layui-form-select {
+  display: inline-block;
+  width: 50px;
+}
+.bottom-btn {
+  margin: 50px 20px 0;
+}

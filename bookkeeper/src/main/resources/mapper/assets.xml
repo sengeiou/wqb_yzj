@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 固定资产映射 -->
+
+<mapper namespace="assets">
+	<!-- 数据添加 -->
+	<insert id="insertAsset" parameterType="com.wqb.model.Assets">
+		insert into t_assets
+		(
+		assetsID,picture,asCode,asName,asvalue,asyears,department,asState,initdepreciation,residualrate,netvalue,inputPeriod,updateDate,accountID,updatePsnID,updatePsn,createPsnID,createDate,createPsn,des,dmethod,dsubject,costsubject,usedyears,useddate,sourceway,gdsubject,gdStatus,
+		asModel,asCategory,asPosition,asManufactor,asManufactorDate,asAccountDatea,isBeforeUse,asBeforeUseDate,asEstimatePeriod,asAddDeprecia,asCumulativeImpairment,asWorth,asNetSalvage,asUseDepreciaValue,asDepreciaPeriod,
+		asExpectedPeriod,asCumulativeSubject,asEconomicUse,asDepreciaSubject,importFlg,taxRate,vouchID
+		)
+		values
+		(
+		#{assetsID},
+		#{picture},
+		#{asCode},
+		#{asName},
+		#{asvalue,jdbcType=DOUBLE},
+		#{asyears,jdbcType=INTEGER},
+		#{department},
+		#{asState},
+		#{initdepreciation,jdbcType=DOUBLE},
+		#{residualrate,jdbcType=DOUBLE},
+		#{netvalue,jdbcType=DOUBLE},
+		#{inputPeriod},
+		#{updateDate},
+		#{accountID},
+		#{updatePsnID},
+		#{updatePsn},
+		#{createPsnID},
+		#{createDate},
+		#{createPsn},
+		#{des},
+		#{dmethod},
+		#{dsubject},
+		#{costsubject},
+		#{usedyears,jdbcType=INTEGER},
+		#{useddate,jdbcType=DATE},
+		#{sourceway},
+		#{gdsubject},
+		#{gdStatus},
+		#{asModel},
+		#{asCategory},
+		#{asPosition},
+		#{asManufactor},
+		#{asManufactorDate,jdbcType=DATE},
+		#{asAccountDatea,jdbcType=DATE},
+		#{isBeforeUse,jdbcType=VARCHAR},
+		#{asBeforeUseDate,jdbcType=DATE},
+		#{asEstimatePeriod,jdbcType=DOUBLE},
+		#{asAddDeprecia,jdbcType=DOUBLE},
+		#{asCumulativeImpairment,jdbcType=DOUBLE},
+		#{asWorth,jdbcType=DOUBLE},
+		#{asNetSalvage,jdbcType=DOUBLE},
+		#{asUseDepreciaValue,jdbcType=DOUBLE},
+		#{asDepreciaPeriod,jdbcType=DOUBLE},
+		#{asExpectedPeriod,jdbcType=DOUBLE},
+		#{asCumulativeSubject},
+		#{asEconomicUse},
+		#{asDepreciaSubject},
+		#{importFlg},
+		#{taxRate},
+		#{vouchID}
+		)
+	</insert>
+
+
+
+	<insert id="insertBath" parameterType="com.wqb.model.Assets">
+		insert into t_assets
+		(
+		assetsID,picture,asCode,asName,asvalue,asyears,department,asState,initdepreciation,residualrate,netvalue,inputPeriod,updateDate,accountID,updatePsnID,updatePsn,createPsnID,createDate,createPsn,des,dmethod,dsubject,costsubject,usedyears,useddate,sourceway,gdsubject,gdStatus,
+		asModel,asCategory,asPosition,asManufactor,asManufactorDate,asAccountDatea,isBeforeUse,asBeforeUseDate,asEstimatePeriod,asAddDeprecia,asCumulativeImpairment,asWorth,asNetSalvage,
+		asUseDepreciaValue,asDepreciaPeriod,asExpectedPeriod,asCumulativeSubject,asEconomicUse,asDepreciaSubject,importFlg,taxRate,vouchID
+		)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(
+			#{item.assetsID,jdbcType=VARCHAR},
+			#{item.picture,jdbcType=VARCHAR},
+			#{item.asCode,jdbcType=VARCHAR},
+			#{item.asName,jdbcType=VARCHAR},
+			#{item.asvalue,jdbcType=DOUBLE},
+			#{item.asyears,jdbcType=INTEGER},
+			#{item.department,jdbcType=VARCHAR},
+			#{item.asState,jdbcType=VARCHAR},
+			#{item.initdepreciation,jdbcType=DOUBLE},
+			#{item.residualrate,jdbcType=DOUBLE},
+			#{item.netvalue,jdbcType=DOUBLE},
+			#{item.inputPeriod,jdbcType=DATE},
+			#{item.updateDate},
+			#{item.accountID,jdbcType=VARCHAR},
+			#{item.updatePsnID,jdbcType=VARCHAR},
+			#{item.updatePsn,jdbcType=VARCHAR},
+			#{item.createPsnID,jdbcType=VARCHAR},
+			#{item.createDate,
+			#{item.createPsn,jdbcType=VARCHAR},
+			#{item.des,jdbcType=VARCHAR},
+			#{item.dmethod,jdbcType=VARCHAR},
+			#{item.dsubject,jdbcType=VARCHAR},
+			#{item.costsubject,jdbcType=VARCHAR},
+			#{item.usedyears,jdbcType=INTEGER},
+			#{item.useddate,jdbcType=DATE},
+			#{item.sourceway,jdbcType=VARCHAR},
+			#{item.gdsubject,jdbcType=VARCHAR},
+			#{item.gdStatus,jdbcType=VARCHAR},
+			#{item.asModel,jdbcType=VARCHAR},
+			#{item.asCategory,jdbcType=VARCHAR},
+			#{item.asPosition,jdbcType=VARCHAR},
+			#{item.asManufactor,jdbcType=VARCHAR},
+			#{item.asManufactorDate,jdbcType=DATE},
+			#{item.asAccountDatea,jdbcType=DATE},
+			#{item.isBeforeUse,jdbcType=VARCHAR},
+			#{item.asBeforeUseDate,jdbcType=DATE},
+			#{item.asEstimatePeriod,jdbcType=DOUBLE},
+			#{item.asAddDeprecia,jdbcType=DOUBLE},
+			#{item.asCumulativeImpairment,jdbcType=DOUBLE},
+			#{item.asWorth,jdbcType=DOUBLE},
+			#{item.asNetSalvage,jdbcType=DOUBLE},
+			#{item.asUseDepreciaValue,jdbcType=DOUBLE},
+			#{item.asDepreciaPeriod,jdbcType=DOUBLE},
+			#{item.asExpectedPeriod,jdbcType=DOUBLE},
+			#{item.asCumulativeSubject,jdbcType=VARCHAR},
+			#{item.asEconomicUse,jdbcType=VARCHAR},
+			#{item.asDepreciaSubject,jdbcType=VARCHAR},
+			#{item.importFlg,jdbcType=VARCHAR},
+			#{item.taxRate,jdbcType=DOUBLE},
+			#{item.vouchID}
+			)
+		</foreach>
+	</insert>
+
+
+
+
+
+	<!-- 导入重复数据检验 -->
+	<select id="queryByCode" parameterType="com.wqb.model.Assets"
+		resultType="com.wqb.model.Assets">
+		select assetsID,accountID from t_assets where asCode =
+		#{asCode} and accountID=#{accountID}
+	</select>
+
+	<!-- 根据月份 和资产名称 查询固定资产信息 -->
+
+	<!-- 查询条件 -->
+	<sql id="whereCase">
+		<where>
+			<if test="beginTime!=null">
+				and asAccountDatea BETWEEN #{beginTime,jdbcType=DATE} and
+				#{endTime,jdbcType=DATE}
+			</if>
+			<if test="asName!=null and asName!='' ">
+				and asName LIKE CONCAT('%','${asName}','%' )
+			</if>
+			<if test="accountID!=null">
+				and accountID = #{accountID,jdbcType=VARCHAR}
+			</if>
+
+		</where>
+	</sql>
+
+	<!-- 根据查询条件查询总数 -->
+	<select id="queryCount" parameterType="map" resultType="int">
+		select count(1) from t_assets
+		<include refid="whereCase" />
+	</select>
+
+	<!-- 根据查询条件分页 -->
+	<select id="queryAssertPage" parameterType="map"
+		resultType="com.wqb.model.Assets">
+		select * from t_assets
+		<include refid="whereCase" />
+		order by asCode asc limit #{start},#{size}
+	</select>
+
+	<!-- 根据账套ID和主键删除 -->
+	<delete id="deleteByAsId" parameterType="map">
+		delete from t_assets
+		where accountID=#{accountID} and assetsID=#{assetsID}
+	</delete>
+
+	<!-- 批量删除 -->
+	<delete id="delAll" parameterType="map">
+		delete from t_assets where accountID=#{accountID} and assetsID in
+		<foreach item="id" collection="ids" open="(" close=")"
+			separator=",">
+			#{id}
+		</foreach>
+	</delete>
+
+	<delete id="delAllAss" parameterType="map">
+		delete from t_assets where
+		accountID=#{accountID}
+	</delete>
+
+	<select id="queryAssById" parameterType="map" resultType="com.wqb.model.Assets">
+		select
+		* from t_assets
+		where assetsID=#{assetsID} and accountID=#{accountID};
+	</select>
+
+	<select id="queryAssByAcc" resultType="com.wqb.model.Assets">
+		select * from t_assets
+		where accountID=#{accountID};
+	</select>
+	<!-- 固定资产折旧修改 -->
+	<update id="updAssets">
+		update t_assets set
+		asAddDeprecia=asAddDeprecia+#{yzje},asWorth=asWorth-#{yzje}
+		<if test="asExpectedPeriod !=0">
+			,asExpectedPeriod=asExpectedPeriod-1
+		</if>
+		where accountID=#{accountID} and assetsID=#{assetsID};
+	</update>
+	<!-- 误差处理特殊处理 -->
+	<update id="updAssets1">
+		update t_assets set asAddDeprecia =
+		asvalue-asNetSalvage,asWorth=asNetSalvage,asExpectedPeriod=0 where
+		accountID=#{accountID} and
+		assetsID=#{assetsID};
+	</update>
+
+	<!-- 校验固定资产名字 或 编码 是否重复 -->
+	<select id="checkSub" resultType="com.wqb.model.Assets"
+		parameterType="map">
+		select assetsID,asCode,asName from t_assets where 1=1
+		<if test="asCode!=null and asCode!='' ">
+			and asCode = #{asCode}
+		</if>
+		<if test="asName!=null and asName!='' ">
+			and asName = #{asName}
+		</if>
+		and accountID=#{account_id}
+	</select>
+
+	<delete id="del1" parameterType="string">
+		delete from t_basic_subject_test
+		where pk_sub_id=#{pk_sub_id}
+	</delete>
+
+	<insert id="add1" parameterType="map">
+		insert into t_basic_subject_test
+		(pk_sub_id,user_id,account_id) values
+		(#{pk_sub_id},#{user_id},#{account_id})
+	</insert>
+
+
+	<!-- 查询所有科目 -->
+	<select id="queryAllSub" parameterType="map"
+		resultType="com.wqb.model.SubjectMessage">
+		select
+		pk_sub_id,
+		account_id,
+		sub_code,
+		sub_name,
+		full_name,
+		category,
+		superior_coding,
+		code_level
+		from
+		t_basic_subject_message
+		where
+		account_id =
+		#{account_id} and
+		account_period = #{account_period}
+		<if test="category!=null and category!='' ">
+			category = #{category}
+		</if>
+
+		<!-- order by category asc sub_code asc -->
+	</select>
+
+	<!-- 固定资产折旧修改 -->
+	<update id="updAddAssets" parameterType="map">
+		update
+		t_assets
+		set
+		vouchID = #{vouchID}
+		where
+		accountID=#{accountID} and
+		assetsID=#{assetsID};
+	</update>
+
+	<!-- 检查数据库和导入的数据是否有重复的 -->
+	<select id="queryCode" parameterType="string" resultType="string">
+		select
+		asCode from t_assets where accountID=#{accountID}
+	</select>
+
+
+	<!-- 测试 -->
+	<update id="updateUserTest" parameterType="map">
+		update user set price
+		= IFNULL(price,0) + #{amount,jdbcType=DECIMAL} where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 反结转回退折旧明细数据 -->
+
+	<update id="updAssetsByID">
+		update t_assets set asAddDeprecia
+		=asAddDeprecia-#{ssyzje}
+		,asWorth=asWorth+#{ssyzje},asExpectedPeriod=asExpectedPeriod+1 where
+		accountID=#{accountID} and
+		assetsID=#{assetsID};
+	</update>
+
+
+	<select id="queryZjDetail" parameterType="map" resultType="com.wqb.model.Assets">
+	
+		<if test='isClean=="1"'>
+			SELECT
+			*
+			FROM
+			(
+		</if>
+				SELECT
+				t3.assetsID,
+				t2.asCategory,
+				t2.asCode,
+				t2.asName,
+				t2.department,
+				t2.asvalue,
+				t3.ssyzje,
+				t2.asAddDeprecia,
+				t2.asCumulativeImpairment,
+				t2.asWorth,
+				t3.ssyzje / (t2.asvalue - t2.asNetSalvage) as yjzl
+				FROM
+				(
+				SELECT
+				*
+				FROM
+				t_assets_record t1
+				WHERE
+				t1.accountID = #{accountID}
+				AND period = #{time}
+				) t3
+				LEFT JOIN t_assets t2 ON t3.assetsID = t2.assetsID
+				
+				ORDER BY
+				asCategory,
+				asCode
+			<if test='isClean=="1"'>
+				) t
+				WHERE
+				t.asWorth = 0;
+			</if>	
+	</select>
+	
+	<select id="queryAssetsSum" resultType="java.util.Map">
+		SELECT
+			sum(ssyzje) as sum1
+				FROM
+					t_assets_record
+			WHERE
+					assetsID = #{assetsID}
+			<if test="isQm==1">
+				and period &lt;=  #{time}
+			</if>
+			<if test="isBq==1">
+				and period like CONCAT('%','${time}','%' )
+			</if>
+			GROUP BY
+				assetsID;
+	</select>
+</mapper>

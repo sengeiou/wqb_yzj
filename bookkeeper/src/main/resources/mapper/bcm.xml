@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bcm">
+	<!-- 交通对账单映射 -->
+	<resultMap type="bcm" id="bcmMap">
+		<result property="bcmBillID" column="bcmBillID" />
+		<result property="accountID" column="accountID" />
+		<result property="period" column="period" />
+		<result property="busDate" column="busDate" />
+		<result property="transactionTime" column="transactionTime" />
+		<result property="des" column="des" />
+		<result property="vouchType" column="vouchType" />
+		<result property="vouchNo" column="vouchNo" />
+		<result property="qyywNumber" column="qyywNumber" />
+		<result property="fse" column="fse" />
+		<result property="bz" column="bz" />
+		<result property="banalce" column="banalce" />
+		<result property="dfAccount" column="dfAccount" />
+		<result property="dfAccountName" column="dfAccountName" />
+		<result property="jdFlag" column="jdFlag" />
+		<result property="cardNumber" column="cardNumber" />
+		<result property="bankType" column="bankType" />
+		
+		<result property="sysSubjectCode" column="sysSubjectCode" />
+
+		<result property="sysSubjectName" column="sysSubjectName" />
+
+		<result property="sysSubjectID" column="sysSubjectID" />
+		<result property="sysSubjectFullName" column="sysSubjectFullName" />
+		<result property="bankAccount" column="bankAccount" />
+		
+	</resultMap>
+	<insert id="insertBcm">
+		insert into t_cm_bkbill_bcm
+		(
+		bcmBillID,
+		accountID,
+		period,
+		busDate,
+		transactionTime,
+		des,
+		vouchType,
+		vouchNo,
+		qyywNumber,
+		fse,
+		bz,
+		banalce,
+		dfAccount,
+		dfAccountName,
+		jdFlag,
+		cardNumber,
+		sysSubjectCode,
+		sysSubjectName,
+		sysSubjectID,
+		sysSubjectFullName,
+		bankAccount
+		)
+		values
+		(
+		#{bcmBillID},
+		#{accountID},
+		#{period},
+		#{busDate},
+		#{transactionTime},
+		#{des},
+		#{vouchType},
+		#{vouchNo},
+		#{qyywNumber},
+		#{fse},
+		#{bz},
+		#{banalce},
+		#{dfAccount},
+		#{dfAccountName},
+		#{jdFlag},
+		#{cardNumber},
+		#{sysSubjectCode},
+		#{sysSubjectName},
+		#{sysSubjectID},
+		#{sysSubjectFullName},
+		#{bankAccount}
+		)
+	</insert>
+
+	<delete id="deleteByID">
+		delete from t_cm_bkbill_bcm where
+		bcmBillID in ${bills};
+	</delete>
+
+	<select id="queryBankBill" resultMap="bcmMap">
+		select * from t_cm_bkbill_bcm where accountID = #{accountID} and
+		period=#{busDate}
+		<if
+			test="beginTime!=null and beginTime!='' and endTime!=null and endTime!=''">
+			and transactionTime between #{beginTime} and #{endTime}
+		</if>
+		<if test="bankType!=null and bankType!='' and bankType!='全部'">
+		   and bankType=#{bankType}
+		</if>
+		<if test="keyWords!=null and keyWords!=''">
+			and dfAccountName like CONCAT('%','${keyWords}','%' )
+		</if>
+		order by busDate
+		<if test="begin != null and begin != '' or begin==0">
+			limit #{begin},#{maxPage}
+		</if>
+	</select>
+
+	<select id="querySame" resultMap="bcmMap">
+		select * from t_cm_bkbill_bcm
+		where accountID= #{accountID} and period like CONCAT('%','${busDate}','%' ) and bankType=#{bankType};
+	</select>
+	
+		<!-- 银行凭证添加  查询当期全部数据 -->
+	<select id="queryAll"  parameterType="map"  resultMap="bcmMap">
+		select * from t_cm_bkbill_bcm  where  accountID = #{accountID} and period=#{busDate} order by busDate
+	</select>
+	
+	<update id="delVouchID">
+		update t_cm_bkbill_bcm  set vouchID =''  where vouchID=#{vouchID};
+	</update>
+	
+	<update id="addVouchID">
+   		update t_cm_bkbill_bcm  set vouchID =#{vouchID}  where bcmBillID=#{bankID};
+    </update>
+    
+    <update id="updByID">
+		update t_cm_bkbill_bcm set sysSubjectCode
+		=#{sysSubjectCode},sysSubjectName=#{sysSubjectName},
+		sysSubjectID=#{sysSubjectID},sysSubjectFullName=#{sysSubjectFullName}
+		where bcmBillID=#{id};
+	</update>
+</mapper>

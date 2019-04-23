@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="bkbillBoc">
+	<resultMap id="bkbillBoc" type="bkbillBoc">
+		<id column="pk_bkbill_boc" property="pkBkbillBoc" jdbcType="VARCHAR" />
+		<result column="account_id" property="accountId" jdbcType="VARCHAR" />
+		<result column="user_id" property="userId" jdbcType="VARCHAR" />
+		<result column="inquirer_account_number" property="inquirerAccountNumber"
+			jdbcType="VARCHAR" />
+		<result column="total_number" property="totalNumber" jdbcType="VARCHAR" />
+		<result column="total_numbers_of_debited_payments" property="totalNumbersOfDebitedPayments"
+			jdbcType="VARCHAR" />
+		<result column="total_debit_amount_of_payments" property="totalDebitAmountOfPayments"
+			jdbcType="VARCHAR" />
+		<result column="total_numbers_of_credited_payments" property="totalNumbersOfCreditedPayments"
+			jdbcType="VARCHAR" />
+		<result column="total_credit_amount_of_payments" property="totalCreditAmountOfPayments"
+			jdbcType="VARCHAR" />
+		<result column="time_range" property="timeRange" jdbcType="VARCHAR" />
+		<result column="transaction_type" property="transactionType"
+			jdbcType="VARCHAR" />
+		<result column="business_type" property="businessType"
+			jdbcType="VARCHAR" />
+		<result column="account_holding_bank_number_of_payer" property="accountHoldingBankNumberOfPayer"
+			jdbcType="VARCHAR" />
+		<result column="payer_account_bank" property="payerAccountBank"
+			jdbcType="VARCHAR" />
+		<result column="debit_account_no" property="debitAccountNo"
+			jdbcType="VARCHAR" />
+		<result column="payer_name" property="payerName" jdbcType="VARCHAR" />
+		<result column="account_holding_bank_number_of_beneficiary"
+			property="accountHoldingBankNumberOfBeneficiary" jdbcType="VARCHAR" />
+		<result column="beneficiary_account_bank" property="beneficiaryAccountBank"
+			jdbcType="VARCHAR" />
+		<result column="payee_account_number" property="payeeAccountNumber"
+			jdbcType="VARCHAR" />
+		<result column="payee_name" property="payeeName" jdbcType="VARCHAR" />
+		<result column="transaction_date" property="transactionDate"
+			jdbcType="TIMESTAMP" />
+		<result column="transaction_time" property="transactionTime"
+			jdbcType="TIMESTAMP" />
+		<result column="type_of_currency" property="typeOfCurrency"
+			jdbcType="VARCHAR" />
+		<result column="trade_amount" property="tradeAmount" jdbcType="VARCHAR" />
+		<result column="after_transaction_balance" property="afterTransactionBalance"
+			jdbcType="VARCHAR" />
+		<result column="value_date" property="valueDate" jdbcType="TIMESTAMP" />
+		<result column="exchange_rate" property="exchangeRate"
+			jdbcType="VARCHAR" />
+		<result column="transaction_reference_number" property="transactionReferenceNumber"
+			jdbcType="VARCHAR" />
+		<result column="online_banking_transaction_ref" property="onlineBankingTransactionRef"
+			jdbcType="VARCHAR" />
+		<result column="customer_transaction_ref" property="customerTransactionRef"
+			jdbcType="VARCHAR" />
+		<result column="voucher_type" property="voucherType" jdbcType="VARCHAR" />
+		<result column="voucher_number" property="voucherNumber"
+			jdbcType="VARCHAR" />
+		<result column="record_id" property="recordId" jdbcType="VARCHAR" />
+		<result column="reference" property="reference" jdbcType="VARCHAR" />
+		<result column="purpose" property="purpose" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="remarks" property="remarks" jdbcType="VARCHAR" />
+		<result column="update_psn_id" property="updatePsnId" jdbcType="VARCHAR" />
+		<result column="update_psn" property="updatePsn" jdbcType="VARCHAR" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="create_psn_id" property="createPsnId" jdbcType="VARCHAR" />
+		<result column="create_psn" property="createPsn" jdbcType="VARCHAR" />
+		<result column="subj_bank" property="subjBank" jdbcType="VARCHAR" />
+		<result column="pk_voucher" property="pkVoucher" jdbcType="VARCHAR" />
+		<result column="voucher" property="voucher" jdbcType="VARCHAR" />
+		<result column="hid_account" property="hidAccount" jdbcType="VARCHAR" />
+		<result column="hid_pk_account" property="hidPkAccount"
+			jdbcType="VARCHAR" />
+		<result column="account_date" property="accountDate" jdbcType="BIGINT" />
+		<result column="bankType" property="bankType" jdbcType="VARCHAR" />
+		<result column="vouchID" property="vouchID" jdbcType="VARCHAR" />
+		<result column="period" property="period" jdbcType="VARCHAR" />	
+		<result column="sysSubjectCode" property="sysSubjectCode" jdbcType="VARCHAR" />
+		<result column="sysSubjectName" property="sysSubjectName" jdbcType="VARCHAR" />
+		<result column="sysSubjectID" property="sysSubjectID" jdbcType="VARCHAR" />
+		<result column="sysSubjectFullName" property="sysSubjectFullName" jdbcType="VARCHAR" />
+		<result column="bankAccount" property="bankAccount" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		pk_bkbill_boc, account_id, user_id, inquirer_account_number, total_number,
+		total_numbers_of_debited_payments,
+		total_debit_amount_of_payments, total_numbers_of_credited_payments, total_credit_amount_of_payments,
+		time_range, transaction_type, business_type,
+		account_holding_bank_number_of_payer,
+		payer_account_bank, debit_account_no, payer_name,
+		account_holding_bank_number_of_beneficiary,
+		beneficiary_account_bank, payee_account_number, payee_name, transaction_date, transaction_time,
+		type_of_currency, trade_amount, after_transaction_balance, value_date,
+		exchange_rate,
+		transaction_reference_number, online_banking_transaction_ref, customer_transaction_ref,
+		voucher_type, voucher_number, record_id, reference, purpose, remark,
+		remarks, update_psn_id,
+		update_psn, update_date, create_psn_id, create_psn, subj_bank, pk_voucher,
+		voucher,
+		hid_account, hid_pk_account, account_date, bankType, vouchID, period,sysSubjectCode,sysSubjectName,sysSubjectID,sysSubjectFullName,bankAccount
+	</sql>
+
+	<insert id="insert" parameterType="bkbillBoc">
+		insert into t_cm_bkbill_boc (pk_bkbill_boc, account_id, user_id,
+		inquirer_account_number, total_number,
+		total_numbers_of_debited_payments,
+		total_debit_amount_of_payments, total_numbers_of_credited_payments,
+		total_credit_amount_of_payments, time_range,
+		transaction_type, business_type, account_holding_bank_number_of_payer,
+		payer_account_bank, debit_account_no, payer_name,
+		account_holding_bank_number_of_beneficiary, beneficiary_account_bank,
+		payee_account_number, payee_name, transaction_date,
+		transaction_time, type_of_currency, trade_amount,
+		after_transaction_balance, value_date, exchange_rate,
+		transaction_reference_number, online_banking_transaction_ref,
+		customer_transaction_ref, voucher_type, voucher_number,
+		record_id, reference, purpose,
+		remark, remarks, update_psn_id,
+		update_psn, update_date, create_psn_id,
+		create_psn, subj_bank, pk_voucher,
+		voucher, hid_account, hid_pk_account,
+		account_date, bankType, vouchID,
+		period,sysSubjectCode,sysSubjectName,sysSubjectID,sysSubjectFullName,bankAccount)
+		values (#{pkBkbillBoc,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR},
+		#{userId,jdbcType=VARCHAR},
+		#{inquirerAccountNumber,jdbcType=VARCHAR}, #{totalNumber,jdbcType=VARCHAR},
+		#{totalNumbersOfDebitedPayments,jdbcType=VARCHAR},
+		#{totalDebitAmountOfPayments,jdbcType=VARCHAR},
+		#{totalNumbersOfCreditedPayments,jdbcType=VARCHAR},
+		#{totalCreditAmountOfPayments,jdbcType=VARCHAR},
+		#{timeRange,jdbcType=VARCHAR},
+		#{transactionType,jdbcType=VARCHAR}, #{businessType,jdbcType=VARCHAR},
+		#{accountHoldingBankNumberOfPayer,jdbcType=VARCHAR},
+		#{payerAccountBank,jdbcType=VARCHAR},
+		#{debitAccountNo,jdbcType=VARCHAR}, #{payerName,jdbcType=VARCHAR},
+		#{accountHoldingBankNumberOfBeneficiary,jdbcType=VARCHAR},
+		#{beneficiaryAccountBank,jdbcType=VARCHAR},
+		#{payeeAccountNumber,jdbcType=VARCHAR}, #{payeeName,jdbcType=VARCHAR},
+		#{transactionDate,jdbcType=TIMESTAMP},
+		#{transactionTime,jdbcType=TIMESTAMP},
+		#{typeOfCurrency,jdbcType=VARCHAR}, #{tradeAmount,jdbcType=VARCHAR},
+		#{afterTransactionBalance,jdbcType=VARCHAR},
+		#{valueDate,jdbcType=TIMESTAMP}, #{exchangeRate,jdbcType=VARCHAR},
+		#{transactionReferenceNumber,jdbcType=VARCHAR},
+		#{onlineBankingTransactionRef,jdbcType=VARCHAR},
+		#{customerTransactionRef,jdbcType=VARCHAR},
+		#{voucherType,jdbcType=VARCHAR}, #{voucherNumber,jdbcType=VARCHAR},
+		#{recordId,jdbcType=VARCHAR}, #{reference,jdbcType=VARCHAR},
+		#{purpose,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{updatePsnId,jdbcType=VARCHAR},
+		#{updatePsn,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP},
+		#{createPsnId,jdbcType=VARCHAR},
+		#{createPsn,jdbcType=VARCHAR}, #{subjBank,jdbcType=VARCHAR}, #{pkVoucher,jdbcType=VARCHAR},
+		#{voucher,jdbcType=VARCHAR}, #{hidAccount,jdbcType=VARCHAR},
+		#{hidPkAccount,jdbcType=VARCHAR},
+		#{accountDate,jdbcType=TIMESTAMP}, #{bankType,jdbcType=VARCHAR}, #{vouchID,jdbcType=VARCHAR},
+		#{period,jdbcType=VARCHAR}),
+		#{sysSubjectCode,jdbcType=VARCHAR}),
+			#{sysSubjectName,jdbcType=VARCHAR}),
+			#{sysSubjectID,jdbcType=VARCHAR}),
+			#{sysSubjectFullName,jdbcType=VARCHAR}),
+			#{bankAccount,jdbcType=VARCHAR}),
+
+	</insert>
+
+	<insert id="uploadTCmBillBocList" parameterType="java.util.List">
+		insert into t_cm_bkbill_boc (pk_bkbill_boc, account_id, user_id,
+		inquirer_account_number, total_number,
+		total_numbers_of_debited_payments,
+		total_debit_amount_of_payments, total_numbers_of_credited_payments,
+		total_credit_amount_of_payments, time_range,
+		transaction_type, business_type, account_holding_bank_number_of_payer,
+		payer_account_bank, debit_account_no, payer_name,
+		account_holding_bank_number_of_beneficiary, beneficiary_account_bank,
+		payee_account_number, payee_name, transaction_date,
+		transaction_time, type_of_currency, trade_amount,
+		after_transaction_balance, value_date, exchange_rate,
+		transaction_reference_number, online_banking_transaction_ref,
+		customer_transaction_ref, voucher_type, voucher_number,
+		record_id, reference, purpose,
+		remark, remarks, update_psn_id,
+		update_psn, update_date, create_psn_id,
+		create_psn, subj_bank, pk_voucher,
+		voucher, hid_account, hid_pk_account,
+		account_date, bankType, vouchID,
+		period,sysSubjectCode,sysSubjectName,sysSubjectID,sysSubjectFullName,bankAccount)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(
+			#{item.pkBkbillBoc,jdbcType=VARCHAR},
+			#{item.accountId,jdbcType=VARCHAR},
+			#{item.userId,jdbcType=VARCHAR},
+			#{item.inquirerAccountNumber,jdbcType=VARCHAR},
+			#{item.totalNumber,jdbcType=VARCHAR},
+			#{item.totalNumbersOfDebitedPayments,jdbcType=VARCHAR},
+			#{item.totalDebitAmountOfPayments,jdbcType=VARCHAR},
+			#{item.totalNumbersOfCreditedPayments,jdbcType=VARCHAR},
+			#{item.totalCreditAmountOfPayments,jdbcType=VARCHAR},
+			#{item.timeRange,jdbcType=VARCHAR},
+			#{item.transactionType,jdbcType=VARCHAR},
+			#{item.businessType,jdbcType=VARCHAR},
+			#{item.accountHoldingBankNumberOfPayer,jdbcType=VARCHAR},
+			#{item.payerAccountBank,jdbcType=VARCHAR},
+			#{item.debitAccountNo,jdbcType=VARCHAR},
+			#{item.payerName,jdbcType=VARCHAR},
+			#{item.accountHoldingBankNumberOfBeneficiary,jdbcType=VARCHAR},
+			#{item.beneficiaryAccountBank,jdbcType=VARCHAR},
+			#{item.payeeAccountNumber,jdbcType=VARCHAR},
+			#{item.payeeName,jdbcType=VARCHAR},
+			#{item.transactionDate,jdbcType=TIMESTAMP},
+			#{item.transactionTime,jdbcType=TIMESTAMP},
+			#{item.typeOfCurrency,jdbcType=VARCHAR},
+			#{item.tradeAmount,jdbcType=VARCHAR},
+			#{item.afterTransactionBalance,jdbcType=VARCHAR},
+			#{item.valueDate,jdbcType=TIMESTAMP},
+			#{item.exchangeRate,jdbcType=VARCHAR},
+			#{item.transactionReferenceNumber,jdbcType=VARCHAR},
+			#{item.onlineBankingTransactionRef,jdbcType=VARCHAR},
+			#{item.customerTransactionRef,jdbcType=VARCHAR},
+			#{item.voucherType,jdbcType=VARCHAR},
+			#{item.voucherNumber,jdbcType=VARCHAR},
+			#{item.recordId,jdbcType=VARCHAR},
+			#{item.reference,jdbcType=VARCHAR},
+			#{item.purpose,jdbcType=VARCHAR},
+			#{item.remark,jdbcType=VARCHAR},
+			#{item.remarks,jdbcType=VARCHAR},
+			#{item.updatePsnId,jdbcType=VARCHAR},
+			#{item.updatePsn,jdbcType=VARCHAR},
+			#{item.updateDate,jdbcType=TIMESTAMP},
+			#{item.createPsnId,jdbcType=VARCHAR},
+			#{item.createPsn,jdbcType=VARCHAR},
+			#{item.subjBank,jdbcType=VARCHAR},
+			#{item.pkVoucher,jdbcType=VARCHAR},
+			#{item.voucher,jdbcType=VARCHAR},
+			#{item.hidAccount,jdbcType=VARCHAR},
+			#{item.hidPkAccount,jdbcType=VARCHAR},
+			#{item.accountDate,jdbcType=TIMESTAMP},
+			#{item.bankType,jdbcType=VARCHAR},
+			#{item.vouchID,jdbcType=VARCHAR},
+			#{item.period,jdbcType=VARCHAR},			
+			#{item.sysSubjectCode,jdbcType=VARCHAR},			
+			#{item.sysSubjectName,jdbcType=VARCHAR},			
+			#{item.sysSubjectID,jdbcType=VARCHAR},
+			#{item.sysSubjectFullName,jdbcType=VARCHAR},			
+			#{item.bankAccount,jdbcType=VARCHAR})
+		</foreach>
+	</insert>
+	<select id="queryBkbillBocByReferenceNumber" parameterType="java.util.List"
+		resultMap="bkbillBoc">
+		select
+		<include refid="Base_Column_List" />
+		from
+		t_cm_bkbill_boc
+		where
+		account_id = #{item.accountId,jdbcType=VARCHAR}
+		and
+		transaction_reference_number
+		IN
+		<foreach collection="list" item="item" index="index" open="("
+			close=")" separator=",">
+			#{item.transactionReferenceNumber,jdbcType=VARCHAR}
+		</foreach>
+		and
+		period = #{item.period,jdbcType=VARCHAR}
+	</select>
+	<select id="queryTCmBkbillBocList" resultMap="bkbillBoc"
+		parameterType="bkbillBoc">
+		select
+		<include refid="Base_Column_List" />
+		from t_cm_bkbill_boc
+		where account_id = #{accountId,jdbcType=VARCHAR}
+<!-- 		and user_id = #{userId,jdbcType=VARCHAR} -->
+	</select>
+
+	<delete id="deleteTCmbkbillBocAlldeleteTCmbkbillBocAll"
+		parameterType="bkbillBoc">
+		delete
+		from t_cm_bkbill_boc
+		where account_id =
+		#{accountId,jdbcType=VARCHAR} 
+<!-- 		and user_id = #{userId,jdbcType=VARCHAR} -->
+	</delete>
+
+	<delete id="deleteTCmbkbillBocByPkBkbillBoc" parameterType="java.lang.String">
+		delete
+		from t_cm_bkbill_boc
+		where pk_bkbill_boc =
+		#{pkBkbillBoc,jdbcType=VARCHAR}
+	</delete>
+
+	<delete id="deleteByID">
+		delete from t_cm_bkbill_boc where pk_bkbill_boc in ${bills};
+	</delete>
+	<!-- 不定项多条件分页查询 -->
+
+	<select id="queryBankBill" parameterType="map" resultMap="bkbillBoc">
+		select * from t_cm_bkbill_boc where account_id = #{accountID} and
+		period=#{busDate}
+		<if
+			test="beginTime!=null and beginTime!='' and endTime!=null and endTime!=''">
+			and transaction_date between #{beginTime} and #{endTime}
+		</if>
+		<!-- 银行名称 -->
+		<if test="bankType!=null and bankType!='' and bankType!='全部'">
+			and bankType = #{bankType}
+		</if>
+		<if test="keyWords!=null and keyWords!=''">
+			<!--payee_name 收款人名称 -->
+			and payer_name like CONCAT('%','${keyWords}','%' )
+		</if>
+		order by account_date
+		<if test="begin != null and begin != '' or begin==0">
+			limit #{begin},#{maxPage}
+		</if>
+	</select>
+
+	<!-- 银行凭证添加 查询当期全部数据 -->
+	<select id="queryAll" parameterType="map" resultMap="bkbillBoc">
+		select *
+		from t_cm_bkbill_boc where account_id = #{accountID} and
+		period=#{busDate} order by account_date
+	</select>
+
+	<update id="delVouchID">
+		update t_cm_bkbill_boc  set vouchID =''  where vouchID=#{vouchID};
+	</update>
+
+
+	<update id="addVouchID">
+   		update t_cm_bkbill_boc  set vouchID =#{vouchID}  where pk_bkbill_boc=#{bankID};
+    </update>
+    
+    <update id="updByID">
+		update t_cm_bkbill_boc set sysSubjectCode
+		=#{sysSubjectCode},sysSubjectName=#{sysSubjectName},
+		sysSubjectID=#{sysSubjectID},sysSubjectFullName=#{sysSubjectFullName}
+		where pk_bkbill_boc=#{id};
+	</update>
+</mapper>

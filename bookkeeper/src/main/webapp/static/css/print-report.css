@@ -1,0 +1,141 @@
+@charset "utf-8";
+
+/* reset */
+
+html,
+body,
+div,
+span,
+iframe,
+h2,
+p,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+body {
+    line-height: 1;
+    background-color: #fff;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+p {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.tc {
+    text-align: center;
+}
+
+.tr {
+    text-align: right;
+}
+
+
+/* css */
+
+.print-content {
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 96px 48px;
+    width: 794px;
+    height: 1123px;
+    font-size: 12px;
+    background-color: #fff;
+}
+
+.print-content.big {
+    padding: 48px 48px 0;
+}
+
+.print-content.big th,
+.print-content.big td {
+    line-height: 24px;
+}
+
+.head-title {
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.title {
+    padding-bottom: 10px;
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+.head-title p {
+    line-height: 1.5;
+}
+
+.head-title .left {
+    position: absolute;
+    left: 0;
+}
+
+.head-title .right {
+    position: absolute;
+    right: 0;
+}
+
+table {
+    width: 100%;
+    border: 3px double #000;
+}
+
+th,
+td {
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    vertical-align: middle;
+    line-height: 30px;
+    text-align: center;
+}
+
+.assets td,
+.profit td {
+    text-align: right;
+}
+
+td.tl,
+.assets td.tl,
+.profit td.tl {
+    text-align: left;
+}
+
+.profit td:nth-of-type(1) {
+    padding-left: 5em;
+}
+
+.ti {
+    text-indent: 2em;
+}
+
+.ti1 {
+    text-indent: 1em;
+}
+
+.ti4 {
+    text-indent: 4em;
+}
+
+.ti8 {
+    text-indent: 8em;
+}

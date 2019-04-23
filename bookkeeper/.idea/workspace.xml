@@ -1,0 +1,1694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="wqb:Web exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e543f74e-2198-4734-92ce-8d57d37e99bd" name="Default Changelist" comment="" />
+    <ignored path="out/" />
+    <ignored path="out/artifacts/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/css/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/files/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/files/bank/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/img/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/js/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/js/accountBook/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/js/assets/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/js/bank/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/js/calculator/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/js/documents/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/js/init/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/js/invoice/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/js/print/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/js/report/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/js/salary/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/js/setTing/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/js/system/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/js/voucher/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/META-INF/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/dataTables/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/layui/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/layui/css/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/layui/css/modules/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/layui/css/modules/laydate/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/layui/css/modules/laydate/default/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/layui/css/modules/layer/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/layui/css/modules/layer/default/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/layui/font/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/layui/images/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/layui/images/face/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/layui/lay/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/layui/lay/modules/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/api/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/api/apiCss/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/api/apiCss/img/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/api/cn/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/api/en/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/css/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/css/awesomeStyle/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/css/awesomeStyle/img/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/css/metroStyle/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/css/metroStyle/img/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/css/zTreeStyle/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/css/zTreeStyle/img/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/css/zTreeStyle/img/diy/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/demo/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/demo/cn/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/demo/cn/asyncData/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/demo/cn/bigdata/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/demo/cn/core/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/demo/cn/excheck/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/demo/cn/exedit/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/demo/cn/exhide/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/demo/cn/super/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/plugins/zTree/js/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/common/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/common/sendSms/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/account/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/accountBook/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/admin/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/app/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/arch/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/assets/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/attached/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/bank/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/basic/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/BusinessTax/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/check/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/checkout/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/converter/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/detection/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/documents/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/exchange/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/export/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/firstPage/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/init/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/inventory/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/invoice/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/jt/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/jzcl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/measure/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/print/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/ProfitTrend/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/progress/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/qmjz/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/report/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/set/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/subBook/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/subexcel/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/subject/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/superAdmin/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/tempType/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/time/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/vat/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/controller/voucher/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/account/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/account/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/admin/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/admin/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/app/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/app/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/arch/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/arch/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/assets/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/assets/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/attach/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/attach/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/attached/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/attached/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/bank/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/bank/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/bill/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/bill/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/businessTax/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/businessTax/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/customer/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/customer/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/documents/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/documents/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/exchange/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/exchange/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/firstPage/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/firstPage/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/index/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/index/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/init/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/init/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/inventory/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/inventory/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/invoice/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/invoice/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/KcCommodity/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/KcCommodity/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/log/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/log/login/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/log/login/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/measure/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/measure/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/pay/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/pay/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/periodStatus/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/periodStatus/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/permission/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/permission/dao/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/permission/dao/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/Profit/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/progress/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/progress/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/report/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/report/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/smart/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/smart/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/subBook/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/subBook/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/subexcel/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/subexcel/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/subject/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/subject/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/SuperAdminDao/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/SuperAdminDao/SuperAdminImpl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/tempType/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/tempType/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/track/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/track/dao/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/track/dao/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/user/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/user/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/userOrder/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/userOrder/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/vat/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/vat/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/voucher/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/voucher/dao/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/dao/voucher/dao/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/httpClient/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/model/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/model/bank/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/model/export/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/model/vomodel/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/account/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/account/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/admin/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/admin/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/app/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/app/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/arch/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/arch/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/assets/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/assets/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/attached/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/attached/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/bank/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/bank/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/businessTax/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/businessTax/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/common/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/detection/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/detection/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/documents/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/documents/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/exchange/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/exchange/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/init/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/init/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/invoice/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/invoice/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/jzcb/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/jzcb/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/jzcl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/jzcl/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/jzqnjlr/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/jzqnjlr/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/jzsy/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/jzsy/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/KcCommodity/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/KcCommodity/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/log/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/log/service/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/log/service/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/login/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/login/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/measure/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/measure/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/periodStatus/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/periodStatus/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/ProfitTrend/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/ProfitTrend/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/proof/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/proof/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/qmjz/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/qmjz/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/report/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/report/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/simallBusiness/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/simallBusiness/Impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/stateTrack/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/stateTrack/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/subBook/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/subBook/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/subexcel/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/subexcel/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/subject/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/subject/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/SuperAdminService/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/SuperAdminService/SuperAdminServiceImpl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/tempType/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/tempType/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/user/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/user/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/vat/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/vat/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/voucher/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/com/wqb/service/voucher/impl/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/config/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/css/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/files/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/files/bank/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/img/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/js/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/js/accountBook/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/js/assets/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/js/bank/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/js/calculator/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/js/documents/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/js/init/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/js/invoice/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/js/print/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/js/report/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/js/salary/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/js/setTing/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/js/system/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/js/voucher/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/mapper/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/META-INF/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/dataTables/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/layui/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/layui/css/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/layui/css/modules/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/layui/css/modules/laydate/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/layui/css/modules/laydate/default/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/layui/css/modules/layer/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/layui/css/modules/layer/default/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/layui/font/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/layui/images/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/layui/images/face/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/layui/lay/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/layui/lay/modules/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/api/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/api/apiCss/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/api/apiCss/img/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/api/cn/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/api/en/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/css/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/css/awesomeStyle/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/css/awesomeStyle/img/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/css/metroStyle/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/css/metroStyle/img/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/css/zTreeStyle/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/css/zTreeStyle/img/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/css/zTreeStyle/img/diy/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/demo/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/demo/cn/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/demo/cn/asyncData/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/demo/cn/bigdata/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/demo/cn/core/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/demo/cn/excheck/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/demo/cn/exedit/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/demo/cn/exhide/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/demo/cn/super/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/plugins/zTree/js/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/properties/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/WEB-INF/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/WEB-INF/jsp/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/WEB-INF/jsp/accountBook/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/WEB-INF/jsp/assets/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/WEB-INF/jsp/bank/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/WEB-INF/jsp/common/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/WEB-INF/jsp/documents/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/WEB-INF/jsp/init/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/WEB-INF/jsp/invoice/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/WEB-INF/jsp/report/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/WEB-INF/jsp/salary/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/WEB-INF/jsp/system/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/WEB-INF/jsp/voucher/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/classes/WEB-INF/lib/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/jsp/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/jsp/accountBook/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/jsp/assets/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/jsp/bank/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/jsp/common/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/jsp/documents/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/jsp/init/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/jsp/invoice/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/jsp/report/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/jsp/salary/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/jsp/system/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/jsp/voucher/" />
+    <ignored path="out/artifacts/wqb_Web_exploded/WEB-INF/lib/" />
+    <ignored path="out/production/" />
+    <ignored path="out/production/wqb/" />
+    <ignored path="out/production/wqb/com/" />
+    <ignored path="out/production/wqb/com/wqb/" />
+    <ignored path="out/production/wqb/com/wqb/common/" />
+    <ignored path="out/production/wqb/com/wqb/common/sendSms/" />
+    <ignored path="out/production/wqb/com/wqb/controller/" />
+    <ignored path="out/production/wqb/com/wqb/controller/accountBook/" />
+    <ignored path="out/production/wqb/com/wqb/controller/admin/" />
+    <ignored path="out/production/wqb/com/wqb/controller/app/" />
+    <ignored path="out/production/wqb/com/wqb/controller/assets/" />
+    <ignored path="out/production/wqb/com/wqb/controller/attached/" />
+    <ignored path="out/production/wqb/com/wqb/controller/bank/" />
+    <ignored path="out/production/wqb/com/wqb/controller/basic/" />
+    <ignored path="out/production/wqb/com/wqb/controller/check/" />
+    <ignored path="out/production/wqb/com/wqb/controller/checkout/" />
+    <ignored path="out/production/wqb/com/wqb/controller/converter/" />
+    <ignored path="out/production/wqb/com/wqb/controller/detection/" />
+    <ignored path="out/production/wqb/com/wqb/controller/documents/" />
+    <ignored path="out/production/wqb/com/wqb/controller/exchange/" />
+    <ignored path="out/production/wqb/com/wqb/controller/init/" />
+    <ignored path="out/production/wqb/com/wqb/controller/jt/" />
+    <ignored path="out/production/wqb/com/wqb/controller/jzcl/" />
+    <ignored path="out/production/wqb/com/wqb/controller/measure/" />
+    <ignored path="out/production/wqb/com/wqb/controller/print/" />
+    <ignored path="out/production/wqb/com/wqb/controller/report/" />
+    <ignored path="out/production/wqb/com/wqb/controller/set/" />
+    <ignored path="out/production/wqb/com/wqb/controller/subexcel/" />
+    <ignored path="out/production/wqb/com/wqb/controller/subject/" />
+    <ignored path="out/production/wqb/com/wqb/controller/tempType/" />
+    <ignored path="out/production/wqb/com/wqb/controller/vat/" />
+    <ignored path="out/production/wqb/com/wqb/dao/" />
+    <ignored path="out/production/wqb/com/wqb/dao/account/" />
+    <ignored path="out/production/wqb/com/wqb/dao/admin/" />
+    <ignored path="out/production/wqb/com/wqb/dao/admin/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/app/" />
+    <ignored path="out/production/wqb/com/wqb/dao/app/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/arch/" />
+    <ignored path="out/production/wqb/com/wqb/dao/arch/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/assets/" />
+    <ignored path="out/production/wqb/com/wqb/dao/assets/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/attach/" />
+    <ignored path="out/production/wqb/com/wqb/dao/attach/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/attached/" />
+    <ignored path="out/production/wqb/com/wqb/dao/attached/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/bank/" />
+    <ignored path="out/production/wqb/com/wqb/dao/bank/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/bill/" />
+    <ignored path="out/production/wqb/com/wqb/dao/bill/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/businessTax/" />
+    <ignored path="out/production/wqb/com/wqb/dao/businessTax/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/customer/" />
+    <ignored path="out/production/wqb/com/wqb/dao/customer/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/documents/" />
+    <ignored path="out/production/wqb/com/wqb/dao/documents/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/exchange/" />
+    <ignored path="out/production/wqb/com/wqb/dao/exchange/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/firstPage/" />
+    <ignored path="out/production/wqb/com/wqb/dao/firstPage/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/index/" />
+    <ignored path="out/production/wqb/com/wqb/dao/index/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/init/" />
+    <ignored path="out/production/wqb/com/wqb/dao/init/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/inventory/" />
+    <ignored path="out/production/wqb/com/wqb/dao/inventory/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/invoice/" />
+    <ignored path="out/production/wqb/com/wqb/dao/invoice/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/KcCommodity/" />
+    <ignored path="out/production/wqb/com/wqb/dao/KcCommodity/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/log/" />
+    <ignored path="out/production/wqb/com/wqb/dao/log/login/" />
+    <ignored path="out/production/wqb/com/wqb/dao/log/login/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/measure/" />
+    <ignored path="out/production/wqb/com/wqb/dao/measure/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/pay/" />
+    <ignored path="out/production/wqb/com/wqb/dao/pay/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/periodStatus/" />
+    <ignored path="out/production/wqb/com/wqb/dao/periodStatus/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/permission/" />
+    <ignored path="out/production/wqb/com/wqb/dao/permission/dao/" />
+    <ignored path="out/production/wqb/com/wqb/dao/permission/dao/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/Profit/" />
+    <ignored path="out/production/wqb/com/wqb/dao/progress/" />
+    <ignored path="out/production/wqb/com/wqb/dao/progress/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/report/" />
+    <ignored path="out/production/wqb/com/wqb/dao/report/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/smart/" />
+    <ignored path="out/production/wqb/com/wqb/dao/smart/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/subBook/" />
+    <ignored path="out/production/wqb/com/wqb/dao/subBook/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/subexcel/" />
+    <ignored path="out/production/wqb/com/wqb/dao/subexcel/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/subject/" />
+    <ignored path="out/production/wqb/com/wqb/dao/subject/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/SuperAdminDao/" />
+    <ignored path="out/production/wqb/com/wqb/dao/tempType/" />
+    <ignored path="out/production/wqb/com/wqb/dao/tempType/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/track/" />
+    <ignored path="out/production/wqb/com/wqb/dao/track/dao/" />
+    <ignored path="out/production/wqb/com/wqb/dao/track/dao/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/user/" />
+    <ignored path="out/production/wqb/com/wqb/dao/user/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/userOrder/" />
+    <ignored path="out/production/wqb/com/wqb/dao/userOrder/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/vat/" />
+    <ignored path="out/production/wqb/com/wqb/dao/vat/impl/" />
+    <ignored path="out/production/wqb/com/wqb/dao/voucher/" />
+    <ignored path="out/production/wqb/com/wqb/dao/voucher/dao/" />
+    <ignored path="out/production/wqb/com/wqb/dao/voucher/dao/impl/" />
+    <ignored path="out/production/wqb/com/wqb/httpClient/" />
+    <ignored path="out/production/wqb/com/wqb/model/" />
+    <ignored path="out/production/wqb/com/wqb/model/bank/" />
+    <ignored path="out/production/wqb/com/wqb/model/export/" />
+    <ignored path="out/production/wqb/com/wqb/model/vomodel/" />
+    <ignored path="out/production/wqb/com/wqb/service/" />
+    <ignored path="out/production/wqb/com/wqb/service/account/" />
+    <ignored path="out/production/wqb/com/wqb/service/account/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/admin/" />
+    <ignored path="out/production/wqb/com/wqb/service/app/" />
+    <ignored path="out/production/wqb/com/wqb/service/arch/" />
+    <ignored path="out/production/wqb/com/wqb/service/arch/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/assets/" />
+    <ignored path="out/production/wqb/com/wqb/service/assets/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/attached/" />
+    <ignored path="out/production/wqb/com/wqb/service/attached/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/bank/" />
+    <ignored path="out/production/wqb/com/wqb/service/bank/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/businessTax/" />
+    <ignored path="out/production/wqb/com/wqb/service/businessTax/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/common/" />
+    <ignored path="out/production/wqb/com/wqb/service/detection/" />
+    <ignored path="out/production/wqb/com/wqb/service/documents/" />
+    <ignored path="out/production/wqb/com/wqb/service/documents/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/exchange/" />
+    <ignored path="out/production/wqb/com/wqb/service/exchange/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/init/" />
+    <ignored path="out/production/wqb/com/wqb/service/init/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/invoice/" />
+    <ignored path="out/production/wqb/com/wqb/service/invoice/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/jzcb/" />
+    <ignored path="out/production/wqb/com/wqb/service/jzcl/" />
+    <ignored path="out/production/wqb/com/wqb/service/jzcl/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/jzqnjlr/" />
+    <ignored path="out/production/wqb/com/wqb/service/jzsy/" />
+    <ignored path="out/production/wqb/com/wqb/service/jzsy/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/KcCommodity/" />
+    <ignored path="out/production/wqb/com/wqb/service/KcCommodity/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/log/" />
+    <ignored path="out/production/wqb/com/wqb/service/log/service/" />
+    <ignored path="out/production/wqb/com/wqb/service/log/service/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/login/" />
+    <ignored path="out/production/wqb/com/wqb/service/measure/" />
+    <ignored path="out/production/wqb/com/wqb/service/periodStatus/" />
+    <ignored path="out/production/wqb/com/wqb/service/periodStatus/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/ProfitTrend/" />
+    <ignored path="out/production/wqb/com/wqb/service/ProfitTrend/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/proof/" />
+    <ignored path="out/production/wqb/com/wqb/service/proof/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/qmjz/" />
+    <ignored path="out/production/wqb/com/wqb/service/report/" />
+    <ignored path="out/production/wqb/com/wqb/service/report/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/simallBusiness/" />
+    <ignored path="out/production/wqb/com/wqb/service/simallBusiness/Impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/stateTrack/" />
+    <ignored path="out/production/wqb/com/wqb/service/stateTrack/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/subexcel/" />
+    <ignored path="out/production/wqb/com/wqb/service/subexcel/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/subject/" />
+    <ignored path="out/production/wqb/com/wqb/service/subject/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/SuperAdminService/" />
+    <ignored path="out/production/wqb/com/wqb/service/tempType/" />
+    <ignored path="out/production/wqb/com/wqb/service/tempType/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/user/" />
+    <ignored path="out/production/wqb/com/wqb/service/user/impl/" />
+    <ignored path="out/production/wqb/com/wqb/service/vat/" />
+    <ignored path="out/production/wqb/com/wqb/service/voucher/" />
+    <ignored path="out/production/wqb/com/wqb/service/voucher/impl/" />
+    <ignored path="out/production/wqb/config/" />
+    <ignored path="out/production/wqb/css/" />
+    <ignored path="out/production/wqb/files/" />
+    <ignored path="out/production/wqb/files/bank/" />
+    <ignored path="out/production/wqb/img/" />
+    <ignored path="out/production/wqb/js/" />
+    <ignored path="out/production/wqb/js/accountBook/" />
+    <ignored path="out/production/wqb/js/assets/" />
+    <ignored path="out/production/wqb/js/bank/" />
+    <ignored path="out/production/wqb/js/calculator/" />
+    <ignored path="out/production/wqb/js/documents/" />
+    <ignored path="out/production/wqb/js/init/" />
+    <ignored path="out/production/wqb/js/invoice/" />
+    <ignored path="out/production/wqb/js/print/" />
+    <ignored path="out/production/wqb/js/report/" />
+    <ignored path="out/production/wqb/js/salary/" />
+    <ignored path="out/production/wqb/js/setTing/" />
+    <ignored path="out/production/wqb/js/system/" />
+    <ignored path="out/production/wqb/js/voucher/" />
+    <ignored path="out/production/wqb/mapper/" />
+    <ignored path="out/production/wqb/META-INF/" />
+    <ignored path="out/production/wqb/plugins/" />
+    <ignored path="out/production/wqb/plugins/dataTables/" />
+    <ignored path="out/production/wqb/plugins/layui/" />
+    <ignored path="out/production/wqb/plugins/layui/css/" />
+    <ignored path="out/production/wqb/plugins/layui/css/modules/" />
+    <ignored path="out/production/wqb/plugins/layui/css/modules/laydate/" />
+    <ignored path="out/production/wqb/plugins/layui/css/modules/laydate/default/" />
+    <ignored path="out/production/wqb/plugins/layui/css/modules/layer/" />
+    <ignored path="out/production/wqb/plugins/layui/css/modules/layer/default/" />
+    <ignored path="out/production/wqb/plugins/layui/font/" />
+    <ignored path="out/production/wqb/plugins/layui/images/" />
+    <ignored path="out/production/wqb/plugins/layui/images/face/" />
+    <ignored path="out/production/wqb/plugins/layui/lay/" />
+    <ignored path="out/production/wqb/plugins/layui/lay/modules/" />
+    <ignored path="out/production/wqb/plugins/zTree/" />
+    <ignored path="out/production/wqb/plugins/zTree/api/" />
+    <ignored path="out/production/wqb/plugins/zTree/api/apiCss/" />
+    <ignored path="out/production/wqb/plugins/zTree/api/apiCss/img/" />
+    <ignored path="out/production/wqb/plugins/zTree/api/cn/" />
+    <ignored path="out/production/wqb/plugins/zTree/api/en/" />
+    <ignored path="out/production/wqb/plugins/zTree/css/" />
+    <ignored path="out/production/wqb/plugins/zTree/css/awesomeStyle/" />
+    <ignored path="out/production/wqb/plugins/zTree/css/awesomeStyle/img/" />
+    <ignored path="out/production/wqb/plugins/zTree/css/metroStyle/" />
+    <ignored path="out/production/wqb/plugins/zTree/css/metroStyle/img/" />
+    <ignored path="out/production/wqb/plugins/zTree/css/zTreeStyle/" />
+    <ignored path="out/production/wqb/plugins/zTree/css/zTreeStyle/img/" />
+    <ignored path="out/production/wqb/plugins/zTree/css/zTreeStyle/img/diy/" />
+    <ignored path="out/production/wqb/plugins/zTree/demo/" />
+    <ignored path="out/production/wqb/plugins/zTree/demo/cn/" />
+    <ignored path="out/production/wqb/plugins/zTree/demo/cn/asyncData/" />
+    <ignored path="out/production/wqb/plugins/zTree/demo/cn/bigdata/" />
+    <ignored path="out/production/wqb/plugins/zTree/demo/cn/core/" />
+    <ignored path="out/production/wqb/plugins/zTree/demo/cn/excheck/" />
+    <ignored path="out/production/wqb/plugins/zTree/demo/cn/exedit/" />
+    <ignored path="out/production/wqb/plugins/zTree/demo/cn/exhide/" />
+    <ignored path="out/production/wqb/plugins/zTree/demo/cn/super/" />
+    <ignored path="out/production/wqb/plugins/zTree/js/" />
+    <ignored path="out/production/wqb/properties/" />
+    <ignored path="out/production/wqb/WEB-INF/" />
+    <ignored path="out/production/wqb/WEB-INF/jsp/" />
+    <ignored path="out/production/wqb/WEB-INF/jsp/accountBook/" />
+    <ignored path="out/production/wqb/WEB-INF/jsp/assets/" />
+    <ignored path="out/production/wqb/WEB-INF/jsp/bank/" />
+    <ignored path="out/production/wqb/WEB-INF/jsp/common/" />
+    <ignored path="out/production/wqb/WEB-INF/jsp/documents/" />
+    <ignored path="out/production/wqb/WEB-INF/jsp/init/" />
+    <ignored path="out/production/wqb/WEB-INF/jsp/invoice/" />
+    <ignored path="out/production/wqb/WEB-INF/jsp/report/" />
+    <ignored path="out/production/wqb/WEB-INF/jsp/salary/" />
+    <ignored path="out/production/wqb/WEB-INF/jsp/system/" />
+    <ignored path="out/production/wqb/WEB-INF/jsp/voucher/" />
+    <ignored path="out/production/wqb/WEB-INF/lib/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="ErrorTreeViewConfiguration">
+    <option name="hideWarnings" value="true" />
+    <option name="HIDE_WARNINGS" value="true" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="wqb" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/service/vat/impl/VatServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2870">
+              <caret line="683" column="31" selection-start-line="683" selection-start-column="31" selection-end-line="683" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/service/simallBusiness/Impl/SimallBusinessQMJZServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="730">
+              <caret line="93" column="55" selection-start-line="93" selection-start-column="55" selection-end-line="93" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/service/simallBusiness/Impl/CarryOverOfSalesCostServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="298">
+              <caret line="195" column="24" selection-start-line="195" selection-start-column="24" selection-end-line="195" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/model/Receipt.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="346">
+              <caret line="55" column="7" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/KcCommodity/KcCommodityDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/KcCommodity/impl/KcCommodityDaoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="298">
+              <caret line="63" column="29" selection-start-line="63" selection-start-column="29" selection-end-line="63" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/invoice/impl/InvoiceDaoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="298">
+              <caret line="420" column="29" selection-start-line="420" selection-start-column="29" selection-end-line="420" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>sub_code</find>
+      <find>arr</find>
+      <find>voucherList</find>
+      <find>sub_full_name</find>
+      <find>nnumber</find>
+      <find>ss</find>
+      <find>m</find>
+      <find>commSubCode</find>
+      <find>subFullName</find>
+      <find>insertVoBody</find>
+      <find>queryDocumentsList</find>
+      <find>createVoucher&quot;</find>
+      <find>updKcByVouch</find>
+      <find>计提</find>
+      <find>selectLastArch</find>
+      <find>count</find>
+      <find>n</find>
+      <find>subjectID2</find>
+      <find>voucher</find>
+      <find>settleac</find>
+      <find>doqm</find>
+      <find>queryCbjzVo</find>
+      <find>服务</find>
+      <find>queryDepart</find>
+      <find>querySubject</find>
+      <find>insertVouchBody</find>
+      <find>uploadArch</find>
+      <find>5001</find>
+      <find>oneKeyJt</find>
+      <find>queryCommodityAll</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>${filePaths}</replace>
+      <replace />
+      <replace>${wqb_url}</replace>
+      <replace>${wqb_charset}</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>D:\workspace\java\wqb\src\com\wqb\controller\invoice</dir>
+      <dir>D:\workspace\java\wqb</dir>
+      <dir>D:\workspace\java\wqb\src\com\wqb\controller</dir>
+      <dir>D:\workspace\java\automation\src\main\java\com\wqb\common</dir>
+      <dir>D:\workspace\java\automation\src\main\java\com\wqb\controller</dir>
+    </dirStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/dao/user/impl/UserDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/common/Log4jLogger.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/MyBatisConf.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/controller/voucher/VoucherController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/service/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/controller/BaseController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/service/subexcel/TBasicSubjectMessageService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/service/subexcel/impl/TBasicSubjectMessageServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/config/RedisConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/a" />
+        <option value="$PROJECT_DIR$/src/main/resources/config/smallBaseSystemSubject.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/config/baseSystemSubject.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/common/BusinessException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/service/detection/impl/TaxRiskDetectionServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/service/report/impl/TBasicBalanceSheetServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/controller/IndexController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/controller/account/AccountController.java" />
+        <option value="$PROJECT_DIR$/target/classes/static/plugins/layui/css/modules/code.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/Application.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/service/common/SpringApplicationContextHolder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/service/common/loingThread.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/controller/jt/JtController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/controller/qmjz/QmjzController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/controller/checkout/CheckoutController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/dao/log/login/impl/LoginLogDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/js/homePage.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/voucher/create.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/js/voucher/create.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/dao/invoice/impl/InvoiceDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/dao/KcCommodity/impl/KcCommodityDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/common/MyCollectors.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/common/BigDecimals.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/TBasicDocumentsMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/dao/documents/TBasicDocumentsMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/dao/documents/impl/TBasicDocumentsMapperImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/service/documents/TBasicDocumentsService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/service/documents/impl/TBasicDocumentsServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/dao/receipt/ReceiptService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/dao/receipt/TBasicDocumentsServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/dao/receipt/ReceiptDao.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/ReceiptMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/common/WqbException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/service/vat/VatService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/service/vat/impl/VatServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/config/assets.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/service/arch/impl/ArchServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/service/simallBusiness/Impl/CarryOverOfSalesCostServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wqb/model/Receipt.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JRebelWorkspace">
+    <option name="jrebelEnabledAutocompile" value="true" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="bookkeeper" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="bookkeeper" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="bookkeeper" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="260" />
+    <option name="y" value="20" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="bookkeeper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bookkeeper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bookkeeper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bookkeeper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bookkeeper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bookkeeper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bookkeeper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bookkeeper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bookkeeper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bookkeeper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553849815079" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/mapper" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\java\bookkeeper\src\main\resources\mapper" />
+      <recent name="D:\workspace\java\automation\src\main\resources" />
+      <recent name="D:\workspace\java\automation" />
+      <recent name="D:\workspace\java\wqb\conf" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.wqb.common" />
+      <recent name="com.wqb.dao.receipt" />
+      <recent name="com.wqb.model" />
+      <recent name="com.wqb" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\workspace\java\automation\src\main\webapp\WEB-INF" />
+      <recent name="D:\workspace\java\automation\src\main\webapp" />
+      <recent name="D:\workspace\java\automation\src\main\resources\bak" />
+      <recent name="D:\workspace\java\wqb\conf\properties" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="bookkeeper" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wqb.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.wqb.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.Application" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpringBeansView">
+    <option name="beanDetailsProportion" value="0.3" />
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\WQB\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\workspace\java\bookkeeper" />
+          <option name="myCopyRoot" value="D:\workspace\java\bookkeeper" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\workspace\java\bookkeeper\.idea" />
+          <option name="myCopyRoot" value="D:\workspace\java\bookkeeper\.idea" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\workspace\java\bookkeeper" />
+          <option name="myCopyRoot" value="D:\workspace\java\bookkeeper" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e543f74e-2198-4734-92ce-8d57d37e99bd" name="Default Changelist" comment="" />
+      <created>1552357791430</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1552357791430</updated>
+      <workItem from="1552357792950" duration="10890000" />
+      <workItem from="1552437348814" duration="27620000" />
+      <workItem from="1552523887543" duration="8686000" />
+      <workItem from="1552548126763" duration="9352000" />
+      <workItem from="1552560259985" duration="2872000" />
+      <workItem from="1552610086714" duration="7443000" />
+      <workItem from="1552696220501" duration="10418000" />
+      <workItem from="1552868637689" duration="4821000" />
+      <workItem from="1552976688646" duration="36614000" />
+      <workItem from="1553131468548" duration="12158000" />
+      <workItem from="1553224955818" duration="16068000" />
+      <workItem from="1553477601873" duration="62997000" />
+      <workItem from="1553689132496" duration="130000" />
+      <workItem from="1553689438237" duration="5149000" />
+      <workItem from="1553735462186" duration="21871000" />
+      <workItem from="1553773272621" duration="21561000" />
+      <workItem from="1553850983340" duration="273000" />
+      <workItem from="1553854631219" duration="1824000" />
+      <workItem from="1554207839203" duration="606000" />
+      <workItem from="1554810166545" duration="29094000" />
+      <workItem from="1554898161401" duration="12950000" />
+      <workItem from="1554984733740" duration="5839000" />
+      <workItem from="1555036279720" duration="11805000" />
+      <workItem from="1555119920568" duration="7993000" />
+      <workItem from="1555142017691" duration="7119000" />
+      <workItem from="1555289306982" duration="27371000" />
+    </task>
+    <task id="LOCAL-00001" summary="bug修复">
+      <created>1555384537282</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1555384537283</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="363524000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="JRebel" order="0" sideWeight="0.50206894" side_tool="true" weight="0.19936034" />
+      <window_info id="Image Layers" order="1" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="UI Designer" order="3" />
+      <window_info id="Designer" order="4" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" sideWeight="0.496208" visible="true" weight="0.15458423" />
+      <window_info id="Application Servers" order="6" sideWeight="0.5005417" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="7" sideWeight="0.5005417" side_tool="true" weight="0.25" />
+      <window_info id="Spring" order="8" sideWeight="0.503792" side_tool="true" weight="0.14978679" />
+      <window_info id="Java Enterprise" order="9" sideWeight="0.503792" side_tool="true" weight="0.14978679" />
+      <window_info id="Web" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="0" sideWeight="0.5010661" side_tool="true" weight="0.4496208" />
+      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info anchor="bottom" id="Docker" order="2" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="3" weight="0.32936078" />
+      <window_info anchor="bottom" id="Database Changes" order="4" />
+      <window_info anchor="bottom" id="Version Control" order="5" weight="0.32936078" />
+      <window_info anchor="bottom" id="JRebel Executor" order="6" />
+      <window_info anchor="bottom" id="JRebel Console" order="7" sideWeight="0.50053304" side_tool="true" weight="0.21451788" />
+      <window_info anchor="bottom" id="Message" order="8" />
+      <window_info anchor="bottom" id="Find" order="9" weight="0.32936078" />
+      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="12" sideWeight="0.49946696" weight="0.4539545" />
+      <window_info anchor="bottom" id="Debug" order="13" sideWeight="0.4989339" weight="0.34777898" />
+      <window_info anchor="bottom" id="TODO" order="14" />
+      <window_info anchor="bottom" id="Problems" order="15" />
+      <window_info anchor="bottom" id="Tail" order="16" />
+      <window_info anchor="bottom" id="Duplicate detector" order="17" weight="0.4312026" />
+      <window_info anchor="right" id="Maven" order="0" sideWeight="0.49837488" weight="0.30170575" />
+      <window_info anchor="right" id="Palette" order="1" />
+      <window_info anchor="right" id="Capture Analysis" order="2" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32995737" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
+      <window_info anchor="right" id="Bean Validation" order="9" />
+      <window_info anchor="right" id="Structure" order="10" sideWeight="0.5016251" side_tool="true" weight="0.23187633" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="bug修复" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug修复" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/wqb/service/subexcel/impl/TBasicSubjectMessageServiceImpl.java</url>
+          <line>92</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>listSub.stream().filter(subjectMessage -&gt; subjectMessage.getSub_code().equals(oneCode)).findFirst()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>queryRedisSub(accountID, period)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>entry.getKey()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>accumulation.remove(&quot;6601001&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <custom-info>java.util.HashMap</custom-info>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>tBasicDocuments.isEmpty()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>SpringApplicationContextHolder.getBeanDefinitionNames()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>SpringApplicationContextHolder.getSpringBean(&quot;loginLogService&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>list.stream().filter(redisSub -&gt; redisSub.getSub_code().startsWith(&quot;2221001&quot;)).collect(Collectors.toList())</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>list.stream().filter(redisSub -&gt; redisSub.getSub_code().startsWith(&quot;2201001&quot;)).collect(Collectors.toList())</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+    </expressions>
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>subLength - 3 * j</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>subjectID.substring(0, subLength - 3 * j)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>subjectID</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>map1</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>Integer a = null;
+int b = a;</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>Integer a = null;
+Objects.equals(a, 1)</expression-string>
+        <language-id>JAVA</language-id>
+        <custom-info>java.util.Objects</custom-info>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>Integer a = null;
+(int) a == 1</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_202/src.zip!/java/util/stream/Stream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="646" column="16" selection-start-line="646" selection-start-column="16" selection-end-line="646" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_202/src.zip!/java/util/stream/AbstractPipeline.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="233" column="42" selection-start-line="233" selection-start-column="42" selection-end-line="233" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_202/src.zip!/java/util/stream/ReduceOps.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="104" column="4" selection-start-line="104" selection-start-column="4" selection-end-line="104" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_202/src.zip!/java/util/stream/ReferencePipeline.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="478" column="38" lean-forward="true" selection-start-line="478" selection-start-column="38" selection-end-line="478" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/common/BigDecimals.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/common/StringUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40344">
+          <caret line="1706" column="25" selection-start-line="1706" selection-start-column="25" selection-end-line="1706" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/vat/impl/VatDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="142" column="13" lean-forward="true" selection-start-line="142" selection-start-column="13" selection-end-line="142" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/documents/impl/TBasicDocumentsMapperImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="582">
+          <caret line="98" column="27" selection-start-line="98" selection-start-column="23" selection-end-line="98" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/common/Log4jLogger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-810">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/documents/TBasicDocumentsMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="23" column="31" lean-forward="true" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/service/documents/TBasicDocumentsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="604">
+          <caret line="51" column="21" lean-forward="true" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/model/Invoice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/voucher/dao/VoucherHeadDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/voucher/dao/VoucherBodyDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-18">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="53" selection-start-line="53" selection-end-line="53" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/MyBatisConf.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/receipt/ReceiptService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/smart/Smart2newDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/TBasicDocumentsMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="62" column="14" lean-forward="true" selection-start-line="62" selection-start-column="14" selection-end-line="62" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/service/documents/impl/TBasicDocumentsServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="353" column="22" lean-forward="true" selection-start-line="353" selection-start-column="22" selection-end-line="353" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/smart/impl/Smart2newDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="17" column="14" lean-forward="true" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/permission.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/ReceiptMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="35" column="57" selection-start-line="35" selection-start-column="57" selection-end-line="35" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/service/invoice/impl/InvoiceServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="610">
+          <caret line="1802" column="76" selection-start-line="1802" selection-start-column="76" selection-end-line="1802" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/controller/voucher/VoucherController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="178" column="37" selection-start-line="178" selection-start-column="37" selection-end-line="178" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/receipt/ReceiptDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/common/WqbException.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/service/vat/VatService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="186" column="22" selection-start-line="186" selection-start-column="22" selection-end-line="186" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/controller/checkout/CheckoutController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="168" column="33" selection-start-line="168" selection-start-column="27" selection-end-line="168" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/voucher/dao/impl/VoucherHeadDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="463" column="23" selection-start-line="463" selection-start-column="23" selection-end-line="463" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/voucher/dao/impl/VcoucherBodyDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="28" column="62" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/arch/impl/ArchDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="610">
+          <caret line="150" column="28" lean-forward="true" selection-start-line="150" selection-start-column="28" selection-end-line="150" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/service/jzsy/impl/JzsyServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="144" column="37" selection-start-line="144" selection-start-column="37" selection-end-line="144" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/service/jzqnjlr/impl/JzqnjlrServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-330">
+          <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/assets.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/controller/qmjz/QmjzController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="123" column="36" selection-start-line="123" selection-start-column="36" selection-end-line="123" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/controller/arch/ArchController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1440">
+          <caret line="78" column="57" selection-start-line="78" selection-start-column="57" selection-end-line="78" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/controller/jt/JtController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="142" column="35" selection-start-line="142" selection-start-column="35" selection-end-line="142" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/subject/impl/TBasicSubjectMessageMapperImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1823">
+          <caret line="804" selection-start-line="804" selection-end-line="804" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/service/qmjz/impl/QmjzServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="95" selection-start-line="95" selection-end-line="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/service/arch/impl/ArchServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="1196" column="53" selection-start-line="1196" selection-start-column="53" selection-end-line="1196" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/service/vat/impl/VatServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2870">
+          <caret line="683" column="31" selection-start-line="683" selection-start-column="31" selection-end-line="683" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/invoice/impl/InvoiceDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="420" column="29" selection-start-line="420" selection-start-column="29" selection-end-line="420" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_202/src.zip!/java/util/function/Function.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="48" column="6" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/common/MyCollectors.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/KcCommodity/impl/KcCommodityDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="63" column="29" selection-start-line="63" selection-start-column="29" selection-end-line="63" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/dao/KcCommodity/KcCommodityDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/model/Receipt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="55" column="7" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/service/simallBusiness/Impl/SimallBusinessQMJZServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="730">
+          <caret line="93" column="55" selection-start-line="93" selection-start-column="55" selection-end-line="93" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wqb/service/simallBusiness/Impl/CarryOverOfSalesCostServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="195" column="24" selection-start-line="195" selection-start-column="24" selection-end-line="195" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>wqb:Web exploded</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>bookkeeper</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: com.alibaba:druid:1.1.6</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

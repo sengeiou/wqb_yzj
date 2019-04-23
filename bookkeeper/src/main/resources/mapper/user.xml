@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+	<!-- 登录用户映射 -->
+	<resultMap type="user" id="userMap">
+		<result property="userID" column="userID" />
+		<result property="loginUser" column="loginUser" />
+		<result property="userName" column="userName" />
+		<result property="userType" column="userType" />
+		<result property="parentUser" column="parentUser" />
+		<result property="pasword" column="pasword" />
+		<result property="state" column="state" />
+		<result property="des" column="des" />
+		<result property="ableDate" column="ableDate" />
+		<result property="disableDate" column="disableDate" />
+		<result property="updateDate" column="updateDate" />
+		<result property="updatePsn" column="updatePsn" />
+		<result property="createDate" column="createDate" />
+		<result property="createPsn" column="createPsn" />
+		<result property="Id" column="Id" />
+		<result property="type" column="type" />
+		<result property="power" column="power" />
+		<result property="sessionID" column="sessionID" />
+		<result property="sessionID" column="sessionID" />
+		<result property="companyType" column="companyType" />
+		<result property="accountNum" column="accountNum" />
+		<result property="initPassword" column="initPassword" />
+	</resultMap>
+	<select id="loginSystem" resultType="com.wqb.model.User">
+		select * from t_sys_user
+		where loginUser=#{userName} and pasword =#{password} and state=1;
+	</select>
+
+	<select id="queryUserByParentID" resultType="com.wqb.model.User">
+		select * from
+		t_sys_user where parentUser=#{userID};
+	</select>
+
+	<select id="queryUserByLineID" resultType="com.wqb.model.User">
+		select * from
+		t_sys_user where id = #{id};
+	</select>
+
+	<select id="queryUserById" resultType="com.wqb.model.User">
+		select * from t_sys_user
+		where userID = #{userID};
+	</select>
+
+	<update id="upUserByUid" parameterType="user">
+		update t_sys_user
+		<set>
+			<if test="type!=null">
+				type = #{type},
+			</if>
+			<if test="userType!=null">
+				userType = #{userType},
+			</if>
+			<if test="state!=null">
+				state = #{state},
+			</if>
+			<if test="ableDate!=null">
+				ableDate = #{ableDate},
+			</if>
+			<if test="disableDate!=null">
+				disableDate = #{disableDate},
+			</if>
+			<if test="parentUser!=null">
+				parentUser = #{parentUser},
+			</if>
+			
+			<if test="companyType!=null">
+				companyType = #{companyType},
+			</if>
+			<if test="accountNum!=null">
+				accountNum = #{accountNum},
+			</if>
+			<if test="initPassword!=null">
+				initPassword = #{initPassword},
+			</if>
+			<if test="des!=null">
+				des = #{des},
+			</if>
+			<if test="userName!=null">
+				userName = #{userName},
+			</if>
+
+		</set>
+		where userID = #{userID}
+	</update>
+	
+	
+	
+	<update id="upUserByUid2" parameterType="map">
+		update t_sys_user
+		<set>
+			<if test="type!=null">
+				type = #{type},
+			</if>
+			<if test="userType!=null">
+				userType = #{userType},
+			</if>
+			<if test="state!=null">
+				state = #{state},
+			</if>
+			<if test="ableDate!=null">
+				ableDate = #{ableDate},
+			</if>
+			<if test="disableDate!=null">
+				disableDate = #{disableDate},
+			</if>
+			<if test="parentUser!=null">
+				parentUser = #{parentUser},
+			</if>
+			<if test="pasword!=null">
+				pasword = #{pasword},
+			</if>
+		</set>
+		where userID = #{userID}
+	</update>
+	
+	
+	<update id="updUserByLoginUser" >
+		update t_sys_user set pasword=#{pasword} where loginUser=#{loginUser}
+	
+	</update>
+
+
+	<insert id="addUser">
+		INSERT INTO t_sys_user (
+		userID,
+		loginUser,
+		userName,
+		userType,
+		parentUser,
+		pasword,
+		state,
+		des,
+		ableDate,
+		disableDate,
+		updateDate,
+		updatePsn,
+		createDate,
+		createPsn,
+		jod,
+		birthday,
+		gender,
+		phone,
+		realname,
+		address,
+		telphone,
+		postCode,
+		email,
+		corp,
+		IDcard,
+		id,
+		type,
+		companyType,
+		accountNum,
+		initPassword
+		)
+		VALUES
+		(
+		#{userID},#{loginUser},#{userName},#{userType},#{parentUser},#{pasword},#{state},#{des},#{ableDate},
+		#{disableDate},#{updateDate},#{updatePsn},#{createDate},#{createPsn},#{jod},#{birthday},#{gender},
+		#{phone},#{realname},#{address},#{telphone},#{postCode},#{email},#{corp},#{IDcard},#{id},#{type},#{companyType},#{accountNum},#{initPassword});
+	</insert>
+
+	<select id="queryUserByID" resultType="com.wqb.model.User">
+		select * from t_sys_user
+		where userID=#{userID}
+	</select>
+
+	<!-- 查询用户名 -->
+	<select id="queryUserName" parameterType="string" resultType="string">
+		select userName from t_sys_user where userID=#{uid};
+	</select>
+	<!-- 查询出所有代账管理员 -->
+	<select id="queryDzAdmin" resultType="com.wqb.model.User">
+		select * from t_sys_user
+		where state=1 and userType=#{userType};
+	</select>
+
+
+	<!-- 根据用户id批量查询用户信息 -->
+	<select id="queryUserBath" resultType="com.wqb.model.User"
+		parameterType="java.util.List">
+		select * from t_sys_user where userID in
+		<foreach collection="list" open="(" close=")" item="item"
+			index="index" separator=",">
+			#{item}
+		</foreach>
+	</select>
+
+	<select id="queryAllUser" resultType="com.wqb.model.User">
+		select * from t_sys_user;
+	</select>
+
+	<update id="updCsID">
+		update t_sys_user set id=#{id} where loginUser=#{mobile}
+	</update>
+
+	<update id="updCsMobile">
+		update t_sys_user set loginUser=#{mobile} where id=#{id}
+	</update>
+	
+	<update id="updSessionIDbyID">
+		update t_sys_user set sessionID=#{sessionID} where userID=#{userID}
+	</update>
+	
+	
+	
+	<select id="queryUserByCondition"  parameterType="map" resultType="com.wqb.model.User">
+		select * from t_sys_user
+		<where>
+			<if test="loginUser!=null">
+				and loginUser = #{loginUser}
+			</if>
+			<if test="password!=null">
+				and pasword = #{password}
+			</if>
+			<if test="state!=null">
+				and state = #{state}
+			</if>
+			<if test="userID!=null">
+				and userID = #{userID}
+			</if>
+		</where>
+	</select>
+	
+
+	
+
+	
+	
+	
+	
+	
+</mapper>

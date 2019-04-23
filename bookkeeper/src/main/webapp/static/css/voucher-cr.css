@@ -1,0 +1,330 @@
+@charset "utf-8";
+
+/* 生成凭证 */
+
+.layui-tab-title {
+    display: block;
+    margin-top: -10px;
+}
+
+.layui-tab-title li {
+    line-height: 40px;
+    border-right: 0;
+}
+
+.search {
+    margin-top: 20px;
+}
+
+.search-oneKey img {
+    margin: 0 20px;
+}
+
+.search-item.fr {
+    float: right;
+}
+
+.table-box {
+    margin-top: 20px;
+}
+
+.table-box .layui-table {
+    table-layout: fixed;
+}
+
+
+/* 默认生成凭证列表高度 */
+
+.layui-table-body {
+    margin-right: 0;
+    max-height: calc(100vh - 200px);
+}
+
+.layui-table-body.noSearch {
+    max-height: calc(100vh - 150px);
+}
+
+.voucher-list {
+    position: relative;
+    z-index: 0;
+}
+
+.voucher-list td {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.voucher-list .tl {
+    text-align: left;
+}
+
+.voucher-list .tr {
+    text-align: right;
+}
+
+.voucher-list p {
+    margin-left: -5px;
+    margin-right: -5px;
+    padding: 10px 5px;
+    line-height: 1;
+    min-height: 14px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.voucher-list p.last {
+    margin-bottom: -1px;
+}
+
+.layui-table-page {
+    right: 20px;
+    border-top-width: 1px;
+}
+
+.table-box>.layui-btn.layui-btn-danger {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+
+
+/*凭证错误提示*/
+
+.voucher-list tr td .CKvoucherNO {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.voucher-list .error-tips {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    margin-top: -10px;
+    padding: 2px 10px;
+    min-width: 90%;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+    line-height: 1;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    transform: scale(0.8);
+    border: 1px solid #f30;
+    border-radius: 2px;
+    background-color: #fffeee;
+    color: #f30;
+}
+
+.voucher-list tbody tr:first-of-type .error-tips:first-child {
+    margin-top: 0;
+}
+
+
+.error-tips:before,
+.error-tips:after {
+    content: '';
+    position: absolute;
+    top: 16px;
+    right: 100px;
+    right: 8vw;
+    width: 0;
+    height: 0;
+    border-width: 6px;
+    border-color: transparent;
+    border-style: solid;
+}
+
+.error-tips:before {
+    border-top-color: #f30;
+}
+
+.error-tips:after {
+    margin-top: -1px;
+    border-top-color: #fffeee;
+}
+
+.layui-btn-danger {
+    z-index: 1;
+}
+
+#voucher .layui-colla-title {
+    height: 60px;
+    color: #4c8fbd;
+}
+
+#voucher .layui-colla-title p {
+    line-height: 20px;
+    height: 20px;
+    margin-top: -12px;
+}
+
+#voucher .layui-colla-title label {
+    color: red;
+    padding: 0 2px;
+    font-size: 16px;
+}
+
+#voucher .layui-colla-content ul {
+    margin: 0 82px;
+}
+
+#voucher .layui-colla-content ul li {
+    height: 42px;
+    line-height: 42px;
+    padding-left: 20px;
+    border-bottom: 1px solid #eceded;
+    background-image: url(../img/risk-dot.png);
+    background-repeat: no-repeat;
+    background-position: 5px center;
+}
+
+#voucher .layui-colla-content ul li:nth-last-child(1) {
+    border-bottom: none;
+}
+
+.layui-colla-content li span {
+    float: right;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 12px;
+    display: none;
+}
+
+.layui-colla-content li img {
+    display: none;
+    float: right;
+    line-height: 40px;
+    margin: 12px 0 0 20px;
+}
+
+.layui-colla-title img {
+    display: none;
+    float: right;
+    margin: 2px;
+}
+
+.layui-colla-title span {
+    float: right;
+}
+
+.layui-colla-content li .warn3,
+.warn2,
+.warn1 {
+    display: none;
+}
+
+#LAY_layuipro .accessory {
+    border: 1px solid #ccc;
+    padding: 2px;
+    margin: 20px;
+    min-height: 320px;
+}
+
+#LAY_layuipro .accessory table {
+    width: 100%;
+}
+
+#LAY_layuipro .accessory table td {
+    border: 1px solid #ccc;
+}
+
+
+
+
+/*上传附件*/
+
+.uploadBody {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    border: 1px solid #000;
+    z-index: 9999999 !important;
+    left: 0;
+    top: 0px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.uploadBody .uploadA {
+    width: 380px;
+    height: 220px;
+    border-radius: 3px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -110px 0 0 -190px;
+}
+
+.uploadBody .uploadA .uploadA_top {
+    height: 46px;
+    line-height: 46px;
+    cursor: move;
+    padding-left: 24px;
+    font-size: 16px;
+    background: #ff8f33;
+    color: #fff;
+}
+
+.uploadA_close {
+    font-size: 22px;
+    color: #000;
+    float: right;
+    margin: 1px 12px 0 0;
+    cursor: pointer;
+}
+
+.uploadBody .uploadA .uploadA_C {
+    height: 116px;
+    position: relative;
+    overflow: auto;
+}
+
+#getHistoryBill-list .tablebody2 {
+    height: 380px;
+    max-height: 400px;
+}
+
+#getHistoryBillList td,
+#isInTheOutput th {
+    padding: 0px;
+    text-align: center;
+}
+
+#getHistoryBillList td p {
+    line-height: 30px;
+    height: 30px;
+    border-top: 1px solid #e4e4e4;
+}
+
+#getHistoryBillList td p:nth-child(1) {
+    border: none;
+}
+
+.print-popup .popup-item {
+    margin-left: 120px;
+}
+
+.print-popup .popup-text {
+    margin-left: -120px;
+    width: 110px;
+}
+
+.print-popup .layui-input {
+    display: inline-block;
+    width: 45%;
+}
+
+.print-popup .layui-input.layui-disabled {
+    background-color: #ebebe4;
+}
+
+.print-popup .lianjie{
+    display: inline-block;
+    width: 8%;
+    text-align: center;
+}

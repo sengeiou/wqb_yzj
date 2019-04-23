@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="measure" >
+<!--     计量单位表 -->
+ 	<resultMap id="measure" type="measure" >
+    <id column="pk_measure_id" property="pkMeasureId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="account_id" property="accountId" jdbcType="VARCHAR" />
+    <result column="meas_unit_symbol" property="measUnitSymbol" jdbcType="VARCHAR" />
+    <result column="meas_unit_name" property="measUnitName" jdbcType="VARCHAR" />
+    <result column="meas_unit_type" property="measUnitType" jdbcType="VARCHAR" />
+    <result column="meas_unit_remarks" property="measUnitRemarks" jdbcType="VARCHAR" />
+    <result column="create_psn_id" property="createPsnId" jdbcType="VARCHAR" />
+    <result column="create_psn" property="createPsn" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_psn_id" property="updatePsnId" jdbcType="VARCHAR" />
+    <result column="update_psn" property="updatePsn" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+<!--   <select id="selectByPrimaryKey" resultMap="measure" parameterType="java.lang.String" > -->
+<!--     select  -->
+<!--     <include refid="Base_Column_List" /> -->
+<!--     from t_basic_measure -->
+<!--     where pk_measure_id = #{pkMeasureId,jdbcType=VARCHAR} -->
+<!--   </select> -->
+  
+  <select id="queryMeasureBySymbolOrName" resultMap="measure" parameterType="measure" >
+   SELECT  
+   	*
+   FROM
+        t_basic_measure
+    WHERE 
+	(
+		account_id = 'admin'
+	  OR 
+		account_id = #{accountId,jdbcType=VARCHAR}
+	)
+ 	 <if test="measUnitName != null and measUnitSymbol != null" >
+ 	     AND
+ 	(
+ 	     meas_unit_name Like CONCAT('%','${measUnitName}','%' )
+ 	     OR
+ 	     meas_unit_symbol Like CONCAT('%','${measUnitSymbol}','%' )
+ 	)
+     </if>
+        
+  </select>
+  
+  <select id="queryMeasure" resultMap="measure" parameterType="java.util.Map" >
+   select  *
+    from 
+        t_basic_measure
+    where 
+<!--     	user_id = #{userId,jdbcType=VARCHAR}  -->
+<!--       and  -->
+        account_id = #{accountId,jdbcType=VARCHAR} 
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_basic_measure
+    where pk_measure_id = #{pkMeasureId,jdbcType=VARCHAR}
+  </delete>
+  
+<!--   <insert id="insertMeasure" parameterType="measure" > -->
+<!--     insert into t_basic_measure (pk_measure_id, user_id, account_id,  -->
+<!--       meas_unit_symbol, meas_unit_name, meas_unit_type,  -->
+<!--       meas_unit_remarks, create_psn_id, create_psn,  -->
+<!--       create_date, update_psn_id, update_psn,  -->
+<!--       update_date) -->
+<!--     values (#{pkMeasureId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR},  -->
+<!--       #{measUnitSymbol,jdbcType=VARCHAR}, #{measUnitName,jdbcType=VARCHAR}, #{measUnitType,jdbcType=VARCHAR},  -->
+<!--       #{measUnitRemarks,jdbcType=VARCHAR}, #{createPsnId,jdbcType=VARCHAR}, #{createPsn,jdbcType=VARCHAR},  -->
+<!--       #{createDate,jdbcType=TIMESTAMP}, #{updatePsnId,jdbcType=VARCHAR}, #{updatePsn,jdbcType=VARCHAR},  -->
+<!--       #{updateDate,jdbcType=TIMESTAMP}) -->
+<!--   </insert> -->
+  
+  <insert id="insertMeasure" parameterType="measure" >
+    insert into t_basic_measure
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pkMeasureId != null" >
+        pk_measure_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="measUnitSymbol != null" >
+        meas_unit_symbol,
+      </if>
+      <if test="measUnitName != null" >
+        meas_unit_name,
+      </if>
+      <if test="measUnitType != null" >
+        meas_unit_type,
+      </if>
+      <if test="measUnitRemarks != null" >
+        meas_unit_remarks,
+      </if>
+      <if test="createPsnId != null" >
+        create_psn_id,
+      </if>
+      <if test="createPsn != null" >
+        create_psn,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updatePsnId != null" >
+        update_psn_id,
+      </if>
+      <if test="updatePsn != null" >
+        update_psn,
+      </if>
+      <if test="updateDate != null" >
+        update_date
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pkMeasureId != null" >
+        #{pkMeasureId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="measUnitSymbol != null" >
+        #{measUnitSymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="measUnitName != null" >
+        #{measUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="measUnitType != null" >
+        #{measUnitType,jdbcType=VARCHAR},
+      </if>
+      <if test="measUnitRemarks != null" >
+        #{measUnitRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createPsnId != null" >
+        #{createPsnId,jdbcType=VARCHAR},
+      </if>
+      <if test="createPsn != null" >
+        #{createPsn,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePsnId != null" >
+        #{updatePsnId,jdbcType=VARCHAR},
+      </if>
+      <if test="updatePsn != null" >
+        #{updatePsn,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </insert>
+
+	<update id="updateMeasure" parameterType="java.util.Map" >
+	update t_basic_measure
+	<set >
+		<if test="measUnitSymbol != null" >
+		meas_unit_symbol = #{measUnitSymbol,jdbcType=VARCHAR},
+		</if>
+		<if test="measUnitName != null" >
+		meas_unit_name = #{measUnitName,jdbcType=VARCHAR},
+		</if>
+		<if test="measUnitType != null" >
+		meas_unit_type = #{measUnitType,jdbcType=VARCHAR},
+		</if>
+		<if test="measUnitRemarks != null" >
+		meas_unit_remarks = #{measUnitRemarks,jdbcType=VARCHAR},
+		</if>
+		<if test="updatePsnId != null" >
+		update_psn_id = #{updatePsnId,jdbcType=VARCHAR},
+		</if>
+		<if test="updatePsn != null" >
+		update_psn = #{updatePsn,jdbcType=VARCHAR},
+		</if>
+		<if test="updateDate != null" >
+		update_date = #{updateDate,jdbcType=TIMESTAMP}
+		</if>
+	</set>
+	where 
+		pk_measure_id = #{pkMeasureId,jdbcType=VARCHAR}
+	and
+		account_id = #{accountId,jdbcType=VARCHAR}
+	</update>
+  
+<!--   <update id="updateByPrimaryKey" parameterType="measure" > -->
+<!--     update t_basic_measure -->
+<!--     set user_id = #{userId,jdbcType=VARCHAR}, -->
+<!--       account_id = #{accountId,jdbcType=VARCHAR}, -->
+<!--       meas_unit_symbol = #{measUnitSymbol,jdbcType=VARCHAR}, -->
+<!--       meas_unit_name = #{measUnitName,jdbcType=VARCHAR}, -->
+<!--       meas_unit_type = #{measUnitType,jdbcType=VARCHAR},  -->
+<!--       meas_unit_remarks = #{measUnitRemarks,jdbcType=VARCHAR}, -->
+<!--       create_psn_id = #{createPsnId,jdbcType=VARCHAR}, -->
+<!--       create_psn = #{createPsn,jdbcType=VARCHAR}, -->
+<!--       create_date = #{createDate,jdbcType=TIMESTAMP}, -->
+<!--       update_psn_id = #{updatePsnId,jdbcType=VARCHAR}, -->
+<!--       update_psn = #{updatePsn,jdbcType=VARCHAR}, -->
+<!--       update_date = #{updateDate,jdbcType=TIMESTAMP} -->
+<!--     where pk_measure_id = #{pkMeasureId,jdbcType=VARCHAR} -->
+<!--   </update> -->
+</mapper>

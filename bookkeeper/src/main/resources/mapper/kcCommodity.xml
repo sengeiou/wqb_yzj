@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="commodity">
+
+	<insert id="insertCommodity" parameterType="com.wqb.model.KcCommodity">
+		insert into
+		t_kc_commodity
+		(
+		comID,
+		accountID,
+		period,
+		startPeriod,
+		endPeriod,
+		importSubcode,
+		sub_comName,
+		comNameSpec,
+		direction,
+		qc_balanceNum,
+		qc_balancePrice,
+		qc_balanceAmount,
+		bq_incomeNum,
+		bq_incomeAmount,
+		bq_incomePrice,
+		bq_issueNum,
+		bq_issueAmount,
+		bq_issuePrice,
+		total_incomeNum,
+		total_incomeAmount,
+		total_issueNum,
+		total_issueAmount,
+		balance_direction,
+		qm_balanceNum,
+		qm_balancePrice,
+		qm_balanceAmount,
+		updatePsnID,
+		updatePsn,
+		updatedate,
+		createDate,
+		createPsnID,
+		createPsn,
+		des,
+		importDate,
+		balanceDate,
+		vcunit,
+		sub_code,
+		comName,
+		spec
+		)
+		values
+		(
+		#{comID},
+		#{accountID},
+		#{period},
+		#{startPeriod},
+		#{endPeriod},
+		#{importSubcode},
+		#{sub_comName},
+		#{comNameSpec},
+		#{direction},
+		#{qc_balanceNum},
+		#{qc_balancePrice},
+		#{qc_balanceAmount},
+		#{bq_incomeNum},
+		#{bq_incomeAmount},
+		#{bq_incomePrice,},
+		#{bq_issueNum},
+		#{bq_issueAmount},
+		#{bq_issuePrice},
+		#{total_incomeNum},
+		#{total_incomeAmount},
+		#{total_issueNum},
+		#{total_issueAmount},
+		#{balance_direction},
+		#{qm_balanceNum},
+		#{qm_balancePrice},
+		#{qm_balanceAmount},
+		#{updatePsnID},
+		#{updatePsn},
+		#{updatedate},
+		#{createDate},
+		#{createPsnID},
+		#{createPsn},
+		#{des},
+		#{importDate},
+		#{balanceDate},
+		#{vcunit},
+		#{sub_code},
+		#{comName},
+		#{spec}
+		)
+	</insert>
+	
+	
+	<!-- 查询是否初始导入过数据 -->
+	<select id="queryCommodity" parameterType="map" resultType="int">
+		select COUNT(*) from t_kc_commodity where accountID = #{accountID}
+	</select>
+	
+	<!-- 库存商品期初金额数量更新 -->
+	<update id="updateCommodity" parameterType="com.wqb.model.KcCommodity">
+		update t_kc_commodity 
+		 <set>  
+			<if test="bq_incomeNum!=null">
+             bq_incomeNum = #{bq_incomeNum,jdbcType=DOUBLE},
+            </if>
+            <if test="bq_incomeAmount!=null">
+             bq_incomeAmount = #{bq_incomeAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="bq_issueNum!=null">
+             bq_issueNum = #{bq_issueNum,jdbcType=DOUBLE},
+            </if>
+            <if test="bq_issueAmount!=null">
+             bq_issueAmount = #{bq_issueAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="total_incomeNum!=null">
+             total_incomeNum = #{total_incomeNum,jdbcType=DOUBLE},
+            </if>
+            <if test="total_incomeAmount!=null">
+             total_incomeAmount = #{total_incomeAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="total_issueNum!=null">
+             total_issueNum = #{total_issueNum,jdbcType=DOUBLE},
+            </if>
+            <if test="total_issueAmount!=null">
+             total_issueAmount = #{total_issueAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="qm_balanceNum!=null">
+             qm_balanceNum = #{qm_balanceNum,jdbcType=DOUBLE},
+            </if>
+            
+            <if test="qm_balancePrice!=null">
+             qm_balancePrice = #{qm_balancePrice,jdbcType=DECIMAL},
+            </if>
+            <if test="qm_balanceAmount!=null">
+             qm_balanceAmount = #{qm_balanceAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="updatePsnID!=null">
+             updatePsnID = #{updatePsnID},
+            </if>
+            <if test="updatePsn!=null">
+             updatePsn = #{updatePsn},
+            </if>
+            <if test="updatedate!=null">
+             updatedate = #{updatedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="importDate!=null">
+             importDate = #{importDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="balance_direction!=null">
+             balance_direction = #{balance_direction},
+            </if>
+             <if test="bq_incomePrice!=null">
+             bq_incomePrice = #{bq_incomePrice,jdbcType=DECIMAL},
+            </if>
+            <if test="bq_issuePrice!=null">
+             bq_issuePrice = #{bq_issuePrice,jdbcType=DECIMAL},
+            </if>
+		</set> 
+		where comID = #{comID}
+	</update>
+
+
+	<!-- 更新库存商品期末结存数量金额单价 -->
+	<update id="updateQmAmountNumPrice" parameterType="map">
+		update t_kc_commodity 
+		 <set>  
+            <if test="qm_balanceNum!=null">
+             	qm_balanceNum = #{qm_balanceNum,jdbcType=DOUBLE},
+            </if>
+            <if test="qm_balancePrice!=null">
+             	qm_balancePrice = #{qm_balancePrice,jdbcType=DECIMAL},
+            </if>
+            <if test="qm_balanceAmount!=null">
+             	qm_balanceAmount = #{qm_balanceAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="balance_direction!=null">
+             	balance_direction = #{balance_direction},
+            </if>
+            
+            <if test="bq_issueNum!=null">
+             	bq_issueNum = #{bq_issueNum,jdbcType=DOUBLE},
+            </if>
+            <if test="bq_issueAmount!=null">
+             	bq_issueAmount = #{bq_issueAmount,jdbcType=DECIMAL},
+            </if>
+            
+            <if test="total_issueNum!=null">
+             	total_issueNum = #{total_issueNum,jdbcType=DOUBLE},
+            </if>
+            <if test="total_issueAmount!=null">
+             	total_issueAmount = #{total_issueAmount,jdbcType=DECIMAL},
+            </if>
+            
+		</set> 
+		where comID = #{comID}
+	</update>
+
+
+	<!-- 查询库存表所有数据 -->
+	<select id="queryCommodityAll" parameterType="map" resultType="com.wqb.model.KcCommodity">
+		select * from t_kc_commodity where period = #{period} and accountID =#{accountID}
+	</select>
+	
+	
+	<!-- 查询库存表所有数据2 -->
+	<select id="queryCommodityAll2" parameterType="map" resultType="com.wqb.model.KcCommodity">
+		select  sub_code,sub_comName,comNameSpec,comName,period,spec
+		from t_kc_commodity where period = #{period} and accountID =#{accountID}
+	</select>
+
+
+
+	<!-- 统计销项进项每个商品的总数量总价格 -->
+	<select id="queryNUmAndMount" parameterType="map"
+		resultType="com.wqb.model.InvoiceBody">
+		SELECT
+			comName,
+			measure,
+			spec,
+			invoiceType,
+			comNameSpec,
+			IFNULL(sum(namount),0) AS namount,
+			IFNULL(sum(nnumber),0) AS nnumber
+		FROM
+			t_fa_invoice_b
+		WHERE 
+			invoiceHID
+		IN(
+			select
+				invoiceHID
+			from
+				t_fa_invoice_h
+			where
+				accountID = #{accountID} and period LIKE CONCAT('%','${period}','%' ) and  invoiceType = #{invoiceType}
+		)
+		group by comNameSpec
+	</select>
+
+
+	<select id="queryBysubCode" parameterType="map" resultType="com.wqb.model.KcCommodity">
+		select * from t_kc_commodity where accountID = #{accountID} and period=#{busDate} and sub_code=#{subjectID};
+	</select>
+	
+	<update id="updKcByVouch" parameterType="com.wqb.model.KcCommodity">
+		update t_kc_commodity set
+		direction=#{direction},
+		balance_direction=#{balance_direction},
+		bq_incomeNum=#{bq_incomeNum},bq_incomeAmount=#{bq_incomeAmount},
+		bq_issueNum=#{bq_issueNum},bq_issueAmount=#{bq_issueAmount},
+		total_incomeNum=#{total_incomeNum},total_incomeAmount=#{total_incomeAmount},
+		total_issueNum=#{total_issueNum},total_issueAmount=#{total_issueAmount},
+		qm_balanceNum=#{qm_balanceNum},qm_balancePrice=#{qm_balancePrice},qm_balanceAmount=#{qm_balanceAmount}
+		where comID = #{comID}
+	</update>
+	
+	
+	<select id="querySubByImpoerSubCode" parameterType="map"  resultType="com.wqb.model.SubjectMessage">
+		select * from
+		t_basic_subject_message
+		where
+			account_id = #{accountID}
+			and account_period=#{period}
+			and excel_import_code = #{importSubcode}
+	</select>
+	<!-- 通过导入的excel原始科目编码查询转换之后的科目编码 -->
+	<select id="queryAllSubByImpoerCode" parameterType="map"  resultType="com.wqb.model.SubjectMessage">
+		select 
+			pk_sub_id,sub_code,sub_name,excel_import_code
+		from
+			t_basic_subject_message
+		where
+			account_id = #{accountID}
+			and account_period=#{period}
+			and excel_import_code in
+			<foreach collection="ids" item="code" open="(" close=")" separator=",">
+				#{code}
+			</foreach>
+	</select>
+	
+	<!-- 数量金额表初始化查询1405 1403开都的所有科目 -->
+	<select id="queryAllSub14" parameterType="map"  resultType="string">
+		select GROUP_CONCAT(excel_import_code)
+		from
+			t_basic_subject_message
+		where
+			account_id = #{accountID}  and account_period=#{period} and sub_code like "14%"
+	</select>
+	
+	
+		<!-- 库存列表页 综合查询-->
+	<select id="queryCommodityList" parameterType="map" resultType="com.wqb.model.KcCommodity">
+		select * from t_kc_commodity where period = #{period} and accountID =#{accountID}
+			<if test="sub_code!=null and sub_code!='' ">
+				and sub_code LIKE CONCAT('%','${sub_code}','%' )
+			</if>
+			<if test="comNameSpec!=null and comNameSpec!='' ">
+				and comNameSpec LIKE CONCAT('%','${comNameSpec}','%' )
+			</if>
+		order by sub_code
+		limit #{start},#{size}
+	</select>
+	
+	<!-- 查询库存列表页总数-->
+	<select id="queryCommodityCount" parameterType="map" resultType="int">
+		select count(*) from t_kc_commodity where period = #{period} and accountID =#{accountID}
+			<if test="sub_code!=null and sub_code!='' ">
+				and sub_code LIKE CONCAT('%','${sub_code}','%' )
+			</if>
+			<if test="comNameSpec!=null and comNameSpec!='' ">
+				and comNameSpec LIKE CONCAT('%','${comNameSpec}','%' )
+			</if>
+	</select>
+	
+	<!-- 删除下个期间的库存数据 -->
+	<delete id="delCommodityAll" parameterType="map">
+		delete from t_kc_commodity where period = #{period} and accountID =#{accountID}
+	</delete>
+	
+	<delete id="delInitCommodity" parameterType="map">
+		delete from t_kc_commodity where  accountID =#{accountID}
+	</delete>
+	
+	<delete id="delCommodityById" parameterType="map">
+		delete from t_kc_commodity where  comID =#{comID}
+	</delete>
+	
+		<!-- 根据销项商品名称统计数据与金额 -->
+	<select id="queryAmountByComName" parameterType="map" resultType="com.wqb.model.InvoiceBody">
+		select sum(nnumber) nnumber,sum(namount) namount  from t_fa_invoice_b where accountID=#{accountID} and period=#{busDate}
+		
+			<if test="comNameSpec!=null">
+				and comNameSpec=#{comNameSpec}
+			</if>
+			<if test="invoiceType!=null">
+				and invoiceType=#{invoiceType}
+			</if>
+	</select>
+	
+	<select id="querySubLevel" parameterType="map" resultType="string">
+		select excel_import_code from t_basic_subject_message where  account_id=#{accountID}  and code_level = 2 limit 1
+	</select>
+	<!-- 查询库存是否有发出金额 -->
+	<select id="queryCommAmount" parameterType="map" resultType="com.wqb.model.KcCommodity">
+		select comID,accountID from t_kc_commodity 
+		where  bq_issueAmount &gt;0  
+		and accountID=#{accountID}
+		and period=#{period}
+		limit 1
+	</select>
+	
+	
+	
+	<update id="updelVo1" parameterType="map">
+		update t_kc_commodity set 
+		
+			total_incomeNum = total_incomeNum - bq_incomeNum,
+			total_incomeAmount = total_incomeAmount - bq_incomeAmount
+		where 
+			period = #{busDate} and accountID = #{accountID}
+	</update>
+
+	
+
+
+	
+	<select id="queryAmountByCondition" parameterType="map" resultType="com.wqb.model.KcCommodity">
+		select comID,accountID from t_kc_commodity  and accountID=#{accountID} and period=#{busDate}
+		<if test="bq_issueAmount!=null">
+		   and bq_issueAmount &gt;0  
+		</if>
+		<if test="bq_incomeAmount!=null">
+		   and bq_incomeAmount &gt;0  
+		</if>
+		limit 1
+	</select>
+	
+		<!-- 库存商品期初金额数量更新 -->
+		<update id="updateCommBySub" parameterType="map">
+			update t_kc_commodity 
+			 <set>  
+				<if test="sub_code!=null">
+	             sub_code = #{sub_code,jdbcType=DOUBLE},
+	            </if>
+	            <if test="sub_comName!=null">
+	             sub_comName = #{sub_comName,jdbcType=DECIMAL},
+	            </if>
+	            <if test="comNameSpec!=null">
+	             comNameSpec = #{comNameSpec,jdbcType=DOUBLE},
+	            </if>
+	            <if test="comName!=null">
+	             comName = #{comName,jdbcType=DECIMAL},
+	            </if>
+	            <if test="spec!=null">
+	             spec = #{spec,jdbcType=DOUBLE},
+	            </if>
+			</set> 
+			where comID = #{comID}
+		</update>
+		
+		
+		
+		<select id="queryCommByCondition" parameterType="map" resultType="com.wqb.model.KcCommodity">
+			select *  from t_kc_commodity where period = #{period} and accountID =#{accountID}
+				<if test="sub_code!=null">
+					and sub_code = #{sub_code}
+				</if>
+				<if test="comNameSpec!=null">
+					and comNameSpec = #{comNameSpec}
+				</if>
+				<if test="importSubcode!=null">
+					and importSubcode = #{importSubcode}
+				</if>
+		</select>
+		
+	<select id="queryExcelCode"  parameterType="map"  resultType="com.wqb.model.SubjectMessage">
+		select 
+			excel_import_code
+		from
+			t_basic_subject_message 
+		where 
+			account_id = #{accountID}
+		and	
+			excel_import_code like CONCAT('','${one_code}','%' )
+	</select>
+	
+	
+	
+	<insert id="insertCommBath" parameterType="java.util.List">
+		insert into
+		t_kc_commodity
+		(
+		comID,
+		accountID,
+		period,
+		startPeriod,
+		endPeriod,
+		importSubcode,
+		sub_comName,
+		comNameSpec,
+		direction,
+		qc_balanceNum,
+		qc_balancePrice,
+		qc_balanceAmount,
+		bq_incomeNum,
+		bq_incomeAmount,
+		bq_incomePrice,
+		bq_issueNum,
+		bq_issueAmount,
+		bq_issuePrice,
+		total_incomeNum,
+		total_incomeAmount,
+		total_issueNum,
+		total_issueAmount,
+		balance_direction,
+		qm_balanceNum,
+		qm_balancePrice,
+		qm_balanceAmount,
+		updatePsnID,
+		updatePsn,
+		updatedate,
+		createDate,
+		createPsnID,
+		createPsn,
+		des,
+		importDate,
+		balanceDate,
+		vcunit,
+		sub_code,
+		comName,
+		spec
+		)
+		values
+		 <foreach collection="list" item="item" index="index" separator="," >
+		(
+			#{item.comID},
+			#{item.accountID},
+			#{item.period},
+			#{item.startPeriod},
+			#{item.endPeriod},
+			#{item.importSubcode},
+			#{item.sub_comName},
+			#{item.comNameSpec},
+			#{item.direction},
+			#{item.qc_balanceNum},
+			#{item.qc_balancePrice},
+			#{item.qc_balanceAmount},
+			#{item.bq_incomeNum},
+			#{item.bq_incomeAmount},
+			#{item.bq_incomePrice,},
+			#{item.bq_issueNum},
+			#{item.bq_issueAmount},
+			#{item.bq_issuePrice},
+			#{item.total_incomeNum},
+			#{item.total_incomeAmount},
+			#{item.total_issueNum},
+			#{item.total_issueAmount},
+			#{item.balance_direction},
+			#{item.qm_balanceNum},
+			#{item.qm_balancePrice},
+			#{item.qm_balanceAmount},
+			#{item.updatePsnID},
+			#{item.updatePsn},
+			#{item.updatedate},
+			#{item.createDate},
+			#{item.createPsnID},
+			#{item.createPsn},
+			#{item.des},
+			#{item.importDate},
+			#{item.balanceDate},
+			#{item.vcunit},
+			#{item.sub_code},
+			#{item.comName},
+			#{item.spec}
+		)
+		</foreach> 
+	</insert>
+	
+	
+	
+	
+	<!-- 一键删除清理库存操作 -->
+	<select id="upAllKcc" parameterType="map">
+		update 
+			t_kc_commodity 
+		set
+			qm_balanceNum = qc_balanceNum,
+			qm_balanceAmount = qc_balanceAmount,
+			qm_balancePrice = qc_balancePrice,
+			total_incomeNum = IFNULL(total_incomeNum,0) - IFNULL(bq_incomeNum,0),
+			total_incomeAmount = IFNULL(total_incomeAmount,0) - IFNULL(bq_incomeAmount,0),
+			total_issueNum = IFNULL(total_issueNum,0) - IFNULL(bq_issueNum,0),
+			total_issueAmount = IFNULL(total_issueAmount,0) - IFNULL(bq_issueAmount,0),
+			bq_incomeNum = 0,bq_incomeAmount = 0,bq_incomePrice = 0,
+			bq_issueNum = 0,bq_issueAmount = 0,bq_issuePrice = 0
+		where 
+			period = #{period} and accountID = #{accountID}
+	</select>
+
+	<!-- 一键删除清理科目余额表操作 -->
+	
+	<select id="upAllSub" parameterType="map">
+		update 
+			t_basic_subject_message
+		set
+			ending_balance_debit = init_debit_balance,
+			ending_balance_credit = init_credit_balance,
+			year_amount_debit = IFNULL(year_amount_debit,0) - IFNULL(current_amount_debit,0),
+			year_amount_credit = IFNULL(year_amount_credit,0) - IFNULL(current_amount_credit,0),
+			current_amount_debit = 0,
+			current_amount_credit = 0
+		where 
+			account_period = #{period} and  account_id = #{accountID}
+	</select>
+	
+	<select id="queryCommodityToVoucher" parameterType="map" resultType="com.wqb.model.vomodel.KcCommodityVo">
+		select
+			comID,accountID,period,sub_code,sub_comName,
+			qm_balanceNum,qm_balancePrice,qm_balanceAmount
+		from
+		 t_kc_commodity where period = #{period} and accountID =#{accountID} and qm_balanceNum  <![CDATA[!= ]]> 0
+	</select>
+	
+	
+	<select id="commodityGenerateVoucher" parameterType="map" resultType="com.wqb.model.KcCommodity">
+		select
+			comID,accountID,period,
+			sub_code,sub_comName,
+			comNameSpec,comName,spec,
+			qc_balanceNum,qc_balancePrice,qc_balanceAmount,
+			bq_incomeNum,bq_incomeAmount,bq_incomePrice,
+			bq_issueNum,bq_issueAmount,bq_issuePrice,
+			qm_balanceNum,qm_balancePrice,qm_balanceAmount
+		from
+		 t_kc_commodity 
+		 <where>
+		 	<if test="accountID!=null">
+		 		and accountID =#{accountID}
+		 	</if>
+		 	<if test="period!=null">
+		 		and period =#{period}
+		 	</if>
+		 	<if test="ids!=null">
+		 		and comID in
+		 		<foreach collection="ids"  item="id" separator="," open="(" close=")">
+		 			#{id}
+		 		</foreach>
+		 	</if>
+		 </where>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>
+
+

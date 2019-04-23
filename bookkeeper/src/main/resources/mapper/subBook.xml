@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="subBook">
+
+	<insert id="insertSubBook"  parameterType="com.wqb.model.SubBook" useGeneratedKeys="true" keyProperty="sub_bk_id">
+	
+		 <selectKey keyProperty="sub_bk_id"  resultType="java.lang.Integer" order="AFTER">
+	            select LAST_INSERT_ID()
+	    </selectKey>
+		insert into t_basic_subject_book
+		(
+			<!-- sub_bk_id, -->
+			accountID,
+			period,
+			vouchID,
+			vouchAID,
+			vouchNum,
+			vcabstact,
+			sub_code,
+			sub_name,
+			debitAmount,
+			creditAmount,
+			blanceAmount,
+			direction,
+			updateDate,
+			up_date,
+			isEndSubCode
+		)
+		values
+		(
+			<!-- #{sub_bk_id,jdbcType=VARCHAR}, -->
+			#{accountID,jdbcType=VARCHAR},
+			#{period,jdbcType=DECIMAL},
+			#{vouchID,jdbcType=VARCHAR},
+			#{vouchAID,jdbcType=VARCHAR},
+			#{vouchNum,jdbcType=INTEGER},
+			#{vcabstact,jdbcType=VARCHAR},
+			#{sub_code,jdbcType=VARCHAR},
+			#{sub_name,jdbcType=VARCHAR},
+			#{debitAmount,jdbcType=DECIMAL},
+			#{creditAmount,jdbcType=DECIMAL},
+			#{blanceAmount,jdbcType=DECIMAL},
+			#{direction,jdbcType=VARCHAR},
+			#{updateDate,jdbcType=TIMESTAMP},
+			#{up_date,jdbcType=INTEGER},
+			#{isEndSubCode,jdbcType=INTEGER}
+		)
+	</insert>
+	
+	<!--  useGeneratedKeys="true" keyProperty="sub_bk_id" -->
+	<insert id="insertSubBookBath" parameterType="java.util.List" >
+	
+		 <selectKey keyProperty="sub_bk_id"  resultType="java.lang.Integer" order="AFTER">
+	            select LAST_INSERT_ID()
+	    </selectKey>
+    
+		insert into  t_basic_subject_book
+		(
+		<!-- 	sub_bk_id, -->
+			accountID,
+			period,
+			vouchID,
+			vouchAID,
+			vouchNum,
+			vcabstact,
+			sub_code,
+			sub_name,
+			debitAmount,
+			creditAmount,
+			blanceAmount,
+			direction,
+			updateDate,
+			up_date,
+			isEndSubCode
+		)
+		values
+		 <foreach collection="list" item="item" index="index" separator="," >
+		(
+		<!-- 	#{item.sub_bk_id,jdbcType=VARCHAR}, -->
+			#{item.accountID,jdbcType=VARCHAR},
+			#{item.period,jdbcType=DECIMAL},
+			#{item.vouchID,jdbcType=VARCHAR},
+			#{item.vouchAID,jdbcType=VARCHAR},
+			#{item.vouchNum,jdbcType=INTEGER},
+			#{item.vcabstact,jdbcType=VARCHAR},
+			#{item.sub_code,jdbcType=DECIMAL},
+			#{item.sub_name,jdbcType=VARCHAR},
+			#{item.debitAmount,jdbcType=DECIMAL},
+			#{item.creditAmount,jdbcType=DECIMAL},
+			#{item.blanceAmount,jdbcType=DECIMAL},
+			#{item.direction,jdbcType=VARCHAR},
+			#{item.updateDate,jdbcType=TIMESTAMP},
+			#{item.up_date,jdbcType=INTEGER},
+			#{item.isEndSubCode,jdbcType=INTEGER}
+		)
+		</foreach> 
+	</insert>
+	
+
+	
+	<select id="queryLedger" parameterType="map" resultType="com.wqb.model.vomodel.SubMessageVo">
+		select
+				pk_sub_id,
+				account_id,
+				account_period,
+				sub_code,
+				sub_name,
+				init_debit_balance,
+				init_credit_balance,
+				current_amount_debit,
+				current_amount_credit,
+				year_amount_debit,
+				year_amount_credit,
+				ending_balance_debit,
+				ending_balance_credit,
+				code_level,
+				debit_credit_direction,
+				superior_coding
+		from
+			t_basic_subject_message
+		where 
+			account_id = #{accountID}
+	
+		
+		<!--1 查询开始期间结束期间 -->
+		<if test="period !=null">
+			and account_period = #{period,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="beginTime != null and endTime != null">
+			and account_period between #{beginTime,jdbcType=VARCHAR} and #{endTime,jdbcType=VARCHAR}
+		</if>
+		
+		
+		<!--2 查询 开始级别 结束级别-->
+		<if test="code_level !=null">
+			and code_level = #{code_level,jdbcType=INTEGER}
+		</if>
+		
+		<if test="only_start_level !=null">
+			and code_level <![CDATA[ >= ]]> #{only_start_level,jdbcType=INTEGER}
+		</if>
+		
+		<if test="only_end_level !=null">
+			and code_level <![CDATA[ <= ]]> #{only_end_level,jdbcType=INTEGER}
+		</if>
+	
+		<if test="start_level != null and end_level != null ">
+			and code_level between #{start_level,jdbcType=INTEGER} and #{end_level,jdbcType=INTEGER}
+		</if>
+		
+		
+		<!--3 查询 开始科目 结束科目 -->
+		<if test="sub_code !=null">
+			and sub_code = #{sub_code,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="only_beginSubCode !=null">
+			and sub_code <![CDATA[ >= ]]> #{only_beginSubCode,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="only_endSubCode !=null">
+			and sub_code <![CDATA[ <= ]]> #{only_endSubCode,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="beginSubCode != null and endSubCode != null">
+			and sub_code between #{beginSubCode,jdbcType=VARCHAR} and #{endSubCode,jdbcType=VARCHAR}
+		</if>
+		
+		<!--4 查询 余额为0不显示 -->
+		<if test="yeNotZero != null">
+		<!-- 1  -->
+			<!-- and ((ending_balance_debit != 0 and ending_balance_debit  IS NOT NULL)  OR (ending_balance_credit  != 0   and ending_balance_credit  IS NOT NULL)) -->
+			and (ending_balance_debit != 0  OR ending_balance_credit  != 0)
+		</if>
+		
+		<!--5 查询 发生额不为0且余额不为0 -->
+		<if test="yeNotZero2 != null">
+			and (current_amount_debit != 0  OR current_amount_credit  != 0)
+			and (ending_balance_debit != 0  OR ending_balance_credit  != 0)
+		</if>
+		
+	</select>
+	
+	<!-- 查询明细账 -->
+	<select id="querySubBook" parameterType="map" resultType="com.wqb.model.SubBook">
+		select
+			sub_bk_id,accountID,period,vouchID,vouchAID,vouchNum,vcabstact,vouchNum,sub_code,sub_name,
+			debitAmount,creditAmount,blanceAmount,direction,updateDate,up_date,isEndSubCode
+		from
+			t_basic_subject_book
+		where accountID = #{accountID}
+		
+		<if test="sub_code!=null">
+			and sub_code = #{sub_code}
+		</if>
+		
+		<if test="period !=null">
+			and period = #{period}
+		</if>
+		
+			<!--1 会计 启始期间 截止期间 -->
+		<if test="beginTime != null and endTime != null">
+			and period between #{beginTime} and #{endTime}
+		</if>
+		
+		<!--2 余额为0不显示 -->
+		<if test="yeNotZero != null">
+			and blanceAmount != 0
+		</if>
+		
+		<!-- 3 查看更新的末级科目 -->
+		<!-- <if test="isEndSubCode != null">
+			and isEndSubCode = #{isEndSubCode,jdbcType=INTEGER}
+		</if> -->
+		
+		<!-- order by sub_bk_id desc -->
+		
+		<if test="begin != null">
+			limit #{begin},#{pageSize}
+		</if>
+	</select>
+	
+	
+	<select id="queryOneMaxPeriod" parameterType="map" resultType="com.wqb.model.SubBook">
+		select
+			sub_bk_id,accountID,period
+		from
+			t_basic_subject_book
+		where 
+			accountID = #{accountID}
+		and 
+			sub_code = #{sub_code}
+		and 
+			period = #{period}
+	
+		<if test="yeNotZero != null">
+			and blanceAmount != 0
+		</if>
+			limit #{begin},#{pageSize}
+	</select>
+	
+	
+		
+	<select id="querySubToDetailAcc" parameterType="map" resultType="com.wqb.model.vomodel.SubMessageVo">
+		select
+				account_id,account_period,
+				sub_code,
+				sub_name,
+				full_name,
+				init_debit_balance,
+				init_credit_balance,
+				current_amount_debit,
+				current_amount_credit,
+				year_amount_debit,
+				year_amount_credit,
+				ending_balance_debit,
+				ending_balance_credit,
+				debit_credit_direction
+		from
+			t_basic_subject_message
+		where 
+			account_id = #{accountID}
+		
+		<if test="sub_code !=null">
+			and sub_code = #{sub_code}
+		</if>
+		
+		
+		<if test="beginTime != null and endTime != null">
+			and account_period between #{beginTime} and #{endTime}
+		</if>
+		
+		<if test="period !=null">
+			and account_period = #{period}
+		</if>
+
+		
+	</select>
+	
+	<!-- 根据条件查询总数  -->
+	<select id="querySubBookCount" parameterType="map" resultType="int">
+		select
+			count(1)
+		from
+			t_basic_subject_book
+		where accountID = #{accountID}
+		
+		<if test="sub_code!=null">
+			and sub_code = #{sub_code}
+		</if>
+		
+		<if test="period !=null">
+			and period = #{period}
+		</if>
+			<!-- 会计 启始期间 截止期间 -->
+		<if test="beginTime != null and endTime != null">
+			and period between #{beginTime} and #{endTime}
+		</if>
+		<!-- 余额为0不显示 -->
+		<if test="yeNotZero != null">
+			and blanceAmount != 0
+		</if>
+	</select>
+	
+	
+	<!-- 单个删除 -->
+	<delete id="delSubBook" parameterType="map">
+		delete from t_basic_subject_book where  vouchID = #{vouchID}
+	</delete>
+	
+	<delete id="delSubBook2" parameterType="map">
+		delete from t_basic_subject_book where  vouchAID = #{vouchAID}
+	</delete>
+	
+	<!-- 一键删除 -->
+	<delete id="delSubBookBath"  parameterType="map">
+		delete from t_basic_subject_book
+		where  vouchID in
+		(
+			select vouchID from t_vouch_h where accountID = #{accountID} and period = #{period}
+		)
+	</delete>
+	
+	<delete id="delSubBookBath2"  parameterType="map">
+		delete from t_basic_subject_book  where accountID = #{accountID} and period = #{period}
+	</delete>
+	
+	
+	<!-- 查询期间 -->
+	<select id="getRangePeiod" parameterType="map" resultType="com.wqb.model.StatusPeriod">
+		select * from t_status_period 
+		where 
+			accountID = #{accountID} and isCreateVoucher = 1 
+		and period in 
+		<foreach collection="ids" open="(" close=")" separator="," item="ps">
+			#{ps}
+		</foreach>
+	</select>
+	
+	
+		<!-- 查询所有科目数据 -->
+	<select id="querySubAll" parameterType="map" resultType="com.wqb.model.vomodel.SubMessageVo">
+		select pk_sub_id,sub_code,account_period,sub_name from t_basic_subject_message 
+		where 
+			accountID = #{accountID} and account_period = #{period}
+	</select>
+	
+	
+	<!-- 明细账科目范围获取起始科目 -->
+	<select id="queryDetailSub2" parameterType="map" resultType="com.wqb.model.vomodel.SubMessageVo">
+		select
+				account_period,
+				sub_code,
+				sub_name
+		from
+			t_basic_subject_message
+		where 
+			account_id = #{accountID}
+	
+		<!--1 查询开始期间结束期间 -->
+		<if test="period !=null">
+			and account_period = #{period,jdbcType=VARCHAR}
+		</if>
+		
+		<!--2 查询 开始级别 结束级别-->
+		<if test="code_level !=null">
+			and code_level = #{code_level,jdbcType=INTEGER}
+		</if>
+	
+		<if test="start_level != null and end_level != null ">
+			and code_level between #{start_level,jdbcType=INTEGER} and #{end_level,jdbcType=INTEGER}
+		</if>
+		
+		
+		<!--3 查询 开始科目 结束科目 -->
+		<if test="sub_code !=null">
+			and sub_code = #{sub_code,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="only_beginSubCode !=null">
+			and sub_code <![CDATA[ >= ]]> #{only_beginSubCode,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="only_endSubCode !=null">
+			and sub_code <![CDATA[ <= ]]> #{only_endSubCode,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="beginSubCode != null and endSubCode != null">
+			and sub_code between #{beginSubCode,jdbcType=VARCHAR} and #{endSubCode,jdbcType=VARCHAR}
+		</if>
+		order by sub_code  limit 1
+		
+	</select>
+	
+	
+	<!-- 凭证断号整理更新  联动更新明细账凭证号-->
+	<update id="upSubvoucherNo" parameterType="Map">
+		update t_basic_subject_book set  vouchNum=#{voucherNo}  where vouchID=#{vouchID}
+	</update>
+	
+		
+	<!-- 查询明细账数据 -->
+	<select id="queryByVouchID" parameterType="map" resultType="com.wqb.model.SubBook">
+		select * from t_basic_subject_book where  vouchID = #{vouchID}
+	</select>
+		
+	
+	<update id="upSubBlanceAmount" parameterType="Map">
+		update
+			 t_basic_subject_book set  blanceAmount = blanceAmount - #{amount}
+		where 
+			 accountID=#{accountID} and period = #{period}  and vouchNum <![CDATA[ >= ]]> #{vouchNum}  and sub_code in 
+			 <foreach collection="codes" item="sub_code" open="(" close=")"  separator=",">
+				#{sub_code}
+			</foreach>
+	</update>
+	
+	
+	<update id="upSubBlanceAmount2" parameterType="Map">
+		update
+			 t_basic_subject_book 
+			 set  
+			 	blanceAmount = blanceAmount + #{amount}
+			where 
+			 	accountID=#{accountID} 
+			and 
+				period = #{period}  
+			and 
+				vouchNum <![CDATA[ > ]]> #{vouchNum}  
+			and 
+				sub_code = #{sub_code}
+	</update>
+	
+	
+	
+	<select id="queryByCodes" parameterType="Map" resultType="com.wqb.model.SubBook">
+		select * from t_basic_subject_book
+		where 
+			 accountID=#{accountID} and period = #{period}   and sub_code in 
+			 <foreach collection="codes" item="sub_code" open="(" close=")"  separator=",">
+				#{sub_code}
+			</foreach>
+	</select>
+	
+	
+	<select id="queryByConditions" parameterType="Map" resultType="com.wqb.model.SubBook">
+		select * from t_basic_subject_book
+		<where>
+			<if test="accountID!=null">
+			 	and accountID=#{accountID} 
+			</if>
+			<if test="period!=null">
+			 	and period=#{period} 
+			</if>
+			<if test="vouchID!=null">
+			 	and vouchID=#{vouchID} 
+			</if>
+			<if test="vouchAID!=null">
+			 	and vouchAID=#{vouchAID} 
+			</if>
+			<if test="vouchNum!=null">
+			 	and vouchNum <![CDATA[ >= ]]> #{vouchNum}
+			</if>
+			<if test="vouchNum1!=null">
+			 	and vouchNum <![CDATA[ > ]]> #{vouchNum1}
+			</if>
+			<if test="vouchNum2!=null">
+			 	and vouchNum <![CDATA[ <= ]]> #{vouchNum2}
+			</if>
+			<if test="codes!=null">
+			 and sub_code in 
+			 	<foreach collection="codes" item="sub_code" open="(" close=")"  separator=",">
+					#{sub_code}
+				</foreach>
+			</if>
+		</where>
+	</select>
+	
+	
+	
+	<select id="queryAllSubBook" parameterType="map" resultType="com.wqb.model.vomodel.SubBookMessageVo">
+		select
+			sub_bk_id,accountID,period,vouchID,vouchAID,vouchNum,
+			vcabstact,sub_code,sub_name,
+			debitAmount,creditAmount,blanceAmount,
+			direction,updateDate,up_date,
+			
+			m.pk_sub_id,
+			m.account_id,
+			m.account_period,
+			m.s_subCode,
+			m.s_subName,
+			m.full_name,
+			m.code_level,
+			m.init_debit_balance,
+			m.init_credit_balance,
+			m.current_amount_debit,
+			m.current_amount_credit,
+			m.year_amount_debit,
+			m.year_amount_credit,
+			m.ending_balance_debit,
+			m.ending_balance_credit,
+			m.debit_credit_direction
+		from
+			t_basic_subject_book b
+		join
+			
+			(
+				select
+					pk_sub_id,
+					account_id,
+					account_period,
+					sub_code s_subCode,
+					sub_name s_subName,
+					full_name,
+					code_level,
+					init_debit_balance,
+					init_credit_balance,
+					current_amount_debit,
+					current_amount_credit,
+					year_amount_debit,
+					year_amount_credit,
+					ending_balance_debit,
+					ending_balance_credit,
+					debit_credit_direction
+				from 
+					t_basic_subject_message
+				where 
+					account_id =  #{accountID}
+				<if test="sub_code !=null">
+					and sub_code = #{sub_code}
+				</if> 
+				<if test="beginSubCode != null and endSubCode != null">
+					and sub_code between #{beginSubCode} and #{endSubCode}
+				</if>
+				
+				<if test="period !=null">
+					and account_period = #{period}
+				</if>
+				<if test="beginTime != null and endTime != null">
+					and account_period between #{beginTime} and #{endTime}
+				</if>
+				<if test="code_level !=null">
+					and code_level = #{code_level}
+				</if>
+				<if test="start_level != null and end_level != null">
+						and code_level between #{start_level} and #{end_level}
+				</if>
+				
+			) m
+			
+		on 
+			b.sub_code = m.s_subCode and b.period = m.account_period
+		where 
+			b.accountID = #{accountID}
+			
+		<if test="sub_code !=null">
+			and b.sub_code = #{sub_code}
+		</if>
+							
+		<if test="beginSubCode != null and endSubCode != null">
+			and b.sub_code between #{beginSubCode} and #{endSubCode}
+		</if>
+		
+		<if test="beginTime != null and endTime != null">
+			and b.period between #{beginTime} and #{endTime}
+		</if>
+	
+		<if test="yeNotZero != null">
+			and b.blanceAmount != 0
+		</if>
+		
+		order by b.period,b.sub_code,b.sub_bk_id
+		
+	</select>
+	
+	
+	
+	<select id="queryDetailSubMessage" parameterType="map" resultType="com.wqb.model.vomodel.RedisSub">
+				select
+					pk_sub_id,account_id,account_period,
+					sub_code,sub_name,full_name,
+					ending_balance_debit,ending_balance_credit
+				from 
+					t_basic_subject_message
+				where 
+					account_id =  #{accountID}
+				<if test="sub_code !=null">
+					and sub_code = #{sub_code}
+				</if> 
+				<if test="beginSubCode != null and endSubCode != null">
+					and sub_code between #{beginSubCode} and #{endSubCode}
+				</if>
+				
+				<if test="sub_period !=null">
+					and account_period = #{sub_period}
+				</if>
+				<if test="code_level !=null">
+					and code_level = #{code_level}
+				</if>
+				<if test="start_level != null and end_level != null">
+						and code_level between #{start_level} and #{end_level}
+				</if>
+				order by sub_code
+		</select>
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
+
+

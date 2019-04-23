@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="userAcc">
+	
+	<insert id="insertUserAcc" parameterType="com.wqb.model.UserAccount">
+		INSERT INTO t_user_acc (
+			mg_id,
+			accountID,
+			userID,
+			user_phone,
+			lastTime
+		)
+		VALUES
+		(
+			#{mg_id},
+			#{accountID},
+			#{userID},
+			#{user_phone},
+			#{lastTime}
+		)
+	</insert>
+	
+	<select id="queryAcc"  resultType="com.wqb.model.UserAccount" parameterType="map">
+		select * from t_user_acc where userID=#{userID}
+	</select>
+	
+		<!-- 更新账套最后登陆时间和期间-->
+	<update id="chgAcc" parameterType="map">
+		update t_user_acc 
+		<set>
+		   <if test="accountID!=null">
+		   		accountID=#{accountID},
+		   </if>
+		</set>
+			where userID=#{userID}
+	</update>
+	
+	
+</mapper>

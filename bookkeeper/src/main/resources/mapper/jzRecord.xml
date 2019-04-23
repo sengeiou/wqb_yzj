@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jzRecord">
+	<!-- 账套映射 -->
+	<resultMap type="jzRecord" id="jzRecordMap">
+
+		<result property="id" column="id" />
+		<result property="period" column="period" />
+		<result property="ptID" column="ptID" />
+		<result property="zwMonth" column="zwMonth" />
+
+	</resultMap>
+
+	<select id="queryJzRecord" resultMap="jzRecordMap">
+
+		select * from t_jz_record where period=#{period} and ptID=#{ptID};
+	</select>
+
+	<insert id="addJzRecord">
+		insert into t_jz_record(id,period,ptID,zwMonth)
+		values(#{id},#{period},#{ptID},#{zwMonth});
+	</insert>
+	
+	<select id="queryOldJz" resultMap="jzRecordMap">
+		select * from t_jz_record where ptID=#{ptID} order by period;
+	</select>
+</mapper>

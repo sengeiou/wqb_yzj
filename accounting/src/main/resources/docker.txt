@@ -1,0 +1,5 @@
+docker run --name mysql -p 3306:3306 -v "D:/Data/mysql":/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
+
+docker run --name redis -p 6379:6379 -v "D:/Data/redis":/data  -d redis:5 redis-server --appendonly yes
+
+docker run -d --hostname my-rabbit --name rabbitmq -v "D:/Data/rabbitmq":/varlib/rabbimtq  -p 15672:15672 -p 5672:5672 rabbitmq:3.7-management

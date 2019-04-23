@@ -1,0 +1,80 @@
+# 基本配置
+server:
+  port: 8001
+  servlet:
+    context-path: /
+
+# debug模式
+debug: false
+
+# spring配置
+spring:
+  # 数据源
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.1.10:3306/wqb_yjz?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: xw
+    password: Xw9999
+
+  jpa:
+    show-sql: true
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+#    password:
+    timeout: 5000
+
+    jedis:
+      pool:
+        max-idle: 200
+        max-wait: 10000
+        max-active: 1024
+
+
+
+  # 彩色终端支持
+  output:
+    ansi:
+      enabled: detect
+
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+    throw-exception-if-no-handler-found: true
+
+mybatis:
+  # mybatis配置文件所在路径
+  config-location: classpath:MyBatisConf.xml
+  # 定义所有操作类的别名所在包
+#  type-aliases-package: cn.study.microboot.vo
+  # 所有的mapper映射文件
+  mapper-locations: classpath:mapper/**.xml
+
+  #MyBatis配置
+#  configuration:
+#    # 是否开启下划线转驼峰命名规则
+##    map-underscore-to-camel-case: true
+#    # 全局地开启或关闭配置文件中的所有映射器已经配置的任何缓存
+#    cache-enabled: false
+#    # 配置JdbcTypeForNull
+#    jdbc-type-for-null: 'null'
+
+
+# 日志
+logging:
+  level:
+    root: debug
+    com.wqb: debug
+
+    #mapper xml文件里的命名空间没有统一前缀，无法指定debug打印sql，故root开启debug，大多数常见包设为info
+    com: info
+    org: info
+    sun: info
+    io: info
+    ch: info
+    cn: info
+    reactor: info
+

@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="invoice">
+	<!-- 发票主表映射 -->
+	<resultMap type="invoiceH" id="invoiceHMap">
+
+		<result property="invoiceHID" column="invoiceHID" />
+		<result property="period" column="period" />
+		<result property="invoiceType" column="invoiceType" />
+		<result property="invoiceCode" column="invoiceCode" />
+		<result property="invoiceNumber" column="invoiceNumber" />
+		<result property="invoiceName" column="invoiceName" />
+		<result property="invoiceState" column="invoiceState" />
+		<result property="invoiceDate" column="invoiceDate" />
+		<result property="invoicePerson" column="invoicePerson" />
+		<result property="buyTaxno" column="buyTaxno" />
+		<result property="buyCorp" column="buyCorp" />
+		<result property="buyBankno" column="buyBankno" />
+		<result property="address" column="address" />
+		<result property="saleCorp" column="saleCorp" />
+		<result property="saleTaxno" column="saleTaxno" />
+		<result property="saleBankno" column="saleBankno" />
+		<result property="vouchID" column="vouchID" />
+		<result property="auditPsn" column="auditPsn" />
+		<result property="fj" column="fj" />
+		<result property="invoiceDes" column="invoiceDes" />
+		<result property="createPsnID" column="createPsnID" />
+		<result property="createpsn" column="createpsn" />
+		<result property="accountID" column="accountID" />
+		<result property="invoice_confirmdate" column="invoice_confirmdate" />
+		<result property="sureType" column="sureType" />
+		<result property="addressPhone" column="addressPhone" />
+		<result property="productVersion" column="productVersion" />
+		<result property="billNo" column="billNo" />
+		<result property="comName" column="comName" />
+
+		<result property="namount" column="namount" />
+		<result property="taxAmount" column="taxAmount" />
+		<result property="spec" column="spec" />
+		<result property="nprice" column="nprice" />
+		<result property="nnumber" column="nnumber" />
+		<result property="taxRate" column="taxRate" />
+		<result property="measure" column="measure" />
+		<result property="importDate" column="importDate" />
+	</resultMap>
+	<!-- 发票子表映射 -->
+	<resultMap type="invoiceB" id="invoiceBMap">
+		<result property="invoiceBID" column="invoiceBID" />
+		<result property="invoiceHID" column="invoiceHID" />
+		<result property="comName" column="comName" />
+		<result property="spec" column="spec" />
+		<result property="measureID" column="measureID" />
+		<result property="measure" column="measure" />
+		<result property="nprice" column="nprice" />
+		<result property="nnumber" column="nnumber" />
+		<result property="namount" column="namount" />
+		<result property="ntaxAmount" column="ntaxAmount" />
+		<result property="taxAmount" column="taxAmount" />
+		<result property="taxClass" column="taxClass" />
+		<result property="createPsnID" column="createPsnID" />
+		<result property="createPsn" column="createPsn" />
+		<result property="accountID" column="accountID" />
+		<result property="des" column="des" />
+		<result property="taxRate" column="taxRate" />
+		<result property="taxTypeCode" column="taxTypeCode" />
+		<result property="comNameSpec" column="comNameSpec" />
+		<result property="invoiceType" column="invoiceType" />
+		<result property="period" column="period" />
+		<result property="sub_code" column="sub_code" />
+		<result property="sub_full_name" column="sub_full_name" />
+
+	</resultMap>
+	
+	<update id="updInvoiceByVouID">
+		update t_fa_invoice_h set vouchID='' where  vouchID=#{vouchID};
+	</update>
+
+	<insert id="insertInvocieH">
+		insert into
+		t_fa_invoice_h
+		(
+		invoiceHID,
+		period,
+		invoiceType,
+		invoiceCode,
+		invoiceNumber,
+		invoiceName,
+		invoiceState,
+		invoiceDate,
+		invoicePerson,
+		buyTaxno,
+		buyCorp,
+		buyBankno,
+		address,
+		saleCorp,
+		saleTaxno,
+		saleBankno,
+		vouchID,
+		auditPsn,
+		fj,
+		invoiceDes,
+		createPsnID,
+		createpsn,
+		accountID,
+		invoice_confirmdate,
+		sureType,
+		addressPhone,
+		productVersion,
+		billNo,
+		importDate
+		)values
+		(
+		#{invoiceHID},
+		#{period},
+		#{invoiceType},
+		#{invoiceCode},
+		#{invoiceNumber},
+		#{invoiceName},
+		#{invoiceState},
+		#{invoiceDate},
+		#{invoicePerson},
+		#{buyTaxno},
+		#{buyCorp},
+		#{buyBankno},
+		#{address},
+		#{saleCorp},
+		#{saleTaxno},
+		#{saleBankno},
+		#{vouchID},
+		#{auditPsn},
+		#{fj},
+		#{invoiceDes},
+		#{createPsnID},
+		#{createpsn},
+		#{accountID},
+		#{invoice_confirmdate},
+		#{sureType},
+		#{addressPhone},
+		#{productVersion},
+		#{billNo},
+		#{importDate}
+		)
+	</insert>
+	<insert id="insertInvoiceB">
+		insert into t_fa_invoice_b
+		(
+		invoiceBID,
+		invoiceHID,
+		comName,
+		spec,
+		measureID,
+		measure,
+		nprice,
+		nnumber,
+		namount,
+		ntaxAmount,
+		taxAmount,
+		taxClass,
+		createPsnID,
+		createPsn,
+		accountID,
+		des,
+		taxRate,
+		taxTypeCode,
+		comNameSpec,
+		invoiceType,
+		period
+		) values
+		(
+		#{invoiceBID},
+		#{invoiceHID},
+		#{comName},
+		#{spec},
+		#{measureID},
+		#{measure},
+		#{nprice},
+		#{nnumber},
+		#{namount},
+		#{ntaxAmount},
+		#{taxAmount},
+		#{taxClass},
+		#{createPsnID},
+		#{createPsn},
+		#{accountID},
+		#{des},
+		#{taxRate},
+		#{taxTypeCode},
+		#{comNameSpec},
+		#{invoiceType},
+		#{period}
+		)
+	</insert>
+
+	<select id="querySame" resultMap="invoiceHMap">
+		select
+		invoiceHID,
+		period,
+		invoiceType,
+		invoiceCode,
+		invoiceNumber,
+		invoiceName,
+		invoiceState,
+		invoiceDate,
+		invoicePerson,
+		buyTaxno,
+		buyCorp,
+		buyBankno,
+		address,
+		saleCorp,
+		saleTaxno,
+		saleBankno,
+		vouchID,
+		auditPsn,
+		fj,
+		invoiceDes,
+		createPsnID,
+		createpsn,
+		accountID,
+		invoice_confirmdate,
+		sureType,
+		addressPhone,
+		productVersion,
+		billNo
+		from t_fa_invoice_h where
+		period like CONCAT('%','${busDate}','%' ) and 
+		invoiceType = #{invoiceType} and
+		invoiceNumber=#{invoiceNumber} and
+		accountID=#{accountID};
+	</select>
+
+	<select id="queryInvoiceH" resultMap="invoiceHMap">
+		select
+		h.invoiceHID,
+		h.period,
+		h.invoiceType,
+		h.invoiceCode,
+		h.invoiceNumber,
+		h.invoiceName,
+		h.invoiceState,
+		h.invoiceDate,
+		h.invoicePerson,
+		h.buyTaxno,
+		h.buyCorp,
+		h.buyBankno,
+		h.address,
+		h.saleCorp,
+		h.saleTaxno,
+		h.saleBankno,
+		h.vouchID,
+		h.auditPsn,
+		h.fj,
+		h.invoiceDes,
+		h.createPsnID,
+		h.createpsn,
+		h.accountID,
+		h.invoice_confirmdate,
+		h.sureType,
+		h.addressPhone,
+		h.productVersion,
+		h.billNo
+		from t_fa_invoice_h h where
+		h.accountID=#{accountID} and h.period
+		like CONCAT('','${period}','%' )
+		<if test="invoiceType==1  ">
+			and h.invoiceType=#{invoiceType}
+		</if>
+		<if test="invoiceType==1  and beginTime!=null and endTime!=null">
+			and h.invoice_confirmdate
+			between #{beginTime} and
+			#{endTime}
+		</if>
+
+		<if test="invoiceType==2 ">
+			and h.invoiceType=#{invoiceType}
+		</if>
+
+		<if test="invoiceType==2 and beginTime!=null and endTime!=null">
+			and h.invoiceDate between
+			#{beginTime} and #{endTime}
+		</if>
+
+		<if test="keyWords != null">
+			and (h.buyCorp like CONCAT('%','${keyWords}','%' ) or h.saleCorp like
+			CONCAT('%','${keyWords}','%' ))
+		</if>
+		
+		order by importDate  
+		
+		<if test="begin !=null and end !=null">
+			limit #{begin},#{end}
+		</if>
+	</select>
+
+	<select id="queryInvoiceByBid" parameterType="map" resultType="com.wqb.model.InvoiceBody">
+		select * from t_fa_invoice_b where invoiceBID = #{invoiceBID}
+	</select>
+	
+	<select id="queryInvoiceByHid" parameterType="map" resultType="com.wqb.model.InvoiceHead">
+		select * from t_fa_invoice_h where invoiceHID = #{invoiceHID}
+	</select>
+	
+	<select id="queryInvoiceBCountByHid" parameterType="map" resultType="int">
+		select count(*) from t_fa_invoice_b where invoiceHID=#{invoiceHID};
+	</select>
+
+	<delete id="deleteInvoiceH" parameterType="map">
+		delete from t_fa_invoice_h where  invoiceHID=#{invoiceHID};
+	</delete>
+	
+	<delete id="deleteInvoiceHBath" parameterType="java.util.List">
+		delete from t_fa_invoice_h 
+		WHERE invoiceHID IN
+			<foreach collection="list" item="id" open="(" close=")" separator=",">
+	  			#{id}
+			</foreach>
+	</delete>
+	
+	
+	
+	<delete id="deleteInvoiceB" parameterType="map">
+		delete from t_fa_invoice_b where  invoiceBID = #{invoiceBID};
+	</delete>
+	
+	<!-- 生成凭证第一步(查询进项发票主表) -->
+	<select id="queryJxInvoiceH2Voucher" resultMap="invoiceHMap">
+		select
+		invoiceHID,
+		period,
+		invoiceType,
+		invoiceCode,
+		invoiceNumber,
+		invoiceName,
+		invoiceState,
+		invoiceDate,
+		invoicePerson,
+		buyTaxno,
+		buyCorp,
+		buyBankno,
+		address,
+		saleCorp,
+		saleTaxno,
+		saleBankno,
+		vouchID,
+		auditPsn,
+		fj,
+		invoiceDes,
+		createPsnID,
+		createpsn,
+		accountID,
+		invoice_confirmdate,
+		sureType,
+		addressPhone,
+		productVersion,
+		billNo
+		from t_fa_invoice_h where
+		accountID=#{accountID} and invoiceType=1 and period like
+		CONCAT('%','${busDate}','%' ) order by importDate;
+	</select>
+
+
+	<!-- 生成凭证第一步(查询销项发票主表) -->
+	<select id="queryXxInvoiceH2Voucher" resultMap="invoiceHMap">
+		select
+		invoiceHID,
+		period,
+		invoiceType,
+		invoiceCode,
+		invoiceNumber,
+		invoiceName,
+		invoiceState,
+		invoiceDate,
+		invoicePerson,
+		buyTaxno,
+		buyCorp,
+		buyBankno,
+		address,
+		saleCorp,
+		saleTaxno,
+		saleBankno,
+		vouchID,
+		auditPsn,
+		fj,
+		invoiceDes,
+		createPsnID,
+		createpsn,
+		accountID,
+		invoice_confirmdate,
+		sureType,
+		addressPhone,
+		productVersion,
+		billNo
+		from t_fa_invoice_h where
+		accountID=#{accountID} and invoiceType=2 and period like
+		CONCAT('%','${busDate}','%' );
+	</select>
+	<!-- 根据发票头查询发票子表列表 -->
+	<select id="queryInvByHid" resultMap="invoiceBMap">
+		select * from t_fa_invoice_b where invoiceHID=#{invoiceHID};
+	</select>
+
+	<update id="updateInvoiceVouID">
+		update t_fa_invoice_h set vouchID=#{vouchID} where
+		invoiceHID=#{invoiceHID};
+	</update>
+
+	<!-- 查询销项发票有多少购方公司 -->
+	<select id="queryHBuyCorp" resultType="java.lang.String">
+		select buyCorp from
+		t_fa_invoice_h where accountID=#{accountID} and period like
+		CONCAT('','${busDate}','%' ) and
+		invoiceType=2 group by buyCorp order by importDate;
+	</select>
+	<!-- 根据公司名称查询主表主键 -->
+	<select id="queryHIDByBuyCorp" resultType="java.lang.String">
+		select invoiceHID from
+		t_fa_invoice_h where accountID=#{accountID} and
+		period like
+		CONCAT('','${busDate}','%' ) and
+		invoiceType=2 and buyCorp=#{buyCorp};
+	</select>
+	<!-- 统计销项字表金额和税额合计 -->
+	<select id="queryAmountByHID" resultType="java.util.Map">
+		select sum(namount) as
+		je,sum(taxAmount) as se from t_fa_invoice_b where invoiceHID =
+		#{invoiceHID} ;
+
+	</select>
+	
+	<!-- 查询销项发票有多少购方公司 -->
+	<select id="queryInvobCount" resultType="int" parameterType="map">
+		select count(*) from t_fa_invoice_b where accountID=#{accountID} and period=#{period} and  invoiceType = #{invoiceType}
+	</select>
+	
+	<!-- 删除本期所有发票-->
+	<select id="delFaPiao1"  parameterType="map">
+		delete from t_fa_invoice_h  where accountID=#{accountID} and date_format(period,'%Y-%m') = #{period}
+	</select>
+	<select id="delFaPiao2"  parameterType="map">
+		delete from t_fa_invoice_b  where accountID=#{accountID} and period=#{period}
+	</select>
+	
+	
+	<!-- 统计销项进项总数 -->
+	<select id="queryNUmAndMount" parameterType="map" resultType="com.wqb.model.InvoiceBody">
+		SELECT
+		    comName,
+		    measure,
+		    spec,
+		    comNameSpec,
+		    IFNULL(sum(namount),0) AS namount,
+		    IFNULL(sum(nnumber),0) AS nnumber
+		FROM
+		    t_fa_invoice_b
+		WHERE	invoiceHID
+     	IN(
+		 	select
+		 		invoiceHID
+		 	from
+		 		t_fa_invoice_h
+		 	where
+		 		accountID = #{accountID} and  period LIKE CONCAT('%','${period}','%' )  and invoiceType = #{invoiceType}
+		)
+		group by comNameSpec
+	</select>
+	
+	<select id="queryByVouchID" resultMap="invoiceHMap">
+		select * from  t_fa_invoice_h where vouchID=#{vouchID};
+	</select>
+	
+	
+	
+	<update id="editInvoice" parameterType="com.wqb.model.InvoiceBody">
+		update t_fa_invoice_b
+		<set>
+			<if test="nprice!=null">
+				nprice = #{nprice},
+			</if>
+			<if test="nnumber!=null">
+				nnumber = #{nnumber},
+			</if>
+			<if test="comName!=null">
+				comName = #{comName},
+			</if>
+			<if test="spec!=null">
+				spec = #{spec},
+			</if>
+			<if test="comNameSpec!=null">
+				comNameSpec = #{comNameSpec},
+			</if>
+			<if test="sub_code!=null">
+				sub_code = #{sub_code},
+			</if>
+			<if test="sub_full_name!=null">
+				sub_full_name = #{sub_full_name},
+			</if>
+		</set>
+		where invoiceBID = #{invoiceBID}
+	</update>
+	
+	
+	
+	<select id="queryInvoiceHAll" parameterType="map"  resultType="com.wqb.model.InvoiceHead"  >
+		select * from  t_fa_invoice_h where accountID = #{accountID} and date_format(period,'%Y-%m') = #{period} and  invoiceType = #{invoiceType} 
+	</select>
+	
+	<select id="queryInvoiceBAll" parameterType="map"  resultType="com.wqb.model.InvoiceBody" >
+		select * from  t_fa_invoice_b where accountID = #{accountID} and period = #{period} and invoiceType = #{invoiceType}
+	</select>
+	
+	
+	
+	
+</mapper>

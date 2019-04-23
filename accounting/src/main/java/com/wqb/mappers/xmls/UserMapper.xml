@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wqb.mappers.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wqb.domains.User">
+        <id column="userID" property="userID" />
+        <result column="loginUser" property="loginUser" />
+        <result column="userName" property="userName" />
+        <result column="userType" property="userType" />
+        <result column="type" property="type" />
+        <result column="parentUser" property="parentUser" />
+        <result column="pasword" property="pasword" />
+        <result column="state" property="state" />
+        <result column="accountNum" property="accountNum" />
+        <result column="companyType" property="companyType" />
+        <result column="ableDate" property="ableDate" />
+        <result column="disableDate" property="disableDate" />
+        <result column="des" property="des" />
+        <result column="updateDate" property="updateDate" />
+        <result column="updatePsn" property="updatePsn" />
+        <result column="createDate" property="createDate" />
+        <result column="createPsn" property="createPsn" />
+        <result column="jod" property="jod" />
+        <result column="birthday" property="birthday" />
+        <result column="gender" property="gender" />
+        <result column="phone" property="phone" />
+        <result column="realname" property="realname" />
+        <result column="address" property="address" />
+        <result column="telphone" property="telphone" />
+        <result column="postCode" property="postCode" />
+        <result column="email" property="email" />
+        <result column="corp" property="corp" />
+        <result column="id" property="id" />
+        <result column="IDcard" property="IDcard" />
+        <result column="power" property="power" />
+        <result column="sessionID" property="sessionID" />
+        <result column="initPassword" property="initPassword" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        userID, loginUser, userName, userType, type, parentUser, pasword, state, accountNum, companyType, ableDate, disableDate, des, updateDate, updatePsn, createDate, createPsn, jod, birthday, gender, phone, realname, address, telphone, postCode, email, corp, id, IDcard, power, sessionID, initPassword
+    </sql>
+
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dzPay">
+	<!-- 代账记录表映射 -->
+	<resultMap type="dzPay" id="dzPayMap">
+		<result property="id" column="id" />
+		<result property="accountID" column="accountID" />
+		<result property="period" column="period" />
+		<result property="des" column="des" />
+		<result property="recordTime" column="recordTime" />
+		<result property="adminID" column="adminID" />
+		<result property="zwType" column="zwType" />
+		<result property="zwMonth" column="zwMonth" />
+		<result property="ptID" column="ptID" />
+		
+		<result property="payResult" column="payResult" />
+		
+		
+	</resultMap>
+	
+	<select id="queryRecord" resultMap="dzPayMap">
+		select * from t_zw_pay where accountID=#{accountID} and period=#{period};
+	</select>
+
+	<select id="queryDzPay" resultMap="dzPayMap">
+		select ptID as ptID ,count(*) as recordTime from t_zw_pay  where zwMonth=#{zwMonth} and zwType=#{zwType} GROUP BY ptID ;
+	</select>
+
+	<update id="addDzPay">
+		insert into t_zw_pay(id,accountID,period,des,recordTime,adminID,zwType,zwMonth,ptID) values
+		(#{id},#{accountID},#{period},#{des},#{recordTime},#{adminID},#{zwType},#{zwMonth},#{ptID})
+	</update>
+	
+	<select id="querySeePeriod" resultMap="dzPayMap">
+		select * from t_zw_pay where ptID=#{ptID} order by period
+	</select>
+	
+	<update id="updPayResult">
+		update t_zw_pay set payResult =#{payResult} where ptID=#{ptID}  and zwMonth=#{zwMonth}
+	</update>
+	
+	<select id="queryMonthJzCount" resultType="java.util.Map">
+		select count(*) as monthJzCount from t_zw_pay where zwMonth=#{time} and adminID=#{userID}
+	</select>
+</mapper>

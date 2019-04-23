@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="paBank">
+	<insert id="insertPaBank" parameterType="com.wqb.model.bank.PaBank">
+		insert into
+		t_cm_bkbill_pa
+		(
+		paBillID,
+		accountID,
+		vouchID,
+		period,
+		transaction_time,
+		accountNumber,
+		debitAmount,
+		creditAmount,
+		balance,
+		dfAccountNumber,
+		dfAccountName,
+		transactionID,
+		reference,
+		purpose,
+		importDate,
+		bankType,
+		sysSubjectCode,
+		sysSubjectName,
+		sysSubjectID,
+		sysSubjectFullName
+		)
+		values
+		(
+		#{paBillID},
+		#{accountID},
+		#{vouchID},
+		#{period},
+		#{transaction_time},
+		#{accountNumber},
+		#{debitAmount},
+		#{creditAmount},
+		#{balance},
+		#{dfAccountNumber},
+		#{dfAccountName},
+		#{transactionID},
+		#{reference},
+		#{purpose},
+		#{importDate},
+		#{bankType},
+		#{sysSubjectCode},
+		#{sysSubjectName},
+		#{sysSubjectID},
+		#{sysSubjectFullName}
+		)
+	</insert>
+
+	<!-- 查询是否有重复数据导入 -->
+	<select id="querySame" parameterType="map" resultType="com.wqb.model.bank.PaBank">
+		select
+		paBillID,accountID,period from t_cm_bkbill_pa
+		where
+		period = #{period}
+		and accountID = #{accountID}
+		and transactionID = #{transactionID}
+	</select>
+	<delete id="deleteByID">
+		delete from t_cm_bkbill_pa where paBillID in ${bills};
+	</delete>
+	
+		<!-- 不定项多条件分页查询 -->
+	<select id="queryBankBill" parameterType="map" resultType="com.wqb.model.bank.PaBank">
+		select * from t_cm_bkbill_pa where accountID = #{accountID} and
+		period=#{busDate}
+		<if
+			test="beginTime!=null and beginTime!='' and endTime!=null and endTime!=''">
+			and transaction_time between #{beginTime} and #{endTime}
+		</if>
+		<if test="keyWords!=null and keyWords!=''">
+			and dfAccountName like CONCAT('%','${keyWords}','%' )
+		</if>
+		<!-- 银行名称 -->
+		<if test="bankType!=null and bankType!='' and bankType!='全部'">
+			and bankType = #{bankType}
+		</if>
+			order by importDate
+		<if test="begin != null and begin != '' or begin==0">
+			limit  #{begin},#{maxPage}
+		</if>
+		
+	</select>
+	
+		<!-- 银行凭证添加  查询当期全部数据 -->
+	<select id="queryAll"  parameterType="map" resultType="com.wqb.model.bank.PaBank">
+		select * from t_cm_bkbill_pa where  accountID = #{accountID} and period=#{busDate} order by importDate
+	</select>
+
+
+	<update id="delVouchID">
+		update t_cm_bkbill_pa  set vouchID =''  where vouchID=#{vouchID};
+	</update>
+	
+	<update id="addVouchID">
+   		update t_cm_bkbill_pa  set vouchID =#{vouchID}  where paBillID=#{bankID};
+    </update>
+    <update id="updByID">
+		update t_cm_bkbill_pa set sysSubjectCode
+		=#{sysSubjectCode},sysSubjectName=#{sysSubjectName},
+		sysSubjectID=#{sysSubjectID},sysSubjectFullName=#{sysSubjectFullName}
+		where paBillID=#{id};
+	</update>
+    
+</mapper>

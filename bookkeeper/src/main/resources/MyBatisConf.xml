@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!--<settings>-->
+		<!--<setting name="logImpl" value="STDOUT_LOGGING" />-->
+	<!--</settings>-->
+	<!-- 配置映射类的别名 -->
+	<typeAliases>
+
+		<typeAlias alias="smart2new" type="com.wqb.model.Smart2new" />
+		<typeAlias alias="bank2Subject" type="com.wqb.model.Bank2Subject" />
+		<typeAlias alias="progress" type="com.wqb.model.Progress" />
+		<typeAlias alias="attach" type="com.wqb.model.Attach" />
+		<typeAlias alias="subBook" type="com.wqb.model.SubBook" />
+		<typeAlias alias="jzRecord" type="com.wqb.model.JzRecord" />
+		<typeAlias alias="jzAmount" type="com.wqb.model.JzAmount" />
+		<typeAlias alias="dzPay" type="com.wqb.model.DzPay" />
+		<typeAlias alias="assetsRecord" type="com.wqb.model.AssetsRecord" />
+		<typeAlias alias="customer" type="com.wqb.model.Customer" />
+
+		<typeAlias alias="first" type="com.wqb.model.FirstPageEntity" />
+		<typeAlias alias="index" type="com.wqb.model.IndexEntity" />
+		<typeAlias alias="periodStatu" type="com.wqb.model.StatusPeriod" />
+
+		<typeAlias alias="user" type="com.wqb.model.User" />
+		<typeAlias alias="account" type="com.wqb.model.Account" />
+		<typeAlias alias="permission" type="com.wqb.model.Permission" />
+		<typeAlias alias="loginLog" type="com.wqb.model.LoginLog" />
+		<typeAlias alias="voucherHead" type="com.wqb.model.VoucherHead" />
+		<typeAlias alias="voucherBody" type="com.wqb.model.VoucherBody" />
+		<typeAlias alias="subject" type="com.wqb.model.Subject" />
+		<typeAlias alias="subjectExcel" type="com.wqb.model.SubExcel" />
+		<typeAlias alias="subExcel" type="com.wqb.model.TBasicSubjectExcel" />
+		<typeAlias alias="subParent" type="com.wqb.model.TBasicSubjectParent" />
+		<typeAlias alias="exchangeRate" type="com.wqb.model.TBasicExchangeRate" />
+		<typeAlias alias="subMessage" type="com.wqb.model.TBasicSubjectMessage" />
+		<typeAlias alias="measure" type="com.wqb.model.TBasicMeasure" />
+		<typeAlias alias="assets" type="com.wqb.model.Assets" />
+		<typeAlias alias="invoiceH" type="com.wqb.model.InvoiceHead" />
+		<typeAlias alias="invoiceB" type="com.wqb.model.InvoiceBody" />
+		<typeAlias alias="bankBill" type="com.wqb.model.bank.BankBill" />
+		<typeAlias alias="arch" type="com.wqb.model.Arch" />
+		<typeAlias alias="sljeInit" type="com.wqb.model.SljeInit" />
+		<typeAlias alias="kccommodity" type="com.wqb.model.KcCommodity" />
+		<typeAlias alias="kccommodityjx" type="com.wqb.model.KcCommodityJx" />
+		<!-- 中国银行 -->
+		<typeAlias alias="bkbillBoc" type="com.wqb.model.bank.TCmBkbillBoc" />
+		<!-- 中信银行 -->
+		<typeAlias alias="ccb" type="com.wqb.model.bank.TccbBank" />
+		<!-- 农商行 -->
+		<typeAlias alias="szrcb" type="com.wqb.model.bank.SzrcbBank" />
+		<!-- 交通银行 -->
+		<typeAlias alias="bcm" type="com.wqb.model.bank.BcmBank" />
+		<!-- 交通银行1 -->
+		<typeAlias alias="bcm1" type="com.wqb.model.bank.BcmBank1" />
+		<!-- 工商银行 -->
+		<typeAlias alias="icbc" type="com.wqb.model.bank.IcbcBank" />
+		<!-- 建设银行 -->
+		<typeAlias alias="jsbank" type="com.wqb.model.bank.JsBank" />
+		<!-- 平安银行 -->
+		<typeAlias alias="pabank" type="com.wqb.model.bank.PaBank" />
+		<!-- 农业银行 -->
+		<typeAlias alias="nybank" type="com.wqb.model.bank.NyBank" />
+		<!-- 农业银行新模板（官网下载） -->
+		<typeAlias alias="nyBankNew" type="com.wqb.model.bank.NyBankNew" />
+		<!-- 招商银行 -->
+		<typeAlias alias="zsbank" type="com.wqb.model.bank.ZsBank" />
+
+		<typeAlias alias="balanceSheet" type="com.wqb.model.TBasicBalanceSheet" />
+		<typeAlias alias="incomeStatement" type="com.wqb.model.TBasicIncomeStatement" />
+		<typeAlias alias="documents" type="com.wqb.model.TBasicDocuments" />
+		<typeAlias alias="documentsConfig" type="com.wqb.model.TBasicDocumentsConfig" />
+		<typeAlias alias="stateTrack" type="com.wqb.model.StateTrack" />
+		<typeAlias alias="userAccount" type="com.wqb.model.UserAccount" />
+		<typeAlias alias="subBook" type="com.wqb.model.SubBook" />
+		<typeAlias alias="subjectMapping" type="com.wqb.model.TBasicSubjectMapping" />
+		<typeAlias alias="subjectMappingMiddle" type="com.wqb.model.TBasicSubjectMappingMiddle" />
+		<typeAlias alias="invoiceMapping" type="com.wqb.model.InvoiceMapping" />
+		<typeAlias alias="invoiceMappingrecord" type="com.wqb.model.InvoiceMappingrecord" />
+		<typeAlias alias="UserOrder" type="com.wqb.model.UserOrder" />
+		<typeAlias alias="tempType" type="com.wqb.model.TempType" />
+	</typeAliases>
+
+	<!-- 配置Mapper文件的路径 -->
+	<!--<mappers>-->
+		<!--<mapper resource="mapper/smart2new.xml" />-->
+		<!--<mapper resource="mapper/progress.xml" />-->
+		<!--<mapper resource="mapper/subBook.xml" />-->
+		<!--<mapper resource="mapper/nyBankNew.xml" />-->
+		<!--<mapper resource="mapper/jzRecord.xml" />-->
+		<!--<mapper resource="mapper/jzAmount.xml" />-->
+		<!--<mapper resource="mapper/dzPay.xml" />-->
+		<!--<mapper resource="mapper/assetsRecord.xml" />-->
+		<!--<mapper resource="mapper/customer.xml" />-->
+		<!--<mapper resource="mapper/firstPage.xml" />-->
+		<!--<mapper resource="mapper/icbcBank.xml" />-->
+		<!--<mapper resource="mapper/bcm.xml" />-->
+		<!--<mapper resource="mapper/bcm1.xml" />-->
+		<!--<mapper resource="mapper/szrcb.xml" />-->
+		<!--<mapper resource="mapper/ccbBank.xml" />-->
+		<!--<mapper resource="mapper/sljeInit.xml" />-->
+		<!--<mapper resource="mapper/arch.xml" />-->
+		<!--<mapper resource="mapper/bankBill.xml" />-->
+		<!--<mapper resource="mapper/invoice.xml" />-->
+		<!--<mapper resource="mapper/subject.xml" />-->
+		<!--<mapper resource="mapper/TBasicSubjectExcelMapper.xml" />-->
+		<!--<mapper resource="mapper/TBasicSubjectParentMapper.xml" />-->
+		<!--<mapper resource="mapper/TBasicMeasureMapper.xml" />-->
+		<!--<mapper resource="mapper/TBasicExchangeRateMapper.xml" />-->
+		<!--<mapper resource="mapper/TBasicSubjectMessageMapper.xml" />-->
+		<!--<mapper resource="mapper/periodStatus.xml" />-->
+		<!--<mapper resource="mapper/voucher.xml" />-->
+		<!--<mapper resource="mapper/loginLog.xml" />-->
+		<!--<mapper resource="mapper/user.xml" />-->
+		<!--<mapper resource="mapper/account.xml" />-->
+		<!--<mapper resource="mapper/permission.xml" />-->
+		<!--<mapper resource="mapper/assets.xml" />-->
+		<!--<mapper resource="mapper/vat.xml" />-->
+		<!--<mapper resource="mapper/attached.xml" />-->
+		<!--<mapper resource="mapper/businessTax.xml" />-->
+		<!--<mapper resource="mapper/jsBank.xml" />-->
+		<!--<mapper resource="mapper/paBank.xml" />-->
+		<!--<mapper resource="mapper/nyBank.xml" />-->
+		<!--<mapper resource="mapper/zsBank.xml" />-->
+		<!--<mapper resource="mapper/kcCommodity.xml" />-->
+		<!--<mapper resource="mapper/TCmBkbillBocMapper.xml" />-->
+		<!--<mapper resource="mapper/TBasicBalanceSheetMapper.xml" />-->
+		<!--<mapper resource="mapper/TBasicIncomeStatementMapper.xml" />-->
+		<!--<mapper resource="mapper/TBasicDocumentsMapper.xml" />-->
+		<!--<mapper resource="mapper/TBasicDocumentsConfigMapper.xml" />-->
+		<!--<mapper resource="mapper/trackComm.xml" />-->
+		<!--<mapper resource="mapper/trackSub.xml" />-->
+		<!--<mapper resource="mapper/index.xml" />-->
+		<!--<mapper resource="mapper/appAccount.xml" />-->
+		<!--<mapper resource="mapper/stateTrack.xml" />-->
+		<!--<mapper resource="mapper/userAcc.xml" />-->
+		<!--<mapper resource="mapper/superAdmin.xml" />-->
+		<!--<mapper resource="mapper/subBook.xml" />-->
+		<!--<mapper resource="mapper/admin.xml" />-->
+		<!--<mapper resource="mapper/TBasicSubjectMappingMapper.xml" />-->
+		<!--<mapper resource="mapper/TBasicSubjectMappingMiddleMapper.xml" />-->
+		<!--<mapper resource="mapper/invoiceMapping.xml" />-->
+		<!---->
+		<!--<mapper resource="mapper/bank2Subject.xml" />-->
+		<!--<mapper resource="mapper/userOrder.xml" />-->
+		<!--<mapper resource="mapper/tempType.xml" />-->
+		<!--<mapper resource="mapper/acccountInitialization.xml" />-->
+		<!---->
+		<!--&lt;!&ndash; <mapper resource="mapper/copyData.xml" />  测试并发&ndash;&gt;-->
+
+	<!--</mappers>-->
+</configuration>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="userOrder">
+	
+	<insert id="insertUserOrder" parameterType="com.wqb.model.UserOrder">
+		INSERT INTO t_sys_user_order (
+			id,
+			user_id,
+			platformId,
+			userid,
+			orderNumber,
+			produceNumber,
+			userType,
+			buyType,
+			companyType,
+			mobile,
+			password,
+			successTime,
+			accountNum,
+			month,
+			price,
+			email,
+			synchronizeTime,
+			des
+		)
+		VALUES
+		(
+			#{id},
+			#{user_id},
+			#{platformId},
+			#{userid},
+			#{orderNumber},
+			#{produceNumber},
+			#{userType},
+			#{buyType},
+			#{companyType},
+			#{mobile},
+			#{password},
+			#{successTime},
+			#{accountNum},
+			#{month},
+			#{price},
+			#{email},
+			#{synchronizeTime},
+			#{des}
+		)
+	</insert>
+	
+	
+</mapper>

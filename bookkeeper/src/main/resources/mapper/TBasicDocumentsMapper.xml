@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="documents" >
+  <resultMap id="documents" type="documents" >
+    <id column="pk_documents_id" property="pkDocumentsId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="account_id" property="accountId" jdbcType="VARCHAR" />
+    <result column="account_period" property="accountPeriod" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="amount_debit" property="amountDebit" jdbcType="DECIMAL" />
+    <result column="amount_credit" property="amountCredit" jdbcType="DECIMAL" />
+    <result column="pk_sub_id_debit" property="pkSubIdDebit" jdbcType="VARCHAR" />
+    <result column="sub_code_debit" property="subCodeDebit" jdbcType="VARCHAR" />
+    <result column="sub_name_debit" property="subNameDebit" jdbcType="VARCHAR" />
+    <result column="full_name_debit" property="fullNameDebit" jdbcType="VARCHAR" />
+    <result column="pk_sub_id_ctedit" property="pkSubIdCtedit" jdbcType="VARCHAR" />
+    <result column="sub_code_credit" property="subCodeCredit" jdbcType="VARCHAR" />
+    <result column="sub_name_credit" property="subNameCredit" jdbcType="VARCHAR" />
+    <result column="full_name_credit" property="fullNameCredit" jdbcType="VARCHAR" />
+    <result column="documents_unit" property="documentsUnit" jdbcType="VARCHAR" />
+    <result column="documents_unitId" property="documentsUnitid" jdbcType="VARCHAR" />
+    <result column="documents_decimal" property="documentsDecimal" jdbcType="DECIMAL" />
+    <result column="documents_number" property="documentsNumber" jdbcType="DECIMAL" />
+    <result column="tax_amount" property="taxAmount" jdbcType="DECIMAL" />
+    <result column="sub_code_tax" property="subCodeTax" jdbcType="VARCHAR" />
+    <result column="sub_name_tax" property="subNameTax" jdbcType="VARCHAR" />
+    <result column="pk_sub_id_tax" property="pkSubIdTax" jdbcType="VARCHAR" />
+    <result column="full_name_tax" property="fullNameTax" jdbcType="VARCHAR" />
+    <result column="documents_type" property="documentsType" jdbcType="VARCHAR" />
+    <result column="documents_son_type" property="documentsSonType" jdbcType="VARCHAR" />
+    <result column="voucher_number" property="voucherNumber" jdbcType="INTEGER" />
+    <result column="create_psn" property="createPsn" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_psn" property="updatePsn" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_timestamp" property="updateTimestamp" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pk_documents_id, user_id, account_id, account_period, summary, project_name, amount_debit,
+    amount_credit, pk_sub_id_debit, sub_code_debit, sub_name_debit, full_name_debit,
+    pk_sub_id_ctedit, sub_code_credit, sub_name_credit, full_name_credit, documents_unit,
+    documents_unitId, documents_decimal, documents_number, tax_amount, sub_code_tax,
+    sub_name_tax, pk_sub_id_tax, full_name_tax, documents_type, documents_son_type, voucher_number,
+    create_psn, create_date, update_psn, update_date, update_timestamp
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="documents" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from t_basic_documents
+    where pk_documents_id = #{pkDocumentsId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryDocumentsList" resultMap="documents" parameterType="documents" >
+    select
+    <include refid="Base_Column_List" />
+    from t_basic_documents
+    where account_id = #{accountId,jdbcType=VARCHAR}
+    and account_period = #{accountPeriod,jdbcType=VARCHAR}
+  </select>
+
+    <select id="querySalesDocumentsList" resultMap="documents" parameterType="documents" >
+        select
+        <include refid="Base_Column_List" />
+        from t_basic_documents
+        where account_id = #{accountId,jdbcType=VARCHAR}
+        and account_period = #{accountPeriod,jdbcType=VARCHAR}
+        and doucument_type = 2
+    </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_basic_documents
+    where pk_documents_id = #{pkDocumentsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="documents" >
+    insert into t_basic_documents (pk_documents_id, user_id, account_id,
+      account_period, summary, project_name,
+      amount_debit, amount_credit, pk_sub_id_debit,
+      sub_code_debit, sub_name_debit, full_name_debit,
+      pk_sub_id_ctedit, sub_code_credit, sub_name_credit,
+      full_name_credit, documents_unit, documents_unitId,
+      documents_decimal, documents_number, tax_amount,
+      sub_code_tax, sub_name_tax, pk_sub_id_tax,
+      full_name_tax, documents_type, documents_son_type,
+      voucher_number, create_psn, create_date,
+      update_psn, update_date, update_timestamp
+      )
+    values (#{pkDocumentsId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR},
+      #{accountPeriod,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR},
+      #{amountDebit,jdbcType=DECIMAL}, #{amountCredit,jdbcType=DECIMAL}, #{pkSubIdDebit,jdbcType=VARCHAR},
+      #{subCodeDebit,jdbcType=VARCHAR}, #{subNameDebit,jdbcType=VARCHAR}, #{fullNameDebit,jdbcType=VARCHAR},
+      #{pkSubIdCtedit,jdbcType=VARCHAR}, #{subCodeCredit,jdbcType=VARCHAR}, #{subNameCredit,jdbcType=VARCHAR},
+      #{fullNameCredit,jdbcType=VARCHAR}, #{documentsUnit,jdbcType=VARCHAR}, #{documentsUnitid,jdbcType=VARCHAR},
+      #{documentsDecimal,jdbcType=DECIMAL}, #{documentsNumber,jdbcType=DECIMAL}, #{taxAmount,jdbcType=DECIMAL},
+      #{subCodeTax,jdbcType=VARCHAR}, #{subNameTax,jdbcType=VARCHAR}, #{pkSubIdTax,jdbcType=VARCHAR},
+      #{fullNameTax,jdbcType=VARCHAR}, #{documentsType,jdbcType=VARCHAR}, #{documentsSonType,jdbcType=VARCHAR},
+      #{voucherNumber,jdbcType=INTEGER}, #{createPsn,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
+      #{updatePsn,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{updateTimestamp,jdbcType=CHAR}
+      )
+  </insert>
+  	<insert id="addTicketsCost" parameterType="java.util.List">
+		insert into
+		  t_basic_documents
+			( pk_documents_id,
+			  user_id,
+			  account_id,
+		      account_period,
+		      summary,
+		      project_name,
+		      amount_debit,
+		      amount_credit,
+		      pk_sub_id_debit,
+		      sub_code_debit,
+		      sub_name_debit,
+		      full_name_debit,
+		      pk_sub_id_ctedit,
+		      sub_code_credit,
+		      sub_name_credit,
+		      full_name_credit,
+		      documents_unit,
+		      documents_unitId,
+		      documents_decimal,
+		      documents_number,
+		      tax_amount,
+		      sub_code_tax,
+		      sub_name_tax,
+		      pk_sub_id_tax,
+      		  full_name_tax,
+		      documents_type,
+		      documents_son_type,
+		      voucher_number,
+		      create_psn,
+		      create_date,
+		      update_psn,
+		      update_date,
+		      update_timestamp)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+			( #{item.pkDocumentsId,jdbcType=VARCHAR},
+			  #{item.userId,jdbcType=VARCHAR},
+			  #{item.accountId,jdbcType=VARCHAR},
+		      #{item.accountPeriod,jdbcType=VARCHAR},
+		      #{item.summary,jdbcType=VARCHAR},
+		      #{item.projectName,jdbcType=VARCHAR},
+		      #{item.amountDebit,jdbcType=DECIMAL},
+		      #{item.amountCredit,jdbcType=DECIMAL},
+		      #{item.pkSubIdDebit,jdbcType=VARCHAR},
+		      #{item.subCodeDebit,jdbcType=VARCHAR},
+		      #{item.subNameDebit,jdbcType=VARCHAR},
+		      #{item.fullNameDebit,jdbcType=VARCHAR},
+		      #{item.pkSubIdCtedit,jdbcType=VARCHAR},
+		      #{item.subCodeCredit,jdbcType=VARCHAR},
+		      #{item.subNameCredit,jdbcType=VARCHAR},
+		      #{item.fullNameCredit,jdbcType=VARCHAR},
+		      #{item.documentsUnit,jdbcType=VARCHAR},
+		      #{item.documentsUnitid,jdbcType=VARCHAR},
+		      #{item.documentsDecimal,jdbcType=DECIMAL},
+		      #{item.documentsNumber,jdbcType=DECIMAL},
+		      #{item.taxAmount,jdbcType=DECIMAL},
+		      #{item.subCodeTax,jdbcType=VARCHAR},
+		      #{item.subNameTax,jdbcType=VARCHAR},
+		      #{item.pkSubIdTax,jdbcType=VARCHAR},
+		      #{item.fullNameTax,jdbcType=VARCHAR},
+		      #{item.documentsType,jdbcType=VARCHAR},
+		      #{item.documentsSonType,jdbcType=VARCHAR},
+		      #{item.voucherNumber,jdbcType=INTEGER},
+		      #{item.createPsn,jdbcType=VARCHAR},
+		      #{item.createDate,jdbcType=TIMESTAMP},
+		      #{item.updatePsn,jdbcType=VARCHAR},
+		      #{item.updateDate,jdbcType=TIMESTAMP},
+		      #{item.updateTimestamp,jdbcType=CHAR})
+		</foreach>
+	</insert>
+<!-- 	<delete id="deleteMeasureList" parameterType="measure" > -->
+<!--     delete from t_basic_measure -->
+<!--     where  -->
+<!--     <foreach collection="list" item="item" index="index" separator=","> -->
+<!--     	 account_id = #{accountId,jdbcType=VARCHAR} -->
+<!--     and -->
+<!--     	 pk_measure_id = #{pkMeasureId,jdbcType=VARCHAR} -->
+<!--     </foreach> -->
+<!--   </delete> -->
+  	<delete id="deleteDocumentsList" parameterType="documents">
+		DELETE
+			FROM
+				t_basic_documents
+			where
+		<foreach collection="list" item="item" index="index" open="(" separator="or" close=")">
+				pk_documents_id = #{item.pkDocumentsId}
+<!-- 				pk_documents_id = #{pkDocumentsId,jdbcType=VARCHAR}  -->
+<!-- 			(  -->
+
+<!-- 			 <if test="pkDocumentsId != null" > -->
+<!-- 			    pk_documents_id = #{item.pkDocumentsId,jdbcType=VARCHAR} -->
+<!--      		 </if> -->
+<!--      		 <if test="userId != null" > -->
+<!--      		     and -->
+<!-- 			     user_id #{item.userId,jdbcType=VARCHAR} -->
+<!--      		 </if> -->
+<!--      		 <if test="accountId != null" > -->
+<!--      		     and -->
+<!-- 			     account_id = #{item.accountId,jdbcType=VARCHAR} -->
+<!--      		 </if> -->
+<!--      		 <if test="accountPeriod != null" > -->
+<!--      		     and -->
+<!-- 			     account_period = #{item.accountPeriod,jdbcType=VARCHAR} -->
+<!--      		 </if> -->
+<!-- 		     ) -->
+		</foreach>
+	</delete>
+
+  <insert id="insertSelective" parameterType="documents" >
+    insert into t_basic_documents
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pkDocumentsId != null" >
+        pk_documents_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="accountPeriod != null" >
+        account_period,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="amountDebit != null" >
+        amount_debit,
+      </if>
+      <if test="amountCredit != null" >
+        amount_credit,
+      </if>
+      <if test="pkSubIdDebit != null" >
+        pk_sub_id_debit,
+      </if>
+      <if test="subCodeDebit != null" >
+        sub_code_debit,
+      </if>
+      <if test="subNameDebit != null" >
+        sub_name_debit,
+      </if>
+      <if test="fullNameDebit != null" >
+        full_name_debit,
+      </if>
+      <if test="pkSubIdCtedit != null" >
+        pk_sub_id_ctedit,
+      </if>
+      <if test="subCodeCredit != null" >
+        sub_code_credit,
+      </if>
+      <if test="subNameCredit != null" >
+        sub_name_credit,
+      </if>
+      <if test="fullNameCredit != null" >
+        full_name_credit,
+      </if>
+      <if test="documentsUnit != null" >
+        documents_unit,
+      </if>
+      <if test="documentsUnitid != null" >
+        documents_unitId,
+      </if>
+      <if test="documentsDecimal != null" >
+        documents_decimal,
+      </if>
+      <if test="documentsNumber != null" >
+        documents_number,
+      </if>
+      <if test="taxAmount != null" >
+        tax_amount,
+      </if>
+       <if test="subCodeTax != null" >
+        sub_code_tax,
+      </if>
+      <if test="subNameTax != null" >
+        sub_name_tax,
+      </if>
+      <if test="pkSubIdTax != null" >
+        pk_sub_id_tax,
+      </if>
+      <if test="fullNameTax != null" >
+        full_name_tax,
+      </if>
+      <if test="documentsType != null" >
+        documents_type,
+      </if>
+      <if test="documentsSonType != null" >
+        documents_son_type,
+      </if>
+      <if test="voucherNumber != null" >
+        voucher_number,
+      </if>
+      <if test="createPsn != null" >
+        create_psn,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updatePsn != null" >
+        update_psn,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="updateTimestamp != null" >
+        update_timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pkDocumentsId != null" >
+        #{pkDocumentsId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPeriod != null" >
+        #{accountPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="amountDebit != null" >
+        #{amountDebit,jdbcType=DECIMAL},
+      </if>
+      <if test="amountCredit != null" >
+        #{amountCredit,jdbcType=DECIMAL},
+      </if>
+      <if test="pkSubIdDebit != null" >
+        #{pkSubIdDebit,jdbcType=VARCHAR},
+      </if>
+      <if test="subCodeDebit != null" >
+        #{subCodeDebit,jdbcType=VARCHAR},
+      </if>
+      <if test="subNameDebit != null" >
+        #{subNameDebit,jdbcType=VARCHAR},
+      </if>
+      <if test="fullNameDebit != null" >
+        #{fullNameDebit,jdbcType=VARCHAR},
+      </if>
+      <if test="pkSubIdCtedit != null" >
+        #{pkSubIdCtedit,jdbcType=VARCHAR},
+      </if>
+      <if test="subCodeCredit != null" >
+        #{subCodeCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="subNameCredit != null" >
+        #{subNameCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="fullNameCredit != null" >
+        #{fullNameCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="documentsUnit != null" >
+        #{documentsUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="documentsUnitid != null" >
+        #{documentsUnitid,jdbcType=VARCHAR},
+      </if>
+      <if test="documentsDecimal != null" >
+        #{documentsDecimal,jdbcType=DECIMAL},
+      </if>
+      <if test="documentsNumber != null" >
+        #{documentsNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="taxAmount != null" >
+        #{taxAmount,jdbcType=DECIMAL},
+      </if>
+       <if test="subCodeTax != null" >
+        #{subCodeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="subNameTax != null" >
+        #{subNameTax,jdbcType=VARCHAR},
+      </if>
+      <if test="pkSubIdTax != null" >
+        #{pkSubIdTax,jdbcType=VARCHAR},
+      </if>
+      <if test="fullNameTax != null" >
+        #{fullNameTax,jdbcType=VARCHAR},
+      </if>
+      <if test="documentsType != null" >
+        #{documentsType,jdbcType=VARCHAR},
+      </if>
+      <if test="documentsSonType != null" >
+        #{documentsSonType,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherNumber != null" >
+        #{voucherNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createPsn != null" >
+        #{createPsn,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePsn != null" >
+        #{updatePsn,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        #{updateTimestamp,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="documents" >
+    update t_basic_documents
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPeriod != null" >
+        account_period = #{accountPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="amountDebit != null" >
+        amount_debit = #{amountDebit,jdbcType=DECIMAL},
+      </if>
+      <if test="amountCredit != null" >
+        amount_credit = #{amountCredit,jdbcType=DECIMAL},
+      </if>
+      <if test="pkSubIdDebit != null" >
+        pk_sub_id_debit = #{pkSubIdDebit,jdbcType=VARCHAR},
+      </if>
+      <if test="subCodeDebit != null" >
+        sub_code_debit = #{subCodeDebit,jdbcType=VARCHAR},
+      </if>
+      <if test="subNameDebit != null" >
+        sub_name_debit = #{subNameDebit,jdbcType=VARCHAR},
+      </if>
+      <if test="fullNameDebit != null" >
+        full_name_debit = #{fullNameDebit,jdbcType=VARCHAR},
+      </if>
+      <if test="pkSubIdCtedit != null" >
+        pk_sub_id_ctedit = #{pkSubIdCtedit,jdbcType=VARCHAR},
+      </if>
+      <if test="subCodeCredit != null" >
+        sub_code_credit = #{subCodeCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="subNameCredit != null" >
+        sub_name_credit = #{subNameCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="fullNameCredit != null" >
+        full_name_credit = #{fullNameCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="documentsUnit != null" >
+        documents_unit = #{documentsUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="documentsUnitid != null" >
+        documents_unitId = #{documentsUnitid,jdbcType=VARCHAR},
+      </if>
+      <if test="documentsDecimal != null" >
+        documents_decimal = #{documentsDecimal,jdbcType=DECIMAL},
+      </if>
+      <if test="documentsNumber != null" >
+        documents_number = #{documentsNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="taxAmount != null" >
+        tax_amount = #{taxAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="subCodeTax != null" >
+        sub_code_tax = #{subCodeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="subNameTax != null" >
+        sub_name_tax = #{subNameTax,jdbcType=VARCHAR},
+      </if>
+      <if test="pkSubIdTax != null" >
+        pk_sub_id_tax = #{pkSubIdTax,jdbcType=VARCHAR},
+      </if>
+      <if test="fullNameTax != null" >
+        full_name_tax = #{fullNameTax,jdbcType=VARCHAR},
+      </if>
+      <if test="documentsType != null" >
+        documents_type = #{documentsType,jdbcType=VARCHAR},
+      </if>
+      <if test="documentsSonType != null" >
+        documents_son_type = #{documentsSonType,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherNumber != null" >
+        voucher_number = #{voucherNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createPsn != null" >
+        create_psn = #{createPsn,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePsn != null" >
+        update_psn = #{updatePsn,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        update_timestamp = #{updateTimestamp,jdbcType=CHAR},
+      </if>
+    </set>
+    where pk_documents_id = #{pkDocumentsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="documents" >
+     update t_basic_documents
+    set user_id = #{userId,jdbcType=VARCHAR},
+      account_id = #{accountId,jdbcType=VARCHAR},
+      account_period = #{accountPeriod,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      amount_debit = #{amountDebit,jdbcType=DECIMAL},
+      amount_credit = #{amountCredit,jdbcType=DECIMAL},
+      pk_sub_id_debit = #{pkSubIdDebit,jdbcType=VARCHAR},
+      sub_code_debit = #{subCodeDebit,jdbcType=VARCHAR},
+      sub_name_debit = #{subNameDebit,jdbcType=VARCHAR},
+      full_name_debit = #{fullNameDebit,jdbcType=VARCHAR},
+      pk_sub_id_ctedit = #{pkSubIdCtedit,jdbcType=VARCHAR},
+      sub_code_credit = #{subCodeCredit,jdbcType=VARCHAR},
+      sub_name_credit = #{subNameCredit,jdbcType=VARCHAR},
+      full_name_credit = #{fullNameCredit,jdbcType=VARCHAR},
+      documents_unit = #{documentsUnit,jdbcType=VARCHAR},
+      documents_unitId = #{documentsUnitid,jdbcType=VARCHAR},
+      documents_decimal = #{documentsDecimal,jdbcType=DECIMAL},
+      documents_number = #{documentsNumber,jdbcType=DECIMAL},
+      tax_amount = #{taxAmount,jdbcType=DECIMAL},
+      sub_code_tax = #{subCodeTax,jdbcType=VARCHAR},
+      sub_name_tax = #{subNameTax,jdbcType=VARCHAR},
+      pk_sub_id_tax = #{pkSubIdTax,jdbcType=VARCHAR},
+      full_name_tax = #{fullNameTax,jdbcType=VARCHAR},
+      documents_type = #{documentsType,jdbcType=VARCHAR},
+      documents_son_type = #{documentsSonType,jdbcType=VARCHAR},
+      voucher_number = #{voucherNumber,jdbcType=INTEGER},
+      create_psn = #{createPsn,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_psn = #{updatePsn,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_timestamp = #{updateTimestamp,jdbcType=CHAR}
+    where pk_documents_id = #{pkDocumentsId,jdbcType=VARCHAR}
+  </update>
+</mapper>

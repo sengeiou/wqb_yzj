@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="periodStatu">
+	<!-- 期间状态映射 -->
+	<resultMap type="periodStatu" id="periodStatuMap">
+		<result property="periodID" column="periodID" />
+		<result property="period" column="period" />
+		<result property="isCreateVoucher" column="isCreateVoucher" />
+		<result property="isCarryState" column="isCarryState" />
+		<result property="createPsnID" column="createPsnID" />
+		<result property="createPsn" column="createPsn" />
+		<result property="accountID" column="accountID" />
+		<result property="isJz" column="isJz" />
+		<result property="isCheck" column="isCheck" />
+		<result property="isDetection" column="isDetection" />
+		<result property="isJt" column="isJt" />
+	</resultMap>
+
+	<select id="queryStatus" resultMap="periodStatuMap">
+		select * from t_status_period
+		where period=#{busDate} and accountID=#{accountID};
+	</select>
+
+	<update id="updStatu1">
+		update t_status_period set isCreateVoucher=#{isCreateVoucher} where
+		period=#{busDate} and accountID=#{accountID};
+	</update>
+
+	<update id="updStatu2">
+		update t_status_period set isCarryState=1 where
+		period=#{busDate} and accountID=#{accountID};
+	</update>
+	
+	<update id="updStatuJz">
+		update t_status_period set isJz=1 where
+		period=#{busDate} and accountID=#{accountID};
+	</update>
+
+	<insert id="insertPeriodStatu">
+		insert into t_status_period
+		(periodID,period,isCreateVoucher,isCarryState,createPsnID,createPsn,accountID,isJt)
+		values
+		(
+		#{periodID},#{period},#{isCreateVoucher},#{isCarryState},#{createPsnID},#{createPsn},#{accountID},#{isJt}
+		)
+	</insert>
+	
+	<update id="updStatu3">
+		update t_status_period set isJz=#{isJz} where
+		period=#{busDate} and accountID=#{accountID};
+	</update>
+	
+	<update id="updStatu4">
+		update t_status_period set isCarryState=0 where
+		period=#{busDate} and accountID=#{accountID};
+	</update>
+	
+	<update id="updStatu5">
+		update t_status_period set isCheck=#{isCheck} where
+		period=#{busDate} and accountID=#{accountID};
+	</update>
+	
+	<update id="updStatuIsDetection">
+		update t_status_period set isDetection=#{isDetection} where
+		period=#{busDate} and accountID=#{accountID};
+	</update>
+	
+	
+	<update id="updStatuByCondition" parameterType="map">
+		update t_status_period 
+		<set>
+			<if test="isCreateVoucher!=null">
+				isCreateVoucher = #{isCreateVoucher},
+			</if>
+			<if test="isCarryState!=null">
+				isCarryState = #{isCarryState},
+			</if>
+		</set>
+		where  period=#{busDate} and accountID=#{accountID};
+	</update>
+	
+	
+	<select id="queryPeriodStatuBath" resultMap="periodStatuMap" parameterType="map">
+		select * from t_status_period where  period=#{busDate}  and  accountID in 
+		<foreach collection="ids" open="(" close=")" item="item" index="index" separator="," >
+				#{item}
+		</foreach> 
+	</select>
+	
+	<update id="updstatusJt">
+		update t_status_period  set isJt = #{isJt} where   period=#{busDate} and accountID=#{accountID};
+	</update>
+	
+	
+	<!-- 查询已完成记账的数量 -->
+	<select id="queryJz" parameterType="map" resultType="int">
+	    select count(*)  from t_status_period where period= "2018-02" and isJz=1
+			and accountID = "6cd6bcc85cc947c8bf0e4a46ba03ac39"
+<!-- 		select count(*)  from t_status_period where period=#{period} and isJz=1 -->
+<!-- 			and accountID = #{accountID} -->
+	</select>
+	<!-- 查询未开始的数量 -->
+	<select id="queryNoBegin" resultType="java.util.Map">
+		select count(*) from t_status_period where period=#{period} and isCreateVoucher=0
+	</select>
+	
+	
+	<select id="queryStatusByCondition" parameterType="map" resultType="com.wqb.model.StatusPeriod">
+		select * from t_status_period  where accountID = #{accountID}
+		
+			<if test="period !=null">
+				and period = #{period}
+			</if>
+		
+			<if test="isCreateVoucher !=null">
+				and isCreateVoucher = #{isCreateVoucher}
+			</if>
+			
+			<if test="isJt !=null">
+				and isJt = #{isJt}
+			</if>
+			
+			<if test="isCarryState !=null">
+				and isCarryState = #{isCarryState}
+			</if>
+			
+			<if test="isJz !=null">
+				and isJz = #{isJz}
+			</if>
+			
+			<if test="isJz1 !=null">
+				and isJz != #{isJz1}
+			</if>
+			
+			<if test="isCheck !=null">
+				and isCheck = #{isCheck}
+			</if>
+			
+			<if test="isDetection !=null">
+				and isDetection = #{isDetection}
+			</if>
+			
+			<if test="order !=null">
+				order by period  limit 1
+			</if>
+			
+			
+			
+		
+	</select>
+	
+	
+	
+</mapper>

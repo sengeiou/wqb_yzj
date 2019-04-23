@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="appAccount">
+
+	<!-- 根据用户查询账套 -->
+	<select id="queryAccByUserID" parameterType="map" resultType="com.wqb.model.Account">
+		select * from  t_basic_account where userID=#{userID} and statu=1 limit 1;
+	</select>
+
+
+	<!-- 根据公司名称查询用户下面的所有账套 -->
+	<select id="queryAllAccByUserIDAndComName" parameterType="map" resultType="com.wqb.model.Account">
+		select * from  t_basic_account where userID=#{userID}  and companyName  LIKE CONCAT('%','${companyName}','%' )  and statu=1
+	</select>
+	
+	
+	<!-- 根据用户查询账套 -->
+	<select id="queryAcc" parameterType="map" resultType="com.wqb.model.User">
+		select * from  t_sys_user where userID=#{userID};
+	</select>
+	
+	
+	<!-- 根据管理员查询员工 -->
+	<select id="queryUserByUserID" parameterType="map" resultType="com.wqb.model.User">
+		select * from  t_sys_user where parentUser=#{userID} and state = 1
+	</select>
+	
+		<!-- 根据管理员查询员工 -->
+	<select id="queryUserByUserID2" parameterType="map" resultType="string">
+		select userID from  t_sys_user where parentUser=#{userID} and state = 1
+	</select>
+	
+	
+	<!-- 根据员工查询账套 -->
+	<select id="queryAllByID" parameterType="map" resultType="com.wqb.model.Account">
+		select * from t_basic_account  where statu=1  and  userID in
+		<foreach collection="listID" item="id" open="(" close=")" separator=",">
+				#{id}
+		</foreach>
+		<if test="companyName!=null and companyName!='' ">
+			and companyName  LIKE CONCAT('%','${companyName}','%' )  
+		</if>
+	</select>
+	
+	<!-- 根据员工查询账套 -->
+	<select id="queryAllByID2" parameterType="map" resultType="com.wqb.model.Account">
+		select * from t_basic_account  where statu=1   and  userID in
+		<foreach collection="listID" item="id" open="(" close=")" separator=",">
+				#{id}
+		</foreach>
+		<if test="companyName!=null and companyName!='' ">
+			and	companyName  LIKE CONCAT('%','${companyName}','%' )
+		</if>
+		order by lastTime desc 
+		<if test="limit!=null">
+			limit 1
+		</if>
+		
+	</select>
+	
+	
+	<!-- APP选择公司进入账套 -->
+	<select id="queryAccByID" parameterType="map" resultType="com.wqb.model.Account">
+		select * from  t_basic_account where accountID = #{accountID} and statu = 1
+	</select>
+	
+	
+	
+	<!-- 查询用户 -->
+	<select id="queryAcc2" parameterType="map" resultType="com.wqb.model.User">
+		select * from  t_sys_user where 1 = 1
+		<if test="statu!=null">
+			and  statu=#{statu}
+		</if>
+		<if test="userID!=null">
+			and  userID=#{userID}
+		</if>
+	</select>
+	
+	<!-- 测试可以删除 -->
+	<insert id="insertUser" parameterType="com.wqb.model.Test01">
+		INSERT INTO test_user  (username,sex,birthday,price,num)VALUES
+		(
+			#{username,jdbcType=VARCHAR},
+			#{sex,jdbcType=VARCHAR},
+			#{birthday,jdbcType=DATE},
+			#{price,jdbcType=DECIMAL},
+			#{num,jdbcType=DOUBLE}
+		)
+	</insert>
+	
+	
+	
+</mapper>
+
+
+
+

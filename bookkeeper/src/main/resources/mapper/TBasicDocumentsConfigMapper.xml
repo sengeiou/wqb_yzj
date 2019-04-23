@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="documentsConfig" >
+  <resultMap id="documentsConfig" type="documentsConfig" >
+    <id column="pk_documents_config_id" property="pkDocumentsConfigId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="pk_sub_id_debit" property="pkSubIdDebit" jdbcType="VARCHAR" />
+    <result column="sub_code_parent_debit" property="subCodeParentDebit" jdbcType="VARCHAR" />
+    <result column="sub_name_debit" property="subNameDebit" jdbcType="VARCHAR" />
+    <result column="full_name_debit" property="fullNameDebit" jdbcType="VARCHAR" />
+    <result column="pk_sub_id_ctedit" property="pkSubIdCtedit" jdbcType="VARCHAR" />
+    <result column="sub_code_parent_credit" property="subCodeParentCredit" jdbcType="VARCHAR" />
+    <result column="sub_name_credit" property="subNameCredit" jdbcType="VARCHAR" />
+    <result column="full_name_credit" property="fullNameCredit" jdbcType="VARCHAR" />
+    <result column="documents_type" property="documentsType" jdbcType="VARCHAR" />
+    <result column="create_psn" property="createPsn" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_psn" property="updatePsn" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_timestamp" property="updateTimestamp" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pk_documents_config_id, user_id, summary, project_name, pk_sub_id_debit, sub_code_parent_debit, 
+    sub_name_debit, full_name_debit, pk_sub_id_ctedit, sub_code_parent_credit, sub_name_credit, 
+    full_name_credit, documents_type, create_psn, create_date, update_psn, update_date, 
+    update_timestamp
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="documentsConfig" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_basic_documents_config
+    where pk_documents_config_id = #{pkDocumentsConfigId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_basic_documents_config
+    where pk_documents_config_id = #{pkDocumentsConfigId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="documentsConfig" >
+    insert into t_basic_documents_config (pk_documents_config_id, user_id, summary, 
+      project_name, pk_sub_id_debit, sub_code_parent_debit, 
+      sub_name_debit, full_name_debit, pk_sub_id_ctedit, 
+      sub_code_parent_credit, sub_name_credit, full_name_credit, 
+      documents_type, create_psn, create_date, 
+      update_psn, update_date, update_timestamp
+      )
+    values (#{pkDocumentsConfigId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, 
+      #{projectName,jdbcType=VARCHAR}, #{pkSubIdDebit,jdbcType=VARCHAR}, #{subCodeParentDebit,jdbcType=VARCHAR}, 
+      #{subNameDebit,jdbcType=VARCHAR}, #{fullNameDebit,jdbcType=VARCHAR}, #{pkSubIdCtedit,jdbcType=VARCHAR}, 
+      #{subCodeParentCredit,jdbcType=VARCHAR}, #{subNameCredit,jdbcType=VARCHAR}, #{fullNameCredit,jdbcType=VARCHAR}, 
+      #{documentsType,jdbcType=VARCHAR}, #{createPsn,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updatePsn,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{updateTimestamp,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="documentsConfig" >
+    insert into t_basic_documents_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pkDocumentsConfigId != null" >
+        pk_documents_config_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="pkSubIdDebit != null" >
+        pk_sub_id_debit,
+      </if>
+      <if test="subCodeParentDebit != null" >
+        sub_code_parent_debit,
+      </if>
+      <if test="subNameDebit != null" >
+        sub_name_debit,
+      </if>
+      <if test="fullNameDebit != null" >
+        full_name_debit,
+      </if>
+      <if test="pkSubIdCtedit != null" >
+        pk_sub_id_ctedit,
+      </if>
+      <if test="subCodeParentCredit != null" >
+        sub_code_parent_credit,
+      </if>
+      <if test="subNameCredit != null" >
+        sub_name_credit,
+      </if>
+      <if test="fullNameCredit != null" >
+        full_name_credit,
+      </if>
+      <if test="documentsType != null" >
+        documents_type,
+      </if>
+      <if test="createPsn != null" >
+        create_psn,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updatePsn != null" >
+        update_psn,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="updateTimestamp != null" >
+        update_timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pkDocumentsConfigId != null" >
+        #{pkDocumentsConfigId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="pkSubIdDebit != null" >
+        #{pkSubIdDebit,jdbcType=VARCHAR},
+      </if>
+      <if test="subCodeParentDebit != null" >
+        #{subCodeParentDebit,jdbcType=VARCHAR},
+      </if>
+      <if test="subNameDebit != null" >
+        #{subNameDebit,jdbcType=VARCHAR},
+      </if>
+      <if test="fullNameDebit != null" >
+        #{fullNameDebit,jdbcType=VARCHAR},
+      </if>
+      <if test="pkSubIdCtedit != null" >
+        #{pkSubIdCtedit,jdbcType=VARCHAR},
+      </if>
+      <if test="subCodeParentCredit != null" >
+        #{subCodeParentCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="subNameCredit != null" >
+        #{subNameCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="fullNameCredit != null" >
+        #{fullNameCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="documentsType != null" >
+        #{documentsType,jdbcType=VARCHAR},
+      </if>
+      <if test="createPsn != null" >
+        #{createPsn,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePsn != null" >
+        #{updatePsn,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        #{updateTimestamp,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="documentsConfig" >
+    update t_basic_documents_config
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="pkSubIdDebit != null" >
+        pk_sub_id_debit = #{pkSubIdDebit,jdbcType=VARCHAR},
+      </if>
+      <if test="subCodeParentDebit != null" >
+        sub_code_parent_debit = #{subCodeParentDebit,jdbcType=VARCHAR},
+      </if>
+      <if test="subNameDebit != null" >
+        sub_name_debit = #{subNameDebit,jdbcType=VARCHAR},
+      </if>
+      <if test="fullNameDebit != null" >
+        full_name_debit = #{fullNameDebit,jdbcType=VARCHAR},
+      </if>
+      <if test="pkSubIdCtedit != null" >
+        pk_sub_id_ctedit = #{pkSubIdCtedit,jdbcType=VARCHAR},
+      </if>
+      <if test="subCodeParentCredit != null" >
+        sub_code_parent_credit = #{subCodeParentCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="subNameCredit != null" >
+        sub_name_credit = #{subNameCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="fullNameCredit != null" >
+        full_name_credit = #{fullNameCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="documentsType != null" >
+        documents_type = #{documentsType,jdbcType=VARCHAR},
+      </if>
+      <if test="createPsn != null" >
+        create_psn = #{createPsn,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePsn != null" >
+        update_psn = #{updatePsn,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        update_timestamp = #{updateTimestamp,jdbcType=CHAR},
+      </if>
+    </set>
+    where pk_documents_config_id = #{pkDocumentsConfigId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="documentsConfig" >
+    update t_basic_documents_config
+    set user_id = #{userId,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      pk_sub_id_debit = #{pkSubIdDebit,jdbcType=VARCHAR},
+      sub_code_parent_debit = #{subCodeParentDebit,jdbcType=VARCHAR},
+      sub_name_debit = #{subNameDebit,jdbcType=VARCHAR},
+      full_name_debit = #{fullNameDebit,jdbcType=VARCHAR},
+      pk_sub_id_ctedit = #{pkSubIdCtedit,jdbcType=VARCHAR},
+      sub_code_parent_credit = #{subCodeParentCredit,jdbcType=VARCHAR},
+      sub_name_credit = #{subNameCredit,jdbcType=VARCHAR},
+      full_name_credit = #{fullNameCredit,jdbcType=VARCHAR},
+      documents_type = #{documentsType,jdbcType=VARCHAR},
+      create_psn = #{createPsn,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_psn = #{updatePsn,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_timestamp = #{updateTimestamp,jdbcType=CHAR}
+    where pk_documents_config_id = #{pkDocumentsConfigId,jdbcType=VARCHAR}
+  </update>
+</mapper>

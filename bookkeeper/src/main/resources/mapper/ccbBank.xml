@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ccb">
+	<!-- 中信银行对账单映射 -->
+	<resultMap type="ccb" id="ccbMap">
+		<result property="zxBillID" column="zxBillID" />
+		<result property="accountID" column="accountID" />
+		<result property="period" column="period" />
+		<result property="busDate" column="busDate" />
+		<result property="transactionDate" column="transactionDate" />
+		<result property="carryInterest" column="carryInterest" />
+		<result property="masterTransactionNum" column="masterTransactionNum" />
+		<result property="gyTransaction" column="gyTransaction" />
+		<result property="bczFlag" column="bczFlag" />
+		<result property="fjrFlag" column="fjrFlag" />
+		<result property="debitAmount" column="debitAmount" />
+		<result property="creditAmount" column="creditAmount" />
+		<result property="accountBalance" column="accountBalance" />
+		<result property="xzFlag" column="xzFlag" />
+		<result property="descCode1" column="descCode1" />
+		<result property="descCode2" column="descCode2" />
+		<result property="des" column="des" />
+		<result property="createPresonID" column="createPresonID" />
+		<result property="ceeatePersonName" column="ceeatePersonName" />
+		<result property="checkID" column="checkID" />
+		<result property="checkPersonName" column="checkPersonName" />
+		<result property="accountNO" column="accountNO" />
+		<result property="whAccountName" column="whAccountName" />
+		<result property="whkhhName" column="whkhhName" />
+		<result property="transactionTime" column="transactionTime" />
+		<result property="transactionID" column="transactionID" />
+		<result property="bz" column="bz" />
+		<result property="tpFlag" column="tpFlag" />
+		<result property="tpDate" column="tpDate" />
+		<result property="tpcc" column="tpcc" />
+		<result property="bankType" column="bankType" />
+
+		<result property="sysSubjectCode" column="sysSubjectCode" />
+
+		<result property="sysSubjectName" column="sysSubjectName" />
+
+		<result property="sysSubjectID" column="sysSubjectID" />
+		<result property="sysSubjectFullName" column="sysSubjectFullName" />
+		<result property="bankAccount" column="bankAccount" />
+		
+	</resultMap>
+
+	<insert id="insertTccb">
+		insert into t_cm_bkbill_ccb
+		(
+		zxBillID ,
+		accountID ,
+		period ,
+		busDate ,
+		transactionDate ,
+		carryInterest ,
+		masterTransactionNum,
+		gyTransaction,
+		bczFlag ,
+		fjrFlag ,
+		debitAmount ,
+		creditAmount ,
+		accountBalance,
+		xzFlag,
+		descCode1 ,
+		descCode2,
+		des,
+		createPresonID ,
+		ceeatePersonName ,
+		checkID ,
+		checkPersonName ,
+		accountNO
+		,
+		whAccountName,
+		whkhhName ,
+		transactionTime,
+		transactionID ,
+		bz ,
+		tpFlag ,
+		tpDate ,
+		tpcc,bankAccount
+		)
+		values(
+		#{zxBillID},
+		#{accountID},
+		#{ period} ,
+		#{ busDate},
+		#{transactionDate} ,
+		#{carryInterest} ,
+		#{ masterTransactionNum} ,
+		#{gyTransaction},
+		#{bczFlag},
+		#{fjrFlag} ,
+		#{debitAmount},
+		#{creditAmount},
+		#{accountBalance},
+		#{xzFlag},
+		#{descCode1} ,
+		#{descCode2},
+		#{des},
+		#{createPresonID} ,
+		#{ceeatePersonName} ,
+		#{checkID} ,
+		#{checkPersonName},
+		#{accountNO} ,
+		#{whAccountName},
+		#{whkhhName},
+		#{transactionTime},
+		#{transactionID},
+		#{bz} ,
+		#{tpFlag} ,
+		#{tpDate },
+		#{tpcc},#{bankAccount})
+
+	</insert>
+
+	<select id="querySame" resultMap="ccbMap">
+		select * from t_cm_bkbill_ccb
+		where accountID=#{accountID} and period=#{period} and
+		transactionID=#{transactionID};
+	</select>
+
+	<delete id="deleteByID">
+		delete from t_cm_bkbill_ccb where zxBillID in ${bills};
+	</delete>
+	<!-- 不定项多条件分页查询 -->
+	<select id="queryBankBill" resultMap="ccbMap">
+		select * from t_cm_bkbill_ccb where accountID = #{accountID} and
+		period=#{busDate}
+		<if
+			test="beginTime!=null and beginTime!='' and endTime!=null and endTime!=''">
+			and transactionDate between #{beginTime} and #{endTime}
+		</if>
+		<if test="bankType!=null and bankType!='' and bankType!='全部'">
+			and bankType=#{bankType}
+		</if>
+		<if test="keyWords!=null and keyWords!=''">
+			and whAccountName like CONCAT('%','${keyWords}','%' )
+		</if>
+		order by busDate
+		<if test="begin != null and begin != '' or begin==0">
+			limit #{begin},#{maxPage}
+		</if>
+
+	</select>
+
+	<!-- 银行凭证添加 查询当期全部数据 -->
+	<select id="queryAll" parameterType="map" resultMap="ccbMap">
+		select *
+		from t_cm_bkbill_ccb where accountID = #{accountID} and
+		period=#{busDate} order by busDate
+	</select>
+	<update id="delVouchID">
+		update t_cm_bkbill_ccb set vouchID ='' where
+		vouchID=#{vouchID};
+	</update>
+
+	<update id="addVouchID">
+		update t_cm_bkbill_ccb set vouchID =#{vouchID} where zxBillID=#{bankID};
+	</update>
+
+	<update id="updByID">
+		update t_cm_bkbill_ccb set sysSubjectCode
+		=#{sysSubjectCode},sysSubjectName=#{sysSubjectName},
+		sysSubjectID=#{sysSubjectID},sysSubjectFullName=#{sysSubjectFullName}
+		where zxBillID=#{id};
+	</update>
+</mapper>
